@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web;
+using System.Net;
+using System.Threading.Tasks;
+using ProxySearch.Common;
+using System.Linq;
+
+namespace ProxySearch.Engine.Google
+{
+    public class GoogleSearchEngine : ISearchEngine
+    {
+        private int linkNumber;
+        private int allowedCount;
+
+        private string queryString;
+        private GoogleSearchOnPage searchOnPage;
+
+        public GoogleSearchEngine(int allowedCount, string keywords)
+        {
+            string[] escapedKeywords = keywords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(item => Uri.EscapeDataString(item)).ToArray();
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append("http://www.google.com.ua/search?q=");
+            builder.Append(string.Join("+", escapedKeywords));
+            builder.Append("&start={0}");
+
+            queryString = builder.ToString();
+
+            linkNumber = 0;
+
+            this.allowedCount = allowedCount;
+
+            searchOnPage = null;
+        }
+
+        public async Task<Uri> GetNext()
+        {
+            if (allowedCount == 0)
+                return null;
+
+            if (searchOnPage == null)
+            {
+                allowedCount--;
+                searchOnPage = new GoogleSearchOnPage();
+                await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)));
+            }
+
+            Uri res = searchOnPage.GetNext();
+
+            if (res != null)
+                linkNumber++;
+            else
+            {
+                searchOnPage = null;
+                return await GetNext();
+            }
+
+            return res;
+        }
+    }
+}

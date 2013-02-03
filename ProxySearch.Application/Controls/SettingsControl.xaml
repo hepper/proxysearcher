@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignWidth="484" x:Name="Settings">
+    <controls:BackControl DataContext="{Binding ElementName=Settings}">
+        <controls:BackControl.Content>
+            <Grid Margin="{StaticResource DefaultMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:DetectableSelectorControl  Grid.Row="0" Grid.ColumnSpan="2" SelectorName="Geo IP" 
+                                                     Arguments="{Binding Path=AllSettings.GeoIPSettings}"
+                                                     Detectables="{Binding Path=GeoIPs}" 
+                                                     SelectedIndex="{Binding Path=SelectedGeoIPIndex, Mode=TwoWay}"  />
+
+                <Label Grid.Row="2" Grid.Column="0">Thread count</Label>
+                <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" TextAlignment="Left" Margin="0, 0, 5, 0"  Value="{Binding Path=AllSettings.MaxThreadCount}" />
+
+                <controls:TabSettingControl Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,0,0" />
+
+                <Grid  Grid.Row="4" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,10, 0 0" Width="120" Click="ClearHistory_Click">Clear history</Button>
+                    <Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,10, 0 0" Width="120" Click="RestoreDefaults_Click">Restore defaults</Button>
+                </Grid>
+            </Grid>
+        </controls:BackControl.Content>
+    </controls:BackControl>
+</UserControl>

@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0B381461-DB63-4273-8F00-370A53089871}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProxySearch.Console</RootNamespace>
+    <AssemblyName>ProxySearch.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\WPFToolkit.Extended\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Code\ApplicationInitializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Constants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\ControlNavigator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Converters\AccuracyConverter.cs" />
+    <Compile Include="Code\Converters\ValueToColorConverter.cs" />
+    <Compile Include="Code\Detectable\DetectableSearcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Detectable\GeoIPs\DummyGeoIPDetectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Detectable\GeoIPs\GeoIPDetectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Detectable\ProxyCheckers\CheckerProxyNetDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\ProxyCheckerByUrlDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\SimpleProxyCheckerDetectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Detectable\SimpleDetectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\GeoIPServiceAdapter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Interfaces\IActionInvoker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Interfaces\IControlNavigator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Interfaces\IDetectable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Interfaces\IDetectableSearcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Interfaces\IProxyClient.cs" />
+    <Compile Include="Code\Interfaces\IProxyClientRestartable.cs" />
+    <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
+    <Compile Include="Code\Interfaces\ISearchControl.cs" />
+    <Compile Include="Code\Interfaces\ISearchResult.cs" />
+    <Compile Include="Code\ProxyClients\BrowserClient.cs" />
+    <Compile Include="Code\ProxyClients\ChromeClient.cs" />
+    <Compile Include="Code\ProxyClients\FirefoxClient.cs" />
+    <Compile Include="Code\ProxyClients\InternetExplorer\InternetExplorerClient.cs" />
+    <Compile Include="Code\ProxyClients\InternetExplorer\WinInet\INTERNET_OPTION.cs" />
+    <Compile Include="Code\ProxyClients\InternetExplorer\WinInet\INTERNET_PER_CONN_OPTION.cs" />
+    <Compile Include="Code\ProxyClients\InternetExplorer\WinInet\INTERNET_PER_CONN_OPTION_LIST.cs" />
+    <Compile Include="Code\ProxyClients\InternetExplorer\WinInet\WinINet.cs" />
+    <Compile Include="Code\ProxyClients\Opera\IniFile.cs" />
+    <Compile Include="Code\ProxyClients\Opera\OperaClient.cs" />
+    <Compile Include="Code\ProxyClients\ProxyClientBase.cs" />
+    <Compile Include="Code\ProxyClients\ProxyClientSearcher.cs" />
+    <Compile Include="Code\ProxyClients\ProxyClientSettings.cs" />
+    <Compile Include="Code\ProxyClients\ProxyClientsSettings.cs" />
+    <Compile Include="Code\ProxyClients\RestartableBrowserClient.cs" />
+    <Compile Include="Code\ProxySearchEngineApplicationFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\ProxySearchFeedback.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Serializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Settings\AddressPortPair.cs" />
+    <Compile Include="Code\Settings\AllSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Settings\DefaultSettingsFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Settings\ParametersPair.cs" />
+    <Compile Include="Code\Settings\TabSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Settings\UsedProxies.cs" />
+    <Compile Include="Code\UI\DummyTabSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\AboutControl.xaml.cs">
+      <DependentUpon>AboutControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BackControl.xaml.cs">
+      <DependentUpon>BackControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CheckerProxyNetPropertyControl.xaml.cs">
+      <DependentUpon>CheckerProxyNetPropertyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DetectableSelectorControl.xaml.cs">
+      <DependentUpon>DetectableSelectorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
+      <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProxyCheckerByUrlControl.xaml.cs">
+      <DependentUpon>ProxyCheckerByUrlControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProxyClientControl.xaml.cs">
+      <DependentUpon>ProxyClientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProxyClientsControl.xaml.cs">
+      <DependentUpon>ProxyClientsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchResult.xaml.cs">
+      <DependentUpon>SearchResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TabNameControl.xaml.cs">
+      <DependentUpon>TabNameControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TabSettingControl.xaml.cs">
+      <DependentUpon>TabSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ToolbarControl.xaml.cs">
+      <DependentUpon>ToolbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GeoIPService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Page Include="Controls\AboutControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ActionInvokerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CheckerProxyNetPropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DetectableSelectorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GoogleEnginePropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProxyCheckerByUrlControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProxyClientControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ProxyClientsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SettingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TabNameControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TabSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ActionInvokerControl.xaml.cs">
+      <DependentUpon>ActionInvokerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchControl.xaml.cs">
+      <DependentUpon>SearchControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\DoubleUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Expander.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Grid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\IntegerUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Label.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Service References\GeoIPService\geoipservice.wsdl" />
+    <None Include="Service References\GeoIPService\ProxySearch.Console.GeoIPService.GeoIP.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GeoIPService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeoIPService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeoIPService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\GeoIPService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProxySearch.Common\ProxySearch.Common.csproj">
+      <Project>{77118BFE-C86C-4BC2-940A-AF59785528D4}</Project>
+      <Name>ProxySearch.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProxySearch.Engine\ProxySearch.Engine.csproj">
+      <Project>{eb06f887-3a1f-4473-a69f-1bfd6a1f361b}</Project>
+      <Name>ProxySearch.Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Chrome.png" />
+    <Resource Include="Images\Firefox.png" />
+    <Resource Include="Images\InternerExplorer.gif" />
+    <Resource Include="Images\Safari.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Opera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Application.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

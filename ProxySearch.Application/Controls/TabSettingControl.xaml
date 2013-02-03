@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.TabSettingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:settings="clr-namespace:ProxySearch.Console.Code.Settings"
+             xmlns:ui="clr-namespace:ProxySearch.Console.Code.UI"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"             
+             mc:Ignorable="d" 
+             x:Name="TabSettings" DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <TabControl ItemsSource="{Binding Path=ExtendedTabSettings}" Name="PropertyTabControl" SelectionChanged="PropertyTabControl_SelectionChanged">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type settings:TabSettings}">
+                                <controls:TabNameControl TabName="{Binding Name, Mode=TwoWay}" Menu="TabNameControl_Menu"  Delete="TabNameControl_Delete"
+                                         Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type ui:DummyTabSettings}">
+                                <Label>+</Label>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type settings:TabSettings}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5"  Grid.Row="0" SelectorName="Search Engine"
+                                                             Arguments="{Binding Path=SearchEngineSettings}"
+                                                             Detectables="{Binding ElementName=TabSettings, Path=SearchEngines}"                                                             
+                                                             SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedSearchEngineIndex, Mode=TwoWay}" />
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5"  Grid.Row="1" SelectorName="Checker Type"
+                                                             Arguments="{Binding Path=ProxyCheckerSettings}"
+                                                             Detectables="{Binding ElementName=TabSettings, Path=ProxyCheckers}"                                                             
+                                                             SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedProxyCheckerIndex, Mode=TwoWay}" />
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type ui:DummyTabSettings}">
+                                <Label />
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllSettingsWillBeRevertedToTheirDefaults" xml:space="preserve">
+    <value>All settings will be reverted to their defaults. Do you want to continue?</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Application" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Application.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Cancelling" xml:space="preserve">
+    <value>Cancelling</value>
+  </data>
+  <data name="CheckerProxyDotNet" xml:space="preserve">
+    <value>http://checkerproxy.net</value>
+  </data>
+  <data name="CheckerProxyDotNetDescription" xml:space="preserve">
+    <value>This checker uses online service http://checkerproxy.net. Additionally usage of this service will give you proxy type. Could check HTTP\HTTPS and SOCKS4\SOCKS5 proxies.</value>
+  </data>
+  <data name="Chrome" xml:space="preserve">
+    <value>Chrome</value>
+  </data>
+  <data name="DefaultTabName" xml:space="preserve">
+    <value>Custom search</value>
+  </data>
+  <data name="DefaultTypeIsntDefinedForInterface" xml:space="preserve">
+    <value>Default type isn't defined for interface '{0}'</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DoYouReallyWantToClearProxyUsageHistory" xml:space="preserve">
+    <value>Do you really want to clear proxy usage history?</value>
+  </data>
+  <data name="DoYouWantToRestartBrowser" xml:space="preserve">
+    <value>In order to apply changes browser '{0}' should be restarted. Do you want to do it now?</value>
+  </data>
+  <data name="DummyGeoIP" xml:space="preserve">
+    <value>Turn off</value>
+  </data>
+  <data name="DummyGeoIPDescription" xml:space="preserve">
+    <value>Turns off Geo IP. It is faster if compare with other options, but it will not give you proxy location</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorHasHappened" xml:space="preserve">
+    <value>Error has happened. Press Details button for details</value>
+  </data>
+  <data name="Firefox" xml:space="preserve">
+    <value>Firefox</value>
+  </data>
+  <data name="GoogleDotCom" xml:space="preserve">
+    <value>http://google.com</value>
+  </data>
+  <data name="GoogleEngineDescription" xml:space="preserve">
+    <value>Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine</value>
+  </data>
+  <data name="InternetExplorer" xml:space="preserve">
+    <value>IE</value>
+  </data>
+  <data name="JobCountFormat" xml:space="preserve">
+    <value>Job Count {0}</value>
+  </data>
+  <data name="Opera" xml:space="preserve">
+    <value>Opera</value>
+  </data>
+  <data name="ProxyCheckerByUrl" xml:space="preserve">
+    <value>By Url</value>
+  </data>
+  <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
+    <value>This proxy checker downloads content of specified url with and without proxy. If content is the same then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. Note, url with dynamic content cannot be used there. Therefore if this checker don't return any results try to change url.</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="RowStyleIsNotSupported" xml:space="preserve">
+    <value>Row style '{0}' is not supported</value>
+  </data>
+  <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
+    <value>Search is cancelled on user request</value>
+  </data>
+  <data name="SearchIsFinishedProxiesWasFound" xml:space="preserve">
+    <value>Search is finished. {0} proxies was found</value>
+  </data>
+  <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
+    <value>Search is finished. No proxy was found. Change search query and try again</value>
+  </data>
+  <data name="SimpleProxyChecker" xml:space="preserve">
+    <value>By IP:Port</value>
+  </data>
+  <data name="SimpleProxyCheckerDescription" xml:space="preserve">
+    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies. Also this checker cannot determine type of proxy</value>
+  </data>
+  <data name="SimpleSite" xml:space="preserve">
+    <value>http://google.com</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
+    <value>Wait until current operation is finished</value>
+  </data>
+  <data name="WebServiceNetGeoIPService" xml:space="preserve">
+    <value>http://www.webservicex.net/geoipservice.asmx</value>
+  </data>
+  <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
+    <value>Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser then use other type of Geo IP</value>
+  </data>
+  <data name="YouShouldClearValueBeforeSetNewOne" xml:space="preserve">
+    <value>You should clear value before set new one</value>
+  </data>
+</root>

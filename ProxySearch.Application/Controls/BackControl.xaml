@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.BackControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="196" d:DesignWidth="300">
+
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <Grid Name="Placeholder">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ContentPresenter Grid.Row="1" />
+                <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click" Margin="{StaticResource DefaultMargin}">Back to Search</Button>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>
