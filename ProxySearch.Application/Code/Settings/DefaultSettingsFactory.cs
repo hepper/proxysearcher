@@ -24,15 +24,7 @@ namespace ProxySearch.Console.Code.Settings
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
-                    new TabSettings()
-                    {
-                        Id = new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C"),
-                        Name = @"HTTP",
-                        ProxyCheckerDetectableType = typeof(CheckerProxyNetDetectable).AssemblyQualifiedName,
-                        SearchEngineDetectableType = typeof(GoogleEngineDetectable).AssemblyQualifiedName,
-                        SearchEngineSettings = GetSettings<ISearchEngine>(),
-                        ProxyCheckerSettings = GetSettings<IProxyChecker>()
-                    }
+                    CreateTabSettings("HTTP", new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C"))
                 }
             };
 
@@ -42,10 +34,15 @@ namespace ProxySearch.Console.Code.Settings
 
         public TabSettings CreateTabSettings()
         {
+            return CreateTabSettings(Resources.DefaultTabName, Guid.NewGuid());
+        }
+
+        private TabSettings CreateTabSettings(string name, Guid guid)
+        {
             return new TabSettings()
             {
-                Id = Guid.NewGuid(),
-                Name = Resources.DefaultTabName,
+                Id = guid,
+                Name = name,
                 ProxyCheckerDetectableType = typeof(ProxyCheckerByUrlDetectable).AssemblyQualifiedName,
                 SearchEngineDetectableType = typeof(GoogleEngineDetectable).AssemblyQualifiedName,
                 SearchEngineSettings = GetSettings<ISearchEngine>(),

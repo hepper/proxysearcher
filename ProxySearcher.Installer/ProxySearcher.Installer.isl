@@ -340,7 +340,6 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{A7061298-FB40-437A-93C2-ECC74AC02769}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ProxySearch.Application.exe</td><td>{32510778-4015-46C4-928C-76E216F2B617}</td><td>INSTALLDIR</td><td>2</td><td/><td>proxysearch.application.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Console.Primary_output</td><td>{F07BF063-D47A-4263-9E69-0CFE53449979}</td><td>INSTALLDIR</td><td>2</td><td/><td>proxysearch.console.primary_</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
@@ -1859,7 +1858,6 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
-		<row><td>AlwaysInstall</td><td>ProxySearch.Application.exe</td></row>
 		<row><td>AlwaysInstall</td><td>ProxySearch.Console.Primary_output</td></row>
 	</table>
 
@@ -1875,7 +1873,6 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>proxysearch.application.exe</td><td>ProxySearch.Application.exe</td><td>PROXYS~1.EXE|ProxySearch.Application.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Projects\ProxySearcher\ProxySearch.Application\bin\Debug\ProxySearch.Application.exe</td><td>1</td><td/></row>
 		<row><td>proxysearch.console.primary_</td><td>ProxySearch.Console.Primary_output</td><td>ProxySearch.Console.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ProxySearch.Console&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
@@ -2132,7 +2129,6 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_C6C53284_3606_4E47_BCFB_6C217E35C910_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>ProxySearch.Application.exe</td><td/><td/><td>_D77A6DA5_664B_4577_AF7B_D6DC557022BF_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ProxySearch.Console.Primary_output</td><td/><td/><td>_0234ED19_C99A_487D_8555_A2C31DE6C884_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
@@ -3867,6 +3863,7 @@
 		<row><td>ID_STRING1</td><td>1033</td><td>PROXYS~1|Proxy Searcher</td><td>0</td><td/><td>421618737</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>Proxy Searcher</td><td>0</td><td/><td>287383381</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>PROXYS~1|Proxy Searcher</td><td>0</td><td/><td>-660509359</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>PROXYS~1|Proxy Searcher</td><td>0</td><td/><td>421646930</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-660505615</td></row>
 	</table>
 
@@ -3975,6 +3972,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_38E2017719CD464E80F7659CB71015A1.exe</td><td/><td>C:\Projects\ProxySearcher\ProxySearch.Application\Resources\Application.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_70557077C73B43AD9FCEAB887B174C77.exe</td><td/><td>C:\Users\Burd\Desktop\ProxySearcher\ProxySearch.Application\Resources\Application.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_B681F507361441A5B03C825834605337.exe</td><td/><td>C:\Projects\ProxySearcher\ProxySearch.Application\Resources\Application.ico</td><td>0</td></row>
 	</table>
@@ -4644,7 +4642,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING1##</td><td>ProxySearch.Application.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_B681F507361441A5B03C825834605337.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING4##</td><td>ProxySearch.Console.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_38E2017719CD464E80F7659CB71015A1.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
