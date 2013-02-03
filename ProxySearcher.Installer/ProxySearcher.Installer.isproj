@@ -27,4 +27,11 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2012SpringLimited\InstallShield.targets"/>
-</Project>
+	<ItemGroup>
+		<ProjectReference Include="..\ProxySearch.Application\ProxySearch.Console.csproj">
+			<Name>ProxySearch.Console</Name>
+			<Project>{0B381461-DB63-4273-8F00-370A53089871}</Project>
+		</ProjectReference>
+	</ItemGroup>
+
+	</Project>

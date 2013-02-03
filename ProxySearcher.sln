@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "ProxySearcher.Installer", "ProxySearcher.Installer\ProxySearcher.Installer.isproj", "{82FA8C47-6B6E-461E-9698-EC0C0248880F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0B381461-DB63-4273-8F00-370A53089871} = {0B381461-DB63-4273-8F00-370A53089871}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.Engine", "ProxySearch.Engine\ProxySearch.Engine.csproj", "{EB06F887-3A1F-4473-A69F-1BFD6A1F361B}"
 EndProject
