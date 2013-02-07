@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,26 @@ namespace ProxySearch.Console.Controls
         public AboutControl()
         {
             InitializeComponent();
+        }
+
+        private void LeaveYourFeedback(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Properties.Resources.FeedbackLink);
+        }
+
+        private void ProxySearchNews(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Properties.Resources.NewsLink);
+        }
+
+        private void Tickets(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Properties.Resources.TicketsLink);
+        }
+
+        private void HomePage(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Properties.Resources.HomePageLink);
         }
     }
 }

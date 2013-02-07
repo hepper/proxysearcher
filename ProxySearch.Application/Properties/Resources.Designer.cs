@@ -206,6 +206,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/.
+        /// </summary>
+        internal static string FeedbackLink {
+            get {
+                return ResourceManager.GetString("FeedbackLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firefox.
         /// </summary>
         internal static string Firefox {
@@ -233,6 +242,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://sourceforge.net/projects/proxysearcher/.
+        /// </summary>
+        internal static string HomePageLink {
+            get {
+                return ResourceManager.GetString("HomePageLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IE.
         /// </summary>
         internal static string InternetExplorer {
@@ -247,6 +265,15 @@ namespace ProxySearch.Console.Properties {
         internal static string JobCountFormat {
             get {
                 return ResourceManager.GetString("JobCountFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://sourceforge.net/p/proxysearcher/blog/.
+        /// </summary>
+        internal static string NewsLink {
+            get {
+                return ResourceManager.GetString("NewsLink", resourceCulture);
             }
         }
         
@@ -355,6 +382,15 @@ namespace ProxySearch.Console.Properties {
         internal static string SimpleSite {
             get {
                 return ResourceManager.GetString("SimpleSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://sourceforge.net/p/proxysearcher/tickets/.
+        /// </summary>
+        internal static string TicketsLink {
+            get {
+                return ResourceManager.GetString("TicketsLink", resourceCulture);
             }
         }
         

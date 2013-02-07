@@ -166,6 +166,9 @@
   <data name="ErrorHasHappened" xml:space="preserve">
     <value>Error has happened. Press Details button for details</value>
   </data>
+  <data name="FeedbackLink" xml:space="preserve">
+    <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/</value>
+  </data>
   <data name="Firefox" xml:space="preserve">
     <value>Firefox</value>
   </data>
@@ -175,11 +178,17 @@
   <data name="GoogleEngineDescription" xml:space="preserve">
     <value>Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine</value>
   </data>
+  <data name="HomePageLink" xml:space="preserve">
+    <value>http://sourceforge.net/projects/proxysearcher/</value>
+  </data>
   <data name="InternetExplorer" xml:space="preserve">
     <value>IE</value>
   </data>
   <data name="JobCountFormat" xml:space="preserve">
     <value>Job Count {0}</value>
+  </data>
+  <data name="NewsLink" xml:space="preserve">
+    <value>http://sourceforge.net/p/proxysearcher/blog/</value>
   </data>
   <data name="Opera" xml:space="preserve">
     <value>Opera</value>
@@ -216,6 +225,9 @@
   </data>
   <data name="SimpleSite" xml:space="preserve">
     <value>http://google.com</value>
+  </data>
+  <data name="TicketsLink" xml:space="preserve">
+    <value>https://sourceforge.net/p/proxysearcher/tickets/</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
