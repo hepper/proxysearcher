@@ -20,11 +20,11 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="130" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0">Check updates</Label>
+                <Label Grid.Row="0" Grid.Column="0">Check for updates</Label>
                 <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" IsChecked="{Binding AllSettings.CheckUpdates}" />
 
                 <controls:DetectableSelectorControl  Grid.Row="1" Grid.ColumnSpan="2" SelectorName="Geo IP" 
@@ -43,8 +43,8 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,10, 0 0" Width="120" Click="ClearHistory_Click">Clear history</Button>
-                    <Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,10, 0 0" Width="120" Click="RestoreDefaults_Click">Restore defaults</Button>
+                    <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,10, 0 0" Width="130" Click="ClearHistory_Click">Clear history</Button>
+                    <Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,10, 0 0" Width="130" Click="RestoreDefaults_Click">Restore defaults</Button>
                 </Grid>
             </Grid>
         </controls:BackControl.Content>

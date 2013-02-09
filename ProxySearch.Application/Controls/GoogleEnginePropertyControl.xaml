@@ -8,7 +8,7 @@
              d:DesignHeight="64" d:DesignWidth="398" x:Name="GooglePropertyControl">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="130" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 

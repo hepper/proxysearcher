@@ -7,19 +7,32 @@ namespace ProxySearch.Console.Code
 {
     public static class Constants
     {
+        private static class Working
+        {
+            static Working()
+            {
+                if (!System.IO.Directory.Exists(Directory))
+                {
+                    System.IO.Directory.CreateDirectory(Directory);
+                }
+            }
+
+            public static readonly string Directory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ProxySearcher\\";
+        }
+
         public static class SettingsStorage
         {
-            public static readonly string Location = "SettingsStorage.xml";           
+            public static readonly string Location = Working.Directory + "SettingsStorage.xml";
         }
 
         public static class UsedProxiesStorage
         {
-            public static readonly string Location = "UsedProxiesStorage.xml";
+            public static readonly string Location = Working.Directory + "UsedProxiesStorage.xml";
         }
 
         public static class ProxySettingsStorage
         {
-            public static readonly string Location = "ProxySettingsStorage.xml";
+            public static readonly string Location = Working.Directory + "ProxySettingsStorage.xml";
         }
 
         public static class Browsers
@@ -31,7 +44,7 @@ namespace ProxySearch.Console.Code
             {
                 public static readonly string Settings = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings";
                 public static readonly string ProxyEnabled = @"ProxyEnable";
-                public static readonly string ProxyServer = @"ProxyServer";                
+                public static readonly string ProxyServer = @"ProxyServer";
             }
 
             public static class Opera
