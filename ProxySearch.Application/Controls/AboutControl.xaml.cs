@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProxySearch.Common;
+using ProxySearch.Console.Code.Interfaces;
 
 namespace ProxySearch.Console.Controls
 {
@@ -43,7 +45,15 @@ namespace ProxySearch.Console.Controls
 
         private void HomePage(object sender, RoutedEventArgs e)
         {
-            Process.Start(Properties.Resources.HomePageLink);
+            Process.Start(Properties.Resources.HomePageDeveloperLink);
+        }
+
+        public string ProgramName
+        {
+            get
+            {
+                return Context.Get<IVersionProvider>().Name;
+            }
         }
     }
 }

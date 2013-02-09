@@ -38,10 +38,30 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -116,6 +136,7 @@
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
     <Compile Include="Code\Interfaces\ISearchControl.cs" />
     <Compile Include="Code\Interfaces\ISearchResult.cs" />
+    <Compile Include="Code\Interfaces\IVersionProvider.cs" />
     <Compile Include="Code\ProxyClients\BrowserClient.cs" />
     <Compile Include="Code\ProxyClients\ChromeClient.cs" />
     <Compile Include="Code\ProxyClients\FirefoxClient.cs" />
@@ -155,6 +176,8 @@
     <Compile Include="Code\UI\DummyTabSettings.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Version\VersionProvider.cs" />
+    <Compile Include="Code\Version\VersionManager.cs" />
     <Compile Include="Controls\AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
@@ -193,6 +216,9 @@
     </Compile>
     <Compile Include="Controls\ToolbarControl.xaml.cs">
       <DependentUpon>ToolbarControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadNewVersion.xaml.cs">
+      <DependentUpon>DownloadNewVersion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service References\GeoIPService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -256,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DownloadNewVersion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

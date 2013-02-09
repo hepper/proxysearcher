@@ -16,6 +16,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -23,7 +24,10 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:DetectableSelectorControl  Grid.Row="0" Grid.ColumnSpan="2" SelectorName="Geo IP" 
+                <Label Grid.Row="0" Grid.Column="0">Check updates</Label>
+                <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" IsChecked="{Binding AllSettings.CheckUpdates}" />
+
+                <controls:DetectableSelectorControl  Grid.Row="1" Grid.ColumnSpan="2" SelectorName="Geo IP" 
                                                      Arguments="{Binding Path=AllSettings.GeoIPSettings}"
                                                      Detectables="{Binding Path=GeoIPs}" 
                                                      SelectedIndex="{Binding Path=SelectedGeoIPIndex, Mode=TwoWay}"  />
@@ -31,9 +35,9 @@
                 <Label Grid.Row="2" Grid.Column="0">Thread count</Label>
                 <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" TextAlignment="Left" Margin="0, 0, 5, 0"  Value="{Binding Path=AllSettings.MaxThreadCount}" />
 
-                <controls:TabSettingControl Grid.Row="3" Grid.ColumnSpan="2" Margin="0,5,0,0" />
+                <controls:TabSettingControl Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5,0,0" />
 
-                <Grid  Grid.Row="4" Grid.ColumnSpan="2">
+                <Grid  Grid.Row="5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />

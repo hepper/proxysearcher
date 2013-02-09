@@ -51,11 +51,11 @@
 	
 	<summary>
 		<codepage>1252</codepage>
-		<title>Installation Database</title>
-		<subject></subject>
+		<title>##ID_STRING5##</title>
+		<subject>##ID_STRING6##</subject>
 		<author>##ID_STRING2##</author>
-		<keywords>Installer,MSI,Database</keywords>
-		<comments>Contact:  Your local administrator</comments>
+		<keywords>Proxy Searcher</keywords>
+		<comments>##ID_STRING7##</comments>
 		<template>Intel;1033</template>
 		<lastauthor>Administrator</lastauthor>
 		<revnumber>{AE1417CB-43DE-43C3-AEFB-5FB0A98AF056}</revnumber>
@@ -3864,6 +3864,9 @@
 		<row><td>ID_STRING2</td><td>1033</td><td>Proxy Searcher</td><td>0</td><td/><td>287383381</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>PROXYS~1|Proxy Searcher</td><td>0</td><td/><td>-660509359</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>PROXYS~1|Proxy Searcher</td><td>0</td><td/><td>421646930</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>Proxy Searcher</td><td>0</td><td/><td>1226951315</td></row>
+		<row><td>ID_STRING6</td><td>1033</td><td>Proxy Searcher</td><td>0</td><td/><td>1226955411</td></row>
+		<row><td>ID_STRING7</td><td>1033</td><td>Contact:  Proxy Searcher</td><td>0</td><td/><td>1226914483</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-660505615</td></row>
 	</table>
 
@@ -4454,6 +4457,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
+		<row><td>MSIFASTINSTALL</td><td>7</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
 		<row><td>PIDTemplate</td><td>12345&lt;###-%%%%%%%&gt;@@@@@</td><td/></row>
@@ -4482,7 +4486,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{EFD8FA84-F3A5-4DF8-999C-7C035BFFD578}</td><td/></row>
 		<row><td>ProductName</td><td>Proxy Searcher</td><td/></row>
-		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>1.01.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

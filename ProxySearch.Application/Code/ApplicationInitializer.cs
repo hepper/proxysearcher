@@ -5,6 +5,7 @@ using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Console.Code.Version;
 
 namespace ProxySearch.Console.Code
 {
@@ -17,6 +18,8 @@ namespace ProxySearch.Console.Code
             Context.Set(Settings);
             Context.Set(UsedProxies);
             Context.Set(new ProxyClientsSettings());
+            Context.Set<IVersionProvider>(new VersionProvider());
+            new VersionManager().Check();
          }
 
         public void Deinitialize()

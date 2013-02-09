@@ -130,6 +130,12 @@
   <data name="Cancelling" xml:space="preserve">
     <value>Cancelling</value>
   </data>
+  <data name="CannotFindInstallationUrl" xml:space="preserve">
+    <value>Cannot find installation url of Proxy Searcher</value>
+  </data>
+  <data name="CannotUpdateProgram" xml:space="preserve">
+    <value>Cannot update program</value>
+  </data>
   <data name="CheckerProxyDotNet" xml:space="preserve">
     <value>http://checkerproxy.net</value>
   </data>
@@ -178,8 +184,11 @@
   <data name="GoogleEngineDescription" xml:space="preserve">
     <value>Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine</value>
   </data>
-  <data name="HomePageLink" xml:space="preserve">
+  <data name="HomePageDeveloperLink" xml:space="preserve">
     <value>http://sourceforge.net/projects/proxysearcher/</value>
+  </data>
+  <data name="HomePageLink" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/</value>
   </data>
   <data name="InternetExplorer" xml:space="preserve">
     <value>IE</value>
@@ -198,6 +207,9 @@
   </data>
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
     <value>This proxy checker downloads content of specified url with and without proxy. If content is the same then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. Note, url with dynamic content cannot be used there. Therefore if this checker don't return any results try to change url.</value>
+  </data>
+  <data name="ProxySearcherVersion" xml:space="preserve">
+    <value>Proxy Searcher 1.1</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
@@ -231,6 +243,9 @@
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
+  </data>
+  <data name="UpdateIsReadyToInstall" xml:space="preserve">
+    <value>New version of Proxy Searcher is avaliable. Do you want to get it now?</value>
   </data>
   <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
     <value>Wait until current operation is finished</value>

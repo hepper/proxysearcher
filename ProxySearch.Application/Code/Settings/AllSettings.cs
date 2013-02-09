@@ -15,6 +15,12 @@ namespace ProxySearch.Console.Code.Settings
             GeoIPSettings = new List<ParametersPair>();
         }
 
+        public bool CheckUpdates
+        {
+            get;
+            set;
+        }
+
         public string GeoIPDetectableType
         {
             get;

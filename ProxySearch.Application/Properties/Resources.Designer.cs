@@ -98,6 +98,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot find installation url of Proxy Searcher.
+        /// </summary>
+        internal static string CannotFindInstallationUrl {
+            get {
+                return ResourceManager.GetString("CannotFindInstallationUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot update program.
+        /// </summary>
+        internal static string CannotUpdateProgram {
+            get {
+                return ResourceManager.GetString("CannotUpdateProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://checkerproxy.net.
         /// </summary>
         internal static string CheckerProxyDotNet {
@@ -244,6 +262,15 @@ namespace ProxySearch.Console.Properties {
         /// <summary>
         ///   Looks up a localized string similar to http://sourceforge.net/projects/proxysearcher/.
         /// </summary>
+        internal static string HomePageDeveloperLink {
+            get {
+                return ResourceManager.GetString("HomePageDeveloperLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/.
+        /// </summary>
         internal static string HomePageLink {
             get {
                 return ResourceManager.GetString("HomePageLink", resourceCulture);
@@ -301,6 +328,15 @@ namespace ProxySearch.Console.Properties {
         internal static string ProxyCheckerByUrlDescription {
             get {
                 return ResourceManager.GetString("ProxyCheckerByUrlDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proxy Searcher 1.1.
+        /// </summary>
+        internal static string ProxySearcherVersion {
+            get {
+                return ResourceManager.GetString("ProxySearcherVersion", resourceCulture);
             }
         }
         
@@ -400,6 +436,15 @@ namespace ProxySearch.Console.Properties {
         internal static string Unknown {
             get {
                 return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New version of Proxy Searcher is avaliable. Do you want to get it now?.
+        /// </summary>
+        internal static string UpdateIsReadyToInstall {
+            get {
+                return ResourceManager.GetString("UpdateIsReadyToInstall", resourceCulture);
             }
         }
         
