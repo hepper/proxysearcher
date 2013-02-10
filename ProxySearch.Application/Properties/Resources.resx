@@ -124,6 +124,12 @@
   <data name="Application" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Application.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BuiltInGeoIPDescription" xml:space="preserve">
+    <value>Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take a lot of processor time</value>
+  </data>
+  <data name="BuiltInGeoIPName" xml:space="preserve">
+    <value>Built in</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -177,6 +183,9 @@
   </data>
   <data name="Firefox" xml:space="preserve">
     <value>Firefox</value>
+  </data>
+  <data name="FoundProxiesFormat" xml:space="preserve">
+    <value>Search is in progress.  {0} proxies have been found.</value>
   </data>
   <data name="GoogleDotCom" xml:space="preserve">
     <value>http://google.com</value>

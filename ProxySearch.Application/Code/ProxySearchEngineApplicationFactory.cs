@@ -35,7 +35,7 @@ namespace ProxySearch.Console.Code
                 };
 
                 Context.Get<TaskCounter>().JobCountChanged += feedback.UpdateJobCount;
-                
+
                 IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
                 IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
                 IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
@@ -74,7 +74,11 @@ namespace ProxySearch.Console.Code
         {
             try
             {
-                return (T)Activator.CreateInstance(type, parametersList.Single(item => item.TypeName == type.AssemblyQualifiedName).Parameters.ToArray());
+                ParametersPair pair = parametersList.SingleOrDefault(item => item.TypeName == type.AssemblyQualifiedName);
+                if (pair == null)
+                    return (T)Activator.CreateInstance(type);
+                else
+                    return (T)Activator.CreateInstance(type, pair.Parameters.ToArray());
             }
             catch (TargetInvocationException exception)
             {

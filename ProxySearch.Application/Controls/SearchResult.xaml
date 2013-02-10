@@ -26,7 +26,7 @@
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBox Name="textBox" Text="{Binding Path=CountryInfo.Name, Mode=OneWay}" />
-                      </DataTemplate>
+                    </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTemplateColumn Header="Type" Width="20*" SortMemberPath="Details.Type" CanUserSort="True">

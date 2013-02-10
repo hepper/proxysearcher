@@ -20,7 +20,7 @@ namespace ProxySearch.Console.Code.Settings
             AllSettings settings = new AllSettings()
             {
                 CheckUpdates = true,
-                GeoIPDetectableType = typeof(GeoIPDetectable).AssemblyQualifiedName,
+                GeoIPDetectableType = typeof(BuildInGeoIPDetectable).AssemblyQualifiedName,
                 GeoIPSettings = GetSettings<IGeoIP>(),
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()

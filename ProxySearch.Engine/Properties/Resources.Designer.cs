@@ -79,6 +79,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://freegeoip.appspot.com/xml/{0}.
+        /// </summary>
+        internal static string FreeGeoIPServiceLink {
+            get {
+                return ResourceManager.GetString("FreeGeoIPServiceLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High Anonymous.
         /// </summary>
         internal static string HighAnonymous {

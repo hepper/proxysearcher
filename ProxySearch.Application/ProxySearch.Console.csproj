@@ -102,6 +102,7 @@
     <Compile Include="Code\Detectable\GeoIPs\DummyGeoIPDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\GeoIPs\BuildInGeoIPDetectable.cs" />
     <Compile Include="Code\Detectable\GeoIPs\GeoIPDetectable.cs">
       <SubType>Code</SubType>
     </Compile>

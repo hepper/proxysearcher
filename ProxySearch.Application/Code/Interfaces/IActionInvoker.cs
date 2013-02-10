@@ -8,6 +8,7 @@ namespace ProxySearch.Console.Code.Interfaces
         void Begin(Func<Task> action);
         void End();
         void Update(int count);
+        void UpdateStatus(string status);
         void SetException(Exception exception);
     }
 }

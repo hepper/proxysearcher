@@ -12,6 +12,7 @@ using System.Linq;
 using System;
 using ProxySearch.Console.Code.Settings;
 using System.Windows.Controls.Primitives;
+using System.Threading;
 
 namespace ProxySearch.Console.Controls
 {
@@ -50,15 +51,19 @@ namespace ProxySearch.Console.Controls
 
         public void Clear()
         {
-            Dispatcher.Invoke(() => Data.Clear());
+            Dispatcher.Invoke(() => 
+            {
+                Data.Clear();
+            });
         }
-
+        
         public void Add(ProxyInfo proxy)
         {
             Dispatcher.Invoke(() =>
             {
                 Data.Add(proxy);
-            });
+                Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
+             });
         }
 
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)

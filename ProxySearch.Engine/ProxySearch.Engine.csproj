@@ -70,6 +70,10 @@
     <Compile Include="CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
     <Compile Include="CheckerProxy.Net\HttpProxyInfo.cs" />
+    <Compile Include="GeoIP\BuiltInGeoIP\GeoIP.cs" />
+    <Compile Include="GeoIP\BuiltInGeoIP\GeoIPComparer.cs" />
+    <Compile Include="GeoIP\BuiltInGeoIP\GeoIPData.cs" />
+    <Compile Include="GeoIP\BuiltInGeoIP\GeoIPDatabase.cs" />
     <Compile Include="GeoIP\GeoIP.cs" />
     <Compile Include="CountryInfo.cs" />
     <Compile Include="Google\GoogleSearchEngine.cs" />
@@ -121,6 +125,9 @@
       <Project>{77118BFE-C86C-4BC2-940A-AF59785528D4}</Project>
       <Name>ProxySearch.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GeoIPDatabase.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

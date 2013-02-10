@@ -26,50 +26,53 @@ namespace ProxySearch.Engine
             this.geoIP = geoIP ?? new TurnOffGeoIP();
         }
 
-        public void BeginSearch(string document)
+        public async void BeginSearch(string document)
         {
-            string pattern = @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]+";
-            Regex regEx = new Regex(pattern);
-
-            foreach (Match match in regEx.Matches(document))
+            await Task.Run(() =>
             {
-                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                {
-                    return;
-                }
+                string pattern = @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]+";
+                Regex regEx = new Regex(pattern);
 
-                Task task = Task.Run(async () =>
+                foreach (Match match in regEx.Matches(document))
                 {
                     if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                     {
                         return;
                     }
 
-                    try
+                    Task task = Task.Run(async () =>
                     {
-                        using (Context.Get<TaskCounter>().Listen(TaskType.Search))
+                        if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                         {
-                            ProxyInfo info = await GetProxyInfo(match);
+                            return;
+                        }
 
-                            if (info != null)
+                        try
+                        {
+                            using (Context.Get<TaskCounter>().Listen(TaskType.Search))
                             {
-                                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                                {
-                                    return;
-                                }
+                                ProxyInfo info = await GetProxyInfo(match);
 
-                                if ((await checker.Alive(info)))
-                                    feedback.OnAliveProxy(info);
-                                else
-                                    feedback.OnDeadProxy(info);
+                                if (info != null)
+                                {
+                                    if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                                    {
+                                        return;
+                                    }
+
+                                    if ((await checker.Alive(info)))
+                                        feedback.OnAliveProxy(info);
+                                    else
+                                        feedback.OnDeadProxy(info);
+                                }
                             }
                         }
-                    }
-                    catch
-                    {
-                    }
-                });
-            }
+                        catch
+                        {
+                        }
+                    });
+                }
+            });
         }
 
         private async Task<ProxyInfo> GetProxyInfo(Match match)

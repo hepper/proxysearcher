@@ -71,6 +71,11 @@ namespace ProxySearch.Console.Controls
             Details.IsEnabled = true;
         }
 
+        public void UpdateStatus(string status)
+        {
+            StatusText.Content = status;
+        }
+
         private void SetInformation(string text)
         {
             StatusText.Content = text;

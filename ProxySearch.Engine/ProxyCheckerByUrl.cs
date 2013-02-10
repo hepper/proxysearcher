@@ -51,8 +51,14 @@ namespace ProxySearch.Engine
             try
             {
                 string content = await GetContent(new WebProxy(info.Address.ToString(), info.Port));
+
+                if (content == null)
+                {
+                    return false;
+                }
+
                 return Compare(Dictionary1, AnalyzeText(content)) <= Accuracy;
-             }
+            }
             catch (HttpRequestException)
             {
                 return false;

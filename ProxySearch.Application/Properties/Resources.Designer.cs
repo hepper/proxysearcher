@@ -80,6 +80,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take a lot of processor time.
+        /// </summary>
+        internal static string BuiltInGeoIPDescription {
+            get {
+                return ResourceManager.GetString("BuiltInGeoIPDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Built in.
+        /// </summary>
+        internal static string BuiltInGeoIPName {
+            get {
+                return ResourceManager.GetString("BuiltInGeoIPName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -238,6 +256,15 @@ namespace ProxySearch.Console.Properties {
         internal static string Firefox {
             get {
                 return ResourceManager.GetString("Firefox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search is in progress.  {0} proxies have been found..
+        /// </summary>
+        internal static string FoundProxiesFormat {
+            get {
+                return ResourceManager.GetString("FoundProxiesFormat", resourceCulture);
             }
         }
         
