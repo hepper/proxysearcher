@@ -5,44 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Name="Result">
-    <DataGrid ItemsSource="{Binding ElementName=Result, Path=Data}" Name="DataGridControl" VirtualizingStackPanel.IsVirtualizing="False">
-        <DataGrid.Columns>
-            <DataGridTemplateColumn Header="IP Address" Width="20*" SortMemberPath="AddressString" CanUserSort="True">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Name="textBox" Text="{Binding Path=Address, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="Port" Width="20*" SortMemberPath="Port" CanUserSort="True">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Name="textBox" Text="{Binding Path=Port, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="Country" Width="20*" SortMemberPath="CountryInfo.Name" CanUserSort="True">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Name="textBox" Text="{Binding Path=CountryInfo.Name, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="Type" Width="20*" SortMemberPath="Details.Type" CanUserSort="True">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <TextBox Name="textBox" Text="{Binding Path=Details.Type, Mode=OneWay}" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Header="Usage" Width="20*">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" />
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-        </DataGrid.Columns>
-    </DataGrid>
+             d:DesignHeight="300" d:DesignWidth="400" Name="Result">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="0"  ItemsSource="{Binding ElementName=Result, Path=Data}" Name="DataGridControl" VirtualizingStackPanel.IsVirtualizing="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="IP Address" Width="20*" SortMemberPath="AddressString" CanUserSort="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Name="textBox" Text="{Binding Path=Address, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Port" Width="20*" SortMemberPath="Port" CanUserSort="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Name="textBox" Text="{Binding Path=Port, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Country" Width="20*" SortMemberPath="CountryInfo.Name" CanUserSort="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Name="textBox" Text="{Binding Path=CountryInfo.Name, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Type" Width="20*" SortMemberPath="Details.Type" CanUserSort="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Name="textBox" Text="{Binding Path=Details.Type, Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Usage" Width="20*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <controls:PagingControl Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" />
+    </Grid>
 </UserControl>

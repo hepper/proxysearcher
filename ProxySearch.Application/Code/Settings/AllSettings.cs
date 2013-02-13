@@ -13,9 +13,16 @@ namespace ProxySearch.Console.Code.Settings
         {
             TabSettings = new ObservableCollection<TabSettings>();
             GeoIPSettings = new List<ParametersPair>();
+            PageSize = 20;
         }
 
         public bool CheckUpdates
+        {
+            get;
+            set;
+        }
+
+        public int PageSize
         {
             get;
             set;

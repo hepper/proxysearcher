@@ -95,6 +95,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Converters\AccuracyConverter.cs" />
+    <Compile Include="Code\Converters\PageCountConverter.cs" />
+    <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
     <Compile Include="Code\Detectable\DetectableSearcher.cs">
       <SubType>Code</SubType>
@@ -194,6 +196,9 @@
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PagingControl.xaml.cs">
+      <DependentUpon>PagingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProxyCheckerByUrlControl.xaml.cs">
       <DependentUpon>ProxyCheckerByUrlControl.xaml</DependentUpon>
     </Compile>
@@ -247,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GoogleEnginePropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PagingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

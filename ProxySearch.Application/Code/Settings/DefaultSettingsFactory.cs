@@ -20,6 +20,7 @@ namespace ProxySearch.Console.Code.Settings
             AllSettings settings = new AllSettings()
             {
                 CheckUpdates = true,
+                PageSize = 20,
                 GeoIPDetectableType = typeof(BuildInGeoIPDetectable).AssemblyQualifiedName,
                 GeoIPSettings = GetSettings<IGeoIP>(),
                 MaxThreadCount = 500,
