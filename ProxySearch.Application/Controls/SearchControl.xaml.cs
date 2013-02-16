@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,6 +8,7 @@ using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Controls
 {
@@ -27,11 +29,34 @@ namespace ProxySearch.Console.Controls
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
 
-            Context.Get<IActionInvoker>().Begin(async () =>
+            Context.Get<IActionInvoker>().Begin(DoBeginSearch);
+        }
+
+        private void DoBeginSearch()
+        {
+            Context.Set(new TaskCounter());
+
+            IProxySearchFeedback feedback = new ProxySearchFeedback();
+
+            Context.Get<TaskCounter>().AllCompleted += () =>
             {
-                Engine.Application application = await new ProxySearchEngineApplicationFactory().Create(new ProxySearchFeedback());
-                await application.SearchAsync();
-            });
+                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                {
+                    feedback.OnSearchCancelled();
+                }
+                else
+                {
+                    feedback.OnSearchFinished();
+                }
+            };
+
+            Context.Get<TaskCounter>().JobCountChanged += feedback.UpdateJobCount;
+
+            using (Context.Get<TaskCounter>().Listen(TaskType.Init))
+            {
+                Engine.Application application = new ProxySearchEngineApplicationFactory().Create(feedback);
+                application.SearchAsync();
+            }
         }
 
         public void Completed()

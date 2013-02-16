@@ -15,39 +15,21 @@ namespace ProxySearch.Console.Code
 {
     public class ProxySearchEngineApplicationFactory
     {
-        public async Task<Application> Create(IProxySearchFeedback feedback)
+        public Application Create(IProxySearchFeedback feedback)
         {
-            return await Task.Run(() =>
-            {
-                Context.Set(new CancellationTokenSource());
-                Context.Set(new TaskCounter());
+            Context.Set(new CancellationTokenSource());
 
-                Context.Get<TaskCounter>().AllCompleted += () =>
-                {
-                    if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                    {
-                        feedback.OnSearchCancelled();
-                    }
-                    else
-                    {
-                        feedback.OnSearchFinished();
-                    }
-                };
+            IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
+            IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
+            IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
 
-                Context.Get<TaskCounter>().JobCountChanged += feedback.UpdateJobCount;
+            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation, Settings.SelectedTabSettings.SearchEngineSettings);
 
-                IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
-                IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
-                IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
+            IProxySearcher proxySearcher = new ProxySearcher(feedback,
+                                                                CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation, Settings.SelectedTabSettings.ProxyCheckerSettings),
+                                                                CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation, Settings.GeoIPSettings));
 
-                ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation, Settings.SelectedTabSettings.SearchEngineSettings);
-
-                IProxySearcher proxySearcher = new ProxySearcher(feedback,
-                                                                    CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation, Settings.SelectedTabSettings.ProxyCheckerSettings),
-                                                                    CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation, Settings.GeoIPSettings));
-
-                return new Application(searchEngine, proxySearcher);
-            });
+            return new Application(searchEngine, proxySearcher);
         }
 
         private AllSettings Settings

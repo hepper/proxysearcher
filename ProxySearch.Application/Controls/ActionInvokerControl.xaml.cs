@@ -28,7 +28,7 @@ namespace ProxySearch.Console.Controls
             InitializeComponent();
         }
 
-        public void Begin(Func<Task> action)
+        public void Begin(Action action)
         {
             ThreadPool.SetMaxThreads(Context.Get<AllSettings>().MaxThreadCount, Context.Get<AllSettings>().MaxThreadCount);
 
@@ -37,7 +37,7 @@ namespace ProxySearch.Console.Controls
 
             try
             {
-                Task task = action();
+                Task.Run(action);
             }
             catch (TaskCanceledException)
             {
@@ -46,20 +46,20 @@ namespace ProxySearch.Console.Controls
 
         public void End()
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 SetProgress(false);
                 SetInformation(Properties.Resources.Ready);
-                Context.Get<ISearchControl>().Completed();  
-            });
+                Context.Get<ISearchControl>().Completed();
+            }));
         }
 
         public void Update(int count)
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 ProgressText.Content = string.Format(Properties.Resources.JobCountFormat, count);
-            });
+            }));
         }
 
         public void SetException(Exception exception)

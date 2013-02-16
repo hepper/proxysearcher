@@ -5,7 +5,7 @@ namespace ProxySearch.Console.Code.Interfaces
 {
     public interface IActionInvoker
     {
-        void Begin(Func<Task> action);
+        void Begin(Action action);
         void End();
         void Update(int count);
         void UpdateStatus(string status);

@@ -25,7 +25,7 @@ namespace ProxySearch.Engine
         }
 
 
-        private Dictionary<char, int> Dictionary1
+        private Dictionary<char, int> AnalyzedText
         {
             get;
             set;
@@ -36,14 +36,14 @@ namespace ProxySearch.Engine
             Url = url;
             Accuracy = accuracy;
 
-            try
-            {
-                Dictionary1 = AnalyzeText(GetContent(null).GetAwaiter().GetResult());
-            }
-            catch (HttpRequestException)
+            string content = GetContent(null).GetAwaiter().GetResult();
+
+            if (content == null)
             {
                 throw new InvalidOperationException(string.Format(Resources.CannotDownloadContent, Url));
             }
+
+            AnalyzedText = AnalyzeText(content);
         }
 
         public async Task<bool> Alive(ProxyInfo info)
@@ -57,7 +57,7 @@ namespace ProxySearch.Engine
                     return false;
                 }
 
-                return Compare(Dictionary1, AnalyzeText(content)) <= Accuracy;
+                return Compare(AnalyzedText, AnalyzeText(content)) <= Accuracy;
             }
             catch (HttpRequestException)
             {
@@ -138,7 +138,7 @@ namespace ProxySearch.Engine
             }
             catch
             {
-                return proxy == null ? null : proxy.ToString();
+                return null;
             }
         }
     }

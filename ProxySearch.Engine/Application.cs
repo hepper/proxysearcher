@@ -21,7 +21,7 @@ namespace ProxySearch.Engine
             this.proxySearcher = proxySearcher;
         }
 
-        public async Task SearchAsync()
+        public async void SearchAsync()
         {
             using (Context.Get<TaskCounter>().Listen(TaskType.Search))
             {
