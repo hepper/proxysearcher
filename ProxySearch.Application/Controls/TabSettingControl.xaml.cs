@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
@@ -10,28 +11,42 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine;
+using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Console.Controls
 {
     /// <summary>
     /// Interaction logic for TabSettingControl.xaml
     /// </summary>
-    public partial class TabSettingControl : UserControl
+    public partial class TabSettingControl : UserControl, INotifyPropertyChanged
     {
         public TabSettingControl()
         {
             AllTabSettings.CollectionChanged += AllTabSettings_CollectionChanged;
             ExtendedTabSettings = new ObservableCollection<object>(AllTabSettings);
+            ExtendedTabSettings.Insert(0, new GeneralTabSettings());
             ExtendedTabSettings.Add(new DummyTabSettings());
 
             InitializeComponent();
+        }
+
+        public AllSettings AllSettings
+        {
+            get
+            {
+                return Context.Get<AllSettings>();
+            }
+            set
+            {
+                Context.Set(value);
+            }
         }
 
         public ObservableCollection<TabSettings> AllTabSettings
         {
             get
             {
-                return Context.Get<AllSettings>().TabSettings;
+                return AllSettings.TabSettings;
             }
         }
 
@@ -57,15 +72,23 @@ namespace ProxySearch.Console.Controls
             }
         }
 
+        public List<IDetectable> GeoIPs
+        {
+            get
+            {
+                return Context.Get<IDetectableSearcher>().Get<IGeoIP>();
+            }
+        }
+
         public int SelectedSearchEngineIndex
         {
             get
             {
-                return SearchEngines.FindIndex(item => item.GetType().AssemblyQualifiedName == AllTabSettings[PropertyTabControl.SelectedIndex].SearchEngineDetectableType);
+                return SearchEngines.FindIndex(item => item.GetType().AssemblyQualifiedName == AllTabSettings[PropertyTabControl.SelectedIndex - 1].SearchEngineDetectableType);
             }
             set
             {
-                AllTabSettings[PropertyTabControl.SelectedIndex].SearchEngineDetectableType = SearchEngines[value].GetType().AssemblyQualifiedName;
+                AllTabSettings[PropertyTabControl.SelectedIndex - 1].SearchEngineDetectableType = SearchEngines[value].GetType().AssemblyQualifiedName;
             }
         }
 
@@ -73,11 +96,23 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return ProxyCheckers.FindIndex(item => item.GetType().AssemblyQualifiedName == AllTabSettings[PropertyTabControl.SelectedIndex].ProxyCheckerDetectableType);
+                return ProxyCheckers.FindIndex(item => item.GetType().AssemblyQualifiedName == AllTabSettings[PropertyTabControl.SelectedIndex - 1].ProxyCheckerDetectableType);
             }
             set
             {
-                AllTabSettings[PropertyTabControl.SelectedIndex].ProxyCheckerDetectableType = ProxyCheckers[value].GetType().AssemblyQualifiedName;
+                AllTabSettings[PropertyTabControl.SelectedIndex - 1].ProxyCheckerDetectableType = ProxyCheckers[value].GetType().AssemblyQualifiedName;
+            }
+        }
+
+        public int SelectedGeoIPIndex
+        {
+            get
+            {
+                return GeoIPs.FindIndex(item => item.GetType().AssemblyQualifiedName == Context.Get<AllSettings>().GeoIPDetectableType);
+            }
+            set
+            {
+                Context.Get<AllSettings>().GeoIPDetectableType = GeoIPs[value].GetType().AssemblyQualifiedName;
             }
         }
 
@@ -102,7 +137,7 @@ namespace ProxySearch.Console.Controls
 
         private void TabNameControl_Delete(object sender, RoutedEventArgs e)
         {
-            AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex);
+            AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex - 1);
         }
 
         private void PropertyTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -113,11 +148,36 @@ namespace ProxySearch.Console.Controls
                 AllTabSettings.Add(settings);
                 PropertyTabControl.SelectedValue = settings;
             }
+
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedProxyCheckerIndex"));
+                PropertyChanged(this, new PropertyChangedEventArgs("SelectedSearchEngineIndex"));
+            }
         }
 
         private void TabNameControl_Menu(object sender, RoutedEventArgs e)
         {
             PropertyTabControl.SelectedValue = ((TabItem)((TabNameControl)sender).Tag).DataContext;
         }
+
+        private void RestoreDefaults_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show(Properties.Resources.AllSettingsWillBeRevertedToTheirDefaults, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                AllSettings = new DefaultSettingsFactory().Create();
+                Context.Get<IControlNavigator>().GoTo(new SettingsControl());
+            }
+        }
+
+        private void ClearHistory_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show(Properties.Resources.DoYouReallyWantToClearProxyUsageHistory, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Context.Get<UsedProxies>().Proxies.Clear();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

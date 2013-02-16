@@ -26,6 +26,7 @@ namespace ProxySearch.Console.Controls
         public static readonly DependencyProperty DetectablesProperty = DependencyProperty.Register("Detectables", typeof(List<IDetectable>), typeof(DetectableSelectorControl));
         public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int?), typeof(DetectableSelectorControl));
         public static readonly DependencyProperty ArgumentsProperty = DependencyProperty.Register("Arguments", typeof(List<ParametersPair>), typeof(DetectableSelectorControl));
+
         public DetectableSelectorControl()
         {
             InitializeComponent();

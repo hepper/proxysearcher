@@ -1,25 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Code.ProxyClients;
-using ProxySearch.Engine;
-using System.Linq;
-using System;
 using ProxySearch.Console.Code.Settings;
-using System.Windows.Controls.Primitives;
-using System.Threading;
+using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Controls
 {
     /// <summary>
     /// Interaction logic for SearchResult.xaml
     /// </summary>
-    public partial class SearchResult : UserControl, ISearchResult
+    public partial class SearchResult : UserControl, ISearchResult, INotifyPropertyChanged
     {
         private enum RowStyle
         {
@@ -32,6 +30,19 @@ namespace ProxySearch.Console.Controls
         {
             get;
             set;
+        }
+
+        public IEnumerable<ProxyInfo> PageData
+        {
+            get
+            {
+                if (Paging == null || !Paging.Page.HasValue)
+                {
+                    return Data;
+                }
+
+                return Data.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).Take(Context.Get<AllSettings>().PageSize);
+            }
         }
 
         public SearchResult()
@@ -49,21 +60,39 @@ namespace ProxySearch.Console.Controls
             DataGridControl.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
         }
 
+        private void PageChanged(object sender, RoutedEventArgs e)
+        {
+            FirePageDataChanged();
+        }
+
+        private void FirePageDataChanged()
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs("PageData"));
+            }
+        }
+
         public void Clear()
         {
-            Dispatcher.Invoke(() => 
+            Dispatcher.Invoke(() =>
             {
                 Data.Clear();
             });
         }
-        
+
         public void Add(ProxyInfo proxy)
         {
             Dispatcher.Invoke(() =>
             {
                 Data.Add(proxy);
                 Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
-             });
+
+                if (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0)
+                {
+                    FirePageDataChanged();
+                }
+            });
         }
 
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
@@ -133,5 +162,7 @@ namespace ProxySearch.Console.Controls
                 }
             }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

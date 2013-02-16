@@ -15,7 +15,7 @@ namespace ProxySearch.Console.Code.Converters
             if (!count.HasValue)
                 return 0;
 
-            if (!Context.IsSet<AllSettings>() || count.Value <= Context.Get<AllSettings>().PageSize)
+            if (!Context.IsSet<AllSettings>() || count.Value == 0)
             {
                 return string.Empty;
             }

@@ -350,7 +350,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This proxy checker downloads content of specified url with and without proxy. If content is the same then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. Note, url with dynamic content cannot be used there. Therefore if this checker don&apos;t return any results try to change url..
+        ///   Looks up a localized string similar to This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don&apos;t return any results try to change accuracy, probably page&apos;s content is too dynamic. Because of downloading page content this checker takes internet traffic..
         /// </summary>
         internal static string ProxyCheckerByUrlDescription {
             get {

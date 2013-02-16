@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Code\Converters\AccuracyConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
+    <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
     <Compile Include="Code\Detectable\DetectableSearcher.cs">
@@ -179,6 +180,7 @@
     <Compile Include="Code\UI\DummyTabSettings.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\UI\GeneralTabSettings.cs" />
     <Compile Include="Code\Version\VersionProvider.cs" />
     <Compile Include="Code\Version\VersionManager.cs" />
     <Compile Include="Controls\AboutControl.xaml.cs">
