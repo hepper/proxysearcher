@@ -18,7 +18,7 @@ namespace ProxySearch.Console.Controls
     /// <summary>
     /// Interaction logic for SearchResult.xaml
     /// </summary>
-    public partial class SearchResult : UserControl, ISearchResult, INotifyPropertyChanged
+    public partial class SearchResult : UserControl, ISearchResult
     {
         private enum RowStyle
         {
@@ -33,22 +33,17 @@ namespace ProxySearch.Console.Controls
             set;
         }
 
-        public IEnumerable<ProxyInfo> PageData
+        public ObservableList<ProxyInfo> PageData
         {
-            get
-            {
-                if (Paging == null || !Paging.Page.HasValue)
-                {
-                    return Data;
-                }
-
-                return Data.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).Take(Context.Get<AllSettings>().PageSize);
-            }
+            get;
+            set;
         }
 
         public SearchResult()
         {
             Data = new ObservableList<ProxyInfo>();
+            PageData = new ObservableList<ProxyInfo>();
+
             Context.Set<ISearchResult>(this);
 
             InitializeComponent();
@@ -65,15 +60,7 @@ namespace ProxySearch.Console.Controls
         {
             using (new PreventChangeSortingDirection(DataGridControl))
             {
-                FirePageDataChanged();
-            }
-        }
-
-        private void FirePageDataChanged()
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs("PageData"));
+                UpdatePageData();
             }
         }
 
@@ -84,6 +71,7 @@ namespace ProxySearch.Console.Controls
                 using (new PreventChangeSortingDirection(DataGridControl))
                 {
                     Data.Clear();
+                    PageData.Clear();
                 }
             }));
         }
@@ -94,11 +82,19 @@ namespace ProxySearch.Console.Controls
             {
                 using (PreventChangeSortingDirection preventor = new PreventChangeSortingDirection(DataGridControl))
                 {
-                    Data.Insert(GetInsertIndex(proxy, preventor), proxy);
+                    int index = GetInsertIndex(Data, proxy, preventor);
+                    Data.Insert(index, proxy);
 
-                    if (!Paging.Page.HasValue || (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0))
+                    int page = (int)Math.Ceiling((double)index / Context.Get<AllSettings>().PageSize);
+
+                    if (Paging.Page == page)
                     {
-                        FirePageDataChanged();
+                        if (PageData.Count > Context.Get<AllSettings>().PageSize)
+                        {
+                            PageData.Remove(PageData.Last());
+                        }
+
+                        PageData.Insert(GetInsertIndex(PageData, proxy, preventor), proxy);                        
                     }
 
                     Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
@@ -106,11 +102,11 @@ namespace ProxySearch.Console.Controls
             }));
         }
 
-        private int GetInsertIndex(ProxyInfo proxy, PreventChangeSortingDirection preventor)
+        private int GetInsertIndex(ObservableList<ProxyInfo> data, ProxyInfo proxy, PreventChangeSortingDirection preventor)
         {
             if (preventor.HasSorting)
             {
-                int index = Data.BinarySearch(proxy, new ProxyInfoComparer(preventor.SortMemberPath, preventor.SortDirection));
+                int index = data.BinarySearch(proxy, new ProxyInfoComparer(preventor.SortMemberPath, preventor.SortDirection));
 
                 if (index < 0)
                 {
@@ -123,7 +119,7 @@ namespace ProxySearch.Console.Controls
                 }
             }
 
-            return Data.Count;
+            return data.Count;
         }
 
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
@@ -194,8 +190,6 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private void DataGridControl_Sorting(object sender, DataGridSortingEventArgs e)
         {
             e.Handled = true;
@@ -210,9 +204,20 @@ namespace ProxySearch.Console.Controls
                 return new ProxyInfoComparer(e.Column.SortMemberPath, sortDirection).Compare(proxyInfo1, proxyInfo2);
             });
 
-            FirePageDataChanged();
+            UpdatePageData();
+
             Paging.Page = currentPage;
             e.Column.SortDirection = sortDirection;
+        }
+
+        private void UpdatePageData()
+        {
+            PageData.Clear();
+
+            if (Paging.Page.HasValue)
+            {
+                PageData.AddRange(Data.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).Take(Context.Get<AllSettings>().PageSize));
+            }
         }
     }
 }

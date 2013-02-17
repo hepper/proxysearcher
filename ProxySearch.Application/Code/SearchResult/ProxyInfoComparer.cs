@@ -30,6 +30,19 @@ namespace ProxySearch.Console.Code.SearchResult
             IComparable object1 = GetPropertyValue(x, SortMemberPath);
             IComparable object2 = GetPropertyValue(y, SortMemberPath);
 
+            if (object1 == null && object2 == null)
+                return 0;
+
+            if (object1 == null)
+            {
+                return -1;
+            }
+
+            if (object2 == null)
+            {
+                return 1;
+            }
+
             if (SortDirection == ListSortDirection.Descending)
             {
                 return object2.CompareTo(object1);
@@ -47,8 +60,14 @@ namespace ProxySearch.Console.Code.SearchResult
                 case "Port":
                     return source.Port;
                 case "CountryInfo.Name":
+                    if (source.CountryInfo == null)
+                        return null;
+
                     return source.CountryInfo.Name;
                 case "Details.Type":
+                    if (source.Details == null)
+                        return null;
+
                     return source.Details.Type;
             }
 

@@ -38,6 +38,27 @@ namespace ProxySearch.Console.Code.Collections
             FireCountChanged();
         }
 
+        public new void AddRange(IEnumerable<T> collection)
+        {
+            base.AddRange(collection);
+
+            foreach (T item in collection)
+            {
+                FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
+            }
+
+            FireCountChanged();
+        }
+
+        public new bool Remove(T item)
+        {
+            bool result = base.Remove(item);
+
+            FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
+
+            return result;
+        }
+
         private void FireCollectionChanged(NotifyCollectionChangedEventArgs arguments)
         {
             if (CollectionChanged != null)
