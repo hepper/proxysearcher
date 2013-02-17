@@ -6,6 +6,7 @@ using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using ProxySearch.Console.Code;
 
 namespace ProxySearch.Console
 {
@@ -31,9 +32,9 @@ namespace ProxySearch.Console
 
             try
             {
-                string file = await DownloadInstallation(installPath);                
+                string file = await DownloadInstallation(installPath);
 
-                Title = "Uninstalling";
+                Title = Properties.Resources.Uninstalling;
 
                 Process uninstall = Process.Start(Environment.SystemDirectory + "\\MsiExec.exe", "/x{EFD8FA84-F3A5-4DF8-999C-7C035BFFD578} /passive");
                 uninstall.WaitForExit();

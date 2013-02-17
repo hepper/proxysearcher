@@ -184,6 +184,9 @@
   <data name="Firefox" xml:space="preserve">
     <value>Firefox</value>
   </data>
+  <data name="FirstRunArgument" xml:space="preserve">
+    <value>/firstrun</value>
+  </data>
   <data name="FoundProxiesFormat" xml:space="preserve">
     <value>Search is in progress.  {0} proxies have been found.</value>
   </data>
@@ -241,6 +244,9 @@
   <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
     <value>Search is finished. No proxy was found. Change search query and try again</value>
   </data>
+  <data name="ShutdownArgument" xml:space="preserve">
+    <value>/shutdown</value>
+  </data>
   <data name="SimpleProxyChecker" xml:space="preserve">
     <value>By IP:Port</value>
   </data>
@@ -255,6 +261,9 @@
   </data>
   <data name="TicketsLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/tickets/</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Uninstalling</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>

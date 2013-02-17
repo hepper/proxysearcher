@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using ProxySearch.Common;
@@ -12,7 +14,13 @@ namespace ProxySearch.Console
     /// </summary>
     public partial class App : Application
     {
-       public App()
+        private bool CloseApplication
+        {
+            get;
+            set;
+        }
+
+        public App()
         {
             this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
             this.Startup += new StartupEventHandler(App_Startup);
@@ -21,12 +29,34 @@ namespace ProxySearch.Console
 
         private void App_Startup(object sender, StartupEventArgs e)
         {
+            if (e.Args.Any(item => item == ProxySearch.Console.Properties.Resources.FirstRunArgument))
+            {
+                try
+                {
+                    if (File.Exists(Constants.SettingsStorage.Location))
+                        File.Delete(Constants.SettingsStorage.Location);
+                }
+                catch
+                {
+                }
+            }
+
+            CloseApplication = e.Args.Any(item => item == ProxySearch.Console.Properties.Resources.ShutdownArgument);
+
+            if (CloseApplication)
+            {
+                Shutdown();
+            }
+
             new ApplicationInitializer().Initialize();
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
         {
-            new ApplicationInitializer().Deinitialize();
+            if (!CloseApplication)
+            {
+                new ApplicationInitializer().Deinitialize();
+            }
         }
 
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)

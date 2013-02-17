@@ -260,6 +260,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /firstrun.
+        /// </summary>
+        internal static string FirstRunArgument {
+            get {
+                return ResourceManager.GetString("FirstRunArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search is in progress.  {0} proxies have been found..
         /// </summary>
         internal static string FoundProxiesFormat {
@@ -431,6 +440,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /shutdown.
+        /// </summary>
+        internal static string ShutdownArgument {
+            get {
+                return ResourceManager.GetString("ShutdownArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By IP:Port.
         /// </summary>
         internal static string SimpleProxyChecker {
@@ -472,6 +490,15 @@ namespace ProxySearch.Console.Properties {
         internal static string TicketsLink {
             get {
                 return ResourceManager.GetString("TicketsLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uninstalling.
+        /// </summary>
+        internal static string Uninstalling {
+            get {
+                return ResourceManager.GetString("Uninstalling", resourceCulture);
             }
         }
         

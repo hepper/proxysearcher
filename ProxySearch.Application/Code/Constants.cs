@@ -7,7 +7,7 @@ namespace ProxySearch.Console.Code
 {
     public static class Constants
     {
-        private static class Working
+        public static class Working
         {
             static Working()
             {
