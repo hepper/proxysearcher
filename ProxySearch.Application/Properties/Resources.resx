@@ -206,7 +206,7 @@
     <value>http://proxysearcher.sourceforge.net/</value>
   </data>
   <data name="InternetExplorer" xml:space="preserve">
-    <value>IE</value>
+    <value>Internet explorer</value>
   </data>
   <data name="JobCountFormat" xml:space="preserve">
     <value>Job Count {0}</value>

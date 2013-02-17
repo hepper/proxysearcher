@@ -323,7 +323,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IE.
+        ///   Looks up a localized string similar to Internet explorer.
         /// </summary>
         internal static string InternetExplorer {
             get {

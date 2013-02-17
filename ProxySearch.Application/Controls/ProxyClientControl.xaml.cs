@@ -31,6 +31,7 @@ namespace ProxySearch.Console.Controls
             InitializeComponent();
 
             DependencyPropertyDescriptor.FromProperty(ProxyClientProperty, typeof(ProxyClientControl)).AddValueChanged(this, ProxyClientPropertyChanged);
+            DependencyPropertyDescriptor.FromProperty(ProxyInfoProperty, typeof(ProxyClientControl)).AddValueChanged(this, ProxyInfoPropertyChanged);
         }
 
         public ProxyInfo ProxyInfo
@@ -77,8 +78,8 @@ namespace ProxySearch.Console.Controls
                 {
                     MessageBoxResult result = MessageBox.Show(
                                                 string.Format(Properties.Resources.DoYouWantToRestartBrowser, ProxyClient.Name),
-                                                Properties.Resources.Question, 
-                                                MessageBoxButton.YesNoCancel, 
+                                                Properties.Resources.Question,
+                                                MessageBoxButton.YesNoCancel,
                                                 MessageBoxImage.Question);
                     switch (result)
                     {
@@ -108,7 +109,12 @@ namespace ProxySearch.Console.Controls
         private void ProxyClientPropertyChanged(object sender, EventArgs e)
         {
             FirePropertyChanged("IsChecked");
-            ProxyClient.PropertyChanged += ProxyClient_PropertyChanged;           
+            ProxyClient.PropertyChanged += ProxyClient_PropertyChanged;
+        }
+
+        private void ProxyInfoPropertyChanged(object sender, EventArgs e)
+        {
+            FirePropertyChanged("IsChecked");
         }
 
         private void ProxyClient_PropertyChanged(object sender, PropertyChangedEventArgs e)

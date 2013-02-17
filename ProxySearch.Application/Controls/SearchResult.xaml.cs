@@ -94,10 +94,7 @@ namespace ProxySearch.Console.Controls
             {
                 using (PreventChangeSortingDirection preventor = new PreventChangeSortingDirection(DataGridControl))
                 {
-                    int index = GetInsertIndex(proxy, preventor);
-                    int page = (int)Math.Ceiling((double)index / Context.Get<AllSettings>().PageSize);
-
-                    Data.Insert(index, proxy);
+                    Data.Insert(GetInsertIndex(proxy, preventor), proxy);
 
                     if (!Paging.Page.HasValue || (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0))
                     {

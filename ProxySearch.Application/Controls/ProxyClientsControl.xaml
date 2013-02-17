@@ -6,16 +6,14 @@
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              mc:Ignorable="d" Name="ProxyClients" >
     <Grid>
-        <Expander>
-            <StackPanel>
-                <ItemsControl ItemsSource="{Binding ElementName=ProxyClients, Path=Clients}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <controls:ProxyClientControl ProxyClient="{Binding}" ProxyInfo="{Binding ElementName=ProxyClients, Path=ProxyInfo}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
-        </Expander>
+        <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
+            <ItemsControl ItemsSource="{Binding ElementName=ProxyClients, Path=Clients}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ProxyClientControl ProxyClient="{Binding}" ProxyInfo="{Binding ElementName=ProxyClients, Path=ProxyInfo}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </Grid>
 </UserControl>
