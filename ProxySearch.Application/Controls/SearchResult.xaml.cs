@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -75,24 +76,24 @@ namespace ProxySearch.Console.Controls
 
         public void Clear()
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 Data.Clear();
-            });
+            }));
         }
 
         public void Add(ProxyInfo proxy)
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 Data.Add(proxy);
                 Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
 
-                if (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0)
+                if (!Paging.Page.HasValue || (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0))
                 {
                     FirePageDataChanged();
                 }
-            });
+            }));
         }
 
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
@@ -164,5 +165,50 @@ namespace ProxySearch.Console.Controls
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void DataGridControl_Sorting(object sender, DataGridSortingEventArgs e)
+        {
+            e.Handled = true;
+
+            ListSortDirection sortDirection = (e.Column.SortDirection == ListSortDirection.Ascending) ?
+                          ListSortDirection.Descending :
+                          ListSortDirection.Ascending;
+
+            List<ProxyInfo> data = Data.ToList();
+            data.Sort(GetComparer(e.Column.SortMemberPath, sortDirection));
+            Data.Clear();
+            data.ForEach(item => Data.Add(item));
+            FirePageDataChanged();
+
+            e.Column.SortDirection = sortDirection;
+        }
+
+        private Comparison<ProxyInfo> GetComparer(string sortMemberPath, ListSortDirection sortDirection)
+        {
+            return (proxyInfo1, proxyInfo2) =>
+            {
+                IComparable object1 = (IComparable)GetPropertyValue(proxyInfo1, sortMemberPath);
+                IComparable object2 = (IComparable)GetPropertyValue(proxyInfo2, sortMemberPath);
+
+                if (sortDirection == ListSortDirection.Descending)
+                {
+                    return object2.CompareTo(object1);
+                }
+
+                return object1.CompareTo(object2);
+            };
+        }
+
+        private object GetPropertyValue(object source, string path)
+        {
+            object propValue = source;
+            foreach (string propName in path.Split('.'))
+            {
+                PropertyInfo propInfo = propValue.GetType().GetProperty(propName);
+                propValue = propInfo.GetValue(propValue, null);
+            }
+
+            return propValue;
+        }
     }
 }
