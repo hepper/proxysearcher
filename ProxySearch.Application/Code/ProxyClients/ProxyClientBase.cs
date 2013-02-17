@@ -68,7 +68,11 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 if (value == null)
                 {
-                    RestoreSettings(Serializer.Deserialize<SettingsData>(Settings));
+                    if (Settings != null)
+                    {
+                        RestoreSettings(Serializer.Deserialize<SettingsData>(Settings));
+                    }
+
                     Settings = null;
                 }
                 else

@@ -24,7 +24,6 @@ namespace ProxySearch.Engine
             set;
         }
 
-
         private Dictionary<char, int> AnalyzedText
         {
             get;
