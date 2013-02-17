@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Code.Settings
 {
-    public class UsedProxies
+    public class UsedProxies : IComparer<AddressPortPair>
     {
         public UsedProxies()
         {
@@ -18,7 +12,8 @@ namespace ProxySearch.Console.Code.Settings
 
         public UsedProxies(List<AddressPortPair> proxies)
         {
-            Proxies = proxies;
+            Proxies = new List<AddressPortPair>(proxies);
+            Proxies.Sort(Compare);
         }
 
         public List<AddressPortPair> Proxies
@@ -29,9 +24,10 @@ namespace ProxySearch.Console.Code.Settings
 
         public void Add(ProxyInfo proxyInfo)
         {
-            if (!Contains(proxyInfo))
+            int index = FindIndex(proxyInfo);
+            if (index < 0)
             {
-                Proxies.Add(new AddressPortPair
+                Proxies.Insert(~index, new AddressPortPair
                 {
                     IPAddress = proxyInfo.Address,
                     Port = proxyInfo.Port
@@ -41,7 +37,26 @@ namespace ProxySearch.Console.Code.Settings
 
         public bool Contains(ProxyInfo proxyInfo)
         {
-            return Proxies.Exists(item => item.IPAddress.ToString() == proxyInfo.Address.ToString() && item.Port == proxyInfo.Port);
+            return FindIndex(proxyInfo) >= 0;
+        }
+
+        private int FindIndex(ProxyInfo proxyInfo)
+        {
+            return Proxies.BinarySearch(new AddressPortPair
+            {
+                IPAddress = proxyInfo.Address,
+                Port = proxyInfo.Port
+            }, this);
+        }
+
+        public int Compare(AddressPortPair x, AddressPortPair y)
+        {
+            return GetKey(x).CompareTo(GetKey(y));
+        }
+
+        private string GetKey(AddressPortPair item)
+        {
+            return string.Format("{0}:{1}", item.IPAddressString, item.Port);
         }
     }
 }
