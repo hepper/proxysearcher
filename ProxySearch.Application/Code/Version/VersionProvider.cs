@@ -9,13 +9,13 @@ namespace ProxySearch.Console.Code.Version
         {
             get
             {
-                return 2;
+                return 3;
             }
         }
 
         public string Name
         {
-            get 
+            get
             {
                 return Resources.ProxySearcherVersion;
             }

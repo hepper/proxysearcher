@@ -193,6 +193,9 @@
   <data name="GoogleEngineDescription" xml:space="preserve">
     <value>Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine</value>
   </data>
+  <data name="GridHasNoSorting" xml:space="preserve">
+    <value>Grid has no sorting</value>
+  </data>
   <data name="HomePageDeveloperLink" xml:space="preserve">
     <value>http://sourceforge.net/projects/proxysearcher/</value>
   </data>
@@ -218,7 +221,7 @@
     <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change accuracy, probably page's content is too dynamic. Because of downloading page content this checker takes internet traffic.</value>
   </data>
   <data name="ProxySearcherVersion" xml:space="preserve">
-    <value>Proxy Searcher 1.2</value>
+    <value>Proxy Searcher 1.3</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>
@@ -246,6 +249,9 @@
   </data>
   <data name="SimpleSite" xml:space="preserve">
     <value>http://google.com</value>
+  </data>
+  <data name="SortTypeIsNotSupported" xml:space="preserve">
+    <value>Sort type by '{0}' is not supported</value>
   </data>
   <data name="TicketsLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/tickets/</value>

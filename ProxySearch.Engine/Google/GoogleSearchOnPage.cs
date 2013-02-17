@@ -30,6 +30,7 @@ namespace ProxySearch.Engine.Google
                 pageContent = await response.Content.ReadAsStringAsync();
             }
 
+
             Regex regex = new Regex("<a[^>]*?href\\s*=\\s*(?<url>[\"']?([^\"'>]+?)['\"])?[^>]*?>");
 
             foreach (Match match in regex.Matches(pageContent))

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ProxySearch.Common;
+using ProxySearch.Console.Code.Collections;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
 
@@ -27,7 +27,7 @@ namespace ProxySearch.Console.Controls
             Selected
         }
 
-        public ObservableCollection<ProxyInfo> Data
+        public ObservableList<ProxyInfo> Data
         {
             get;
             set;
@@ -48,7 +48,7 @@ namespace ProxySearch.Console.Controls
 
         public SearchResult()
         {
-            Data = new ObservableCollection<ProxyInfo>();
+            Data = new ObservableList<ProxyInfo>();
             Context.Set<ISearchResult>(this);
 
             InitializeComponent();
@@ -63,7 +63,10 @@ namespace ProxySearch.Console.Controls
 
         private void PageChanged(object sender, RoutedEventArgs e)
         {
-            FirePageDataChanged();
+            using (new PreventChangeSortingDirection(DataGridControl))
+            {
+                FirePageDataChanged();
+            }
         }
 
         private void FirePageDataChanged()
@@ -78,7 +81,10 @@ namespace ProxySearch.Console.Controls
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                Data.Clear();
+                using (new PreventChangeSortingDirection(DataGridControl))
+                {
+                    Data.Clear();
+                }
             }));
         }
 
@@ -86,14 +92,41 @@ namespace ProxySearch.Console.Controls
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                Data.Add(proxy);
-                Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
-
-                if (!Paging.Page.HasValue || (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0))
+                using (PreventChangeSortingDirection preventor = new PreventChangeSortingDirection(DataGridControl))
                 {
-                    FirePageDataChanged();
+                    int index = GetInsertIndex(proxy, preventor);
+                    int page = (int)Math.Ceiling((double)index / Context.Get<AllSettings>().PageSize);
+
+                    Data.Insert(index, proxy);
+
+                    if (!Paging.Page.HasValue || (Paging.Page == Paging.PageCount && Data.Count % Context.Get<AllSettings>().PageSize != 0))
+                    {
+                        FirePageDataChanged();
+                    }
+
+                    Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
                 }
             }));
+        }
+
+        private int GetInsertIndex(ProxyInfo proxy, PreventChangeSortingDirection preventor)
+        {
+            if (preventor.HasSorting)
+            {
+                int index = Data.BinarySearch(proxy, new ProxyInfoComparer(preventor.SortMemberPath, preventor.SortDirection));
+
+                if (index < 0)
+                {
+                    index = ~index;
+                }
+
+                if (index >= 0)
+                {
+                    return index;
+                }
+            }
+
+            return Data.Count;
         }
 
         private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
@@ -170,45 +203,19 @@ namespace ProxySearch.Console.Controls
         {
             e.Handled = true;
 
+            int? currentPage = Paging.Page;
             ListSortDirection sortDirection = (e.Column.SortDirection == ListSortDirection.Ascending) ?
                           ListSortDirection.Descending :
                           ListSortDirection.Ascending;
 
-            List<ProxyInfo> data = Data.ToList();
-            data.Sort(GetComparer(e.Column.SortMemberPath, sortDirection));
-            Data.Clear();
-            data.ForEach(item => Data.Add(item));
+            Data.Sort((proxyInfo1, proxyInfo2) =>
+            {
+                return new ProxyInfoComparer(e.Column.SortMemberPath, sortDirection).Compare(proxyInfo1, proxyInfo2);
+            });
+
             FirePageDataChanged();
-
+            Paging.Page = currentPage;
             e.Column.SortDirection = sortDirection;
-        }
-
-        private Comparison<ProxyInfo> GetComparer(string sortMemberPath, ListSortDirection sortDirection)
-        {
-            return (proxyInfo1, proxyInfo2) =>
-            {
-                IComparable object1 = (IComparable)GetPropertyValue(proxyInfo1, sortMemberPath);
-                IComparable object2 = (IComparable)GetPropertyValue(proxyInfo2, sortMemberPath);
-
-                if (sortDirection == ListSortDirection.Descending)
-                {
-                    return object2.CompareTo(object1);
-                }
-
-                return object1.CompareTo(object2);
-            };
-        }
-
-        private object GetPropertyValue(object source, string path)
-        {
-            object propValue = source;
-            foreach (string propName in path.Split('.'))
-            {
-                PropertyInfo propInfo = propValue.GetType().GetProperty(propName);
-                propValue = propInfo.GetValue(propValue, null);
-            }
-
-            return propValue;
         }
     }
 }

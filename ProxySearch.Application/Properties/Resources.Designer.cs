@@ -287,6 +287,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grid has no sorting.
+        /// </summary>
+        internal static string GridHasNoSorting {
+            get {
+                return ResourceManager.GetString("GridHasNoSorting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://sourceforge.net/projects/proxysearcher/.
         /// </summary>
         internal static string HomePageDeveloperLink {
@@ -359,7 +368,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proxy Searcher 1.2.
+        ///   Looks up a localized string similar to Proxy Searcher 1.3.
         /// </summary>
         internal static string ProxySearcherVersion {
             get {
@@ -445,6 +454,15 @@ namespace ProxySearch.Console.Properties {
         internal static string SimpleSite {
             get {
                 return ResourceManager.GetString("SimpleSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort type by &apos;{0}&apos; is not supported.
+        /// </summary>
+        internal static string SortTypeIsNotSupported {
+            get {
+                return ResourceManager.GetString("SortTypeIsNotSupported", resourceCulture);
             }
         }
         

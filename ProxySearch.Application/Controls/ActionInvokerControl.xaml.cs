@@ -97,7 +97,7 @@ namespace ProxySearch.Console.Controls
                 Details.IsEnabled = setProgress;
                 ProgressText.Content = string.Format(Properties.Resources.JobCountFormat, 0);
                 timer = new Timer(state => UpdateThreadPoolInfo());
-                timer.Change(0, 500);
+                timer.Change(0, 2000);
             }
             else
             {

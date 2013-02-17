@@ -37,27 +37,36 @@ namespace ProxySearch.Engine.Google
 
         public async Task<Uri> GetNext()
         {
-            if (allowedCount == 0)
+            try
+            {
+                if (allowedCount == 0)
+                    return null;
+
+                if (searchOnPage == null)
+                {
+                    allowedCount--;
+                    searchOnPage = new GoogleSearchOnPage();
+
+                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)));
+
+                }
+
+                Uri res = searchOnPage.GetNext();
+
+                if (res != null)
+                    linkNumber++;
+                else
+                {
+                    searchOnPage = null;
+                    return await GetNext();
+                }
+
+                return res;
+            }
+            catch (TaskCanceledException)
+            {
                 return null;
-
-            if (searchOnPage == null)
-            {
-                allowedCount--;
-                searchOnPage = new GoogleSearchOnPage();
-                await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)));
             }
-
-            Uri res = searchOnPage.GetNext();
-
-            if (res != null)
-                linkNumber++;
-            else
-            {
-                searchOnPage = null;
-                return await GetNext();
-            }
-
-            return res;
         }
     }
 }

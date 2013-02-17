@@ -88,6 +88,7 @@
     <Compile Include="Code\ApplicationInitializer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Collections\ObservableList.cs" />
     <Compile Include="Code\Constants.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -162,6 +163,8 @@
     <Compile Include="Code\ProxySearchFeedback.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\SearchResult\ProxyInfoComparer.cs" />
+    <Compile Include="Code\SearchResult\PreventChangeSortingDirection.cs" />
     <Compile Include="Code\Serializer.cs">
       <SubType>Code</SubType>
     </Compile>
