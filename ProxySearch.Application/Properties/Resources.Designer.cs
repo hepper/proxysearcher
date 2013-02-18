@@ -377,7 +377,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proxy Searcher 1.3.
+        ///   Looks up a localized string similar to Proxy Searcher 1.4.
         /// </summary>
         internal static string ProxySearcherVersion {
             get {
