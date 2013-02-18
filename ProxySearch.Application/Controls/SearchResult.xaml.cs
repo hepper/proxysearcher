@@ -85,16 +85,23 @@ namespace ProxySearch.Console.Controls
                     int index = GetInsertIndex(Data, proxy, preventor);
                     Data.Insert(index, proxy);
 
-                    int page = (int)Math.Ceiling((double)index / Context.Get<AllSettings>().PageSize);
-
-                    if (Paging.Page == page)
+                    if (Data.Count > 1)
                     {
-                        if (PageData.Count > Context.Get<AllSettings>().PageSize)
+                        int page = (int)Math.Ceiling((double)(index + 1) / Context.Get<AllSettings>().PageSize);
+
+                        if (page <= Paging.Page && PageData.Count == Context.Get<AllSettings>().PageSize)
                         {
                             PageData.Remove(PageData.Last());
                         }
 
-                        PageData.Insert(GetInsertIndex(PageData, proxy, preventor), proxy);                        
+                        if (page < Paging.Page)
+                        {
+                            PageData.Insert(0, Data[(Paging.Page.Value -1)* Context.Get<AllSettings>().PageSize]);
+                        }
+                        else if (page == Paging.Page)
+                        {
+                            PageData.Insert(index - (page - 1) * Context.Get<AllSettings>().PageSize, proxy);
+                        }
                     }
 
                     Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
