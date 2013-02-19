@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Serialization;
-using System.Collections.ObjectModel;
 
 namespace ProxySearch.Console.Code.Settings
 {
@@ -13,6 +13,8 @@ namespace ProxySearch.Console.Code.Settings
         {
             TabSettings = new ObservableCollection<TabSettings>();
             GeoIPSettings = new List<ParametersPair>();
+            ExportSettings = new ExportSettings();
+
             PageSize = 20;
         }
 
@@ -41,6 +43,12 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public int MaxThreadCount
+        {
+            get;
+            set;
+        }
+
+        public ExportSettings ExportSettings
         {
             get;
             set;

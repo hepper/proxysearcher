@@ -35,6 +35,11 @@ namespace ProxySearch.Console.Code
             public static readonly string Location = Working.Directory + "ProxySettingsStorage.xml";
         }
 
+        public static class DefaultExportFolder
+        {
+            public static readonly string Location = Working.Directory + "SearchResult\\";
+        }
+
         public static class Browsers
         {
             public static readonly string StartMenuInternet64Bit = @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet";

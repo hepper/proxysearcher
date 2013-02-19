@@ -125,7 +125,7 @@
     <value>..\Resources\Application.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BuiltInGeoIPDescription" xml:space="preserve">
-    <value>Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take a lot of processor time</value>
+    <value>Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time</value>
   </data>
   <data name="BuiltInGeoIPName" xml:space="preserve">
     <value>Built in</value>

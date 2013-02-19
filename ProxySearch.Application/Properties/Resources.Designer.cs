@@ -80,7 +80,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take a lot of processor time.
+        ///   Looks up a localized string similar to Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time.
         /// </summary>
         internal static string BuiltInGeoIPDescription {
             get {

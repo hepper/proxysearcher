@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.ExportSearchResultControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="500" Name="ExportData">
+    <UserControl.Resources>
+        <converters:BoolInverterConverter x:Key="boolInverterConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0">Enable Export</Label>
+        <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,7,0,5" IsChecked="{Binding ElementName=ExportData, Path=Settings.ExportSearchResult}" Name="EnableCheckBox" />
+        
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,0,5,0">Export folder</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,5,0" Text="{Binding ElementName=ExportData, Path=Settings.ExportFolder}" 
+                 IsReadOnly="true" Background="LightGray" MouseDoubleClick="SelectFolder" Name="SelectedFoderTextBox" />
+
+        <Button Grid.Row="1" Grid.Column="2" Width="25" FontWeight="Bold" Margin="0,0,5,0" IsEnabled="{Binding ElementName=EnableCheckBox, Path=IsChecked}"
+                Click="SelectFolder" ToolTip="Select folder">...</Button>
+        <Button Grid.Row="1" Grid.Column="3" Width="25" FontWeight="Bold" IsEnabled="{Binding ElementName=EnableCheckBox, Path=IsChecked}"
+                Click="ExploreFolder" ToolTip="Open selected folder">&gt;</Button>
+    </Grid>    
+</UserControl>

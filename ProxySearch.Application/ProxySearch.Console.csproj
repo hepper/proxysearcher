@@ -64,6 +64,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,9 +73,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="WPFToolkit.Extended, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\WPFToolkit.Extended\WPFToolkit.Extended.dll</HintPath>
@@ -96,6 +99,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Converters\AccuracyConverter.cs" />
+    <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
@@ -175,6 +179,7 @@
     <Compile Include="Code\Settings\DefaultSettingsFactory.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Settings\ExportSettings.cs" />
     <Compile Include="Code\Settings\ParametersPair.cs" />
     <Compile Include="Code\Settings\TabSettings.cs">
       <SubType>Code</SubType>
@@ -197,6 +202,9 @@
     </Compile>
     <Compile Include="Controls\DetectableSelectorControl.xaml.cs">
       <DependentUpon>DetectableSelectorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExportSearchResultControl.xaml.cs">
+      <DependentUpon>ExportSearchResultControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
@@ -253,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\DetectableSelectorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExportSearchResultControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,6 +338,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\CheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -380,6 +396,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
