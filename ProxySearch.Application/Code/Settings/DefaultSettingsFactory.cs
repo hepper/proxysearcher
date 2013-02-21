@@ -9,6 +9,7 @@ using ProxySearch.Console.Code.Detectable.ProxyCheckers;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Console.Code.Settings
@@ -45,7 +46,7 @@ namespace ProxySearch.Console.Code.Settings
             {
                 Id = guid,
                 Name = name,
-                ProxyCheckerDetectableType = typeof(ProxyCheckerByUrlDetectable).AssemblyQualifiedName,
+                ProxyCheckerDetectableType = typeof(CheckerByUrlDetectable).AssemblyQualifiedName,
                 SearchEngineDetectableType = typeof(GoogleEngineDetectable).AssemblyQualifiedName,
                 SearchEngineSettings = GetSettings<ISearchEngine>(),
                 ProxyCheckerSettings = GetSettings<IProxyChecker>()

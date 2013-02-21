@@ -287,6 +287,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;title&gt;Google&lt;/title&gt;.
+        /// </summary>
+        internal static string GoogleDotComContent {
+            get {
+                return ResourceManager.GetString("GoogleDotComContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine.
         /// </summary>
         internal static string GoogleEngineDescription {
@@ -364,6 +373,24 @@ namespace ProxySearch.Console.Properties {
         internal static string ProxyCheckerByUrl {
             get {
                 return ResourceManager.GetString("ProxyCheckerByUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By Url And Keywords.
+        /// </summary>
+        internal static string ProxyCheckerByUrlAndKeywords {
+            get {
+                return ResourceManager.GetString("ProxyCheckerByUrlAndKeywords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This proxy checker could be useful if you don&apos;t have access to http page, but know his url and list of keywords what should be on page. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don&apos;t return any results try to change keywords, probably page doesn&apos;t contains them. All specified keywords separates with space, all of them should be on the page, as keyword could be specified piece of http code without space(s). Because of content downloading this checker ta [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ProxyCheckerByUrlAndKeywordsDescription {
+            get {
+                return ResourceManager.GetString("ProxyCheckerByUrlAndKeywordsDescription", resourceCulture);
             }
         }
         

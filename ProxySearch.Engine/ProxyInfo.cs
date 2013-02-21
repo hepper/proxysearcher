@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net;
-using ProxySearch.Engine.CheckerProxy.Net;
+using ProxySearch.Engine.Checkers.CheckerProxy.Net;
 
 namespace ProxySearch.Engine
 {

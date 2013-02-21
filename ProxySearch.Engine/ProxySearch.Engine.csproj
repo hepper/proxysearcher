@@ -65,11 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="CheckerProxy.Net\CheckerProxyNet.cs" />
-    <Compile Include="CheckerProxy.Net\CheckerProxyNetRoutine.cs" />
-    <Compile Include="CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
-    <Compile Include="CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
-    <Compile Include="CheckerProxy.Net\HttpProxyInfo.cs" />
+    <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet.cs" />
+    <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
+    <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
+    <Compile Include="Checkers\CheckerProxy.Net\HttpProxyInfo.cs" />
+    <Compile Include="Checkers\CheckerUtils.cs" />
+    <Compile Include="Checkers\ProxyCheckerByUrlAndKeywords.cs" />
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIP.cs" />
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIPComparer.cs" />
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIPData.cs" />
@@ -79,18 +80,18 @@
     <Compile Include="Google\GoogleSearchEngine.cs" />
     <Compile Include="Google\GoogleSearchOnPage.cs" />
     <Compile Include="GeoIP\IGeoIP.cs" />
-    <Compile Include="IProxyChecker.cs" />
+    <Compile Include="Checkers\IProxyChecker.cs" />
     <Compile Include="IProxySearcher.cs" />
     <Compile Include="IProxySearchFeedback.cs" />
     <Compile Include="ISearchEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyCheckerByUrl.cs" />
+    <Compile Include="Checkers\ProxyCheckerByUrl.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SimpleProxyChecker.cs" />
+    <Compile Include="Checkers\SimpleProxyChecker.cs" />
     <Compile Include="ProxyInfo.cs" />
     <Compile Include="ProxySearcher.cs" />
     <Compile Include="TaskCounter.cs" />

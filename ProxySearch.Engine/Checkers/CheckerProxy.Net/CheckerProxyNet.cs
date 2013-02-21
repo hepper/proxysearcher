@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using ProxySearch.Common;
 
-namespace ProxySearch.Engine.CheckerProxy.Net
+namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
     public class CheckerProxyNet : IProxyChecker
     {

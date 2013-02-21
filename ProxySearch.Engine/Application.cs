@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-using System.Net;
-using ProxySearch.Common;
-using System.Threading;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System.Threading;
+using ProxySearch.Common;
+using ProxySearch.Engine.Checkers;
 
 namespace ProxySearch.Engine
 {
@@ -19,6 +15,8 @@ namespace ProxySearch.Engine
         {
             this.searchEngine = searchEngine;
             this.proxySearcher = proxySearcher;
+
+            Context.Set<CheckerUtils>(new CheckerUtils());
         }
 
         public async void SearchAsync()

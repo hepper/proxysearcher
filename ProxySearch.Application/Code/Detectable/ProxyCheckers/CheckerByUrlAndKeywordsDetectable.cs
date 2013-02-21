@@ -4,17 +4,16 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
-using ProxySearch.Engine.Checkers.CheckerProxy.Net;
 
 namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
 {
-    public class CheckerProxyNetDetectable : IDetectable
+    public class CheckerByUrlAndKeywordsDetectable : IDetectable
     {
         public string FriendlyName
         {
             get 
             {
-                return Resources.CheckerProxyDotNet;
+                return Resources.ProxyCheckerByUrlAndKeywords;
             }
         }
 
@@ -22,7 +21,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
         {
             get 
             {
-                return Resources.CheckerProxyDotNetDescription;
+                return Resources.ProxyCheckerByUrlAndKeywordsDescription;
             }
         }
 
@@ -38,7 +37,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
         {
             get 
             {
-                return typeof(CheckerProxyNet);
+                return typeof(ProxyCheckerByUrlAndKeywords);
             }
         }
 
@@ -46,7 +45,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
         {
             get 
             {
-                return typeof(CheckerProxyNetPropertyControl);
+                return typeof(CheckerByUrlAndKeywordsControl);
             }
         }
 
@@ -56,7 +55,8 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
             {
                 return new List<object>
                 {
-                    20
+                    Resources.GoogleDotCom,
+                    Resources.GoogleDotComContent
                 };
             }
         }

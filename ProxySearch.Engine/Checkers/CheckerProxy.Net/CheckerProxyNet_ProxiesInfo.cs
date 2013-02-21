@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProxySearch.Engine.CheckerProxy.Net
+﻿namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
     public class CheckerProxyNet_ProxiesInfo
     {

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ProxySearch.Engine.Properties;
+﻿using ProxySearch.Engine.Properties;
 
-namespace ProxySearch.Engine.CheckerProxy.Net
+namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
     public class HttpProxyInfo
     {

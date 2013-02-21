@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 
-namespace ProxySearch.Engine
+namespace ProxySearch.Engine.Checkers
 {
     public class SimpleProxyChecker : IProxyChecker
     {
@@ -15,9 +11,6 @@ namespace ProxySearch.Engine
             {
                 try
                 {
-                    if (info.Port == 80)
-                        return false;
-
                     await tcpClient.ConnectAsync(info.Address, info.Port);
                 }
                 catch (SocketException)

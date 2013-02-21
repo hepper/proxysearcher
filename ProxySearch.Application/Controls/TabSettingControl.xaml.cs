@@ -11,6 +11,7 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Console.Controls

@@ -193,6 +193,9 @@
   <data name="GoogleDotCom" xml:space="preserve">
     <value>http://google.com</value>
   </data>
+  <data name="GoogleDotComContent" xml:space="preserve">
+    <value>&lt;title&gt;Google&lt;/title&gt;</value>
+  </data>
   <data name="GoogleEngineDescription" xml:space="preserve">
     <value>Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine</value>
   </data>
@@ -219,6 +222,12 @@
   </data>
   <data name="ProxyCheckerByUrl" xml:space="preserve">
     <value>By Url</value>
+  </data>
+  <data name="ProxyCheckerByUrlAndKeywords" xml:space="preserve">
+    <value>By Url And Keywords</value>
+  </data>
+  <data name="ProxyCheckerByUrlAndKeywordsDescription" xml:space="preserve">
+    <value>This proxy checker could be useful if you don't have access to http page, but know his url and list of keywords what should be on page. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change keywords, probably page doesn't contains them. All specified keywords separates with space, all of them should be on the page, as keyword could be specified piece of http code without space(s). Because of content downloading this checker takes internet traffic.</value>
   </data>
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
     <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change accuracy, probably page's content is too dynamic. Because of downloading page content this checker takes internet traffic.</value>

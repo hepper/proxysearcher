@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Net.Sockets;
 using System.Threading;
-using System.IO;
-using System.Xml;
-using ProxySearch.Common;
 using System.Threading.Tasks;
+using ProxySearch.Common;
+using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Engine

@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace ProxySearch.Engine
+namespace ProxySearch.Engine.Checkers
 {
     public interface IProxyChecker
     {

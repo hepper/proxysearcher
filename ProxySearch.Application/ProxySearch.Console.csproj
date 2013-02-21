@@ -115,7 +115,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Detectable\ProxyCheckers\CheckerProxyNetDetectable.cs" />
-    <Compile Include="Code\Detectable\ProxyCheckers\ProxyCheckerByUrlDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\CheckerByUrlAndKeywordsDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\CheckerByUrlDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\SimpleProxyCheckerDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -197,6 +198,9 @@
     <Compile Include="Controls\BackControl.xaml.cs">
       <DependentUpon>BackControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CheckerByUrlAndKeywordsControl.xaml.cs">
+      <DependentUpon>CheckerByUrlAndKeywordsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CheckerProxyNetPropertyControl.xaml.cs">
       <DependentUpon>CheckerProxyNetPropertyControl.xaml</DependentUpon>
     </Compile>
@@ -253,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CheckerByUrlAndKeywordsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

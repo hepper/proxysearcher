@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
 
-namespace ProxySearch.Engine
+namespace ProxySearch.Engine.Checkers
 {
     public class ProxyCheckerByUrl : IProxyChecker
     {
@@ -35,7 +35,7 @@ namespace ProxySearch.Engine
             Url = url;
             Accuracy = accuracy;
 
-            string content = GetContent(null).GetAwaiter().GetResult();
+            string content = Context.Get<CheckerUtils>().GetContent(Url, null).GetAwaiter().GetResult();
 
             if (content == null)
             {
@@ -49,7 +49,7 @@ namespace ProxySearch.Engine
         {
             try
             {
-                string content = await GetContent(new WebProxy(info.Address.ToString(), info.Port));
+                string content = await Context.Get<CheckerUtils>().GetContent(Url, info);
 
                 if (content == null)
                 {
@@ -110,35 +110,6 @@ namespace ProxySearch.Engine
             }
 
             return (double)result / dictionary1.Sum(item => item.Value);
-        }
-
-        private async Task<string> GetContent(IWebProxy proxy)
-        {
-            try
-            {
-                using (HttpClientHandler handler = new HttpClientHandler())
-                {
-                    if (proxy != null)
-                    {
-                        handler.Proxy = proxy;
-                    }
-
-                    using (HttpClient client = new HttpClient(handler))
-                    using (HttpResponseMessage response = await client.GetAsync(Url, Context.Get<CancellationTokenSource>().Token))
-                    {
-                        if (!response.IsSuccessStatusCode)
-                        {
-                            return null;
-                        }
-
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                }
-            }
-            catch
-            {
-                return null;
-            }
         }
     }
 }

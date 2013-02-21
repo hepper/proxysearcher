@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Properties;
-using ProxySearch.Engine;
-using System.Windows.Controls;
+using ProxySearch.Engine.Checkers;
 
 namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
 {
