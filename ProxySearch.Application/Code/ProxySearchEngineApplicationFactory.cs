@@ -18,6 +18,7 @@ namespace ProxySearch.Console.Code
         public Application Create(IProxySearchFeedback feedback)
         {
             Context.Set(new CancellationTokenSource());
+            Context.Set<CheckerUtils>(new CheckerUtils());
 
             IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);

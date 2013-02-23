@@ -15,8 +15,6 @@ namespace ProxySearch.Engine
         {
             this.searchEngine = searchEngine;
             this.proxySearcher = proxySearcher;
-
-            Context.Set<CheckerUtils>(new CheckerUtils());
         }
 
         public async void SearchAsync()
