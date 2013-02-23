@@ -47,7 +47,7 @@ namespace ProxySearch.Engine
 
         public override string ToString()
         {
-            return string.Format("{0}:{1} {2} {3}", Address, Port, CountryInfo.Name, Details);
+            return string.Format("{0}:{1}\t{2}\t{3}", Address, Port, CountryInfo.Name, Details);
         }
 
         public override bool Equals(object obj)
