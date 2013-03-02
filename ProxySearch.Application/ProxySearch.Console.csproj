@@ -99,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Converters\AccuracyConverter.cs" />
+    <Compile Include="Code\Converters\BandwidthResultColorConverter.cs" />
+    <Compile Include="Code\Converters\BandwidthResultTooltipConverter.cs" />
+    <Compile Include="Code\Converters\BandwidthStateVisibilityConverter.cs" />
+    <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
@@ -198,6 +202,12 @@
     <Compile Include="Controls\BackControl.xaml.cs">
       <DependentUpon>BackControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BandwidthControl.xaml.cs">
+      <DependentUpon>BandwidthControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BandwidthSettingsControl.xaml.cs">
+      <DependentUpon>BandwidthSettingsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CheckerByUrlAndKeywordsControl.xaml.cs">
       <DependentUpon>CheckerByUrlAndKeywordsControl.xaml</DependentUpon>
     </Compile>
@@ -257,6 +267,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BackControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BandwidthControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BandwidthSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

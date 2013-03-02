@@ -242,6 +242,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error has happened during test.
+        /// </summary>
+        internal static string ErrorHasHappenedDuringTest {
+            get {
+                return ResourceManager.GetString("ErrorHasHappenedDuringTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/.
         /// </summary>
         internal static string FeedbackLink {
@@ -508,6 +517,25 @@ namespace ProxySearch.Console.Properties {
         internal static string SortTypeIsNotSupported {
             get {
                 return ResourceManager.GetString("SortTypeIsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.##} ({1:0.##}).
+        /// </summary>
+        internal static string SpeedRespondTextFormat {
+            get {
+                return ResourceManager.GetString("SpeedRespondTextFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed: {1:0.##} Mb/s
+        ///Response time: {0:0.##} s.
+        /// </summary>
+        internal static string SpeedRespondTooltipFormat {
+            get {
+                return ResourceManager.GetString("SpeedRespondTooltipFormat", resourceCulture);
             }
         }
         

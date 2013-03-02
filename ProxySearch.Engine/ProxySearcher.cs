@@ -74,8 +74,8 @@ namespace ProxySearch.Engine
         {
             string[] data = match.Value.Split(':');
 
-            short port;
-            if (!short.TryParse(data[1], out port))
+            ushort port;
+            if (!ushort.TryParse(data[1], out port))
                 return null;
 
             return new ProxyInfo(IPAddress.Parse(data[0]), port, await geoIP.GetLocation(data[0]));

@@ -48,7 +48,7 @@ namespace ProxySearch.Console
                 Shutdown();
             }
 
-            new ApplicationInitializer().Initialize();
+            new ApplicationInitializer().Initialize(CloseApplication);
         }
 
         private void App_Exit(object sender, ExitEventArgs e)

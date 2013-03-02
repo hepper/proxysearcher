@@ -56,7 +56,7 @@ namespace ProxySearch.Console.Code.SearchResult
             switch (path)
             {
                 case "AddressString":
-                    return source.AddressString;
+                    return source.Address.ToString();
                 case "Port":
                     return source.Port;
                 case "CountryInfo.Name":
@@ -69,6 +69,8 @@ namespace ProxySearch.Console.Code.SearchResult
                         return null;
 
                     return source.Details.Type;
+                case "BandwidthData":
+                    return source.BandwidthData;
             }
 
             throw new NotSupportedException(string.Format(Properties.Resources.SortTypeIsNotSupported, path));

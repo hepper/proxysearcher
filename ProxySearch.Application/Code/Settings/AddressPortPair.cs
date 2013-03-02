@@ -18,7 +18,7 @@ namespace ProxySearch.Console.Code.Settings
             set;
         }
 
-        public short Port
+        public ushort Port
         {
             get;
             set;

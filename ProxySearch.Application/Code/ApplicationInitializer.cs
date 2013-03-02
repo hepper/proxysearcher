@@ -6,12 +6,13 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.Version;
+using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Console.Code
 {
     public class ApplicationInitializer
     {
-        public void Initialize()
+        public void Initialize(bool shutdown)
         {
             Context.Set<IDetectableSearcher>(new DetectableSearcher());
             Context.Set<IProxyClientSearcher>(new ProxyClientSearcher());
@@ -19,7 +20,11 @@ namespace ProxySearch.Console.Code
             Context.Set(UsedProxies);
             Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
-            new VersionManager().Check();
+            if (!shutdown)
+            {
+                new VersionManager().Check();
+            }
+            Context.Set(new BandwidthManager());
          }
 
         public void Deinitialize()

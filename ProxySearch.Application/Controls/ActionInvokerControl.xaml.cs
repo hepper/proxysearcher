@@ -37,7 +37,17 @@ namespace ProxySearch.Console.Controls
 
             try
             {
-                Task.Run(action);
+                Task.Run(() =>
+                {
+                    try
+                    {
+                        action();
+                    }
+                    catch (Exception exception)
+                    {
+                        Dispatcher.Invoke(() => SetException(exception));
+                    }
+                });
             }
             catch (TaskCanceledException)
             {

@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.BandwidthControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="80" Name="Bandwidth">
+    <UserControl.Resources>
+        <converters:BandwidthStateVisibilityConverter x:Key="bandwdthStateVisibilityConverter" />
+        <converters:BandwidthResultTextConverter  x:Key="bandwidthResultTextConverter" />
+        <converters:BandwidthResultTooltipConverter x:Key="bandwidthResultTooltipConverter" />
+        <converters:BandwidthResultColorConverter x:Key="bandwidthResultColorConverter" />
+    </UserControl.Resources>
+    <Grid Margin="2,2,2,2">
+        <Grid.Style>
+            <Style>
+                <Style.Resources>
+                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ControlStyle}">
+                        <Setter Property="IsReadOnly" Value="True" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </Style.Resources>
+            </Style>
+        </Grid.Style>
+        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=1}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0" Margin="0,0,5,0">Ready</TextBox>
+            <Button Grid.Column="1" Width="70" Name="MeasureButton" Click="MeasureButton_Click">Measure</Button>
+        </Grid>
+        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=2}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <ProgressBar Grid.Column="0" Value="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.Progress, Mode=OneWay}" Margin="0,0,5,0" ToolTip="Test is in progress" />
+            <Button Grid.Column="1" Width="70" Click="CancelButton_Click">Cancel</Button>
+        </Grid>
+
+        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=3}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0" Margin="0,0,5,0">
+                <TextBox.Text>
+                    <MultiBinding  Converter="{StaticResource bandwidthResultTextConverter}">
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.State"  />
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.Bandwidth" />
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.ResponseTime" />
+                    </MultiBinding>
+                </TextBox.Text>
+                <TextBox.ToolTip>
+                    <MultiBinding  Converter="{StaticResource bandwidthResultTooltipConverter}">
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.State"  />
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.Bandwidth" />
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.ResponseTime" />
+                    </MultiBinding>
+                </TextBox.ToolTip>
+                <TextBox.Background>
+                    <MultiBinding  Converter="{StaticResource bandwidthResultColorConverter}">
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.State"  />
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.Bandwidth" />                        
+                    </MultiBinding>
+                </TextBox.Background>
+            </TextBox>
+            <Button Grid.Column="1" Width="70" Click="MeasureButton_Click">Retry</Button>
+        </Grid>
+    </Grid>
+</UserControl>

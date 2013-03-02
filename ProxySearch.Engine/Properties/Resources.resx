@@ -126,6 +126,9 @@
   <data name="HighAnonymous" xml:space="preserve">
     <value>High Anonymous</value>
   </data>
+  <data name="SpeedTestUrl" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/Bandwidth</value>
+  </data>
   <data name="Transparent" xml:space="preserve">
     <value>Transparent</value>
   </data>

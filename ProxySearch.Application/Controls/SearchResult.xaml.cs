@@ -12,6 +12,7 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Console.Controls
 {
@@ -96,7 +97,7 @@ namespace ProxySearch.Console.Controls
 
                         if (page < Paging.Page)
                         {
-                            PageData.Insert(0, Data[(Paging.Page.Value -1)* Context.Get<AllSettings>().PageSize]);
+                            PageData.Insert(0, Data[(Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize]);
                         }
                         else if (page == Paging.Page)
                         {
@@ -109,7 +110,7 @@ namespace ProxySearch.Console.Controls
             }));
         }
 
-        private int GetInsertIndex(ObservableList<ProxyInfo> data, ProxyInfo proxy, PreventChangeSortingDirection preventor)
+        private int GetInsertIndex(List<ProxyInfo> data, ProxyInfo proxy, PreventChangeSortingDirection preventor)
         {
             if (preventor.HasSorting)
             {
@@ -139,15 +140,15 @@ namespace ProxySearch.Console.Controls
 
         private void UpdateGridStyle(ProxyInfo proxy)
         {
-            for (int i = 0; i < Data.Count; i++)
+            for (int i = 0; i < PageData.Count; i++)
             {
-                if (proxy == Data[i])
+                if (proxy == PageData[i])
                 {
-                    Context.Get<UsedProxies>().Add(Data[i]);
+                    Context.Get<UsedProxies>().Add(PageData[i]);
                 }
 
-                RowStyle style = GetRowStyle(Data[i]);
-                ApplyStyle(Data[i], style);
+                RowStyle style = GetRowStyle(PageData[i]);
+                ApplyStyle(PageData[i], style);
             }
         }
 

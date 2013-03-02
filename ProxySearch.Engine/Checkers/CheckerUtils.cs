@@ -37,6 +37,6 @@ namespace ProxySearch.Engine.Checkers
             {
                 return null;
             }
-        } 
+        }
     }
 }

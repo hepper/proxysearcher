@@ -18,10 +18,10 @@ namespace ProxySearch.Console.Code.Converters
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            int count = (int) values[0];
-            int? page = (int?)values[1];
+            int? count = values[0] as int?;
+            int? page = values[1] as int?;
 
-            if (count == 0 || !page.HasValue)
+            if (!count.HasValue || !page.HasValue || count == 0)
                 return false;
 
             int pageCount = (int)Math.Ceiling((double)count / Context.Get<AllSettings>().PageSize);

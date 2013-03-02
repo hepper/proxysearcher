@@ -1,16 +1,18 @@
 using System;
 using System.Net;
+using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.Checkers.CheckerProxy.Net;
 
 namespace ProxySearch.Engine
 {
     public class ProxyInfo
     {
-        public ProxyInfo(IPAddress address, short port, CountryInfo countryInfo)
+        public ProxyInfo(IPAddress address, ushort port, CountryInfo countryInfo)
         {
             Address = address;
             Port = port;
             CountryInfo = countryInfo;
+            BandwidthData = new BandwidthData();
         }
 
         public IPAddress Address
@@ -19,15 +21,7 @@ namespace ProxySearch.Engine
             private set;
         }
 
-        public string AddressString
-        {
-            get
-            {
-                return Address.ToString();
-            }
-        }
-
-        public short Port
+        public ushort Port
         {
             get;
             private set;
@@ -40,6 +34,12 @@ namespace ProxySearch.Engine
         }
 
         public HttpProxyInfo Details
+        {
+            get;
+            set;
+        }
+
+        public BandwidthData BandwidthData
         {
             get;
             set;
