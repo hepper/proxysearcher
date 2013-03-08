@@ -20,13 +20,15 @@ namespace ProxySearch.Console.Code.Converters
             double? bandwidth = values[1] as double?;
             double? responseTime = values[2] as double?;
 
-            if (!state.HasValue || !bandwidth.HasValue || !responseTime.HasValue)
+            if (!state.HasValue || !bandwidth.HasValue)
                 return string.Empty;
 
             if (state == BandwidthState.Error)
                 return Resources.Error;
 
-            return string.Format(Resources.SpeedRespondTextFormat, bandwidth, responseTime);
+            string responseTimeString = responseTime.HasValue ? string.Format(Resources.RoundFormat, responseTime.Value) : Resources.QuestionMark;
+
+            return string.Format(Resources.SpeedRespondTextFormat, bandwidth, responseTimeString);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

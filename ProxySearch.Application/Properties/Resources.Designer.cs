@@ -233,20 +233,20 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error has happened. Press Details button for details.
-        /// </summary>
-        internal static string ErrorHasHappened {
-            get {
-                return ResourceManager.GetString("ErrorHasHappened", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error has happened during test.
         /// </summary>
         internal static string ErrorHasHappenedDuringTest {
             get {
                 return ResourceManager.GetString("ErrorHasHappenedDuringTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application.
+        /// </summary>
+        internal static string EventLogSource {
+            get {
+                return ResourceManager.GetString("EventLogSource", resourceCulture);
             }
         }
         
@@ -431,11 +431,29 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ?.
+        /// </summary>
+        internal static string QuestionMark {
+            get {
+                return ResourceManager.GetString("QuestionMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready.
         /// </summary>
         internal static string Ready {
             get {
                 return ResourceManager.GetString("Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:0.##}.
+        /// </summary>
+        internal static string RoundFormat {
+            get {
+                return ResourceManager.GetString("RoundFormat", resourceCulture);
             }
         }
         
@@ -521,7 +539,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:0.##} ({1:0.##}).
+        ///   Looks up a localized string similar to {0:0.##} ({1}).
         /// </summary>
         internal static string SpeedRespondTextFormat {
             get {
@@ -531,7 +549,7 @@ namespace ProxySearch.Console.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Speed: {1:0.##} Mb/s
-        ///Response time: {0:0.##} s.
+        ///Response time: {0} s.
         /// </summary>
         internal static string SpeedRespondTooltipFormat {
             get {

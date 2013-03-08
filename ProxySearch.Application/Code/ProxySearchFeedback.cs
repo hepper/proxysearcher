@@ -1,53 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ProxySearch.Engine;
-using System.Windows.Controls;
-using ProxySearch.Console.Properties;
+using System.IO;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
-using System.IO;
-using System.Threading.Tasks;
+using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Code
 {
     public class ProxySearchFeedback : IProxySearchFeedback
     {
-        private Dictionary<string, ProxyInfo> Dictionary { get; set; }
-
-        public ProxySearchFeedback()
-        {
-            Dictionary = new Dictionary<string, ProxyInfo>();
-        }
+        private StreamWriter stream = null;
 
         public void OnAliveProxy(ProxyInfo proxyInfo)
         {
-            Context.Get<ISearchResult>();
-
-            if (!Dictionary.ContainsKey(proxyInfo.ToString()))
+            if (Context.Get<AllSettings>().ExportSettings.ExportSearchResult)
             {
-                Dictionary.Add(proxyInfo.ToString(), proxyInfo);
+                if (stream == null)
+                {
+                    stream = CreateFile();
+                }
 
-                Context.Get<ISearchResult>().Add(proxyInfo);
+                stream.WriteLine(proxyInfo.ToString());
             }
-        }
 
-        public void OnDeadProxy(ProxyInfo proxyInfo)
-        {
-        }
-
-        public async void OnSearchFinished()
-        {
-            await ExportList();
-            Context.Get<IActionInvoker>().End();
-        }
-
-        public async void OnSearchCancelled()
-        {
-            await ExportList();
-            Context.Get<IActionInvoker>().End();
+            Context.Get<ISearchResult>().Add(proxyInfo);
         }
 
         public void UpdateJobCount(TaskType type, int currentCount, int totalCount)
@@ -55,35 +31,35 @@ namespace ProxySearch.Console.Code
             Context.Get<IActionInvoker>().Update(totalCount);
         }
 
-        private async Task ExportList()
+        public void OnSearchFinished()
         {
-            if (!Context.Get<AllSettings>().ExportSettings.ExportSearchResult && Dictionary.Count > 0)
-                return;
+            End();
+        }
 
-            try
+        public void OnSearchCancelled()
+        {
+            End();
+        }
+
+        private void End()
+        {
+            Context.Get<IActionInvoker>().End();
+            if (stream != null)
+                stream.Dispose();
+        }
+
+        private StreamWriter CreateFile()
+        {
+            string directory = Context.Get<AllSettings>().ExportSettings.ExportFolder;
+
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            string fileName = string.Format("{0}Search Results {1}.txt", directory, DateTime.Now.ToString("HH.mm.ss dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture));
+            return new StreamWriter(new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
-                string directory = Context.Get<AllSettings>().ExportSettings.ExportFolder;
-
-                string fileName = string.Format("{0}Search Results {1}.txt", directory,
-                   DateTime.Now.ToString("HH.mm.ss dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture));
-
-                if (!Directory.Exists(directory))
-                {
-                    Directory.CreateDirectory(directory);
-                }
-
-                using (FileStream stream = File.Create(fileName))
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    foreach (ProxyInfo proxyInfo in Dictionary.Values)
-                    {
-                        await writer.WriteLineAsync(proxyInfo.ToString());
-                    }
-                }
-            }
-            catch
-            {
-            }
+                AutoFlush = true
+            };
         }
     }
 }

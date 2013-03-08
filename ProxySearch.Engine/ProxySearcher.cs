@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -13,6 +15,8 @@ namespace ProxySearch.Engine
         IProxySearchFeedback feedback;
         IProxyChecker checker;
         IGeoIP geoIP;
+
+        Hashtable foundIps = new Hashtable();
 
         public ProxySearcher(IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
         {
@@ -35,7 +39,7 @@ namespace ProxySearch.Engine
                         return;
                     }
 
-                    Task task = Task.Run(async () =>
+                    Task.Run(async () =>
                     {
                         if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                         {
@@ -46,19 +50,16 @@ namespace ProxySearch.Engine
                         {
                             using (Context.Get<TaskCounter>().Listen(TaskType.Search))
                             {
-                                ProxyInfo info = await GetProxyInfo(match);
+                                ProxyInfo info = GetProxyInfo(match);
 
-                                if (info != null)
+                                if (info != null && !foundIps.ContainsKey(info.GetHashCode()))
                                 {
-                                    if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                                    {
-                                        return;
-                                    }
+                                    foundIps.Add(info.GetHashCode(), info);
+
+                                    info.CountryInfo = await geoIP.GetLocation(info.Address.ToString());
 
                                     if ((await checker.Alive(info)))
                                         feedback.OnAliveProxy(info);
-                                    else
-                                        feedback.OnDeadProxy(info);
                                 }
                             }
                         }
@@ -70,7 +71,7 @@ namespace ProxySearch.Engine
             });
         }
 
-        private async Task<ProxyInfo> GetProxyInfo(Match match)
+        private ProxyInfo GetProxyInfo(Match match)
         {
             string[] data = match.Value.Split(':');
 
@@ -78,7 +79,7 @@ namespace ProxySearch.Engine
             if (!ushort.TryParse(data[1], out port))
                 return null;
 
-            return new ProxyInfo(IPAddress.Parse(data[0]), port, await geoIP.GetLocation(data[0]));
+            return new ProxyInfo(IPAddress.Parse(data[0]), port);
         }
     }
 }

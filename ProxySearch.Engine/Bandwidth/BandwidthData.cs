@@ -44,8 +44,8 @@ namespace ProxySearch.Engine.Bandwidth
             }
         }
 
-        private double responseTime;
-        public double ResponseTime
+        private double? responseTime;
+        public double? ResponseTime
         {
             get
             {

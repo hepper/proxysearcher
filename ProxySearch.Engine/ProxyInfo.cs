@@ -7,11 +7,10 @@ namespace ProxySearch.Engine
 {
     public class ProxyInfo
     {
-        public ProxyInfo(IPAddress address, ushort port, CountryInfo countryInfo)
+        public ProxyInfo(IPAddress address, ushort port)
         {
             Address = address;
             Port = port;
-            CountryInfo = countryInfo;
             BandwidthData = new BandwidthData();
         }
 
@@ -30,7 +29,7 @@ namespace ProxySearch.Engine
         public CountryInfo CountryInfo
         {
             get;
-            private set;
+            set;
         }
 
         public HttpProxyInfo Details

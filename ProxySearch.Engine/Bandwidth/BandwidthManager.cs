@@ -22,13 +22,7 @@ namespace ProxySearch.Engine.Bandwidth
 
                 if (result != null)
                 {
-                    double speed = GetSpeed(result);
-
-                    double respondTime = (result.FirstTime - result.BeginTime).TotalSeconds - result.FirstCount / speed;
-
-                    proxyInfo.BandwidthData.State = BandwidthState.Completed;
-                    proxyInfo.BandwidthData.ResponseTime = respondTime < 0 ? 0 : respondTime;
-                    proxyInfo.BandwidthData.Bandwidth = 8 * speed / (1024 * 1024);
+                    UpdateBandwidthData(proxyInfo, result);
                 }
                 else
                 {
@@ -45,7 +39,17 @@ namespace ProxySearch.Engine.Bandwidth
             }
         }
 
-        private static double GetSpeed(BanwidthInfo result)
+        public void UpdateBandwidthData(ProxyInfo proxyInfo, BanwidthInfo info)
+        {
+            double speed = GetSpeed(info);
+            double? respondTime = (info.FirstTime != info.EndTime) ? (double?)(info.FirstTime - info.BeginTime).TotalSeconds - info.FirstCount / speed : null;
+
+            proxyInfo.BandwidthData.State = BandwidthState.Completed;
+            proxyInfo.BandwidthData.ResponseTime = respondTime < 0 ? 0 : respondTime;
+            proxyInfo.BandwidthData.Bandwidth = 8 * speed / (1024 * 1024);
+        }
+
+        private double GetSpeed(BanwidthInfo result)
         {
             if (result.EndCount != result.FirstCount)
             {

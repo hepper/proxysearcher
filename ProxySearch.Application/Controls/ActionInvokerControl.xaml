@@ -12,14 +12,19 @@
     <Grid Margin="{StaticResource DefaultMargin}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50px" />
             <ColumnDefinition Width="200px" />
             <ColumnDefinition Width="100px" />
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0" Name="StatusText">Ready</Label>
-        <ProgressBar Grid.Column="1" Name="ProgressBar" IsTabStop="False" IsEnabled="false"
+        <Button Grid.Column="1" Margin="0,0,5,0" Click="Error_Click" Visibility="Hidden" Name="ErrorButton">
+            Error
+        </Button>
+
+        <ProgressBar Grid.Column="2" Name="ProgressBar" IsTabStop="False" IsEnabled="false"
                      Foreground="{Binding ElementName=ActionInvoker, Path=ActiveThreads, Converter={StaticResource valueToColorConverter}}" />
-        <Label Grid.Column="1" Name="ProgressText" HorizontalContentAlignment="Center" />
-        <Button Grid.Column="2" IsEnabled="False" Name="Details" Margin="5,0,0,0" Click="Details_Click">Details</Button>
+        <Label Grid.Column="2" Name="ProgressText" HorizontalContentAlignment="Center" />
+        <Button Grid.Column="3" IsEnabled="False" Name="Cancel" Margin="5,0,0,0" Click="Cancel_Click">Cancel</Button>
     </Grid>
 </UserControl>

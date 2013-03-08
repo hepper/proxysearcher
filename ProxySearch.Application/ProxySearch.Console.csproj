@@ -130,6 +130,7 @@
     <Compile Include="Code\Detectable\SimpleDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\ExceptionLogging.cs" />
     <Compile Include="Code\GeoIPServiceAdapter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -145,6 +146,7 @@
     <Compile Include="Code\Interfaces\IDetectableSearcher.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Interfaces\IExceptionLogging.cs" />
     <Compile Include="Code\Interfaces\IProxyClient.cs" />
     <Compile Include="Code\Interfaces\IProxyClientRestartable.cs" />
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />

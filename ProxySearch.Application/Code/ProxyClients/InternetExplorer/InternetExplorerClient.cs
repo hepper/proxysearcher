@@ -23,7 +23,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 
             string[] arguments = GetHttpProxy(value).Split(':');
                         
-            return new ProxyInfo(IPAddress.Parse(arguments[0]), ushort.Parse(arguments[1]), null);
+            return new ProxyInfo(IPAddress.Parse(arguments[0]), ushort.Parse(arguments[1]));
         }
 
         private string GetHttpProxy(string value)

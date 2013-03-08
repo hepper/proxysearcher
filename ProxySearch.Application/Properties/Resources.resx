@@ -175,11 +175,11 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="ErrorHasHappened" xml:space="preserve">
-    <value>Error has happened. Press Details button for details</value>
-  </data>
   <data name="ErrorHasHappenedDuringTest" xml:space="preserve">
     <value>Error has happened during test</value>
+  </data>
+  <data name="EventLogSource" xml:space="preserve">
+    <value>Application</value>
   </data>
   <data name="FeedbackLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/</value>
@@ -241,8 +241,14 @@
   <data name="Question" xml:space="preserve">
     <value>Question</value>
   </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>?</value>
+  </data>
   <data name="Ready" xml:space="preserve">
     <value>Ready</value>
+  </data>
+  <data name="RoundFormat" xml:space="preserve">
+    <value>{0:0.##}</value>
   </data>
   <data name="RowStyleIsNotSupported" xml:space="preserve">
     <value>Row style '{0}' is not supported</value>
@@ -272,11 +278,11 @@
     <value>Sort type by '{0}' is not supported</value>
   </data>
   <data name="SpeedRespondTextFormat" xml:space="preserve">
-    <value>{0:0.##} ({1:0.##})</value>
+    <value>{0:0.##} ({1})</value>
   </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
     <value>Speed: {1:0.##} Mb/s
-Response time: {0:0.##} s</value>
+Response time: {0} s</value>
   </data>
   <data name="TicketsLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/tickets/</value>

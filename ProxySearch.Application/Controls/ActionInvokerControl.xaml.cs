@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -34,6 +33,7 @@ namespace ProxySearch.Console.Controls
 
             SetProgress(true);
             SetInformation(Properties.Resources.WaitUntilCurrentOperationIsFinished);
+            ErrorButton.Visibility = Visibility.Hidden;
 
             try
             {
@@ -74,11 +74,21 @@ namespace ProxySearch.Console.Controls
 
         public void SetException(Exception exception)
         {
-            StatusText.Content = ProxySearch.Console.Properties.Resources.ErrorHasHappened;
-            StatusText.Foreground = new SolidColorBrush(Colors.Red);
+            if (Dispatcher.CheckAccess())
+            {
+                Context.Get<IExceptionLogging>().Write(exception);
 
-            LastException = exception;
-            Details.IsEnabled = true;
+                LastException = exception;
+
+                if (Dispatcher.CheckAccess())
+                {
+                    ErrorButton.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                Dispatcher.BeginInvoke(new Action(() => SetException(exception)));
+            }
         }
 
         public void UpdateStatus(string status)
@@ -89,9 +99,6 @@ namespace ProxySearch.Console.Controls
         private void SetInformation(string text)
         {
             StatusText.Content = text;
-            StatusText.Foreground = new SolidColorBrush(Colors.Black);
-
-            LastException = null;
         }
 
         private Timer timer = null;
@@ -101,26 +108,21 @@ namespace ProxySearch.Console.Controls
             ProgressBar.IsIndeterminate = setProgress;
             if (setProgress)
             {
-                Details.Content = Properties.Resources.Cancel;
-                Details.Click -= Details_Click;
-                Details.Click += Cancel_Click;
-                Details.IsEnabled = setProgress;
                 ProgressText.Content = string.Format(Properties.Resources.JobCountFormat, 0);
                 timer = new Timer(state => UpdateThreadPoolInfo());
                 timer.Change(0, 2000);
             }
             else
             {
-                Details.Content = Properties.Resources.Details;
-                Details.Click -= Cancel_Click;
-                Details.Click += Details_Click;
-                Details.IsEnabled = LastException != null;
+                Cancel.Content = Properties.Resources.Cancel;
                 ProgressText.Content = null;
 
                 timer.Dispose();
                 timer = null;
                 ActiveThreads = 0;
             }
+
+            Cancel.IsEnabled = setProgress;
         }
 
         private void UpdateThreadPoolInfo()
@@ -150,15 +152,10 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        private void Details_Click(object sender, RoutedEventArgs e)
-        {
-            App.ShowException(Window.GetWindow(this), LastException);
-        }
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Details.Content = Properties.Resources.Cancelling;
-            Details.IsEnabled = false;
+            Cancel.Content = Properties.Resources.Cancelling;
+            Cancel.IsEnabled = false;
 
             new Thread(CancelOperation).Start();
         }
@@ -175,5 +172,10 @@ namespace ProxySearch.Console.Controls
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void Error_Click(object sender, RoutedEventArgs e)
+        {
+            App.ShowException(Window.GetWindow(this), LastException);            
+        }
     }
 }
