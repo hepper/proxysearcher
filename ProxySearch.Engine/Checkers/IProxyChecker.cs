@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
+using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Engine.Checkers
 {
     public interface IProxyChecker
     {
-        Task<bool> Alive(ProxyInfo info);
+        void Alive(ProxyInfo info, IProxySearchFeedback feedback, IGeoIP geoIP);
     }
 }

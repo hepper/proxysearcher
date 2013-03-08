@@ -39,7 +39,7 @@ namespace ProxySearch.Engine
                         return;
                     }
 
-                    Task.Run(async () =>
+                    Task.Run(() =>
                     {
                         if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                         {
@@ -48,19 +48,12 @@ namespace ProxySearch.Engine
 
                         try
                         {
-                            using (Context.Get<TaskCounter>().Listen(TaskType.Search))
+                            ProxyInfo info = GetProxyInfo(match);
+
+                            if (info != null && !foundIps.ContainsKey(info.GetHashCode()))
                             {
-                                ProxyInfo info = GetProxyInfo(match);
-
-                                if (info != null && !foundIps.ContainsKey(info.GetHashCode()))
-                                {
-                                    foundIps.Add(info.GetHashCode(), info);
-
-                                    info.CountryInfo = await geoIP.GetLocation(info.Address.ToString());
-
-                                    if ((await checker.Alive(info)))
-                                        feedback.OnAliveProxy(info);
-                                }
+                                foundIps.Add(info.GetHashCode(), info);
+                                checker.Alive(info, feedback, geoIP);
                             }
                         }
                         catch

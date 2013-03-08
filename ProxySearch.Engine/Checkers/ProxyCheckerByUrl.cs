@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrl : IProxyChecker
+    public class ProxyCheckerByUrl : CheckerProxyBase
     {
         private string Url
         {
@@ -45,7 +43,7 @@ namespace ProxySearch.Engine.Checkers
             AnalyzedText = AnalyzeText(content);
         }
 
-        public async Task<bool> Alive(ProxyInfo info)
+        protected override async Task<bool> Alive(ProxyInfo info)
         {
             try
             {

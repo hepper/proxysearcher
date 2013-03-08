@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class SimpleProxyChecker : IProxyChecker
+    public class SimpleProxyChecker : CheckerProxyBase
     {
-        public async Task<bool> Alive(ProxyInfo info)
+        protected override async Task<bool> Alive(ProxyInfo info)
         {
             using (TcpClient tcpClient = new TcpClient())
             {

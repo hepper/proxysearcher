@@ -10,7 +10,7 @@ using ProxySearch.Common;
 
 namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
-    public class CheckerProxyNet : IProxyChecker
+    public class CheckerProxyNet : CheckerProxyBase
     {
         private int Timeout
         {
@@ -23,7 +23,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             Timeout = timeout;
         }
 
-        public async Task<bool> Alive(ProxyInfo info)
+        protected override async Task<bool> Alive(ProxyInfo info)
         {
             string proxyType = GetProxyType(await GetInfo(info));
 

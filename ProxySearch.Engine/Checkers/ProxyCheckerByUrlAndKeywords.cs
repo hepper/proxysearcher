@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrlAndKeywords : IProxyChecker
+    public class ProxyCheckerByUrlAndKeywords : CheckerProxyBase
     {
         private string Url
         {
@@ -24,8 +24,7 @@ namespace ProxySearch.Engine.Checkers
             Keywords = keywords.Split(' ');
         }
 
-
-        public async Task<bool> Alive(ProxyInfo info)
+        protected override async Task<bool> Alive(ProxyInfo info)
         {
             string content = await Context.Get<CheckerUtils>().GetContent(Url, info);
 
