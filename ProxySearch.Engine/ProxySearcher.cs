@@ -25,43 +25,41 @@ namespace ProxySearch.Engine
             this.geoIP = geoIP ?? new TurnOffGeoIP();
         }
 
-        public async void BeginSearch(string document)
+        public void BeginSearch(string document)
         {
-            await Task.Run(() =>
+            Task.Run(() =>
             {
-                string pattern = @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]+";
-                Regex regEx = new Regex(pattern);
-
-                foreach (Match match in regEx.Matches(document))
+                foreach (ProxyInfo info in GetNotCheckedProxies(document))
                 {
-                    if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                    {
-                        return;
-                    }
-
-                    Task.Run(() =>
-                    {
-                        if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                        {
-                            return;
-                        }
-
-                        try
-                        {
-                            ProxyInfo info = GetProxyInfo(match);
-
-                            if (info != null && !foundIps.ContainsKey(info.GetHashCode()))
-                            {
-                                foundIps.Add(info.GetHashCode(), info);
-                                checker.Alive(info, feedback, geoIP);
-                            }
-                        }
-                        catch
-                        {
-                        }
-                    });
+                    checker.Check(info, feedback, geoIP);
                 }
             });
+        }
+
+        private List<ProxyInfo> GetNotCheckedProxies(string document)
+        {
+            List<ProxyInfo> result = new List<ProxyInfo>();
+            string pattern = @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]+";
+            Regex regEx = new Regex(pattern);
+
+            foreach (Match match in regEx.Matches(document))
+            {
+                try
+                {
+                    ProxyInfo info = GetProxyInfo(match);
+
+                    if (info != null && !foundIps.ContainsKey(info.GetHashCode()))
+                    {
+                        foundIps.Add(info.GetHashCode(), info);
+                        result.Add(info);
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+            return result;
         }
 
         private ProxyInfo GetProxyInfo(Match match)

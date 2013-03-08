@@ -6,7 +6,7 @@ namespace ProxySearch.Engine.Checkers
 {
     public abstract class CheckerProxyBase : IProxyChecker
     {
-        public async void Alive(ProxyInfo info, IProxySearchFeedback feedback, IGeoIP geoIP)
+        public async void Check(ProxyInfo info, IProxySearchFeedback feedback, IGeoIP geoIP)
         {
             using (Context.Get<TaskCounter>().Listen(TaskType.Search))
             {

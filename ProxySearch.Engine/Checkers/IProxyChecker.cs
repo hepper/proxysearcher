@@ -4,6 +4,6 @@ namespace ProxySearch.Engine.Checkers
 {
     public interface IProxyChecker
     {
-        void Alive(ProxyInfo info, IProxySearchFeedback feedback, IGeoIP geoIP);
+        void Check(ProxyInfo info, IProxySearchFeedback feedback, IGeoIP geoIP);
     }
 }
