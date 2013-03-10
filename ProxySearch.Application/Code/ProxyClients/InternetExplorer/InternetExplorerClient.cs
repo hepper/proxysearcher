@@ -10,7 +10,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
     public class InternetExplorerClient : BrowserClient
     {
         public InternetExplorerClient()
-            : base(Resources.InternetExplorer, "/Images/InternerExplorer.gif", "IEXPLORE.EXE")
+            : base(Resources.InternetExplorer, "/Images/InternerExplorer.gif", 0, "IEXPLORE.EXE")
         {
         }
 
@@ -22,7 +22,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             string value = GetValue<string>(Constants.Browsers.IE.ProxyServer);
 
             string[] arguments = GetHttpProxy(value).Split(':');
-                        
+
             return new ProxyInfo(IPAddress.Parse(arguments[0]), ushort.Parse(arguments[1]));
         }
 
@@ -35,7 +35,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
                 return value;
             }
 
-            string result = arguments.Single(item=>item.StartsWith("http="));
+            string result = arguments.Single(item => item.StartsWith("http="));
 
             return result.Split('=')[1];
         }

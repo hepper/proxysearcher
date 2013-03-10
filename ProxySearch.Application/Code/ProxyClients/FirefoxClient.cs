@@ -6,7 +6,7 @@ namespace ProxySearch.Console.Code.ProxyClients
     public class FirefoxClient : BrowserClient
     {
         public FirefoxClient()
-            : base(Resources.Firefox, "/Images/Firefox.png", "FIREFOX.EXE")
+            : base(Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE")
         {
         }
 

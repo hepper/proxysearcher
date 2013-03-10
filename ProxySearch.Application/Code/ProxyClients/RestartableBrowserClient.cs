@@ -13,8 +13,8 @@ namespace ProxySearch.Console.Code.ProxyClients
             set;
         }
 
-        public RestartableBrowserClient(string name, string image, string clientName, string processName)
-            : base(name, image, clientName)
+        public RestartableBrowserClient(string name, string image, int order, string clientName, string processName)
+            : base(name, image, order, clientName)
         {
             ProcessName = processName;
         }
@@ -38,7 +38,7 @@ namespace ProxySearch.Console.Code.ProxyClients
 
         public void Open()
         {
-            
+
         }
 
         private Process[] Processes

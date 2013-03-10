@@ -19,6 +19,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                                   .Where(type => typeof(IProxyClient).IsAssignableFrom(type))
                                   .Select(type => (IProxyClient)Activator.CreateInstance(type))
                                   .Where(instance => instance.IsInstalled)
+                                  .OrderBy(instance => instance.Order)
                                   .ToList();
 
         }

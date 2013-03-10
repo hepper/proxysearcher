@@ -29,10 +29,12 @@ namespace ProxySearch.Console.Code.ProxyClients
 
         private static List<ProxyClientBase> Clients = new List<ProxyClientBase>();
 
-        public ProxyClientBase(string name, string image)
+        public ProxyClientBase(string name, string image, int order)
         {
             Name = name;
             Image = image;
+            Order = order;
+
             Clients.Add(this);
         }
 
@@ -116,6 +118,12 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public int Order
+        {
+            get;
+            private set;
         }
     }
 }
