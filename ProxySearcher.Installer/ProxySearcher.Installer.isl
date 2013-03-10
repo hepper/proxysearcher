@@ -4117,7 +4117,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{F87ACC9B-D69F-4F37-A026-4BCD0EA525AF}</td></row>
 		<row><td>ISUSSignature</td><td>{1340CCF3-30CD-4DEE-BDD7-53716DDB8246}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewRealSetupDesign,viewFeatureFiles,viewObjects,viewDependencies,viewShortcuts,viewCE,viewRegistry,viewIniFiles,viewTextFiles,viewUI,viewProject,viewSetupDesign,viewSetupTypes,viewXMLConfig,viewFileExtensions,viewSystemSearch,viewInstallScriptStd,viewRelease,viewDesignPatches,viewSupportFiles,viewCustomActions,viewBillboards,viewTextMessages,viewUpgradePaths,viewUpdateService,viewAppV</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewAppFiles,viewRealSetupDesign,viewFeatureFiles,viewObjects,viewDependencies,viewShortcuts,viewCE,viewRegistry,viewIniFiles,viewTextFiles,viewUI,viewProject,viewSetupDesign,viewSetupTypes,viewXMLConfig,viewFileExtensions,viewSystemSearch,viewInstallScriptStd,viewRelease,viewDesignPatches,viewSupportFiles,viewCustomActions,viewBillboards,viewTextMessages,viewUpgradePaths,viewUpdateService,viewAppV,viewISToday</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4492,7 +4492,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{EFD8FA84-F3A5-4DF8-999C-7C035BFFD578}</td><td/></row>
 		<row><td>ProductName</td><td>Proxy Searcher</td><td/></row>
-		<row><td>ProductVersion</td><td>1.06.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>1.07.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
