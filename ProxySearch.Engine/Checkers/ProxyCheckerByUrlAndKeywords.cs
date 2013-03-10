@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrlAndKeywords : CheckerProxyBase
+    public class ProxyCheckerByUrlAndKeywords : ProxyCheckerBase
     {
         private string Url
         {

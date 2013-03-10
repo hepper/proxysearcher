@@ -56,8 +56,17 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
             {
                 return new List<object>
                 {
-                    20
+                    20,
+                    10
                 };
+            }
+        }
+
+        public List<object> InterfaceSettings
+        {
+            get
+            {
+                return new List<object>();
             }
         }
     }

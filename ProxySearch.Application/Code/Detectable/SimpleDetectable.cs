@@ -39,9 +39,17 @@ namespace ProxySearch.Console.Code.Detectable
 
         public Type PropertyPage
         {
-            get 
+            get
             {
                 return null;
+            }
+        }
+
+        public List<object> InterfaceSettings
+        {
+            get
+            {
+                return new List<object>();
             }
         }
     }

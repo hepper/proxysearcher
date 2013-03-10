@@ -14,10 +14,12 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0">Timeout</Label>
         <toolkit:IntegerUpDown Grid.Row="0" Grid.Column="1" TextAlignment="Left" Value="{Binding ElementName=CheckerProxyNet, Path=Timeout, Mode=TwoWay}" />
-
+        <Label Grid.Row="1" Grid.Column="0">Batch size</Label>
+        <toolkit:IntegerUpDown Grid.Row="1" Grid.Column="1" TextAlignment="Left" Value="{Binding ElementName=CheckerProxyNet, Path=BatchSize, Mode=TwoWay}" Minimum="1" />
     </Grid>
 </UserControl>

@@ -1,12 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProxySearch.Engine
 {
-    public interface IProxySearcher
+    public interface IWebBrowser
     {
-        void BeginSearch(string document);
+        void Show(string url);
     }
 }

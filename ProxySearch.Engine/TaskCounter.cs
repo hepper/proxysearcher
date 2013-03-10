@@ -22,16 +22,24 @@ namespace ProxySearch.Engine
                 set;
             }
 
-            public TaskCounterItem(TaskCounter counter, TaskType type)
+            private int Count
             {
-                Type = type;
-
-                Counter = counter;
-                Counter.Started(Type);
+                get;
+                set;
             }
+
+            public TaskCounterItem(TaskCounter counter, TaskType type, int count = 1)
+            {
+                Counter = counter;
+                Type = type;
+                Count = count;
+
+                Counter.Started(Type, Count);
+            }
+
             public void Dispose()
             {
-                Counter.Completed(Type);
+                Counter.Completed(Type, Count);
             }
         }
 
@@ -52,23 +60,23 @@ namespace ProxySearch.Engine
             Tasks = new Dictionary<TaskType, int>();
         }
 
-        public IDisposable Listen(TaskType type)
+        public IDisposable Listen(TaskType type, int count = 1)
         {
-            return new TaskCounterItem(this, type);
+            return new TaskCounterItem(this, type, count);
         }
 
-        public void Started(TaskType type)
+        public void Started(TaskType type, int count = 1)
         {
             int currentCount;
             int currentTypeCount;
 
             lock (this)
             {
-                TaskCount++;
+                TaskCount += count;
 
                 if (Tasks.ContainsKey(type))
                 {
-                    Tasks[type]++;
+                    Tasks[type] += count;
                 }
                 else
                 {
@@ -82,15 +90,15 @@ namespace ProxySearch.Engine
             FireJobCountChanged(type, currentTypeCount, currentCount);
         }
 
-        public void Completed(TaskType type)
+        public void Completed(TaskType type, int count = 1)
         {
             int currentCount;
             int currentTypeCount;
 
             lock (this)
             {
-                TaskCount--;
-                Tasks[type]--;
+                TaskCount -= count;
+                Tasks[type] -= count;
 
                 currentCount = TaskCount;
                 currentTypeCount = Tasks[type];

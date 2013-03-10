@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-using System.Net;
-using System.Threading.Tasks;
-using ProxySearch.Common;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ProxySearch.Engine.Google
 {
@@ -16,8 +12,9 @@ namespace ProxySearch.Engine.Google
 
         private string queryString;
         private GoogleSearchOnPage searchOnPage;
+        private ICaptchaWindow captchaWindow;
 
-        public GoogleSearchEngine(int allowedCount, string keywords)
+        public GoogleSearchEngine(int allowedCount, string keywords, ICaptchaWindow captchaWindow)
         {
             string[] escapedKeywords = keywords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(item => Uri.EscapeDataString(item)).ToArray();
             StringBuilder builder = new StringBuilder();
@@ -31,6 +28,7 @@ namespace ProxySearch.Engine.Google
             linkNumber = 0;
 
             this.allowedCount = allowedCount;
+            this.captchaWindow = captchaWindow;
 
             searchOnPage = null;
         }
@@ -47,8 +45,7 @@ namespace ProxySearch.Engine.Google
                     allowedCount--;
                     searchOnPage = new GoogleSearchOnPage();
 
-                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)));
-
+                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)), captchaWindow);
                 }
 
                 Uri res = searchOnPage.GetNext();

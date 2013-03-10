@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class SimpleProxyChecker : CheckerProxyBase
+    public class SimpleProxyChecker : ProxyCheckerBase
     {
         protected override async Task<bool> Alive(ProxyInfo info)
         {

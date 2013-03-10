@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
@@ -7,10 +8,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using ProxySearch.Common;
+using System.Linq;
+using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
-    public class CheckerProxyNet : CheckerProxyBase
+    public class CheckerProxyNet : IProxyChecker
     {
         private int Timeout
         {
@@ -18,31 +21,73 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             set;
         }
 
-        public CheckerProxyNet(int timeout)
+        private int BatchSize
+        {
+            get;
+            set;
+        }
+
+        public CheckerProxyNet(int timeout, int batchSize)
         {
             Timeout = timeout;
+            BatchSize = batchSize;
         }
 
-        protected override async Task<bool> Alive(ProxyInfo info)
+        public async void CheckAsync(List<ProxyInfo> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
         {
-            string proxyType = GetProxyType(await GetInfo(info));
-
-            if (proxyType != null)
+            for (int i = 0; true; i++)
             {
-                info.Details = new HttpProxyInfo()
-                {
-                    Type = proxyType
-                };
-            }
+                List<ProxyInfo> batch = proxies.Skip(i * BatchSize).Take(BatchSize).ToList();
 
-            return info.Details != null;
+                if (!batch.Any())
+                    return;
+
+                using (Context.Get<TaskCounter>().Listen(TaskType.Search, batch.Count))
+                {
+                    await CheckBatchAsync(batch, feedback);
+                }
+            }
         }
 
-        private async Task<CheckerProxyNet_ProxyInfo> GetInfo(ProxyInfo proxy)
+        private async Task CheckBatchAsync(List<ProxyInfo> proxies, IProxySearchFeedback feedback)
+        {
+            CheckerProxyNet_ProxiesInfo result = await GetInfoOrNull(proxies);
+
+            if (result == null)
+                return;
+
+            foreach (CheckerProxyNet_ProxyInfo info in result.proxy)
+            {
+                if (info.result == 0)
+                    continue;
+
+                ProxyInfo proxy = proxies.Single(item => item.AddressPort == info.ipport);
+
+                string proxyType = GetProxyType(info);
+
+                if (proxyType != null)
+                {
+                    proxy.Details = new HttpProxyInfo()
+                    {
+                        Type = proxyType
+                    };
+                }
+
+                proxy.CountryInfo = new CountryInfo
+                {
+                    Code = info.country_id.ToString(),
+                    Name = info.country
+                };
+
+                feedback.OnAliveProxy(proxy);
+            }
+        }
+
+        private async Task<CheckerProxyNet_ProxiesInfo> GetInfoOrNull(List<ProxyInfo> proxies)
         {
             try
             {
-                HttpContent content = new StringContent(HttpUtility.UrlDecode(BuildData(new ProxyInfo[] { proxy })));
+                HttpContent content = new StringContent(HttpUtility.UrlDecode(BuildData(proxies.ToArray())));
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
                 using (HttpClient client = new HttpClient())
@@ -59,7 +104,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 
                     using (Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(result)))
                     {
-                        return ((CheckerProxyNet_ProxiesInfo)serializer.ReadObject(stream)).proxy[0];
+                        return (CheckerProxyNet_ProxiesInfo)serializer.ReadObject(stream);
                     }
                 }
             }
@@ -69,13 +114,13 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             }
         }
 
-        private string BuildData(ProxyInfo[] Ips)
+        private string BuildData(ProxyInfo[] proxies)
         {
             StringBuilder builder = new StringBuilder();
 
-            for (int i = 0; i < Ips.Length; i++)
+            for (int i = 0; i < proxies.Length; i++)
             {
-                builder.AppendFormat("proxy[]={0}:{1}:{2}&", i, Ips[i].Address, Ips[i].Port);
+                builder.AppendFormat("proxy[]={0}:{1}&", i, proxies[i].AddressPort);
             }
 
             builder.AppendFormat("timeout={0}&step={1}&lang=en&proxy_type={2}&publish_status={3}", Timeout, 25, 0, false);

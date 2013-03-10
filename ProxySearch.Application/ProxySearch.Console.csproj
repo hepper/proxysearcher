@@ -88,6 +88,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CaptchaWindow.xaml.cs">
+      <DependentUpon>CaptchaWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Code\ApplicationInitializer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -260,6 +263,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Page Include="CaptchaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\AboutControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

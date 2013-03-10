@@ -1,20 +1,31 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using ProxySearch.Common;
 using ProxySearch.Engine.Checkers;
+using ProxySearch.Engine.GeoIP;
+using System.Linq;
 
 namespace ProxySearch.Engine
 {
     public class Application
     {
         ISearchEngine searchEngine;
-        IProxySearcher proxySearcher;
+        IProxyParser proxyParser;
+        IProxySearchFeedback feedback;
+        IProxyChecker checker;
+        IGeoIP geoIP;
+        IWebBrowser webBrowser;
 
-        public Application(ISearchEngine searchEngine, IProxySearcher proxySearcher)
+        public Application(ISearchEngine searchEngine, IProxyParser proxyParser, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
         {
             this.searchEngine = searchEngine;
-            this.proxySearcher = proxySearcher;
+            this.proxyParser = proxyParser;
+
+            this.feedback = feedback;
+            this.checker = checker;
+            this.geoIP = geoIP ?? new TurnOffGeoIP();
         }
 
         public async void SearchAsync()
@@ -47,7 +58,10 @@ namespace ProxySearch.Engine
                                     return;
                                 }
 
-                                proxySearcher.BeginSearch(document);
+                                List<ProxyInfo> proxies = await proxyParser.ParseProxiesAsync(document);
+
+                                if (proxies.Any())
+                                    checker.CheckAsync(proxies, feedback, geoIP);
                             }
                         }
                     }

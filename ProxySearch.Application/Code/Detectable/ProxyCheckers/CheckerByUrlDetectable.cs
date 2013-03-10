@@ -60,5 +60,13 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
                 return typeof(ProxyCheckerByUrlControl);
             }
         }
+
+        public List<object> InterfaceSettings
+        {
+            get
+            {
+                return new List<object>();
+            }
+        }
     }
 }

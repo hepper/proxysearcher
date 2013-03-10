@@ -1,10 +1,7 @@
-﻿using System.Net.Http.Handlers;
-using System.Threading;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ProxySearch.Common;
-using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Engine;
 using ProxySearch.Engine.Bandwidth;
 

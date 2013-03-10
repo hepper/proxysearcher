@@ -17,19 +17,23 @@ namespace ProxySearch.Engine.Google
         private string pageContent;
         private List<Uri> urls = new List<Uri>();
 
-        public async Task Initialize(Uri googlePage)
+        public async Task Initialize(Uri googlePage, ICaptchaWindow captchaWindow)
         {
             using (HttpClient client = new HttpClient())
             using (HttpResponseMessage response = await client.GetAsync(googlePage, Context.Get<CancellationTokenSource>().Token))
             {
                 if (!response.IsSuccessStatusCode)
                 {
+                    if (response.StatusCode == HttpStatusCode.ServiceUnavailable)
+                    {
+                        captchaWindow.Show(response.RequestMessage.RequestUri.ToString());
+                    }
+
                     return;
                 }
 
                 pageContent = await response.Content.ReadAsStringAsync();
             }
-
 
             Regex regex = new Regex("<a[^>]*?href\\s*=\\s*(?<url>[\"']?([^\"'>]+?)['\"])?[^>]*?>");
 

@@ -34,5 +34,10 @@ namespace ProxySearch.Console.Code.Interfaces
         {
             get;
         }
+
+        List<object> InterfaceSettings
+        {
+            get;
+        }
     }
 }

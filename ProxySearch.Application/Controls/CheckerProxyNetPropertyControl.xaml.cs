@@ -44,5 +44,18 @@ namespace ProxySearch.Console.Controls
                 Arguments[0] = value;
             }
         }
+
+        public int BatchSize
+        {
+            get
+            {
+                return (int)Arguments[1];
+            }
+
+            set
+            {
+                Arguments[1] = value;
+            }
+        }
     }
 }

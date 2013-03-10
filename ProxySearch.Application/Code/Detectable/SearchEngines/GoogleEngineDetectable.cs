@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
 using ProxySearch.Engine.Google;
-using System.Windows.Controls;
-using ProxySearch.Console.Controls;
-using System.Collections.Generic;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
@@ -59,6 +59,17 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
                 {
                     20,
                     "http proxy list 3128"
+                };
+            }
+        }
+
+        public List<object> InterfaceSettings
+        {
+            get
+            {
+                return new List<object>()
+                {
+                    Context.Get<ICaptchaWindow>()
                 };
             }
         }

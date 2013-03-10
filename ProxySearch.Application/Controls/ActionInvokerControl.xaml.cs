@@ -117,8 +117,11 @@ namespace ProxySearch.Console.Controls
                 Cancel.Content = Properties.Resources.Cancel;
                 ProgressText.Content = null;
 
-                timer.Dispose();
-                timer = null;
+                if (timer != null)
+                {
+                    timer.Dispose();
+                    timer = null;
+                }
                 ActiveThreads = 0;
             }
 
@@ -175,7 +178,7 @@ namespace ProxySearch.Console.Controls
 
         private void Error_Click(object sender, RoutedEventArgs e)
         {
-            App.ShowException(Window.GetWindow(this), LastException);            
+            App.ShowException(Window.GetWindow(this), LastException);
         }
     }
 }

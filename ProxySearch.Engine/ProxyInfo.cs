@@ -44,9 +44,17 @@ namespace ProxySearch.Engine
             set;
         }
 
+        public string AddressPort
+        {
+            get
+            {
+                return string.Format("{0}:{1}", Address, Port);
+            }
+        }
+
         public override string ToString()
         {
-            return string.Format("{0}:{1}\t{2}\t{3}", Address, Port, CountryInfo.Name, Details);
+            return string.Format("{0}\t{1}\t{2}", AddressPort, CountryInfo.Name, Details);
         }
 
         public override bool Equals(object obj)

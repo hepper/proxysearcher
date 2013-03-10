@@ -8,7 +8,7 @@ using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrl : CheckerProxyBase
+    public class ProxyCheckerByUrl : ProxyCheckerBase
     {
         private string Url
         {

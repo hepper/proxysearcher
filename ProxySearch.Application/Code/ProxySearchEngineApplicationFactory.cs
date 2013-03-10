@@ -24,13 +24,19 @@ namespace ProxySearch.Console.Code
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
             IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
 
-            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation, Settings.SelectedTabSettings.SearchEngineSettings);
-
-            IProxySearcher proxySearcher = new ProxySearcher(feedback,
-                                                                CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation, Settings.SelectedTabSettings.ProxyCheckerSettings),
-                                                                CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation, Settings.GeoIPSettings));
-
-            return new Application(searchEngine, proxySearcher);
+            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation, 
+                                                                                     Settings.SelectedTabSettings.SearchEngineSettings, 
+                                                                                     searchEngineDetectable.InterfaceSettings);
+ 
+            return new Application(searchEngine, 
+                                   new ProxyParser(), 
+                                   feedback,
+                                   CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation, 
+                                                                               Settings.SelectedTabSettings.ProxyCheckerSettings, 
+                                                                               proxyCheckerDetectable.InterfaceSettings), 
+                                   CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation, 
+                                                                        Settings.GeoIPSettings,
+                                                                        geoIPDetectable.InterfaceSettings));
         }
 
         private AllSettings Settings
@@ -53,15 +59,24 @@ namespace ProxySearch.Console.Code
             }
         }
 
-        private T CreateImplementationInstance<T>(Type type, List<ParametersPair> parametersList)
+        private T CreateImplementationInstance<T>(Type type, List<ParametersPair> parametersList, List<object> interfacesList)
         {
             try
             {
-                ParametersPair pair = parametersList.SingleOrDefault(item => item.TypeName == type.AssemblyQualifiedName);
-                if (pair == null)
+                ParametersPair parameterPair = parametersList.SingleOrDefault(item => item.TypeName == type.AssemblyQualifiedName);
+
+                if (parameterPair == null && !interfacesList.Any())
                     return (T)Activator.CreateInstance(type);
                 else
-                    return (T)Activator.CreateInstance(type, pair.Parameters.ToArray());
+                {
+                    List<object> parameters = new List<object>();
+                    if (parameterPair != null)
+                        parameters.AddRange(parameterPair.Parameters);
+
+                    parameters.AddRange(interfacesList);
+
+                    return (T)Activator.CreateInstance(type, parameters.ToArray());
+                }
             }
             catch (TargetInvocationException exception)
             {
