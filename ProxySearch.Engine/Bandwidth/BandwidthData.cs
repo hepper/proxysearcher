@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
 
 namespace ProxySearch.Engine.Bandwidth
 {
@@ -72,6 +73,12 @@ namespace ProxySearch.Engine.Bandwidth
                 bandwidth = value;
                 FireNotifyPropertyChanged("Bandwidth");
             }
+        }
+
+        public CancellationTokenSource CancellationToken
+        {
+            get;
+            set;
         }
 
         private void FireNotifyPropertyChanged(string name)

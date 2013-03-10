@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
 using ProxySearch.Engine;
@@ -13,7 +12,6 @@ namespace ProxySearch.Console.Controls
     public partial class BandwidthControl : UserControl
     {
         public static readonly DependencyProperty ProxyInfoProperty = DependencyProperty.Register("ProxyInfo", typeof(ProxyInfo), typeof(BandwidthControl));
-        private CancellationTokenSource cancellationToken = null;
 
         public BandwidthControl()
         {
@@ -34,13 +32,12 @@ namespace ProxySearch.Console.Controls
 
         private void MeasureButton_Click(object sender, RoutedEventArgs e)
         {
-            cancellationToken = new CancellationTokenSource();
-            Context.Get<BandwidthManager>().Measure(ProxyInfo, cancellationToken);
+            Context.Get<BandwidthManager>().MeasureAsync(ProxyInfo);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            cancellationToken.Cancel();
+            Context.Get<BandwidthManager>().Cancel(ProxyInfo);
         }
     }
 }

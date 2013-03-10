@@ -10,15 +10,16 @@ namespace ProxySearch.Engine.Bandwidth
 {
     public class BandwidthManager
     {
-        public async void Measure(ProxyInfo proxyInfo, CancellationTokenSource cancellationToken)
+        public async void MeasureAsync(ProxyInfo proxyInfo)
         {
             BandwidthState previousState = proxyInfo.BandwidthData.State;
             proxyInfo.BandwidthData.Progress = 0;
             proxyInfo.BandwidthData.State = BandwidthState.Progress;
+            proxyInfo.BandwidthData.CancellationToken = new CancellationTokenSource();
 
             try
             {
-                BanwidthInfo result = await GetBandwidthInfo(proxyInfo, cancellationToken);
+                BanwidthInfo result = await GetBandwidthInfo(proxyInfo, proxyInfo.BandwidthData.CancellationToken);
 
                 if (result != null)
                 {
@@ -37,6 +38,12 @@ namespace ProxySearch.Engine.Bandwidth
             {
                 proxyInfo.BandwidthData.State = BandwidthState.Error;
             }
+        }
+
+        public void Cancel(ProxyInfo proxyInfo)
+        {
+            proxyInfo.BandwidthData.CancellationToken.Cancel();
+            proxyInfo.BandwidthData.CancellationToken = null;
         }
 
         public void UpdateBandwidthData(ProxyInfo proxyInfo, BanwidthInfo info)
