@@ -12,17 +12,11 @@ namespace ProxySearch.Console.Code.Detectable
     {
         public List<IDetectable> Get<T>()
         {
-            List<Type> exclude = new List<Type>
-            {
-                typeof(IDetectable),
-                typeof(SimpleDetectable)
-            };
-
             return Assembly.GetExecutingAssembly().GetTypes()
-                                                  .Where(type => !exclude.Contains(type))
-                                                  .Where(type => typeof(IDetectable).IsAssignableFrom(type))
+                                                  .Where(type => !type.IsAbstract && typeof(IDetectable).IsAssignableFrom(type))
                                                   .Select(type => (IDetectable)Activator.CreateInstance(type))
                                                   .Where(instance => instance.Interface == typeof(T))
+                                                  .OrderBy(instance => instance.Order)
                                                   .ToList();
         }
     }

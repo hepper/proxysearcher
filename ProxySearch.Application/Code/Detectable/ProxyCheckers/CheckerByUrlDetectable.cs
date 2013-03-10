@@ -1,47 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
 
 namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
 {
-    public class CheckerByUrlDetectable : IDetectable
+    public class CheckerByUrlDetectable : SimpleDetectableBase<IProxyChecker, ProxyCheckerByUrl>
     {
-        public string FriendlyName
+        public CheckerByUrlDetectable()
+            : base(Resources.ProxyCheckerByUrl, Resources.ProxyCheckerByUrlDescription, 1)
         {
-            get
-            {
-                return Resources.ProxyCheckerByUrl;
-            }
         }
 
-        public string Description
-        {
-            get
-            {
-                return Resources.ProxyCheckerByUrlDescription;
-            }
-        }
-
-        public Type Interface
-        {
-            get
-            {
-                return typeof(IProxyChecker);
-            }
-        }
-
-        public Type Implementation
-        {
-            get
-            {
-                return typeof(ProxyCheckerByUrl);
-            }
-        }
-
-        public List<object> DefaultSettings
+        public override List<object> DefaultSettings
         {
             get
             {
@@ -53,19 +25,11 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
             }
         }
 
-        public Type PropertyPage
+        public override Type PropertyPage
         {
             get
             {
                 return typeof(ProxyCheckerByUrlControl);
-            }
-        }
-
-        public List<object> InterfaceSettings
-        {
-            get
-            {
-                return new List<object>();
             }
         }
     }

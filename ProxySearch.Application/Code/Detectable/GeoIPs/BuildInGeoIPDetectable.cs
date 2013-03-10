@@ -5,38 +5,11 @@ using ProxySearch.Engine.GeoIP.BuiltInGeoIP;
 
 namespace ProxySearch.Console.Code.Detectable.GeoIPs
 {
-    public class BuildInGeoIPDetectable : SimpleDetectable
+    public class BuildInGeoIPDetectable : SimpleDetectableBase<IGeoIP, GeoIP>
     {
-        public override string FriendlyName
+        public BuildInGeoIPDetectable()
+            : base(Resources.BuiltInGeoIPName, Resources.BuiltInGeoIPDescription, 1)
         {
-            get 
-            {
-                return Resources.BuiltInGeoIPName;
-            }
-        }
-
-        public override string Description
-        {
-            get 
-            {
-                return Resources.BuiltInGeoIPDescription;
-            }
-        }
-
-        public override Type Interface
-        {
-            get 
-            {
-                return typeof(IGeoIP);
-            }
-        }
-
-        public override Type Implementation
-        {
-            get 
-            {
-                return typeof(GeoIP);
-            }
         }
     }
 }

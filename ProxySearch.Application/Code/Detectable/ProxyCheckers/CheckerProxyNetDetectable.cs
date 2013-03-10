@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
@@ -8,66 +7,11 @@ using ProxySearch.Engine.Checkers.CheckerProxy.Net;
 
 namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
 {
-    public class CheckerProxyNetDetectable : IDetectable
+    public class CheckerProxyNetDetectable : DetectableBase<IProxyChecker, CheckerProxyNet, CheckerProxyNetPropertyControl>
     {
-        public string FriendlyName
+        public CheckerProxyNetDetectable()
+            : base(Resources.CheckerProxyDotNet, Resources.CheckerProxyDotNetDescription, 3, new List<object> { 20, 10 })
         {
-            get 
-            {
-                return Resources.CheckerProxyDotNet;
-            }
-        }
-
-        public string Description
-        {
-            get 
-            {
-                return Resources.CheckerProxyDotNetDescription;
-            }
-        }
-
-        public Type Interface
-        {
-            get 
-            {
-                return typeof(IProxyChecker);
-            }
-        }
-
-        public Type Implementation
-        {
-            get 
-            {
-                return typeof(CheckerProxyNet);
-            }
-        }
-
-        public Type PropertyPage
-        {
-            get 
-            {
-                return typeof(CheckerProxyNetPropertyControl);
-            }
-        }
-
-        public List<object> DefaultSettings
-        {
-            get 
-            {
-                return new List<object>
-                {
-                    20,
-                    10
-                };
-            }
-        }
-
-        public List<object> InterfaceSettings
-        {
-            get
-            {
-                return new List<object>();
-            }
         }
     }
 }

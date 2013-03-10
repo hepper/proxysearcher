@@ -111,6 +111,7 @@
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
+    <Compile Include="Code\Detectable\DetectableBase.cs" />
     <Compile Include="Code\Detectable\DetectableSearcher.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -130,7 +131,7 @@
     <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Detectable\SimpleDetectable.cs">
+    <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\ExceptionLogging.cs" />

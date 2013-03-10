@@ -4,38 +4,11 @@ using ProxySearch.Engine.GeoIP;
 
 namespace ProxySearch.Console.Code.Detectable.GeoIPs
 {
-    public class DummyGeoIPDetectable : SimpleDetectable
+    public class DummyGeoIPDetectable : SimpleDetectableBase<IGeoIP, TurnOffGeoIP>
     {
-        public override string FriendlyName
+        public DummyGeoIPDetectable()
+            : base(Resources.DummyGeoIP, Resources.DummyGeoIPDescription, 0)
         {
-            get
-            {
-                return Resources.DummyGeoIP;
-            }
-        }
-
-        public override string Description
-        {
-            get 
-            {
-                return Resources.DummyGeoIPDescription;
-            }
-        }
-
-        public override Type Interface
-        {
-            get
-            {
-                return typeof(IGeoIP);
-            }
-        }
-
-        public override Type Implementation
-        {
-            get
-            {
-                return typeof(TurnOffGeoIP);
-            }
         }
     }
 }

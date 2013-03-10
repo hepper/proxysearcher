@@ -39,5 +39,10 @@ namespace ProxySearch.Console.Code.Interfaces
         {
             get;
         }
+
+        int Order
+        {
+            get;
+        }
     }
 }

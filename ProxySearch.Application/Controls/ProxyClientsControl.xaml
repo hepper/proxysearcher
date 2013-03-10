@@ -5,15 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              mc:Ignorable="d" Name="ProxyClients" >
-    <Grid>
-        <StackPanel Orientation="Horizontal" Margin="2,2,2,2">
-            <ItemsControl ItemsSource="{Binding ElementName=ProxyClients, Path=Clients}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <controls:ProxyClientControl ProxyClient="{Binding}" ProxyInfo="{Binding ElementName=ProxyClients, Path=ProxyInfo}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-    </Grid>
+    <ItemsControl ItemsSource="{Binding ElementName=ProxyClients, Path=Clients}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Horizontal"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <controls:ProxyClientControl ProxyClient="{Binding}" Margin="2,2,2,2" ProxyInfo="{Binding ElementName=ProxyClients, Path=ProxyInfo}" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>
