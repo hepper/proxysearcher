@@ -13,7 +13,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet
 
         public static void SetProxy(bool useProxy, string proxyServer)
         {
-            INTERNET_PER_CONN_OPTION[] Options = new INTERNET_PER_CONN_OPTION[3];
+            INTERNET_PER_CONN_OPTION[] Options = new INTERNET_PER_CONN_OPTION[2];
 
             Options[0] = new INTERNET_PER_CONN_OPTION();
             Options[0].dwOption = (int)INTERNET_PER_CONN_OptionEnum.INTERNET_PER_CONN_FLAGS;
@@ -23,17 +23,13 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet
             Options[1].dwOption = (int)INTERNET_PER_CONN_OptionEnum.INTERNET_PER_CONN_PROXY_SERVER;
             Options[1].Value.pszValue = Marshal.StringToHGlobalAnsi(proxyServer);
 
-            Options[2] = new INTERNET_PER_CONN_OPTION();
-            Options[2].dwOption = (int)INTERNET_PER_CONN_OptionEnum.INTERNET_PER_CONN_PROXY_BYPASS;
-            Options[2].Value.pszValue = Marshal.StringToHGlobalAnsi("local");
-
-            System.IntPtr buffer = Marshal.AllocCoTaskMem(Marshal.SizeOf(Options[0]) + Marshal.SizeOf(Options[1]) + Marshal.SizeOf(Options[2]));
-            System.IntPtr current = buffer;
+            IntPtr buffer = Marshal.AllocCoTaskMem(Marshal.SizeOf(Options[0]) + Marshal.SizeOf(Options[1]));
+            IntPtr current = buffer;
 
             for (int i = 0; i < Options.Length; i++)
             {
                 Marshal.StructureToPtr(Options[i], current, false);
-                current = (System.IntPtr)((int)current + Marshal.SizeOf(Options[i]));
+                current = (IntPtr)((int)current + Marshal.SizeOf(Options[i]));
             }
 
             INTERNET_PER_CONN_OPTION_LIST option_list = new INTERNET_PER_CONN_OPTION_LIST();
