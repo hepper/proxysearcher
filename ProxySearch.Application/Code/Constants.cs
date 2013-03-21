@@ -32,7 +32,12 @@ namespace ProxySearch.Console.Code
 
         public static class ProxySettingsStorage
         {
-            public static readonly string Location = Working.Directory + "ProxySettingsStorage.xml";
+            public static readonly string Location = Working.Directory + "ProxySettingsStorage.xml";            
+        }
+
+        public static class BackupsLocation
+        {
+            public static readonly string FirefoxSettings = Working.Directory + "firefox.settings.backup";
         }
 
         public static class DefaultExportFolder
@@ -44,6 +49,9 @@ namespace ProxySearch.Console.Code
         {
             public static readonly string StartMenuInternet64Bit = @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet";
             public static readonly string StartMenuInternet32Bit = @"SOFTWARE\Clients\StartMenuInternet";
+
+            public static readonly string BrowserPath64Bit = @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet\{0}\shell\open\command";
+            public static readonly string BrowserPath32Bit = @"SOFTWARE\Clients\StartMenuInternet\{0}\shell\open\command";
 
             public static class IE
             {

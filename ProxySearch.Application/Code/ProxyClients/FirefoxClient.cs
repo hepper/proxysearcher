@@ -1,34 +1,132 @@
-﻿using ProxySearch.Console.Properties;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Text.RegularExpressions;
+using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
+using ProxySearch.Console.Code.Extensions;
 
 namespace ProxySearch.Console.Code.ProxyClients
 {
-    public class FirefoxClient : BrowserClient
+    public class FirefoxClient : RestartableBrowserClient
     {
-        public FirefoxClient()
-            : base(Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE")
-        {
-        }
+        private static readonly string proxyTypePref = "network.proxy.type";
+        private static readonly string proxyHttpPref = "network.proxy.http";
+        private static readonly string proxyPortPref = "network.proxy.http_port";
 
-        private ProxyInfo proxyInfo;
+        public FirefoxClient()
+            : base(Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox")
+        {
+            
+        }
 
         protected override void SetProxy(ProxyInfo proxyInfo)
         {
-            this.proxyInfo = proxyInfo;
+            string content = File.ReadAllText(SettingsPath);
+
+            content = WritePref(content, proxyTypePref, "1");
+            content = WritePref(content, proxyHttpPref, string.Format("\"{0}\"", proxyInfo.Address));
+            content = WritePref(content, proxyPortPref, proxyInfo.Port.ToString());
+
+            File.WriteAllText(SettingsPath, content);
         }
 
         protected override ProxyInfo GetProxy()
         {
-            return proxyInfo;
+            if (!File.Exists(SettingsPath))
+            {
+                return null;
+            }
+
+            string content = File.ReadAllText(SettingsPath);
+
+            if (ReadPref(content, proxyTypePref) != "1")
+            {
+                return null;
+            }
+
+            return new ProxyInfo(IPAddress.Parse(ReadPref(content, proxyHttpPref).Trim('"')),
+                                 ushort.Parse(ReadPref(content, proxyPortPref)));
         }
 
         protected override SettingsData BackupSettings()
         {
-            return null;
+            if (File.Exists(SettingsPath))
+            {
+                File.Copy(SettingsPath, Constants.BackupsLocation.FirefoxSettings, true);
+            }
+
+            return new SettingsData();
         }
 
         protected override void RestoreSettings(SettingsData settings)
         {
+            if (File.Exists(Constants.BackupsLocation.FirefoxSettings))
+            {
+                File.Copy(Constants.BackupsLocation.FirefoxSettings, SettingsPath, true);
+                File.Delete(Constants.BackupsLocation.FirefoxSettings);
+            }
+        }
+
+        private string SettingsPath
+        {
+            get
+            {
+                string folder = string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"\Mozilla\Firefox\Profiles\");
+                string settingFolder = Directory.GetDirectories(folder).Where(path => path.EndsWith(".default")).First();
+                string userSettings = string.Concat(settingFolder, @"\user.js");
+
+                if (File.Exists(userSettings))
+                {
+                    return userSettings;
+                }
+
+                return string.Concat(settingFolder, @"\prefs.js");
+            }
+        }
+
+        private string ReadPref(string content, string name)
+        {
+            Regex regex = new Regex(GetRegularExpression(name));
+
+            Match match = regex.Match(content);
+
+            if (!match.Success)
+                return null;
+
+            return match.Groups["value"].Value;
+        }
+
+        private string WritePref(string content, string name, string newValue)
+        {
+            string oldValue = ReadPref(content, name);
+
+            if (oldValue == null)
+            {
+                StringBuilder builder = new StringBuilder();
+
+                if (content != string.Empty)
+                {
+                    builder.Append(content);
+                }
+
+                builder.AppendFormat("user_pref(\"{0}\", {1});", name, newValue);
+                builder.AppendLine();
+
+                return builder.ToString();
+            }
+
+            if (oldValue == newValue)
+                return content;
+
+            return new Regex(GetRegularExpression(name)).ReplaceGroup(content, "value", newValue);
+        }
+
+        private static string GetRegularExpression(string name)
+        {
+            return string.Format("user_pref\\(\"{0}\", (?<value>[^\\)]*)\\);", name);
         }
     }
 }

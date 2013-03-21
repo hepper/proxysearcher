@@ -49,6 +49,14 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+
+                    <Button Click="Donate" Content="Donate">
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Label Content="{TemplateBinding Content}" Cursor="Hand" Foreground="Blue" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </StackPanel>
             </Grid>
         </controls:BackControl.Content>

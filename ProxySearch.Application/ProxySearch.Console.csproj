@@ -135,6 +135,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\ExceptionLogging.cs" />
+    <Compile Include="Code\Extensions\RegexExtensions.cs" />
     <Compile Include="Code\GeoIPServiceAdapter.cs">
       <SubType>Code</SubType>
     </Compile>

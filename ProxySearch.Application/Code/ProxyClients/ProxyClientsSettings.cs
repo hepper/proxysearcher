@@ -39,21 +39,22 @@ namespace ProxySearch.Console.Code.ProxyClients
                 if (value == null)
                 {
                     proxyClientSettings.RemoveAll(item => item.Name == name);
-                    return;
                 }
-
-                ProxyClientSettings settings = proxyClientSettings.SingleOrDefault(item => item.Name == name);
-
-                if (settings != null)
+                else
                 {
-                    throw new InvalidOperationException(Resources.YouShouldClearValueBeforeSetNewOne);
+                    ProxyClientSettings settings = proxyClientSettings.SingleOrDefault(item => item.Name == name);
+
+                    if (settings != null)
+                    {
+                        throw new InvalidOperationException(Resources.YouShouldClearValueBeforeSetNewOne);
+                    }
+
+                    proxyClientSettings.Add(new ProxyClientSettings
+                    {
+                        Name = name,
+                        Settings = value
+                    });
                 }
-
-                proxyClientSettings.Add(new ProxyClientSettings
-                {
-                    Name = name,
-                    Settings = value
-                });
 
                 File.WriteAllText(Constants.ProxySettingsStorage.Location, Serializer.Serialize<List<ProxyClientSettings>>(proxyClientSettings));
             }

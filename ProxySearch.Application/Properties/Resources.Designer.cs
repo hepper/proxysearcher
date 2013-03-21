@@ -188,6 +188,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://sourceforge.net/donate/?user_id=1813459.
+        /// </summary>
+        internal static string DonateLink {
+            get {
+                return ResourceManager.GetString("DonateLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to clear proxy usage history?.
         /// </summary>
         internal static string DoYouReallyWantToClearProxyUsageHistory {

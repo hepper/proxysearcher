@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 
@@ -46,6 +34,11 @@ namespace ProxySearch.Console.Controls
         private void HomePage(object sender, RoutedEventArgs e)
         {
             Process.Start(Properties.Resources.HomePageDeveloperLink);
+        }
+
+        private void Donate(object sender, RoutedEventArgs e)
+        {
+            Process.Start(Properties.Resources.DonateLink);
         }
 
         public string ProgramName

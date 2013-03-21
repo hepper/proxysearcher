@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Net;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Code.ProxyClients
@@ -50,6 +48,12 @@ namespace ProxySearch.Console.Code.ProxyClients
             private set;
         }
 
+        public int Order
+        {
+            get;
+            private set;
+        }
+
         public abstract bool IsInstalled
         {
             get;
@@ -73,9 +77,8 @@ namespace ProxySearch.Console.Code.ProxyClients
                     if (Settings != null)
                     {
                         RestoreSettings(Serializer.Deserialize<SettingsData>(Settings));
+                        Settings = null;
                     }
-
-                    Settings = null;
                 }
                 else
                 {
@@ -100,6 +103,14 @@ namespace ProxySearch.Console.Code.ProxyClients
         protected abstract SettingsData BackupSettings();
         protected abstract void RestoreSettings(SettingsData settings);
 
+        protected void FirePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         private string Settings
         {
             get
@@ -110,20 +121,6 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 Context.Get<ProxyClientsSettings>()[Name] = value;
             }
-        }
-
-        protected void FirePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public int Order
-        {
-            get;
-            private set;
         }
     }
 }

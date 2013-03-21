@@ -79,17 +79,15 @@ namespace ProxySearch.Console.Controls
                     MessageBoxResult result = MessageBox.Show(
                                                 string.Format(Properties.Resources.DoYouWantToRestartBrowser, ProxyClient.Name),
                                                 Properties.Resources.Question,
-                                                MessageBoxButton.YesNoCancel,
+                                                MessageBoxButton.OKCancel,
                                                 MessageBoxImage.Question);
-                    switch (result)
+
+                    if (result == MessageBoxResult.Cancel)
                     {
-                        case MessageBoxResult.Cancel:
-                        case MessageBoxResult.None:
-                            return;
-                        case MessageBoxResult.Yes:
-                            restartRequested = true;
-                            break;
+                        return;
                     }
+
+                    restartRequested = true;
                 }
 
                 if (restartRequested)

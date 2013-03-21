@@ -169,32 +169,38 @@ namespace ProxySearch.Console.Controls
 
         private void ApplyStyle(ProxyInfo proxyInfo, RowStyle style)
         {
-            Brush brush = null;
+            Brush brush = GetStyleBrush(style);
 
+            try
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    ContentPresenter contentPresenter = (ContentPresenter)DataGridControl.Columns[j].GetCellContent(proxyInfo);
+
+                    if (contentPresenter != null)
+                    {
+                        TextBox textBox = (TextBox)contentPresenter.ContentTemplate.FindName("textBox", contentPresenter);
+                        textBox.Foreground = brush;
+                    }
+                }
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+
+        private static Brush GetStyleBrush(RowStyle style)
+        {
             switch (style)
             {
                 case RowStyle.Unused:
-                    brush = Brushes.Black;
-                    break;
+                    return Brushes.Black;
                 case RowStyle.Used:
-                    brush = Brushes.Gray;
-                    break;
+                    return Brushes.Gray;
                 case RowStyle.Selected:
-                    brush = Brushes.Blue;
-                    break;
+                    return Brushes.Blue;
                 default:
                     throw new InvalidOperationException(string.Format(Properties.Resources.RowStyleIsNotSupported, style));
-            }
-
-            for (int j = 0; j < 4; j++)
-            {
-                ContentPresenter contentPresenter = (ContentPresenter)DataGridControl.Columns[j].GetCellContent(proxyInfo);
-
-                if (contentPresenter != null)
-                {
-                    TextBox textBox = (TextBox)contentPresenter.ContentTemplate.FindName("textBox", contentPresenter);
-                    textBox.Foreground = brush;
-                }
             }
         }
 
