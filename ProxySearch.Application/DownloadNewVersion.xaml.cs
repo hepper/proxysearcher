@@ -51,13 +51,17 @@ namespace ProxySearch.Console
             catch (Exception)
             {
                 Close();
-                MessageBox.Show(Properties.Resources.CannotUpdateProgram, Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                if (MessageBox.Show(Properties.Resources.CannotUpdateProgram, Properties.Resources.Error, MessageBoxButton.OKCancel, MessageBoxImage.Error) == MessageBoxResult.OK)
+                {
+                    Process.Start(Properties.Resources.HomePageDeveloperLink);
+                    Application.Current.Shutdown();
+                }
             }
         }
 
         private async Task<string> DownloadInstallation(string loadPath)
         {
-            string filePath = System.IO.Path.ChangeExtension(System.IO.Path.GetTempFileName(), "exe");
+            string filePath = Path.ChangeExtension(System.IO.Path.GetTempFileName(), "exe");
 
             using (HttpClientHandler handler = new HttpClientHandler())
             using (ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler(handler))
@@ -83,7 +87,10 @@ namespace ProxySearch.Console
         {
             Dispatcher.Invoke(() =>
             {
-                progressBar.Value = (100 * e.BytesTransferred) / e.TotalBytes.Value;
+                if (e.TotalBytes.HasValue)
+                {
+                    progressBar.Value = (100 * e.BytesTransferred) / e.TotalBytes.Value;
+                }
             });
         }
 

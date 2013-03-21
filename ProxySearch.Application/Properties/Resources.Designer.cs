@@ -125,7 +125,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot update program.
+        ///   Looks up a localized string similar to Cannot update program. Do you want to do it manually?.
         /// </summary>
         internal static string CannotUpdateProgram {
             get {

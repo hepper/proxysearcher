@@ -140,7 +140,7 @@
     <value>Cannot find installation url of Proxy Searcher</value>
   </data>
   <data name="CannotUpdateProgram" xml:space="preserve">
-    <value>Cannot update program</value>
+    <value>Cannot update program. Do you want to do it manually?</value>
   </data>
   <data name="CheckerProxyDotNet" xml:space="preserve">
     <value>http://checkerproxy.net</value>
