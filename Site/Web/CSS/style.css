@@ -167,6 +167,12 @@
     border: none;
 }
 
+.soft82-a
+{
+     position: relative;
+    top: -7px;
+}
+
 .download-latest-version-text
 {
     color: green;
