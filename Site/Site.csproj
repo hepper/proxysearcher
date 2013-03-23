@@ -67,7 +67,7 @@
     <Content Include="Web\index.html" />
     <Content Include="Web\Javascript\jquery-1.9.1.min.js" />
     <Content Include="Web\Javascript\jquery.timer.js" />
-    <Content Include="Web\Javascript\Scripts.js" />
+    <Content Include="Web\Javascript\main.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
