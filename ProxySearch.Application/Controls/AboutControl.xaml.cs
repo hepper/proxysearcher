@@ -33,7 +33,7 @@ namespace ProxySearch.Console.Controls
 
         private void HomePage(object sender, RoutedEventArgs e)
         {
-            Process.Start(Properties.Resources.HomePageDeveloperLink);
+            Process.Start(Properties.Resources.HomePageLink);
         }
 
         private void Donate(object sender, RoutedEventArgs e)
