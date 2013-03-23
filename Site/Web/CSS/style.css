@@ -1,0 +1,179 @@
+.head-element
+{
+    background-color: #46A7E2;
+    height: 115px;
+    color: white;
+}
+
+    .head-element h2
+    {
+        font-weight: normal;
+    }
+
+.head-content
+{
+    width: 1024px;
+    margin: 0px auto 0px auto;
+    padding-top: 3px;
+}
+
+.looking-for-proxies-easily
+{
+    font-size: 25px;
+    float: left;
+}
+
+.find-avaliable-proxies-in-one-click
+{
+    font-size: 25px;
+    float: left;
+    margin-left: 80px;
+}
+
+.hide-your-ip-from-everyone
+{
+    font-size: 25px;
+    float: left;
+    text-align: center;
+    margin-left: 60px;
+}
+
+.do-it-for-free
+{
+    text-align: center;
+    font-size: 30px;
+}
+
+.body-element
+{
+    width: 1024px;
+    margin: 20px auto 0px auto;
+}
+
+.body-header
+{
+    font-size: 30px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.text
+{
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.menu-item
+{
+    border: 1px solid gray;
+    width: 70px;
+    border-radius: 10px;
+    padding: 5px;
+    text-align: center;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.menu-item-first
+{
+    margin-left: 0px;
+}
+
+.menu-item-active
+{
+    background-color: #18e0da;
+    cursor: none;
+}
+
+.menu-item-selected
+{
+    background-color: #f8e0dd;
+}
+
+.clear
+{
+    clear: both;
+}
+
+.separator
+{
+    margin: 10px auto 20px auto;
+    width: 1024px;
+    border: 1px solid gray;
+}
+
+.normal-text
+{
+    margin: 10px 0px 10px 0px;
+    text-align: justify;
+}
+
+.left-panel
+{
+    width: 600px;
+    float: left;
+}
+
+.right-panel
+{
+    float: left;
+    margin-left: 20px;
+}
+
+.current-version
+{
+    float: right;
+    font-size: 20px;
+    margin-top: 6px;
+}
+
+#download-page, #donate-page
+{
+    display: none;
+}
+
+.footer-menu-element
+{
+    text-align: center;    
+    width: 500px;
+    margin: 0px auto 30px auto;
+}
+
+.footer-menu-item
+{
+    float: left;
+    margin-left: 20px;
+}
+
+.footer-menu-item-first
+{
+    margin-left: 0px;
+}
+
+.second-screenshoot
+{
+    margin-top: 20px;
+}
+
+.file-claster-a
+{
+    position: relative;
+    top: -7px;
+}
+
+.file-claster
+{
+    border: none;
+}
+
+.download-latest-version-text
+{
+    color: green;
+}
+
+.make-donation-now-link
+{
+    font-size: 30px;
+    color: green;
+}
