@@ -40,7 +40,7 @@ $(".current-version").ready(function () {
     var getVersion = function () {
         versionNumber = parseInt($("#currentVersion").val());
         var minor = versionNumber % 10;
-        var major = versionNumber - versionNumber % 10 + 1;
+        var major = (versionNumber - versionNumber % 10) / 10 + 1;
 
         return major + "." + minor;
     }
