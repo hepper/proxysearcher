@@ -19,7 +19,6 @@ namespace ProxySearch.Engine
         IProxySearchFeedback feedback;
         IProxyChecker checker;
         IGeoIP geoIP;
-        IWebBrowser webBrowser;
 
         public Application(ISearchEngine searchEngine, IProxyParser proxyParser, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
         {
