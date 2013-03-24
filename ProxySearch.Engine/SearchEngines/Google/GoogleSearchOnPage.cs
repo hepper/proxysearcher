@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Net.Http;
-using ProxySearch.Common;
+using System.Text.RegularExpressions;
 using System.Threading;
-using ProxySearch.Engine.Properties;
 using System.Threading.Tasks;
+using ProxySearch.Common;
 
-namespace ProxySearch.Engine.Google
+namespace ProxySearch.Engine.SearchEngines.Google
 {
     public class GoogleSearchOnPage
     {

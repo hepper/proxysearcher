@@ -25,38 +25,5 @@ namespace ProxySearch.Console.Controls
                 return Context.Get<AllSettings>().ExportSettings;
             }
         }
-
-        private void SelectFolder(object sender, RoutedEventArgs e)
-        {
-            CreateFolderIfNotExists();
-
-            FolderBrowserDialog dialog = new FolderBrowserDialog
-            {
-                SelectedPath = Settings.ExportFolder
-            };
-
-            DialogResult result = dialog.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                Settings.ExportFolder = dialog.SelectedPath;
-                SelectedFoderTextBox.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty).UpdateTarget();
-            }
-        }
-
-        private void ExploreFolder(object sender, RoutedEventArgs e)
-        {
-            CreateFolderIfNotExists();
-        }
-
-        private void CreateFolderIfNotExists()
-        {
-            if (!Directory.Exists(Settings.ExportFolder))
-            {
-                Directory.CreateDirectory(Settings.ExportFolder);
-            }
-
-            Process.Start(Settings.ExportFolder);
-        }
     }
 }

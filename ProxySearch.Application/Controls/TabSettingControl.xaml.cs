@@ -10,9 +10,9 @@ using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
-using ProxySearch.Engine;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Console.Controls
 {

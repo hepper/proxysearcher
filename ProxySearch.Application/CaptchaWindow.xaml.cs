@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using ProxySearch.Engine.Google;
 
 namespace ProxySearch.Console
 {

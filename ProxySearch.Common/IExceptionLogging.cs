@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ProxySearch.Console.Code.Interfaces
+namespace ProxySearch.Common
 {
     public interface IExceptionLogging
     {

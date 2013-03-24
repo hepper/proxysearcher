@@ -114,14 +114,14 @@ namespace ProxySearch.Console.Controls
             }
             else
             {
-                Cancel.Content = Properties.Resources.Cancel;
-                ProgressText.Content = null;
-
                 if (timer != null)
                 {
                     timer.Dispose();
                     timer = null;
                 }
+
+                Cancel.Content = Properties.Resources.Cancel;
+                ProgressText.Content = null;
                 ActiveThreads = 0;
             }
 

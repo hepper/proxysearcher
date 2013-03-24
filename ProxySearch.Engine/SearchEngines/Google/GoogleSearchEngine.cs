@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProxySearch.Engine.Google
+namespace ProxySearch.Engine.SearchEngines.Google
 {
     public class GoogleSearchEngine : ISearchEngine
     {

@@ -10,6 +10,7 @@ using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Console.Code
 {

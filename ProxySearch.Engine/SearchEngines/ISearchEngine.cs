@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace ProxySearch.Engine
+namespace ProxySearch.Engine.SearchEngines
 {
     public interface ISearchEngine
     {

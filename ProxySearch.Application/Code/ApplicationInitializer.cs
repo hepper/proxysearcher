@@ -25,7 +25,6 @@ namespace ProxySearch.Console.Code
                 new VersionManager().Check();
             }
             Context.Set(new BandwidthManager());
-            Context.Set<IExceptionLogging>(new ExceptionLogging());
          }
 
         public void Deinitialize()

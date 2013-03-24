@@ -251,15 +251,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Application.
-        /// </summary>
-        internal static string EventLogSource {
-            get {
-                return ResourceManager.GetString("EventLogSource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/.
         /// </summary>
         internal static string FeedbackLink {
@@ -283,6 +274,24 @@ namespace ProxySearch.Console.Properties {
         internal static string FirstRunArgument {
             get {
                 return ResourceManager.GetString("FirstRunArgument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in folder.
+        /// </summary>
+        internal static string FolderSearchEngine {
+            get {
+                return ResourceManager.GetString("FolderSearchEngine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature..
+        /// </summary>
+        internal static string FolderSearchEngineDescription {
+            get {
+                return ResourceManager.GetString("FolderSearchEngineDescription", resourceCulture);
             }
         }
         

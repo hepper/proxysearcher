@@ -8,9 +8,9 @@ using ProxySearch.Console.Code.Detectable.GeoIPs;
 using ProxySearch.Console.Code.Detectable.ProxyCheckers;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
 using ProxySearch.Console.Properties;
-using ProxySearch.Engine;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Console.Code.Settings
 {

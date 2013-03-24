@@ -5,7 +5,7 @@ using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Controls;
-using ProxySearch.Engine.Google;
+using ProxySearch.Engine.SearchEngines.Google;
 
 namespace ProxySearch.Console
 {

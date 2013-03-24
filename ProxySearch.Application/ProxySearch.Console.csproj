@@ -128,13 +128,13 @@
     <Compile Include="Code\Detectable\ProxyCheckers\SimpleProxyCheckerDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\SearchEngines\FolderSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\ExceptionLogging.cs" />
     <Compile Include="Code\Extensions\RegexExtensions.cs" />
     <Compile Include="Code\GeoIPServiceAdapter.cs">
       <SubType>Code</SubType>
@@ -151,7 +151,6 @@
     <Compile Include="Code\Interfaces\IDetectableSearcher.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Interfaces\IExceptionLogging.cs" />
     <Compile Include="Code\Interfaces\IProxyClient.cs" />
     <Compile Include="Code\Interfaces\IProxyClientRestartable.cs" />
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
@@ -227,6 +226,9 @@
     <Compile Include="Controls\ExportSearchResultControl.xaml.cs">
       <DependentUpon>ExportSearchResultControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FolderSearchEngineControl.xaml.cs">
+      <DependentUpon>FolderSearchEngineControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
     </Compile>
@@ -244,6 +246,9 @@
     </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SelectFolderControl.xaml.cs">
+      <DependentUpon>SelectFolderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
@@ -305,6 +310,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\FolderSearchEngineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GoogleEnginePropertyControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -330,6 +339,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SearchResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SelectFolderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

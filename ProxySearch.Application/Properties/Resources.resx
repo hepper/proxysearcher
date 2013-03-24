@@ -181,9 +181,6 @@
   <data name="ErrorHasHappenedDuringTest" xml:space="preserve">
     <value>Error has happened during test</value>
   </data>
-  <data name="EventLogSource" xml:space="preserve">
-    <value>Application</value>
-  </data>
   <data name="FeedbackLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/</value>
   </data>
@@ -310,5 +307,11 @@ Response time: {0} s</value>
   </data>
   <data name="YouShouldClearValueBeforeSetNewOne" xml:space="preserve">
     <value>You should clear value before set new one</value>
+  </data>
+  <data name="FolderSearchEngine" xml:space="preserve">
+    <value>Search in folder</value>
+  </data>
+  <data name="FolderSearchEngineDescription" xml:space="preserve">
+    <value>If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature.</value>
   </data>
 </root>

@@ -61,11 +61,29 @@ namespace ProxySearch.Common.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application.
+        /// </summary>
+        internal static string EventLogSource {
+            get {
+                return ResourceManager.GetString("EventLogSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Object of type &apos;{0}&apos; is not set yet.
         /// </summary>
         internal static string ObjectOfTypeIsNotSetYet {
             get {
                 return ResourceManager.GetString("ObjectOfTypeIsNotSetYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proxy Searcher.
+        /// </summary>
+        internal static string ProxySearcherSource {
+            get {
+                return ResourceManager.GetString("ProxySearcherSource", resourceCulture);
             }
         }
     }

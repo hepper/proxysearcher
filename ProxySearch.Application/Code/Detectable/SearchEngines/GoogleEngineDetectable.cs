@@ -2,8 +2,8 @@
 using ProxySearch.Common;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
-using ProxySearch.Engine;
-using ProxySearch.Engine.Google;
+using ProxySearch.Engine.SearchEngines;
+using ProxySearch.Engine.SearchEngines.Google;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
