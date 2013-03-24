@@ -36,9 +36,6 @@ namespace ProxySearch.Console
 
                 Title = Properties.Resources.Uninstalling;
 
-                Process uninstall = Process.Start(Environment.SystemDirectory + "\\MsiExec.exe", "/x{EFD8FA84-F3A5-4DF8-999C-7C035BFFD578} /passive");
-                uninstall.WaitForExit();
-
                 Process.Start(file);
 
                 downloaded = true;
@@ -53,7 +50,7 @@ namespace ProxySearch.Console
                 Close();
                 if (MessageBox.Show(Properties.Resources.CannotUpdateProgram, Properties.Resources.Error, MessageBoxButton.OKCancel, MessageBoxImage.Error) == MessageBoxResult.OK)
                 {
-                    Process.Start(Properties.Resources.HomePageDeveloperLink);
+                    Process.Start(Properties.Resources.HomePageLink);
                     Application.Current.Shutdown();
                 }
             }
