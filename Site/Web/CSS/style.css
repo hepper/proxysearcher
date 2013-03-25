@@ -27,7 +27,7 @@
 {
     font-size: 25px;
     float: left;
-    margin-left: 80px;
+    margin-left: 77px;
 }
 
 .hide-your-ip-from-everyone
@@ -35,7 +35,7 @@
     font-size: 25px;
     float: left;
     text-align: center;
-    margin-left: 60px;
+    margin-left: 53px;
 }
 
 .do-it-for-free
@@ -182,4 +182,9 @@
 {
     font-size: 30px;
     color: green;
+}
+
+.award-image
+{
+    border:0px
 }
