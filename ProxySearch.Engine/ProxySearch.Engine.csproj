@@ -106,6 +106,7 @@
     <Compile Include="Checkers\SimpleProxyChecker.cs" />
     <Compile Include="ProxyInfo.cs" />
     <Compile Include="ProxyParser.cs" />
+    <Compile Include="SearchEngines\UrlList\UrlListSearchEngine.cs" />
     <Compile Include="TaskCounter.cs" />
     <Compile Include="TaskType.cs" />
   </ItemGroup>

@@ -132,6 +132,7 @@
     <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\SearchEngines\UrlListSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -262,6 +263,9 @@
     <Compile Include="Controls\ToolbarControl.xaml.cs">
       <DependentUpon>ToolbarControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UrlListPropertyControl.xaml.cs">
+      <DependentUpon>UrlListPropertyControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DownloadNewVersion.xaml.cs">
       <DependentUpon>DownloadNewVersion.xaml</DependentUpon>
     </Compile>
@@ -359,6 +363,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ToolbarControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UrlListPropertyControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

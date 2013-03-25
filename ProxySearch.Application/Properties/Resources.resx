@@ -314,4 +314,10 @@ Response time: {0} s</value>
   <data name="FolderSearchEngineDescription" xml:space="preserve">
     <value>If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature.</value>
   </data>
+  <data name="UrlListEngine" xml:space="preserve">
+    <value>By Url List</value>
+  </data>
+  <data name="UrlListEngineDescription" xml:space="preserve">
+    <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
+  </data>
 </root>

@@ -612,6 +612,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By Url List.
+        /// </summary>
+        internal static string UrlListEngine {
+            get {
+                return ResourceManager.GetString("UrlListEngine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page..
+        /// </summary>
+        internal static string UrlListEngineDescription {
+            get {
+                return ResourceManager.GetString("UrlListEngineDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wait until current operation is finished.
         /// </summary>
         internal static string WaitUntilCurrentOperationIsFinished {
