@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
@@ -27,13 +26,9 @@ namespace ProxySearch.Console.Controls
             InitializeComponent();
         }
 
-        public void Begin(Action action)
+        public void StartAsync(Action action)
         {
-            ThreadPool.SetMaxThreads(Context.Get<AllSettings>().MaxThreadCount, Context.Get<AllSettings>().MaxThreadCount);
-
-            SetProgress(true);
-            SetInformation(Properties.Resources.WaitUntilCurrentOperationIsFinished);
-            ErrorButton.Visibility = Visibility.Hidden;
+            ThreadPool.SetMaxThreads(Context.Get<AllSettings>().MaxThreadCount, Context.Get<AllSettings>().MaxThreadCount);            
 
             try
             {
@@ -52,6 +47,16 @@ namespace ProxySearch.Console.Controls
             catch (TaskCanceledException)
             {
             }
+        }
+
+        public void Begin()
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                SetProgress(true);
+                SetInformation(Properties.Resources.WaitUntilCurrentOperationIsFinished);
+                ErrorButton.Visibility = Visibility.Hidden;
+            }));
         }
 
         public void End()

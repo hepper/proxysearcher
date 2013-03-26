@@ -5,7 +5,8 @@ namespace ProxySearch.Console.Code.Interfaces
 {
     public interface IActionInvoker
     {
-        void Begin(Action action);
+        void StartAsync(Action action);
+        void Begin();
         void End();
         void Update(int count);
         void UpdateStatus(string status);

@@ -69,9 +69,11 @@ namespace ProxySearch.Engine
         {
             int currentCount;
             int currentTypeCount;
+            bool started = false;
 
             lock (this)
             {
+                started = TaskCount == 0;
                 TaskCount += count;
 
                 if (Tasks.ContainsKey(type))
@@ -86,6 +88,9 @@ namespace ProxySearch.Engine
                 currentCount = TaskCount;
                 currentTypeCount = Tasks[type];
             }
+
+            if (started && OnStarted != null)
+                OnStarted();
 
             FireJobCountChanged(type, currentTypeCount, currentCount);
         }
@@ -106,9 +111,9 @@ namespace ProxySearch.Engine
 
             FireJobCountChanged(type, currentTypeCount, currentCount);
 
-            if (currentCount == 0 && AllCompleted != null)
+            if (currentCount == 0 && OnCompleted != null)
             {
-                AllCompleted();
+                OnCompleted();
             }
         }
 
@@ -118,7 +123,8 @@ namespace ProxySearch.Engine
                 JobCountChanged(type, currentCount, totalCount);
         }
 
-        public event Action AllCompleted;
+        public event Action OnStarted;
+        public event Action OnCompleted;
         public event Action<TaskType, int, int> JobCountChanged;
     }
 }

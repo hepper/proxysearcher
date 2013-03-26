@@ -29,7 +29,7 @@ namespace ProxySearch.Console.Controls
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
 
-            Context.Get<IActionInvoker>().Begin(DoBeginSearch);
+            Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);
         }
 
         private void DoBeginSearch()
@@ -38,7 +38,9 @@ namespace ProxySearch.Console.Controls
 
             IProxySearchFeedback feedback = new ProxySearchFeedback();
 
-            Context.Get<TaskCounter>().AllCompleted += () =>
+            Context.Get<TaskCounter>().OnStarted += Context.Get<IActionInvoker>().Begin;
+
+            Context.Get<TaskCounter>().OnCompleted += () =>
             {
                 if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                 {

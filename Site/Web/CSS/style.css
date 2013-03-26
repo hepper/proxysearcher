@@ -83,7 +83,7 @@
 .menu-item-active
 {
     background-color: #18e0da;
-    cursor: none;
+    cursor: auto;
 }
 
 .menu-item-selected
