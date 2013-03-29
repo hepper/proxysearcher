@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl" 
-                  VirtualizingStackPanel.IsVirtualizing="False" Sorting="DataGridControl_Sorting">
+                  VirtualizingStackPanel.IsVirtualizing="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" Sorting="DataGridControl_Sorting">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="IP Address" Width="16*" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
