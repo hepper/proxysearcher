@@ -33,17 +33,18 @@ namespace ProxySearch.Console.Code
 
         public void OnSearchFinished()
         {
-            End();
+            Context.Get<IActionInvoker>().Finished();
+            CloseFile();
         }
 
         public void OnSearchCancelled()
         {
-            End();
+            Context.Get<IActionInvoker>().Cancelled();
+            CloseFile();
         }
 
-        private void End()
+        private void CloseFile()
         {
-            Context.Get<IActionInvoker>().End();
             if (stream != null)
                 stream.Dispose();
         }

@@ -33,14 +33,21 @@ namespace ProxySearch.Engine.Checkers
             Url = url;
             Accuracy = accuracy;
 
-            string content = Context.Get<CheckerUtils>().GetContent(Url, null).GetAwaiter().GetResult();
-
-            if (content == null)
+            try
             {
-                throw new InvalidOperationException(string.Format(Resources.CannotDownloadContent, Url));
-            }
 
-            AnalyzedText = AnalyzeText(content);
+                string content = Context.Get<CheckerUtils>().GetContent(Url, null).GetAwaiter().GetResult();
+
+                if (content == null)
+                {
+                    throw new InvalidOperationException(string.Format(Resources.CannotDownloadContent, Url));
+                }
+
+                AnalyzedText = AnalyzeText(content);
+            }
+            catch(TaskCanceledException)
+            {
+            }
         }
 
         protected override async Task<bool> Alive(ProxyInfo info)

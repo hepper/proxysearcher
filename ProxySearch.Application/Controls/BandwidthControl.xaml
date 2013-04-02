@@ -16,9 +16,7 @@
         <Grid.Style>
             <Style>
                 <Style.Resources>
-                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ControlStyle}">
-                        <Setter Property="IsReadOnly" Value="True" />
-                        <Setter Property="BorderThickness" Value="0" />
+                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DataGridTextBox}">
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
                     </Style>
@@ -41,7 +39,9 @@
             </Grid.ColumnDefinitions>
 
             <ProgressBar Grid.Column="0" Value="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.Progress, Mode=OneWay}" Margin="0,0,5,0" ToolTip="Test is in progress" />
-            <Button Grid.Column="1" Width="70" Click="CancelButton_Click">Cancel</Button>
+            <Button Grid.Column="1" Width="40" Height="25" Click="CancelButton_Click" ToolTip="Cancel" Background="White">
+                <Image Grid.Column="0" Source="/Images/Cancel.png" />
+            </Button>
         </Grid>
 
         <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=3}">
@@ -72,7 +72,9 @@
                     </MultiBinding>
                 </TextBox.Background>
             </TextBox>
-            <Button Grid.Column="1" Width="70" Click="MeasureButton_Click">Retry</Button>
+            <Button Grid.Column="1" Width="40" Height="25" Click="MeasureButton_Click" ToolTip="Retry" Background="White">
+                <Image Grid.Column="0" Source="/Images/Refresh.png" />
+            </Button>
         </Grid>
     </Grid>
 </UserControl>

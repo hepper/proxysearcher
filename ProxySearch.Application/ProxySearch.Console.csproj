@@ -107,9 +107,11 @@
     <Compile Include="Code\Converters\BandwidthStateVisibilityConverter.cs" />
     <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
+    <Compile Include="Code\Converters\CenterConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
+    <Compile Include="Code\Converters\SizeToAngleConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
     <Compile Include="Code\Detectable\DetectableBase.cs" />
     <Compile Include="Code\Detectable\DetectableSearcher.cs">
@@ -221,6 +223,9 @@
     <Compile Include="Controls\CheckerProxyNetPropertyControl.xaml.cs">
       <DependentUpon>CheckerProxyNetPropertyControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DataGridHelpControl.xaml.cs">
+      <DependentUpon>DataGridHelpControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DetectableSelectorControl.xaml.cs">
       <DependentUpon>DetectableSelectorControl.xaml</DependentUpon>
     </Compile>
@@ -303,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\CheckerProxyNetPropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DataGridHelpControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -432,6 +441,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -506,6 +519,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Application.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ClickStartButton.png" />
+    <Resource Include="Images\WaitForResults.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CheckSearchCriteria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Cancel.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

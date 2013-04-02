@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Styles/IntegerUpDown.xaml"/>
                 <ResourceDictionary Source="Styles/DoubleUpDown.xaml"/>
                 <ResourceDictionary Source="Styles/CheckBox.xaml"/>
+                <ResourceDictionary Source="Styles/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

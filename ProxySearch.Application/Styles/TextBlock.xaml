@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DropShadowBitmapEffect x:Key="effect" Color="#845A8F" Direction="320" ShadowDepth="10" Opacity=".5" Softness="9" />
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="WatermarkText">
+        <Setter Property="FontSize" Value="50" />
+        <Setter Property="Foreground" Value="#EDF3F5" />
+        <Setter Property="BitmapEffect" Value="{StaticResource effect}" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="HelpText">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="#696EFF" />
+        <Setter Property="BitmapEffect" Value="{StaticResource effect}" />
+        <Setter Property="Margin" Value="20,20,20,20" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+</ResourceDictionary>

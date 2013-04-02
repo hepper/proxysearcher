@@ -52,6 +52,10 @@ namespace ProxySearch.Engine.Checkers
                     }
                 }
             }
+            catch (TaskCanceledException)
+            {
+                throw;
+            }
             catch
             {
                 return null;

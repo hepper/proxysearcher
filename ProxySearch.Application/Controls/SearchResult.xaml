@@ -4,16 +4,90 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400" Name="Result">
+    <UserControl.Resources>
+        <ImageBrush x:Key="ClickStartButton" Stretch="None" ImageSource="/Images/ClickStartButton.png" />
+        <ImageBrush x:Key="WaitForResults" Stretch="None" ImageSource="/Images/WaitForResults.png" />
+        <ImageBrush x:Key="CheckSearchCriteria" Stretch="None" ImageSource="/Images/CheckSearchCriteria.png" />
+        <converters:SizeToAngleConverter x:Key="sizeToAngleConverter" />
+        <converters:CenterConverter x:Key="centerConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl" 
-                  VirtualizingStackPanel.IsVirtualizing="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" Sorting="DataGridControl_Sorting">
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource WatermarkText}" />
+            </TextBlock.Style>
+            <TextBlock.RenderTransform>
+                <RotateTransform CenterX="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}, Path=ActualWidth, 
+                                 Converter={StaticResource centerConverter}}"
+                                 CenterY="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}, Path=ActualHeight, 
+                                 Converter={StaticResource centerConverter}}">
+                    <RotateTransform.Angle>
+                        <MultiBinding Converter="{StaticResource sizeToAngleConverter}">
+                            <Binding ElementName="Result" Path="ActualWidth" />
+                            <Binding ElementName="Result" Path="ActualHeight" />
+                        </MultiBinding>
+                    </RotateTransform.Angle>
+                </RotateTransform>
+            </TextBlock.RenderTransform>
+            Proxy Searcher
+        </TextBlock>
+
+        <controls:DataGridHelpControl Grid.Row="0" Text="Please wait a little for results">
+            <controls:DataGridHelpControl.Style>
+                <Style TargetType="{x:Type controls:DataGridHelpControl}">
+                    <Setter Property="Visibility" Value="Hidden" />
+
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=Result, Path=PageData.Count}" Value="0" />
+                                <Condition Binding="{Binding ElementName=Result, Path=SearchState}" Value="InProgress" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </controls:DataGridHelpControl.Style>
+        </controls:DataGridHelpControl>
+        <controls:DataGridHelpControl Grid.Row="0" Text="Ups... We didn't find anything. Could you please check your search settings? If everything is ok there then create support ticket. We will try to resolve issue as soos as possible.">
+            <controls:DataGridHelpControl.Style>
+                <Style TargetType="{x:Type controls:DataGridHelpControl}">
+                    <Setter Property="Visibility" Value="Hidden" />
+
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ElementName=Result, Path=PageData.Count}" Value="0" />
+                                <Condition Binding="{Binding ElementName=Result, Path=SearchState}" Value="Completed" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </controls:DataGridHelpControl.Style>
+        </controls:DataGridHelpControl>
+
+        <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl"  Background="Transparent"
+                  VirtualizingStackPanel.IsVirtualizing="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" 
+                  Sorting="DataGridControl_Sorting" >
+            <DataGrid.Style>
+                <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=Result,  Path=PageData.Count}"  Value="0">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </DataTrigger>                        
+                    </Style.Triggers>
+                 </Style>
+            </DataGrid.Style>
+          
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="IP Address" Width="16*" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
@@ -56,10 +130,10 @@
                             <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>                
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
-        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged"  Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" />
+        
+        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" />
     </Grid>
 </UserControl>

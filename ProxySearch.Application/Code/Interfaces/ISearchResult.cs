@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ProxySearch.Engine;
+﻿using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Code.Interfaces
 {
     public interface ISearchResult
     {
+        void Started();
+        void Completed();
+        void Cancelled();
+
         void Clear();
-        void Add(ProxyInfo proxy);
+        void Add(ProxyInfo proxy);        
     }
 }

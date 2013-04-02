@@ -70,6 +70,7 @@ namespace ProxySearch.Console.Code.Collections
         private void FireCountChanged()
         {
             FirePropertyChanged("Count");
+            FirePropertyChanged(null);
         }
 
         private void FirePropertyChanged(string propertyName)

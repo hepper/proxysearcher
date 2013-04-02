@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
@@ -28,7 +27,6 @@ namespace ProxySearch.Console.Controls
 
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
-
             Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);
         }
 

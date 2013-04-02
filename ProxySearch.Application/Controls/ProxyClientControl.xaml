@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Name="Control">
-    <ToggleButton IsChecked="{Binding ElementName=Control, Path=IsChecked}" BorderThickness="0" Width="40" Focusable="False">
+    <ToggleButton IsChecked="{Binding ElementName=Control, Path=IsChecked}" BorderThickness="0" Width="40" Focusable="False" Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

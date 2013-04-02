@@ -12,20 +12,26 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
-using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Console.Controls
 {
     /// <summary>
     /// Interaction logic for SearchResult.xaml
     /// </summary>
-    public partial class SearchResult : UserControl, ISearchResult
+    public partial class SearchResult : UserControl, ISearchResult, INotifyPropertyChanged
     {
         private enum RowStyle
         {
             Unused,
             Used,
             Selected
+        }
+
+        public enum SearchProgress
+        {
+            NotStartedOrCancelled,
+            InProgress,
+            Completed
         }
 
         public ObservableList<ProxyInfo> Data
@@ -44,7 +50,6 @@ namespace ProxySearch.Console.Controls
         {
             Data = new ObservableList<ProxyInfo>();
             PageData = new ObservableList<ProxyInfo>();
-
             Context.Set<ISearchResult>(this);
 
             InitializeComponent();
@@ -55,6 +60,11 @@ namespace ProxySearch.Console.Controls
             }
 
             DataGridControl.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
+            SearchState = SearchProgress.NotStartedOrCancelled;
+           
+            //Add(new ProxyInfo(IPAddress.Parse("127.0.0.1"), 80));
+            //Add(new ProxyInfo(IPAddress.Parse("127.0.0.1"), 80));
+            //Add(new ProxyInfo(IPAddress.Parse("127.0.0.1"), 80));
         }
 
         private void PageChanged(object sender, RoutedEventArgs e)
@@ -233,5 +243,37 @@ namespace ProxySearch.Console.Controls
                 PageData.AddRange(Data.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).Take(Context.Get<AllSettings>().PageSize));
             }
         }
+
+        public void Started()
+        {
+            SearchState = SearchProgress.InProgress;
+        }
+
+        public void Completed()
+        {
+            SearchState = SearchProgress.Completed;
+        }
+
+        public void Cancelled()
+        {
+            SearchState = SearchProgress.NotStartedOrCancelled;
+        }
+
+        private SearchProgress searchState;
+        public SearchProgress SearchState
+        {
+            get
+            {
+                return searchState;
+            }
+            set
+            {
+                searchState = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("SearchState"));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

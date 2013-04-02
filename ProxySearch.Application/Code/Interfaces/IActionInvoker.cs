@@ -7,7 +7,8 @@ namespace ProxySearch.Console.Code.Interfaces
     {
         void StartAsync(Action action);
         void Begin();
-        void End();
+        void Finished();
+        void Cancelled();
         void Update(int count);
         void UpdateStatus(string status);
         void SetException(Exception exception);

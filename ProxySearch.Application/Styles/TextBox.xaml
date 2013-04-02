@@ -7,4 +7,12 @@
 
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ControlStyle}" />
 
+    <Style x:Key="DataGridTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ControlStyle}">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="SelectionBrush" Value="Green" />
+    </Style>
+
 </ResourceDictionary>

@@ -56,16 +56,28 @@ namespace ProxySearch.Console.Controls
                 SetProgress(true);
                 SetInformation(Properties.Resources.WaitUntilCurrentOperationIsFinished);
                 ErrorButton.Visibility = Visibility.Hidden;
+                Context.Get<ISearchResult>().Started();
             }));
         }
 
-        public void End()
+        public void Finished()
+        {
+            Completed(Context.Get<ISearchResult>().Completed);
+        }
+
+        public void Cancelled()
+        {
+            Completed(Context.Get<ISearchResult>().Cancelled);
+        }
+
+        private void Completed(Action action)
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 SetProgress(false);
                 SetInformation(Properties.Resources.Ready);
                 Context.Get<ISearchControl>().Completed();
+                action();
             }));
         }
 
