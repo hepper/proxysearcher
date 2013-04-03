@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using ProxySearch.Console.Properties;
-using ProxySearch.Engine;
 using ProxySearch.Console.Code.Extensions;
+using ProxySearch.Console.Properties;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients
 {

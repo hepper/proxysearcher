@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using ProxySearch.Engine;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.SearchResult
 {

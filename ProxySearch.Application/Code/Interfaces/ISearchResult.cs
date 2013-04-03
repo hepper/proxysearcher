@@ -1,4 +1,4 @@
-﻿using ProxySearch.Engine;
+﻿using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.Interfaces
 {

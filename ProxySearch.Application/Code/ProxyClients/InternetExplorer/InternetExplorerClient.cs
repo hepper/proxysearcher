@@ -1,9 +1,9 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using Microsoft.Win32;
-using ProxySearch.Console.Properties;
-using ProxySearch.Engine;
-using System.Linq;
 using ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet;
+using ProxySearch.Console.Properties;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 {

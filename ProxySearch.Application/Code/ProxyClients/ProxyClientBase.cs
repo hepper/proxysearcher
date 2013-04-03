@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Engine;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients
 {

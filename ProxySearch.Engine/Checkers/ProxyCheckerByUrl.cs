@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
@@ -36,7 +37,7 @@ namespace ProxySearch.Engine.Checkers
             try
             {
 
-                string content = Context.Get<CheckerUtils>().GetContent(Url, null).GetAwaiter().GetResult();
+                string content = Context.Get<CheckerUtils>().GetContentOrNull(Url, null).GetAwaiter().GetResult();
 
                 if (content == null)
                 {
@@ -54,7 +55,7 @@ namespace ProxySearch.Engine.Checkers
         {
             try
             {
-                string content = await Context.Get<CheckerUtils>().GetContent(Url, info);
+                string content = await Context.Get<CheckerUtils>().GetContentOrNull(Url, info);
 
                 if (content == null)
                 {

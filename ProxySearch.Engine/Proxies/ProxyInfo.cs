@@ -1,9 +1,9 @@
 using System;
 using System.Net;
 using ProxySearch.Engine.Bandwidth;
-using ProxySearch.Engine.Checkers.CheckerProxy.Net;
+using ProxySearch.Engine.Proxies.Http;
 
-namespace ProxySearch.Engine
+namespace ProxySearch.Engine.Proxies
 {
     public class ProxyInfo
     {
@@ -12,6 +12,7 @@ namespace ProxySearch.Engine
             Address = address;
             Port = port;
             BandwidthData = new BandwidthData();
+            Details = new HttpProxyInfo();
         }
 
         public IPAddress Address

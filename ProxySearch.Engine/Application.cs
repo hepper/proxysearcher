@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Engine

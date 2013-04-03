@@ -79,11 +79,47 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot verify.
+        /// </summary>
+        internal static string CannotVerify {
+            get {
+                return ResourceManager.GetString("CannotVerify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes content.
+        /// </summary>
+        internal static string ChangesContent {
+            get {
+                return ResourceManager.GetString("ChangesContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High Anonymous.
         /// </summary>
         internal static string HighAnonymous {
             get {
                 return ResourceManager.GetString("HighAnonymous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 23154081-CFE8-4AC3-A530-142CB55C486D.
+        /// </summary>
+        internal static string ProxyTypeDetectorGuid {
+            get {
+                return ResourceManager.GetString("ProxyTypeDetectorGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyType.php?param={0}.
+        /// </summary>
+        internal static string ProxyTypeDetectorUrl {
+            get {
+                return ResourceManager.GetString("ProxyTypeDetectorUrl", resourceCulture);
             }
         }
         

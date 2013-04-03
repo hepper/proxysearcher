@@ -10,6 +10,8 @@ using System.Web;
 using ProxySearch.Common;
 using System.Linq;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Proxies.Http;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
@@ -138,11 +140,11 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             switch (info.type_2)
             {
                 case "<font color=orange><b>Anonymous proxy</b></font>":
-                    return HttpProxyInfo.HttpProxyTypes.Anonymous;
+                    return HttpProxyTypes.Anonymous;
                 case "<font color=red><b>Transparent proxy</b></font>":
-                    return HttpProxyInfo.HttpProxyTypes.Transparent;
+                    return HttpProxyTypes.Transparent;
                 case "<font color=green><b>High anonymous / Elite proxy</b></font>":
-                    return HttpProxyInfo.HttpProxyTypes.HighAnonymous;
+                    return HttpProxyTypes.HighAnonymous;
                 default:
                     return null;
             }

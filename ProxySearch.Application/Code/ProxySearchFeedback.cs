@@ -4,6 +4,7 @@ using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code
 {

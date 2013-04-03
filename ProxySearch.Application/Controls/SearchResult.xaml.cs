@@ -11,7 +11,7 @@ using ProxySearch.Console.Code.Collections;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
-using ProxySearch.Engine;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Controls
 {
@@ -61,10 +61,6 @@ namespace ProxySearch.Console.Controls
 
             DataGridControl.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
             SearchState = SearchProgress.NotStartedOrCancelled;
-           
-            //Add(new ProxyInfo(IPAddress.Parse("127.0.0.1"), 80));
-            //Add(new ProxyInfo(IPAddress.Parse("127.0.0.1"), 80));
-            //Add(new ProxyInfo(IPAddress.Parse("127.0.0.1"), 80));
         }
 
         private void PageChanged(object sender, RoutedEventArgs e)
@@ -117,6 +113,8 @@ namespace ProxySearch.Console.Controls
 
                     Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
                 }
+
+                DataGridControl.UpdateLayout();
             }));
         }
 

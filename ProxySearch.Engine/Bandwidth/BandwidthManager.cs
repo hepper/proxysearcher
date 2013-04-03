@@ -5,6 +5,7 @@ using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Engine.Properties;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Bandwidth
 {

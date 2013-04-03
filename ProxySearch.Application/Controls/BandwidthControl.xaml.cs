@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
-using ProxySearch.Engine;
 using ProxySearch.Engine.Bandwidth;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Controls
 {

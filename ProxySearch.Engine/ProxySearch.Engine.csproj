@@ -74,7 +74,7 @@
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
-    <Compile Include="Checkers\CheckerProxy.Net\HttpProxyInfo.cs" />
+    <Compile Include="Proxies\Http\HttpProxyDetails.cs" />
     <Compile Include="Checkers\ProxyCheckerBase.cs" />
     <Compile Include="Checkers\CheckerUtils.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrlAndKeywords.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIPDatabase.cs" />
     <Compile Include="GeoIP\GeoIP.cs" />
     <Compile Include="CountryInfo.cs" />
+    <Compile Include="Proxies\Http\HttpProxyTypes.cs" />
     <Compile Include="SearchEngines\FolderSearch\FolderSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchOnPage.cs" />
@@ -104,7 +105,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Checkers\SimpleProxyChecker.cs" />
-    <Compile Include="ProxyInfo.cs" />
+    <Compile Include="Proxies\ProxyInfo.cs" />
     <Compile Include="ProxyParser.cs" />
     <Compile Include="SearchEngines\UrlList\UrlListSearchEngine.cs" />
     <Compile Include="TaskCounter.cs" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\GeoIPDatabase.csv" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

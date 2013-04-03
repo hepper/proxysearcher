@@ -123,8 +123,20 @@
   <data name="CannotDownloadContent" xml:space="preserve">
     <value>Cannot download content of '{0}'. In order to fix this issue go to Tools-&gt;Properties and change proxy checker url to valid one</value>
   </data>
+  <data name="CannotVerify" xml:space="preserve">
+    <value>Cannot verify</value>
+  </data>
+  <data name="ChangesContent" xml:space="preserve">
+    <value>Changes content</value>
+  </data>
   <data name="HighAnonymous" xml:space="preserve">
     <value>High Anonymous</value>
+  </data>
+  <data name="ProxyTypeDetectorGuid" xml:space="preserve">
+    <value>23154081-CFE8-4AC3-A530-142CB55C486D</value>
+  </data>
+  <data name="ProxyTypeDetectorUrl" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/DetectProxyType.php?param={0}</value>
   </data>
   <data name="SpeedTestUrl" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/Bandwidth</value>

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
     public class CheckerUtils
     {
-        public async Task<string> GetContent(string url, ProxyInfo proxyInfo)
+        public async Task<string> GetContentOrNull(string url, ProxyInfo proxyInfo)
         {
             IWebProxy proxy = proxyInfo == null ? null : new WebProxy(proxyInfo.Address.ToString(), proxyInfo.Port);
 

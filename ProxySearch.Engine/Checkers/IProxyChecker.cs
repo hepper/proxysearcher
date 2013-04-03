@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {

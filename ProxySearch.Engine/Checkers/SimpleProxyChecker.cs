@@ -1,5 +1,6 @@
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {

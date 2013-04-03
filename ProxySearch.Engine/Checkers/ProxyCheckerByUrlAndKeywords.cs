@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ProxySearch.Common;
 using System.Linq;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
@@ -26,7 +27,7 @@ namespace ProxySearch.Engine.Checkers
 
         protected override async Task<bool> Alive(ProxyInfo info)
         {
-            string content = await Context.Get<CheckerUtils>().GetContent(Url, info);
+            string content = await Context.Get<CheckerUtils>().GetContentOrNull(Url, info);
 
             return !Keywords.Any(item => !content.Contains(item));
         }

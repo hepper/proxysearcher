@@ -30,7 +30,9 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="0" Margin="0,0,5,0">Ready</TextBox>
-            <Button Grid.Column="1" Width="70" Name="MeasureButton" Click="MeasureButton_Click">Measure</Button>
+            <Button Grid.Column="1" Width="40" Height="25" Name="MeasureButton" Click="MeasureButton_Click" ToolTip="Measure"  Background="White">
+                <Image Grid.Column="0" Source="/Images/Measure.png" />
+            </Button>
         </Grid>
         <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=2}">
             <Grid.ColumnDefinitions>

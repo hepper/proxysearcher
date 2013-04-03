@@ -76,8 +76,8 @@
         </controls:DataGridHelpControl>
 
         <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl"  Background="Transparent"
-                  VirtualizingStackPanel.IsVirtualizing="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" 
-                  Sorting="DataGridControl_Sorting" >
+                  VirtualizingStackPanel.IsVirtualizing="False" VirtualizingPanel.IsContainerVirtualizable="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" 
+                  Sorting="DataGridControl_Sorting" SelectionMode="Extended" >
             <DataGrid.Style>
                 <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                     <Style.Triggers>
