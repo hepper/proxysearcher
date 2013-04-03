@@ -521,13 +521,6 @@
     <None Include="Resources\Application.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ClickStartButton.png" />
-    <Resource Include="Images\WaitForResults.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\CheckSearchCriteria.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Refresh.png" />
   </ItemGroup>
   <ItemGroup>

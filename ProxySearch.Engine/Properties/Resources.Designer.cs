@@ -70,6 +70,16 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This proxy type hides your ip, but proxy usage could be detected easily. 
+        ///Never transfer secure data with public proxy..
+        /// </summary>
+        internal static string AnonymousDetails {
+            get {
+                return ResourceManager.GetString("AnonymousDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot download content of &apos;{0}&apos;. In order to fix this issue go to Tools-&gt;Properties and change proxy checker url to valid one.
         /// </summary>
         internal static string CannotDownloadContent {
@@ -88,6 +98,18 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unfortunately we cannot detect type of this proxy. 
+        ///Probably it is offline or blocks our test service.
+        ///You still able to use this proxy on your own risk.
+        ///Never transfer secure data with public proxy..
+        /// </summary>
+        internal static string CannotVerifyDetails {
+            get {
+                return ResourceManager.GetString("CannotVerifyDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Changes content.
         /// </summary>
         internal static string ChangesContent {
@@ -97,11 +119,35 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to During detection type of this proxy downloaded content was changed . 
+        ///Most for all this proxy cannot be used free, it could infect your viruses 
+        ///or provide some commercial. Try to avoid usage proxy of this type.
+        ///Never transfer secure data with public proxy..
+        /// </summary>
+        internal static string ChangesContentDetails {
+            get {
+                return ResourceManager.GetString("ChangesContentDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High Anonymous.
         /// </summary>
         internal static string HighAnonymous {
             get {
                 return ResourceManager.GetString("HighAnonymous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This proxy type hides your ip and proxy usage cannot be detected easily. 
+        ///Some methods could detect proxy usage , but they dont give 100% guarantee 
+        ///that proxy usage will be detected. It is safest type of public proxy.
+        ///Never transfer secure data with public proxy..
+        /// </summary>
+        internal static string HighAnonymousDetails {
+            get {
+                return ResourceManager.GetString("HighAnonymousDetails", resourceCulture);
             }
         }
         
@@ -138,6 +184,16 @@ namespace ProxySearch.Engine.Properties {
         internal static string Transparent {
             get {
                 return ResourceManager.GetString("Transparent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This proxy type don&apos;t hide your ip and proxy usage could be detected easily. 
+        ///It is worst proxy type. Never transfer secure data with public proxy..
+        /// </summary>
+        internal static string TransparentDetails {
+            get {
+                return ResourceManager.GetString("TransparentDetails", resourceCulture);
             }
         }
         

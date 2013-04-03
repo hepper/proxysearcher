@@ -4,7 +4,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class SimpleProxyChecker : ProxyCheckerBase
+    public class SimpleProxyChecker : HttpProxyCheckerBase
     {
         protected override async Task<bool> Alive(ProxyInfo info)
         {

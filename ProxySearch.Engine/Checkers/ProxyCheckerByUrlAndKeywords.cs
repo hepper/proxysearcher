@@ -5,7 +5,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrlAndKeywords : ProxyCheckerBase
+    public class ProxyCheckerByUrlAndKeywords : HttpProxyCheckerBase
     {
         private string Url
         {

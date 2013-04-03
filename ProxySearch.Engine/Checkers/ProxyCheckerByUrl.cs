@@ -9,7 +9,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrl : ProxyCheckerBase
+    public class ProxyCheckerByUrl : HttpProxyCheckerBase
     {
         private string Url
         {

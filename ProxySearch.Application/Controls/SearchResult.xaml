@@ -113,7 +113,7 @@
                 <DataGridTemplateColumn Header="Type" Width="15*" SortMemberPath="Details.Type" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Name="textBox" Text="{Binding Path=Details.Type, Mode=OneWay}" />
+                            <TextBox Name="textBox" Text="{Binding Path=Details.Type, Mode=OneWay}" ToolTip="{Binding Path=Details.TypeDetails, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

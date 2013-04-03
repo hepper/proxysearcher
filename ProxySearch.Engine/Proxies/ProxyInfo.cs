@@ -1,7 +1,6 @@
 using System;
 using System.Net;
 using ProxySearch.Engine.Bandwidth;
-using ProxySearch.Engine.Proxies.Http;
 
 namespace ProxySearch.Engine.Proxies
 {
@@ -12,7 +11,6 @@ namespace ProxySearch.Engine.Proxies
             Address = address;
             Port = port;
             BandwidthData = new BandwidthData();
-            Details = new HttpProxyInfo();
         }
 
         public IPAddress Address
@@ -33,7 +31,7 @@ namespace ProxySearch.Engine.Proxies
             set;
         }
 
-        public HttpProxyInfo Details
+        public object Details
         {
             get;
             set;

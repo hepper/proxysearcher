@@ -65,16 +65,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 
                 ProxyInfo proxy = proxies.Single(item => item.AddressPort == info.ipport);
 
-                string proxyType = GetProxyType(info);
-
-                if (proxyType != null)
-                {
-                    proxy.Details = new HttpProxyInfo()
-                    {
-                        Type = proxyType
-                    };
-                }
-
+                proxy.Details = new HttpProxyDetails(GetProxyType(info));  
                 proxy.CountryInfo = new CountryInfo
                 {
                     Code = info.country_id.ToString(),
@@ -130,13 +121,8 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             return builder.ToString();
         }
 
-        private string GetProxyType(CheckerProxyNet_ProxyInfo info)
+        private HttpProxyTypes GetProxyType(CheckerProxyNet_ProxyInfo info)
         {
-            if (info == null)
-            {
-                return null;
-            }
-
             switch (info.type_2)
             {
                 case "<font color=orange><b>Anonymous proxy</b></font>":
@@ -146,7 +132,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
                 case "<font color=green><b>High anonymous / Elite proxy</b></font>":
                     return HttpProxyTypes.HighAnonymous;
                 default:
-                    return null;
+                    return HttpProxyTypes.CannotVerify;
             }
         }
     }

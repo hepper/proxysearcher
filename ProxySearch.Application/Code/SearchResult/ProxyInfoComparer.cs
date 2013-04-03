@@ -68,7 +68,7 @@ namespace ProxySearch.Console.Code.SearchResult
                     if (source.Details == null)
                         return null;
 
-                    return source.Details.Type;
+                    return source.Details.ToString();
                 case "BandwidthData":
                     return source.BandwidthData;
             }
