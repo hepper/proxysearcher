@@ -88,6 +88,7 @@
     <Compile Include="GeoIP\GeoIP.cs" />
     <Compile Include="CountryInfo.cs" />
     <Compile Include="Proxies\Http\HttpProxyTypes.cs" />
+    <Compile Include="Proxies\ProxyDetails.cs" />
     <Compile Include="SearchEngines\FolderSearch\FolderSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchOnPage.cs" />

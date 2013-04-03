@@ -1,4 +1,5 @@
-﻿using ProxySearch.Engine.Properties;
+﻿using System;
+using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Proxies.Http
 {

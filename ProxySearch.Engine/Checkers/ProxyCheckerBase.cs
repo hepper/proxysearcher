@@ -21,7 +21,7 @@ namespace ProxySearch.Engine.Checkers
                         if (await Alive(proxy))
                         {
                             proxy.CountryInfo = await geoIP.GetLocation(proxy.Address.ToString());
-                            proxy.Details = await GetProxyDetails(proxy);
+                            proxy.Details = new ProxyDetails(await GetProxyDetails(proxy), GetProxyDetails);
                             feedback.OnAliveProxy(proxy);
                         }
                     }

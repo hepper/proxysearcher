@@ -11,6 +11,7 @@ using ProxySearch.Console.Code.Collections;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Controls
@@ -20,13 +21,6 @@ namespace ProxySearch.Console.Controls
     /// </summary>
     public partial class SearchResult : UserControl, ISearchResult, INotifyPropertyChanged
     {
-        private enum RowStyle
-        {
-            Unused,
-            Used,
-            Selected
-        }
-
         public enum SearchProgress
         {
             NotStartedOrCancelled,
@@ -56,10 +50,9 @@ namespace ProxySearch.Console.Controls
 
             foreach (IProxyClient client in Context.Get<IProxyClientSearcher>().Clients)
             {
-                client.PropertyChanged += (sender, e) => UpdateGridStyle(((IProxyClient)sender).Proxy);
+                client.PropertyChanged += (sender, e) => PageData.Reset();
             }
-
-            DataGridControl.ItemContainerGenerator.StatusChanged += ItemContainerGenerator_StatusChanged;
+           
             SearchState = SearchProgress.NotStartedOrCancelled;
         }
 
@@ -136,80 +129,6 @@ namespace ProxySearch.Console.Controls
             }
 
             return data.Count;
-        }
-
-        private void ItemContainerGenerator_StatusChanged(object sender, EventArgs e)
-        {
-            if (DataGridControl.ItemContainerGenerator.Status == GeneratorStatus.ContainersGenerated)
-            {
-                UpdateGridStyle(null);
-            }
-        }
-
-        private void UpdateGridStyle(ProxyInfo proxy)
-        {
-            for (int i = 0; i < PageData.Count; i++)
-            {
-                if (proxy == PageData[i])
-                {
-                    Context.Get<UsedProxies>().Add(PageData[i]);
-                }
-
-                RowStyle style = GetRowStyle(PageData[i]);
-                ApplyStyle(PageData[i], style);
-            }
-        }
-
-        private RowStyle GetRowStyle(ProxyInfo currentProxyInfo)
-        {
-            if (Context.Get<IProxyClientSearcher>().Clients.Any(item => item.Proxy == currentProxyInfo))
-            {
-                return RowStyle.Selected;
-            }
-
-            if (Context.Get<UsedProxies>().Contains(currentProxyInfo))
-            {
-                return RowStyle.Used;
-            }
-
-            return RowStyle.Unused;
-        }
-
-        private void ApplyStyle(ProxyInfo proxyInfo, RowStyle style)
-        {
-            Brush brush = GetStyleBrush(style);
-
-            try
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    ContentPresenter contentPresenter = (ContentPresenter)DataGridControl.Columns[j].GetCellContent(proxyInfo);
-
-                    if (contentPresenter != null)
-                    {
-                        TextBox textBox = (TextBox)contentPresenter.ContentTemplate.FindName("textBox", contentPresenter);
-                        textBox.Foreground = brush;
-                    }
-                }
-            }
-            catch (InvalidOperationException)
-            {
-            }
-        }
-
-        private static Brush GetStyleBrush(RowStyle style)
-        {
-            switch (style)
-            {
-                case RowStyle.Unused:
-                    return Brushes.Black;
-                case RowStyle.Used:
-                    return Brushes.Gray;
-                case RowStyle.Selected:
-                    return Brushes.Blue;
-                default:
-                    throw new InvalidOperationException(string.Format(Properties.Resources.RowStyleIsNotSupported, style));
-            }
         }
 
         private void DataGridControl_Sorting(object sender, DataGridSortingEventArgs e)

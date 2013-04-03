@@ -16,7 +16,7 @@
         <Setter Property="ClipboardCopyMode" Value="IncludeHeader"/>
         <Setter Property="SelectionUnit" Value="FullRow"/>
         <Setter Property="GridLinesVisibility" Value="None"/>
-    </Style>
+     </Style>
 
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Margin" Value="0,0,0,0"/>
@@ -24,15 +24,10 @@
     </Style>
 
     <Style TargetType="{x:Type DataGridCell}">
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />        
         <Style.Resources>
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DataGridTextBox}" />
         </Style.Resources>
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True" >
-                <Setter Property="Background" Value="#A8B5FF" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource ControlStyle}" />

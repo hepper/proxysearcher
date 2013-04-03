@@ -8,11 +8,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400" Name="Result">
     <UserControl.Resources>
-        <ImageBrush x:Key="ClickStartButton" Stretch="None" ImageSource="/Images/ClickStartButton.png" />
-        <ImageBrush x:Key="WaitForResults" Stretch="None" ImageSource="/Images/WaitForResults.png" />
-        <ImageBrush x:Key="CheckSearchCriteria" Stretch="None" ImageSource="/Images/CheckSearchCriteria.png" />
         <converters:SizeToAngleConverter x:Key="sizeToAngleConverter" />
         <converters:CenterConverter x:Key="centerConverter" />
+        <converters:RowBackgroundColorConverter x:Key="rowBackgroundColorConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -77,7 +75,7 @@
 
         <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl"  Background="Transparent"
                   VirtualizingStackPanel.IsVirtualizing="False" VirtualizingPanel.IsContainerVirtualizable="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" 
-                  Sorting="DataGridControl_Sorting" SelectionMode="Extended" >
+                  Sorting="DataGridControl_Sorting" >
             <DataGrid.Style>
                 <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                     <Style.Triggers>
@@ -85,9 +83,24 @@
                             <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>                        
                     </Style.Triggers>
-                 </Style>
+                 </Style>                
             </DataGrid.Style>
-          
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Used" >
+                            <Setter Property="Background" Value="#0FA0A0A0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Selected" >
+                            <Setter Property="Background" Value="#A8B5FF" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Unused" >
+                            <Setter Property="Background" Value="Transparent" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="IP Address" Width="16*" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
@@ -110,10 +123,10 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Type" Width="15*" SortMemberPath="Details.Type" CanUserSort="True">
+                <DataGridTemplateColumn Header="Type" Width="15*" SortMemberPath="Details.Details.Type" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Name="textBox" Text="{Binding Path=Details.Type, Mode=OneWay}" ToolTip="{Binding Path=Details.TypeDetails, Mode=OneWay}" />
+                            <controls:HttpProxyDetailsControl Proxy="{Binding}" />                            
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

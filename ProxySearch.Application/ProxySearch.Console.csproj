@@ -111,6 +111,7 @@
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
+    <Compile Include="Code\Converters\RowBackgroundColorConverter.cs" />
     <Compile Include="Code\Converters\SizeToAngleConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
     <Compile Include="Code\Detectable\DetectableBase.cs" />
@@ -203,6 +204,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\UI\GeneralTabSettings.cs" />
+    <Compile Include="Code\UI\RowStyles.cs" />
     <Compile Include="Code\Version\VersionProvider.cs" />
     <Compile Include="Code\Version\VersionManager.cs" />
     <Compile Include="Controls\AboutControl.xaml.cs">
@@ -237,6 +239,9 @@
     </Compile>
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HttpProxyDetailsControl.xaml.cs">
+      <DependentUpon>HttpProxyDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
@@ -328,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GoogleEnginePropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HttpProxyDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

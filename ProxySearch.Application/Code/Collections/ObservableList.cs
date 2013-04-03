@@ -59,6 +59,11 @@ namespace ProxySearch.Console.Code.Collections
             return result;
         }
 
+        public void Reset()
+        {
+            FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
         private void FireCollectionChanged(NotifyCollectionChangedEventArgs arguments)
         {
             if (CollectionChanged != null)

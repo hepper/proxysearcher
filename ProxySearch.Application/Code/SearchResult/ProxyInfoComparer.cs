@@ -64,11 +64,11 @@ namespace ProxySearch.Console.Code.SearchResult
                         return null;
 
                     return source.CountryInfo.Name;
-                case "Details.Type":
+                case "Details.Details.Type":
                     if (source.Details == null)
                         return null;
 
-                    return source.Details.ToString();
+                    return source.Details.Details.ToString();
                 case "BandwidthData":
                     return source.BandwidthData;
             }

@@ -31,7 +31,7 @@ namespace ProxySearch.Engine.Proxies
             set;
         }
 
-        public object Details
+        public ProxyDetails Details
         {
             get;
             set;
