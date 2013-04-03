@@ -294,7 +294,7 @@ Response time: {0} s</value>
     <value>Unknown</value>
   </data>
   <data name="UpdateIsReadyToInstall" xml:space="preserve">
-    <value>New version of Proxy Searcher is avaliable. Do you want to get it now?</value>
+    <value>New version of Proxy Searcher is available. Do you want to get it now?</value>
   </data>
   <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
     <value>Wait until current operation is finished</value>

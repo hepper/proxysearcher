@@ -603,7 +603,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New version of Proxy Searcher is avaliable. Do you want to get it now?.
+        ///   Looks up a localized string similar to New version of Proxy Searcher is available. Do you want to get it now?.
         /// </summary>
         internal static string UpdateIsReadyToInstall {
             get {
