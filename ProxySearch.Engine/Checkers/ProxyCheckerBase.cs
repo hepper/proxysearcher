@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.GeoIP;
@@ -21,7 +22,7 @@ namespace ProxySearch.Engine.Checkers
                         if (await Alive(proxy))
                         {
                             proxy.CountryInfo = await geoIP.GetLocation(proxy.Address.ToString());
-                            proxy.Details = new ProxyDetails(await GetProxyDetails(proxy), GetProxyDetails);
+                            proxy.Details = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), GetProxyDetails);
                             feedback.OnAliveProxy(proxy);
                         }
                     }
@@ -30,6 +31,6 @@ namespace ProxySearch.Engine.Checkers
         }
 
         protected abstract Task<bool> Alive(ProxyInfo proxy);
-        protected abstract Task<object> GetProxyDetails(ProxyInfo proxy);
+        protected abstract Task<object> GetProxyDetails(ProxyInfo proxy, CancellationTokenSource cancellationToken);
     }
 }

@@ -11,7 +11,12 @@ namespace ProxySearch.Engine.Checkers
 {
     public class CheckerUtils
     {
-        public async Task<string> GetContentOrNull(string url, ProxyInfo proxyInfo)
+        public Task<string> GetContentOrNull(string url, ProxyInfo proxyInfo)
+        {
+            return GetContentOrNull(url, proxyInfo, Context.Get<CancellationTokenSource>());
+        }
+
+        public async Task<string> GetContentOrNull(string url, ProxyInfo proxyInfo, CancellationTokenSource cancellationToken)
         {
             IWebProxy proxy = proxyInfo == null ? null : new WebProxy(proxyInfo.Address.ToString(), proxyInfo.Port);
 
@@ -30,7 +35,7 @@ namespace ProxySearch.Engine.Checkers
                     };
 
                     using (HttpClient client = new HttpClient(handler))
-                    using (HttpResponseMessage response = await client.GetAsync(url, Context.Get<CancellationTokenSource>().Token))
+                    using (HttpResponseMessage response = await client.GetAsync(url, cancellationToken.Token))
                     {
                         if (!response.IsSuccessStatusCode)
                         {

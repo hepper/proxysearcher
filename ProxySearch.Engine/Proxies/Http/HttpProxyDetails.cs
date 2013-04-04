@@ -10,35 +10,43 @@ namespace ProxySearch.Engine.Proxies.Http
             switch (type)
             {
                 case HttpProxyTypes.Anonymous:
-                    Type = Resources.Anonymous;
-                    TypeDetails = Resources.AnonymousDetails;
+                    Name = Resources.Anonymous;
+                    Details = Resources.AnonymousDetails;
                     break;
                 case HttpProxyTypes.HighAnonymous:
-                    Type = Resources.HighAnonymous;
-                    TypeDetails = Resources.HighAnonymousDetails;
+                    Name = Resources.HighAnonymous;
+                    Details = Resources.HighAnonymousDetails;
                     break;
                 case HttpProxyTypes.Transparent:
-                    Type = Resources.Transparent;
-                    TypeDetails = Resources.TransparentDetails;
+                    Name = Resources.Transparent;
+                    Details = Resources.TransparentDetails;
                     break;
                 case HttpProxyTypes.ChangesContent:
-                    Type = Resources.ChangesContent;
-                    TypeDetails = Resources.ChangesContentDetails;
+                    Name = Resources.ChangesContent;
+                    Details = Resources.ChangesContentDetails;
                     break;
                 case HttpProxyTypes.CannotVerify:
-                    Type = Resources.CannotVerify;
-                    TypeDetails = Resources.CannotVerifyDetails;
+                    Name = Resources.CannotVerify;
+                    Details = Resources.CannotVerifyDetails;
                     break;
             }
+
+            Type = type;
         }
 
-        public string Type
+        public string Name
         {
             get;
             private set;
         }
 
-        public string TypeDetails
+        public string Details
+        {
+            get;
+            private set;
+        }
+
+        public HttpProxyTypes Type
         {
             get;
             private set;
@@ -46,7 +54,7 @@ namespace ProxySearch.Engine.Proxies.Http
 
         public override string ToString()
         {
-            return Type;
+            return Name;
         }
     }
 }

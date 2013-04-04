@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
@@ -9,9 +10,9 @@ namespace ProxySearch.Engine.Checkers
 {
     public abstract class HttpProxyCheckerBase : ProxyCheckerBase
     {
-        protected async override Task<object> GetProxyDetails(ProxyInfo proxy)
+        protected async override Task<object> GetProxyDetails(ProxyInfo proxy, CancellationTokenSource cancellationToken)
         {
-            string result = await Context.Get<CheckerUtils>().GetContentOrNull(ProxyTypeDetectorUrl, new ProxyInfo(proxy.Address, proxy.Port));
+            string result = await Context.Get<CheckerUtils>().GetContentOrNull(ProxyTypeDetectorUrl, new ProxyInfo(proxy.Address, proxy.Port), cancellationToken);
 
             if (result == null)
                 return new HttpProxyDetails(HttpProxyTypes.CannotVerify);

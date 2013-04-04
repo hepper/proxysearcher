@@ -106,8 +106,6 @@ namespace ProxySearch.Console.Controls
 
                     Context.Get<IActionInvoker>().UpdateStatus(string.Format(Properties.Resources.FoundProxiesFormat, Data.Count));
                 }
-
-                DataGridControl.UpdateLayout();
             }));
         }
 
