@@ -235,8 +235,8 @@
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
     <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change accuracy, probably page's content is too dynamic. Because of downloading page content this checker takes internet traffic.</value>
   </data>
-  <data name="ProxySearcherVersion" xml:space="preserve">
-    <value>Proxy Searcher 1.9</value>
+  <data name="ProxySearcherVersionFormat" xml:space="preserve">
+    <value>Proxy Searcher {0}.{1}</value>
   </data>
   <data name="Question" xml:space="preserve">
     <value>Question</value>

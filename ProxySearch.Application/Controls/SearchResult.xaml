@@ -81,25 +81,35 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=Result,  Path=PageData.Count}"  Value="0">
                             <Setter Property="Visibility" Value="Hidden" />
-                        </DataTrigger>                        
+                        </DataTrigger>
                     </Style.Triggers>
-                 </Style>                
+                </Style>
             </DataGrid.Style>
             <DataGrid.CellStyle>
                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Used" >
+                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Used">
                             <Setter Property="Background" Value="#0F050505" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Selected" >
-                            <Setter Property="Background" Value="#A8B5FF" />
+                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Selected">
+                            <Setter Property="Background" Value="#9FA8B5FF" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Unused" >
+                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Unused">
                             <Setter Property="Background" Value="Transparent" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.CellStyle>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <Trigger Property="DataGridRow.IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#A8B5FF" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
 
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="IP Address" Width="16*" SortMemberPath="AddressString" CanUserSort="True">
@@ -126,7 +136,7 @@
                 <DataGridTemplateColumn Header="Type" Width="15*" SortMemberPath="Details.Details.Type" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <controls:HttpProxyDetailsControl Proxy="{Binding}" />                            
+                            <controls:HttpProxyDetailsControl Proxy="{Binding}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -146,7 +156,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" />
     </Grid>
 </UserControl>

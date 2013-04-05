@@ -45,7 +45,11 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IVersionProvider>().Name;
+                int version = Context.Get<IVersionProvider>().Version;
+                int minor = version % 10;
+                int major = (version - version % 10) / 10 + 1;
+
+                return string.Format(Properties.Resources.ProxySearcherVersionFormat, major, minor);
             }
         }
     }

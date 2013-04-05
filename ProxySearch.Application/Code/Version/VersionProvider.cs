@@ -12,13 +12,5 @@ namespace ProxySearch.Console.Code.Version
                 return 9;
             }
         }
-
-        public string Name
-        {
-            get
-            {
-                return Resources.ProxySearcherVersion;
-            }
-        }
     }
 }

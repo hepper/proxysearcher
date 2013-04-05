@@ -431,11 +431,11 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proxy Searcher 1.9.
+        ///   Looks up a localized string similar to Proxy Searcher {0}.{1}.
         /// </summary>
-        internal static string ProxySearcherVersion {
+        internal static string ProxySearcherVersionFormat {
             get {
-                return ResourceManager.GetString("ProxySearcherVersion", resourceCulture);
+                return ResourceManager.GetString("ProxySearcherVersionFormat", resourceCulture);
             }
         }
         
