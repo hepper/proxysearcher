@@ -28,7 +28,7 @@ namespace ProxySearch.Console.Controls
 
         public void StartAsync(Action action)
         {
-            ThreadPool.SetMaxThreads(Context.Get<AllSettings>().MaxThreadCount, Context.Get<AllSettings>().MaxThreadCount);            
+            ThreadPool.SetMaxThreads(Context.Get<AllSettings>().MaxThreadCount, Context.Get<AllSettings>().MaxThreadCount);
 
             try
             {
@@ -91,6 +91,10 @@ namespace ProxySearch.Console.Controls
 
         public void SetException(Exception exception)
         {
+            //It is a bug of wpf grid. Just ignore it
+            if (exception is ArgumentOutOfRangeException && exception.Source == "PresentationFramework")
+                return;
+
             if (Dispatcher.CheckAccess())
             {
                 Context.Get<IExceptionLogging>().Write(exception);

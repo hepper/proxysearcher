@@ -50,7 +50,16 @@ namespace ProxySearch.Console.Controls
 
             foreach (IProxyClient client in Context.Get<IProxyClientSearcher>().Clients)
             {
-                client.PropertyChanged += (sender, e) => PageData.Reset();
+                IProxyClient clientCopy = client;
+                clientCopy.PropertyChanged += (sender, e) =>
+                {
+                    if (clientCopy.Proxy != null)
+                    {
+                        Context.Get<UsedProxies>().Add(clientCopy.Proxy);
+                    }
+
+                    PageData.Reset();
+                };
             }
            
             SearchState = SearchProgress.NotStartedOrCancelled;

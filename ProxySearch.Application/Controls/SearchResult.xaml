@@ -89,7 +89,7 @@
                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Used" >
-                            <Setter Property="Background" Value="#0FA0A0A0" />
+                            <Setter Property="Background" Value="#0F050505" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Selected" >
                             <Setter Property="Background" Value="#A8B5FF" />
