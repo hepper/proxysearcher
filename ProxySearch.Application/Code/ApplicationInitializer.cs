@@ -6,6 +6,7 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.Version;
+using ProxySearch.Engine;
 using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Console.Code
@@ -17,7 +18,12 @@ namespace ProxySearch.Console.Code
             Context.Set<IDetectableSearcher>(new DetectableSearcher());
             Context.Set<IProxyClientSearcher>(new ProxyClientSearcher());
             Context.Set(Settings);
-            Context.Set(UsedProxies);
+            Context.Set<IUsedProxies>(new ProxyStorage(ReadProxyList(Constants.UsedProxiesStorage.Location)));
+
+            ProxyStorage blacklist = new ProxyStorage(ReadProxyList(Constants.BlackListStorage.Location));
+            Context.Set<IBlackList>(blacklist);
+            Context.Set<IBlackListManager>(blacklist);
+
             Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
             if (!shutdown)
@@ -29,8 +35,9 @@ namespace ProxySearch.Console.Code
 
         public void Deinitialize()
         {
-            SaveSettings();
-            SaveUsedProxies();
+            File.WriteAllText(Constants.SettingsStorage.Location, Serializer.Serialize(Context.Get<AllSettings>()));
+            SaveProxyList(Constants.UsedProxiesStorage.Location, Context.Get<IUsedProxies>().ProxyList);
+            SaveProxyList(Constants.BlackListStorage.Location, Context.Get<IBlackListManager>().ProxyList);
         }
 
         private AllSettings Settings
@@ -47,28 +54,28 @@ namespace ProxySearch.Console.Code
             }
         }
 
-        private UsedProxies UsedProxies
+        private ProxyList BlackList
         {
             get
             {
-                if (!File.Exists(Constants.UsedProxiesStorage.Location))
-                {
-                    return new UsedProxies();
-                }
-
-                string usedProxiesXml = File.ReadAllText(Constants.UsedProxiesStorage.Location);
-                return new UsedProxies(Serializer.Deserialize<List<AddressPortPair>>(usedProxiesXml));
+                return ReadProxyList(Constants.BlackListStorage.Location);
             }
         }
 
-        private void SaveSettings()
+        private ProxyList ReadProxyList(string location)
         {
-            File.WriteAllText(Constants.SettingsStorage.Location, Serializer.Serialize<AllSettings>(Context.Get<AllSettings>()));
+            if (!File.Exists(location))
+            {
+                return new ProxyList();
+            }
+
+            string proxiesXml = File.ReadAllText(location);
+            return new ProxyList(Serializer.Deserialize<List<AddressPortPair>>(proxiesXml));
         }
 
-        private void SaveUsedProxies()
+        private void SaveProxyList(string location, ProxyList proxyList)
         {
-            File.WriteAllText(Constants.UsedProxiesStorage.Location, Serializer.Serialize<List<AddressPortPair>>(Context.Get<UsedProxies>().Proxies));
+            File.WriteAllText(location, Serializer.Serialize(proxyList.Proxies));
         }
     }
 }

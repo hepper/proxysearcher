@@ -6,6 +6,6 @@ namespace ProxySearch.Engine
 {
     public interface IProxyParser
     {
-        Task<List<ProxyInfo>> ParseProxiesAsync(string document);
+        Task<List<Proxy>> ParseProxiesAsync(string document);
     }
 }

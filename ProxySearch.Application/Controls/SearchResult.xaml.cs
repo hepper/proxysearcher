@@ -55,13 +55,13 @@ namespace ProxySearch.Console.Controls
                 {
                     if (clientCopy.Proxy != null)
                     {
-                        Context.Get<UsedProxies>().Add(clientCopy.Proxy);
+                        Context.Get<IUsedProxies>().Add(clientCopy.Proxy);
                     }
 
                     PageData.Reset();
                 };
             }
-           
+
             SearchState = SearchProgress.NotStartedOrCancelled;
         }
 
@@ -166,6 +166,32 @@ namespace ProxySearch.Console.Controls
             {
                 PageData.AddRange(Data.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).Take(Context.Get<AllSettings>().PageSize));
             }
+        }
+
+        private void AddToBlackList_Click(object sender, RoutedEventArgs e)
+        {
+            ProxyInfo proxy = (ProxyInfo)((Button)sender).Tag;
+
+            foreach (IProxyClient client in Context.Get<IProxyClientSearcher>().Clients.Where(item => item.Proxy == proxy))
+            {
+                client.Proxy = null;
+            }
+            
+            Context.Get<IBlackListManager>().Add(proxy);
+            PageData.Remove(proxy);
+
+            if (Paging.Page < Paging.PageCount)
+            {
+                int index = Paging.Page.Value * Context.Get<AllSettings>().PageSize;
+                PageData.Add(Data[index]);
+            }
+
+            if (PageData.Count == 0 && Paging.Page > 1)
+            {
+                Paging.Page--;
+            }
+
+            Data.Remove(proxy);
         }
 
         public void Started()

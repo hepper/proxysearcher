@@ -30,6 +30,11 @@ namespace ProxySearch.Console.Code
             public static readonly string Location = Working.Directory + "UsedProxiesStorage.xml";
         }
 
+        public static class BlackListStorage
+        {
+            public static readonly string Location = Working.Directory + "BlackList.xml";
+        }
+
         public static class ProxySettingsStorage
         {
             public static readonly string Location = Working.Directory + "ProxySettingsStorage.xml";            

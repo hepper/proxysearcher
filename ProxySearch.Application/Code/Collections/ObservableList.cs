@@ -55,6 +55,7 @@ namespace ProxySearch.Console.Code.Collections
             bool result = base.Remove(item);
 
             FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
+            FireCountChanged();
 
             return result;
         }

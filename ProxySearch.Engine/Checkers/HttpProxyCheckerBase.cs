@@ -10,9 +10,9 @@ namespace ProxySearch.Engine.Checkers
 {
     public abstract class HttpProxyCheckerBase : ProxyCheckerBase
     {
-        protected async override Task<object> GetProxyDetails(ProxyInfo proxy, CancellationTokenSource cancellationToken)
+        protected async override Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            string result = await Context.Get<CheckerUtils>().GetContentOrNull(ProxyTypeDetectorUrl, new ProxyInfo(proxy.Address, proxy.Port), cancellationToken);
+            string result = await Context.Get<Downloader>().GetContentOrNull(ProxyTypeDetectorUrl, proxy, cancellationToken);
 
             if (result == null)
                 return new HttpProxyDetails(HttpProxyTypes.CannotVerify);

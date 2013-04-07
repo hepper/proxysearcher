@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
@@ -36,8 +37,7 @@ namespace ProxySearch.Engine.Checkers
 
             try
             {
-
-                string content = Context.Get<CheckerUtils>().GetContentOrNull(Url, null).GetAwaiter().GetResult();
+                string content = Context.Get<Downloader>().GetContentOrNull(Url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult();
 
                 if (content == null)
                 {
@@ -51,11 +51,11 @@ namespace ProxySearch.Engine.Checkers
             }
         }
 
-        protected override async Task<bool> Alive(ProxyInfo info)
+        protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
         {
             try
             {
-                string content = await Context.Get<CheckerUtils>().GetContentOrNull(Url, info);
+                string content = await Context.Get<Downloader>().GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 
                 if (content == null)
                 {

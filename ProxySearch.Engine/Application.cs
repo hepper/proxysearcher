@@ -50,7 +50,7 @@ namespace ProxySearch.Engine
                     if (document == null)
                         continue;
 
-                    List<ProxyInfo> proxies = await proxyParser.ParseProxiesAsync(document);
+                    List<Proxy> proxies = await proxyParser.ParseProxiesAsync(document);
 
                     if (proxies.Any())
                         checker.CheckAsync(proxies, feedback, geoIP);

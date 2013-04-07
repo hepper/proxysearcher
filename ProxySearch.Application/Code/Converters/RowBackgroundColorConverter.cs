@@ -21,7 +21,7 @@ namespace ProxySearch.Console.Code.Converters
                 return RowStyles.Selected;
             }
 
-            if (Context.Get<UsedProxies>().Contains(proxy))
+            if (Context.Get<IUsedProxies>().Contains(proxy))
             {
                 return RowStyles.Used;
             }

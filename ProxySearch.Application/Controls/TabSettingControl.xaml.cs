@@ -175,9 +175,17 @@ namespace ProxySearch.Console.Controls
         {
             if (MessageBox.Show(Properties.Resources.DoYouReallyWantToClearProxyUsageHistory, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                Context.Get<UsedProxies>().Proxies.Clear();
+                Context.Get<IUsedProxies>().Clear();
             }
         }
+
+        private void ClearBlackList_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show(Properties.Resources.DoYouReallyWantToClearBlacklist, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Context.Get<IBlackListManager>().Clear();
+            }
+        }        
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

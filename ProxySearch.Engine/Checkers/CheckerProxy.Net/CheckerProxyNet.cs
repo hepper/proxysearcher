@@ -35,11 +35,11 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             BatchSize = batchSize;
         }
 
-        public async void CheckAsync(List<ProxyInfo> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
+        public async void CheckAsync(List<Proxy> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
         {
             for (int i = 0; true; i++)
             {
-                List<ProxyInfo> batch = proxies.Skip(i * BatchSize).Take(BatchSize).ToList();
+                List<Proxy> batch = proxies.Skip(i * BatchSize).Take(BatchSize).ToList();
 
                 if (!batch.Any())
                     return;
@@ -51,7 +51,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             }
         }
 
-        private async Task CheckBatchAsync(List<ProxyInfo> proxies, IProxySearchFeedback feedback)
+        private async Task CheckBatchAsync(List<Proxy> proxies, IProxySearchFeedback feedback)
         {
             CheckerProxyNet_ProxiesInfo result = await GetInfoOrNull(proxies);
 
@@ -63,7 +63,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
                 if (info.result == 0)
                     continue;
 
-                ProxyInfo proxy = proxies.Single(item => item.AddressPort == info.ipport);
+                ProxyInfo proxy = new ProxyInfo(proxies.Single(item => item.AddressPort == info.ipport));
 
                 proxy.Details = new ProxyDetails(new HttpProxyDetails(GetProxyType(info)));  
                 proxy.CountryInfo = new CountryInfo
@@ -76,7 +76,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             }
         }
 
-        private async Task<CheckerProxyNet_ProxiesInfo> GetInfoOrNull(List<ProxyInfo> proxies)
+        private async Task<CheckerProxyNet_ProxiesInfo> GetInfoOrNull(List<Proxy> proxies)
         {
             try
             {
@@ -107,7 +107,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             }
         }
 
-        private string BuildData(ProxyInfo[] proxies)
+        private string BuildData(Proxy[] proxies)
         {
             StringBuilder builder = new StringBuilder();
 

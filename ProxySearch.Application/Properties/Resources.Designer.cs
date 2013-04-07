@@ -197,6 +197,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to clear blacklist?.
+        /// </summary>
+        internal static string DoYouReallyWantToClearBlacklist {
+            get {
+                return ResourceManager.GetString("DoYouReallyWantToClearBlacklist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to clear proxy usage history?.
         /// </summary>
         internal static string DoYouReallyWantToClearProxyUsageHistory {

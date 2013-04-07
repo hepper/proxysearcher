@@ -73,7 +73,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return (int)Math.Ceiling((double)Count / Context.Get<AllSettings>().PageSize); ;
+                return (int)Math.Ceiling((double)Count / Context.Get<AllSettings>().PageSize);
             }
         }
 

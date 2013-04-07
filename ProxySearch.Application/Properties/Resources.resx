@@ -320,4 +320,7 @@ Response time: {0} s</value>
   <data name="UrlListEngineDescription" xml:space="preserve">
     <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
   </data>
+  <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
+    <value>Do you really want to clear blacklist?</value>
+  </data>
 </root>

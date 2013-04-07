@@ -3,14 +3,14 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.Settings
 {
-    public class UsedProxies : IComparer<AddressPortPair>
+    public class ProxyList : IComparer<AddressPortPair>
     {
-        public UsedProxies()
+        public ProxyList()
         {
             Proxies = new List<AddressPortPair>();
         }
 
-        public UsedProxies(List<AddressPortPair> proxies)
+        public ProxyList(List<AddressPortPair> proxies)
         {
             Proxies = new List<AddressPortPair>(proxies);
             Proxies.Sort(Compare);
@@ -22,7 +22,7 @@ namespace ProxySearch.Console.Code.Settings
             private set;
         }
 
-        public void Add(ProxyInfo proxyInfo)
+        public void Add(Proxy proxyInfo)
         {
             int index = FindIndex(proxyInfo);
             if (index < 0)
@@ -35,17 +35,17 @@ namespace ProxySearch.Console.Code.Settings
             }
         }
 
-        public bool Contains(ProxyInfo proxyInfo)
+        public bool Contains(Proxy proxy)
         {
-            return FindIndex(proxyInfo) >= 0;
+            return FindIndex(proxy) >= 0;
         }
 
-        private int FindIndex(ProxyInfo proxyInfo)
+        private int FindIndex(Proxy proxy)
         {
             return Proxies.BinarySearch(new AddressPortPair
             {
-                IPAddress = proxyInfo.Address,
-                Port = proxyInfo.Port
+                IPAddress = proxy.Address,
+                Port = proxy.Port
             }, this);
         }
 

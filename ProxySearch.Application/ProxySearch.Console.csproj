@@ -146,6 +146,7 @@
     <Compile Include="Code\Interfaces\IActionInvoker.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Interfaces\IBlackListManager.cs" />
     <Compile Include="Code\Interfaces\IControlNavigator.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -160,6 +161,7 @@
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
     <Compile Include="Code\Interfaces\ISearchControl.cs" />
     <Compile Include="Code\Interfaces\ISearchResult.cs" />
+    <Compile Include="Code\Interfaces\IUsedProxies.cs" />
     <Compile Include="Code\Interfaces\IVersionProvider.cs" />
     <Compile Include="Code\ProxyClients\BrowserClient.cs" />
     <Compile Include="Code\ProxyClients\ChromeClient.cs" />
@@ -199,7 +201,8 @@
     <Compile Include="Code\Settings\TabSettings.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Settings\UsedProxies.cs" />
+    <Compile Include="Code\Settings\ProxyList.cs" />
+    <Compile Include="Code\Settings\ProxyStorage.cs" />
     <Compile Include="Code\UI\DummyTabSettings.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -537,6 +540,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Measure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BlackList.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,23 +19,23 @@ namespace ProxySearch.Console.Code
         public Application Create(IProxySearchFeedback feedback)
         {
             Context.Set(new CancellationTokenSource());
-            Context.Set<CheckerUtils>(new CheckerUtils());
+            Context.Set<Downloader>(new Downloader());
 
             IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
             IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
 
-            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation, 
-                                                                                     Settings.SelectedTabSettings.SearchEngineSettings, 
+            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation,
+                                                                                     Settings.SelectedTabSettings.SearchEngineSettings,
                                                                                      searchEngineDetectable.InterfaceSettings);
- 
-            return new Application(searchEngine, 
-                                   new ProxyParser(), 
+
+            return new Application(searchEngine,
+                                   new ProxyParser(Context.Get<IBlackList>()),
                                    feedback,
-                                   CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation, 
-                                                                               Settings.SelectedTabSettings.ProxyCheckerSettings, 
-                                                                               proxyCheckerDetectable.InterfaceSettings), 
-                                   CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation, 
+                                   CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation,
+                                                                               Settings.SelectedTabSettings.ProxyCheckerSettings,
+                                                                               proxyCheckerDetectable.InterfaceSettings),
+                                   CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation,
                                                                         Settings.GeoIPSettings,
                                                                         geoIPDetectable.InterfaceSettings));
         }

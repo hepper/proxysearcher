@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
+using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
@@ -11,26 +12,46 @@ namespace ProxySearch.Engine.Checkers
 {
     public abstract class ProxyCheckerBase : IProxyChecker
     {
-        public void CheckAsync(List<ProxyInfo> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
+        public void CheckAsync(List<Proxy> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
         {
-            foreach (ProxyInfo proxy in proxies)
+            foreach (Proxy proxy in proxies)
             {
+                Proxy proxyCopy = proxy;
+
                 Task.Run(async () =>
                 {
                     using (Context.Get<TaskCounter>().Listen(TaskType.Search))
                     {
-                        if (await Alive(proxy))
+                        BanwidthInfo bandwidth = null;
+
+                        if (await Alive(proxyCopy, () => bandwidth = new BanwidthInfo()
                         {
-                            proxy.CountryInfo = await geoIP.GetLocation(proxy.Address.ToString());
-                            proxy.Details = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), GetProxyDetails);
-                            feedback.OnAliveProxy(proxy);
+                            BeginTime = DateTime.Now
+                        }, () => bandwidth.FirstTime = DateTime.Now, lenght =>
+                        {
+                           
+                            bandwidth.FirstCount = lenght * 2;
+                            bandwidth.EndTime = bandwidth.FirstTime;
+                            bandwidth.EndCount = bandwidth.FirstCount;
+                        }))
+                        {
+                            ProxyInfo proxyInfo = new ProxyInfo(proxyCopy)
+                            {
+                                CountryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString()),
+                                Details = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), GetProxyDetails)
+                            };
+
+                            if (bandwidth != null)
+                                Context.Get<BandwidthManager>().UpdateBandwidthData(proxyInfo, bandwidth);
+
+                            feedback.OnAliveProxy(proxyInfo);
                         }
                     }
                 });
             }
         }
 
-        protected abstract Task<bool> Alive(ProxyInfo proxy);
-        protected abstract Task<object> GetProxyDetails(ProxyInfo proxy, CancellationTokenSource cancellationToken);
+        protected abstract Task<bool> Alive(Proxy proxy, Action begin, Action firstTime, Action<int> end);
+        protected abstract Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken);
     }
 }

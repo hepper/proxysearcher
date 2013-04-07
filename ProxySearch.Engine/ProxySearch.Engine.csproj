@@ -75,9 +75,11 @@
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
     <Compile Include="Checkers\HttpProxyCheckerBase.cs" />
+    <Compile Include="EmptyBlackList.cs" />
+    <Compile Include="IBlackList.cs" />
     <Compile Include="Proxies\Http\HttpProxyDetails.cs" />
     <Compile Include="Checkers\ProxyCheckerBase.cs" />
-    <Compile Include="Checkers\CheckerUtils.cs" />
+    <Compile Include="Downloader.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrlAndKeywords.cs" />
     <Compile Include="Bandwidth\BandwidthData.cs" />
     <Compile Include="Bandwidth\BandwidthState.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="GeoIP\GeoIP.cs" />
     <Compile Include="CountryInfo.cs" />
     <Compile Include="Proxies\Http\HttpProxyTypes.cs" />
+    <Compile Include="Proxies\Proxy.cs" />
     <Compile Include="Proxies\ProxyDetails.cs" />
     <Compile Include="SearchEngines\FolderSearch\FolderSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchEngine.cs" />
