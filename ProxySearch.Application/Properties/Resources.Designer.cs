@@ -368,6 +368,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HTTP.
+        /// </summary>
+        internal static string Http {
+            get {
+                return ResourceManager.GetString("Http", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internet explorer.
         /// </summary>
         internal static string InternetExplorer {
@@ -391,6 +400,15 @@ namespace ProxySearch.Console.Properties {
         internal static string NewsLink {
             get {
                 return ResourceManager.GetString("NewsLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open findings.
+        /// </summary>
+        internal static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
             }
         }
         
@@ -590,6 +608,24 @@ namespace ProxySearch.Console.Properties {
         internal static string TicketsLink {
             get {
                 return ResourceManager.GetString("TicketsLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not check.
+        /// </summary>
+        internal static string TurnedOffProxyChecker {
+            get {
+                return ResourceManager.GetString("TurnedOffProxyChecker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches..
+        /// </summary>
+        internal static string TurnedOffProxyCheckerDetails {
+            get {
+                return ResourceManager.GetString("TurnedOffProxyCheckerDetails", resourceCulture);
             }
         }
         

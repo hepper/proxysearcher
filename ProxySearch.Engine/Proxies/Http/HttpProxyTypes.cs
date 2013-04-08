@@ -6,6 +6,7 @@
         HighAnonymous,
         Transparent,
         ChangesContent,
-        CannotVerify
+        CannotVerify,
+        Unchecked
     }
 }

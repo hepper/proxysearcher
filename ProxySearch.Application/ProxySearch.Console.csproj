@@ -131,6 +131,7 @@
     <Compile Include="Code\Detectable\ProxyCheckers\SimpleProxyCheckerDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\ProxyCheckers\TurnedOffProxyCheckerDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\FolderSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectable.cs">
       <SubType>Code</SubType>

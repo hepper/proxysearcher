@@ -173,4 +173,10 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   <data name="TurnedOffGeoIP" xml:space="preserve">
     <value>Turned Off</value>
   </data>
+  <data name="Unchecked" xml:space="preserve">
+    <value>Unchecked</value>
+  </data>
+  <data name="UncheckedDetails" xml:space="preserve">
+    <value>Ready for test</value>
+  </data>
 </root>

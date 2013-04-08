@@ -27,20 +27,22 @@ namespace ProxySearch.Console.Code.Settings
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
-                    CreateTabSettings("HTTP", new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C"))
+                    CreateHttpTabSettings(Resources.Http, new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C")),
+                    CreateOpenTabSettings()
                 }
             };
 
+            settings.ExportSettings.ExportSearchResult = true;
             settings.SelectedTabSettingsId = settings.TabSettings[0].Id;
             return settings;
         }
 
-        public TabSettings CreateTabSettings()
+        public TabSettings CreateHttpTabSettings()
         {
-            return CreateTabSettings(Resources.DefaultTabName, Guid.NewGuid());
+            return CreateHttpTabSettings(Resources.DefaultTabName, Guid.NewGuid());
         }
 
-        private TabSettings CreateTabSettings(string name, Guid guid)
+        private TabSettings CreateHttpTabSettings(string name, Guid guid)
         {
             return new TabSettings()
             {
@@ -48,6 +50,19 @@ namespace ProxySearch.Console.Code.Settings
                 Name = name,
                 ProxyCheckerDetectableType = typeof(CheckerByUrlDetectable).AssemblyQualifiedName,
                 SearchEngineDetectableType = typeof(GoogleEngineDetectable).AssemblyQualifiedName,
+                SearchEngineSettings = GetSettings<ISearchEngine>(),
+                ProxyCheckerSettings = GetSettings<IProxyChecker>()
+            };
+        }
+
+        private TabSettings CreateOpenTabSettings()
+        {
+            return new TabSettings()
+            {
+                Id = new Guid("D187270B-A4B2-4B47-A7A7-26DF26FD2EF1"),
+                Name = Resources.Open,
+                ProxyCheckerDetectableType = typeof(TurnedOffProxyCheckerDetectable).AssemblyQualifiedName,
+                SearchEngineDetectableType = typeof(FolderSearchEngineDetectable).AssemblyQualifiedName,
                 SearchEngineSettings = GetSettings<ISearchEngine>(),
                 ProxyCheckerSettings = GetSettings<IProxyChecker>()
             };

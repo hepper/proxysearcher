@@ -145,7 +145,7 @@ namespace ProxySearch.Console.Controls
         {
             if (e.AddedItems.Count == 1 && e.AddedItems[0].GetType() == typeof(DummyTabSettings))
             {
-                TabSettings settings = new DefaultSettingsFactory().CreateTabSettings();
+                TabSettings settings = new DefaultSettingsFactory().CreateHttpTabSettings();
                 AllTabSettings.Add(settings);
                 PropertyTabControl.SelectedValue = settings;
             }

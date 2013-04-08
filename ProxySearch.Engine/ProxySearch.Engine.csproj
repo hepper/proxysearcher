@@ -75,6 +75,7 @@
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
     <Compile Include="Checkers\HttpProxyCheckerBase.cs" />
+    <Compile Include="Checkers\TurnedOffProxyChecker.cs" />
     <Compile Include="EmptyBlackList.cs" />
     <Compile Include="IBlackList.cs" />
     <Compile Include="Proxies\Http\HttpProxyDetails.cs" />

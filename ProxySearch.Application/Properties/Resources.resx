@@ -323,4 +323,16 @@ Response time: {0} s</value>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
     <value>Do you really want to clear blacklist?</value>
   </data>
+  <data name="Http" xml:space="preserve">
+    <value>HTTP</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open findings</value>
+  </data>
+  <data name="TurnedOffProxyChecker" xml:space="preserve">
+    <value>Do not check</value>
+  </data>
+  <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
+    <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>
+  </data>
 </root>

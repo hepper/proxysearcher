@@ -29,6 +29,10 @@ namespace ProxySearch.Engine.Proxies.Http
                     Name = Resources.CannotVerify;
                     Details = Resources.CannotVerifyDetails;
                     break;
+                case HttpProxyTypes.Unchecked:
+                    Name = Resources.Unchecked;
+                    Details = Resources.UncheckedDetails;
+                    break;
             }
 
             Type = type;

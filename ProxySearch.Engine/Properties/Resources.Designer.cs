@@ -205,5 +205,23 @@ namespace ProxySearch.Engine.Properties {
                 return ResourceManager.GetString("TurnedOffGeoIP", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unchecked.
+        /// </summary>
+        internal static string Unchecked {
+            get {
+                return ResourceManager.GetString("Unchecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready for test.
+        /// </summary>
+        internal static string UncheckedDetails {
+            get {
+                return ResourceManager.GetString("UncheckedDetails", resourceCulture);
+            }
+        }
     }
 }
