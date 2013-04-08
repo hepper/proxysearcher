@@ -323,8 +323,8 @@ Response time: {0} s</value>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
     <value>Do you really want to clear blacklist?</value>
   </data>
-  <data name="Http" xml:space="preserve">
-    <value>HTTP</value>
+  <data name="Google" xml:space="preserve">
+    <value>Search in Google</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open findings</value>

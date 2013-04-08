@@ -16,12 +16,15 @@ namespace ProxySearch.Console.Code
         {
             if (Context.Get<AllSettings>().ExportSettings.ExportSearchResult)
             {
-                if (stream == null)
+                lock (this)
                 {
-                    stream = CreateFile();
-                }
+                    if (stream == null)
+                    {
+                        stream = CreateFile();
+                    }
 
-                stream.WriteLine(proxyInfo.ToString());
+                    stream.WriteLine(proxyInfo.ToString());
+                }
             }
 
             Context.Get<ISearchResult>().Add(proxyInfo);

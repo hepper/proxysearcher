@@ -314,6 +314,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search in Google.
+        /// </summary>
+        internal static string Google {
+            get {
+                return ResourceManager.GetString("Google", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://google.com.
         /// </summary>
         internal static string GoogleDotCom {
@@ -364,15 +373,6 @@ namespace ProxySearch.Console.Properties {
         internal static string HomePageLink {
             get {
                 return ResourceManager.GetString("HomePageLink", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HTTP.
-        /// </summary>
-        internal static string Http {
-            get {
-                return ResourceManager.GetString("Http", resourceCulture);
             }
         }
         

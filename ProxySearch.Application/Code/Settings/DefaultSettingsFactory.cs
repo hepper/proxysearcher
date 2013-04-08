@@ -27,7 +27,7 @@ namespace ProxySearch.Console.Code.Settings
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
-                    CreateHttpTabSettings(Resources.Http, new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C")),
+                    CreateHttpTabSettings(Resources.Google, new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C")),
                     CreateOpenTabSettings()
                 }
             };

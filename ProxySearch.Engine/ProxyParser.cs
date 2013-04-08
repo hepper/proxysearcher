@@ -20,7 +20,7 @@ namespace ProxySearch.Engine
         public ProxyParser(IBlackList blackList)
         {
             this.blackList = blackList;
-        }        
+        }
 
         public Task<List<Proxy>> ParseProxiesAsync(string document)
         {
@@ -53,7 +53,12 @@ namespace ProxySearch.Engine
             if (!ushort.TryParse(data[1], out port))
                 return null;
 
-            return new Proxy(IPAddress.Parse(data[0]), port);
+            IPAddress address;
+
+            if (!IPAddress.TryParse(data[0], out address))
+                return null;
+
+            return new Proxy(address, port);
         }
     }
 }

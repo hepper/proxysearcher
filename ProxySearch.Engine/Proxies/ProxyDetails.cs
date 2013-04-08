@@ -73,5 +73,10 @@ namespace ProxySearch.Engine.Proxies
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public override string ToString()
+        {
+            return Details.ToString();
+        }
     }
 }

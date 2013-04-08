@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0">Proxy Type</Label>
+            <Label Grid.Column="0">Search Type</Label>
             <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=MainFrameControl, Path=TabSettings}" 
                       SelectedValuePath="Id" SelectedValue="{Binding ElementName=MainFrameControl, Path=CurrentTabId}" 
                       DisplayMemberPath="Name" Name="CurrentTab" Margin="5, 0, 5, 0" />
