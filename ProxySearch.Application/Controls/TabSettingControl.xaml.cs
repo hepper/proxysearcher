@@ -167,6 +167,7 @@ namespace ProxySearch.Console.Controls
             if (MessageBox.Show(Properties.Resources.AllSettingsWillBeRevertedToTheirDefaults, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 AllSettings = new DefaultSettingsFactory().Create();
+                Context.Get<ISearchControl>().Rebind();
                 Context.Get<IControlNavigator>().GoTo(new SettingsControl());
             }
         }

@@ -19,12 +19,12 @@ namespace ProxySearch.Console.Controls
         public SearchControl()
         {
             InitializeComponent();
+
+            Context.Set<ISearchControl>(this);
         }
 
         private void BeginSearch_Click(object sender, RoutedEventArgs e)
         {
-            Context.Set<ISearchControl>(this);
-
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
             Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);
@@ -70,6 +70,12 @@ namespace ProxySearch.Console.Controls
             {
                 return Context.Get<AllSettings>().TabSettings;
             }
+        }
+
+        public void Rebind()
+        {
+            CurrentTab.GetBindingExpression(ComboBox.ItemsSourceProperty).UpdateTarget();
+            CurrentTab.GetBindingExpression(ComboBox.SelectedValueProperty).UpdateTarget();
         }
 
         public Guid CurrentTabId
