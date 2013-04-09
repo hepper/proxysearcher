@@ -314,7 +314,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search in Google.
+        ///   Looks up a localized string similar to HTTP (Google).
         /// </summary>
         internal static string Google {
             get {
@@ -418,6 +418,15 @@ namespace ProxySearch.Console.Properties {
         internal static string Opera {
             get {
                 return ResourceManager.GetString("Opera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP (list of urls).
+        /// </summary>
+        internal static string PredefinedUrlList {
+            get {
+                return ResourceManager.GetString("PredefinedUrlList", resourceCulture);
             }
         }
         

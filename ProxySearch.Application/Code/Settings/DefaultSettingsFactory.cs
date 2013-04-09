@@ -28,6 +28,7 @@ namespace ProxySearch.Console.Code.Settings
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
                     CreateHttpTabSettings(Resources.Google, new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C")),
+                    CreatePredefinedListTabSettings(),
                     CreateOpenTabSettings()
                 }
             };
@@ -63,6 +64,19 @@ namespace ProxySearch.Console.Code.Settings
                 Name = Resources.Open,
                 ProxyCheckerDetectableType = typeof(TurnedOffProxyCheckerDetectable).AssemblyQualifiedName,
                 SearchEngineDetectableType = typeof(FolderSearchEngineDetectable).AssemblyQualifiedName,
+                SearchEngineSettings = GetSettings<ISearchEngine>(),
+                ProxyCheckerSettings = GetSettings<IProxyChecker>()
+            };
+        }
+
+        private TabSettings CreatePredefinedListTabSettings()
+        {
+            return new TabSettings()
+            {
+                Id = new Guid("7793FED8-36EC-4545-9D9F-8D70A12D311C"),
+                Name = Resources.PredefinedUrlList,
+                ProxyCheckerDetectableType = typeof(CheckerByUrlDetectable).AssemblyQualifiedName,
+                SearchEngineDetectableType = typeof(UrlListSearchEngineDetectable).AssemblyQualifiedName,
                 SearchEngineSettings = GetSettings<ISearchEngine>(),
                 ProxyCheckerSettings = GetSettings<IProxyChecker>()
             };

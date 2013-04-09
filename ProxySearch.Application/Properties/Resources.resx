@@ -324,7 +324,7 @@ Response time: {0} s</value>
     <value>Do you really want to clear blacklist?</value>
   </data>
   <data name="Google" xml:space="preserve">
-    <value>Search in Google</value>
+    <value>HTTP (Google)</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open findings</value>
@@ -334,5 +334,8 @@ Response time: {0} s</value>
   </data>
   <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
     <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>
+  </data>
+  <data name="PredefinedUrlList" xml:space="preserve">
+    <value>HTTP (list of urls)</value>
   </data>
 </root>
