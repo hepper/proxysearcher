@@ -34,7 +34,7 @@ namespace ProxySearch.Console.Controls
         {
             Context.Set(new TaskCounter());
 
-            IProxySearchFeedback feedback = new ProxySearchFeedback();
+            ProxySearchFeedback feedback = new ProxySearchFeedback();
 
             Context.Get<TaskCounter>().OnStarted += Context.Get<IActionInvoker>().Begin;
 

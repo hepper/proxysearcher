@@ -11,12 +11,13 @@ using ProxySearch.Engine;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.SearchEngines;
+using ProxySearch.Engine.SearchEngines.FolderSearch;
 
 namespace ProxySearch.Console.Code
 {
     public class ProxySearchEngineApplicationFactory
     {
-        public Application Create(IProxySearchFeedback feedback)
+        public Application Create(ProxySearchFeedback feedback)
         {
             Context.Set(new CancellationTokenSource());
             Context.Set<Downloader>(new Downloader());
@@ -28,6 +29,7 @@ namespace ProxySearch.Console.Code
             ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation,
                                                                                      Settings.SelectedTabSettings.SearchEngineSettings,
                                                                                      searchEngineDetectable.InterfaceSettings);
+            feedback.ExportAllowed = !(searchEngine is FolderSearchEngine);
 
             return new Application(searchEngine,
                                    new ProxyParser(Context.Get<IBlackList>()),

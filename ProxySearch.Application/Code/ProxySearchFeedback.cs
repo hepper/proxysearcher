@@ -12,9 +12,20 @@ namespace ProxySearch.Console.Code
     {
         private StreamWriter stream = null;
 
+        public ProxySearchFeedback()
+        {
+            ExportAllowed = true;
+        }
+
+        public bool ExportAllowed
+        {
+            get;
+            set;
+        }
+
         public void OnAliveProxy(ProxyInfo proxyInfo)
         {
-            if (Context.Get<AllSettings>().ExportSettings.ExportSearchResult)
+            if (ExportAllowed && Context.Get<AllSettings>().ExportSettings.ExportSearchResult)
             {
                 lock (this)
                 {
