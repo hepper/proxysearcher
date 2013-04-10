@@ -112,7 +112,7 @@
             </DataGrid.RowStyle>
 
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Blacklist" Width="30" ToolTipService.ToolTip="Blacklist" SortMemberPath="AddressString" CanUserSort="True">
+                <DataGridTemplateColumn Header="Blacklist" Width="60" ToolTipService.ToolTip="Blacklist" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button BorderThickness="0" Width="30" Height="25" Focusable="False" Background="Transparent" Tag="{Binding}" Click="AddToBlackList_Click">
@@ -121,45 +121,45 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="IP Address" Width="14*" SortMemberPath="AddressString" CanUserSort="True">
+                <DataGridTemplateColumn Header="IP Address" Width="130" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Name="textBox" Text="{Binding Path=Address, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Port" Width="14*" SortMemberPath="Port" CanUserSort="True">
+                <DataGridTemplateColumn Header="Port" Width="70" SortMemberPath="Port" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Name="textBox" Text="{Binding Path=Port, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Country" Width="14*" SortMemberPath="CountryInfo.Name" CanUserSort="True">
+                <DataGridTemplateColumn Header="Country" Width="33*" SortMemberPath="CountryInfo.Name" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Name="textBox" Text="{Binding Path=CountryInfo.Name, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Type" Width="16*" SortMemberPath="Details.Details.Type" CanUserSort="True">
+                <DataGridTemplateColumn Header="Type" Width="33*" SortMemberPath="Details.Details.Type" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <controls:HttpProxyDetailsControl Proxy="{Binding}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Speed (response)" SortMemberPath="BandwidthData" Width="25*">
+                <DataGridTemplateColumn Header="Speed (response)" SortMemberPath="BandwidthData" Width="33*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <controls:BandwidthControl ProxyInfo="{Binding}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Usage" Width="14*">
+                <DataGridTemplateColumn Header="Usage" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" />
+                            <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" HorizontalContentAlignment="Center" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

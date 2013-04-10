@@ -17,6 +17,12 @@ namespace ProxySearch.Engine.Proxies
         {
         }
 
+        public ProxyInfo(string ipPort)
+            : base(ipPort)
+        {
+            BandwidthData = new BandwidthData();
+        }
+
         public CountryInfo CountryInfo
         {
             get;

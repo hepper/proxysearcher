@@ -11,6 +11,21 @@ namespace ProxySearch.Engine.Proxies
     {
         public Proxy(IPAddress address, ushort port)
         {
+            Init(address, port);
+        }
+
+        public Proxy(string addressPort)
+        {
+            string[] args = addressPort.Split(':');
+
+            if (args.Length != 2)
+                throw new ArgumentException();
+
+            Init(IPAddress.Parse(args[0]), ushort.Parse(args[1]));
+        }
+
+        private void Init(IPAddress address, ushort port)
+        {
             Address = address;
             Port = port;
         }

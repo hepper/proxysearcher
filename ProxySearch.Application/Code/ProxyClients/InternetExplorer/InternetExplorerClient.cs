@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Net;
 using Microsoft.Win32;
 using ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet;
 using ProxySearch.Console.Properties;
@@ -19,11 +18,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             if (!UseProxy)
                 return null;
 
-            string value = GetValue<string>(Constants.Browsers.IE.ProxyServer);
-
-            string[] arguments = GetHttpProxy(value).Split(':');
-
-            return new ProxyInfo(IPAddress.Parse(arguments[0]), ushort.Parse(arguments[1]));
+            return new ProxyInfo( GetValue<string>(Constants.Browsers.IE.ProxyServer));
         }
 
         private string GetHttpProxy(string value)

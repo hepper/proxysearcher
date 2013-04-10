@@ -23,6 +23,6 @@ namespace ProxySearch.Console.Code.ProxyClients.Opera
             StringBuilder temp = new StringBuilder(255);
             int i = GetPrivateProfileString(section, key, string.Empty, temp, 255, path);
             return temp.ToString();
-        }        
+        }
     }
 }

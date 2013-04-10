@@ -10,14 +10,14 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients
 {
-    public class FirefoxClient : RestartableBrowserClient
+    public class FirefoxClient : ConfigurableRestartableBrowserClient
     {
         private static readonly string proxyTypePref = "network.proxy.type";
         private static readonly string proxyHttpPref = "network.proxy.http";
         private static readonly string proxyPortPref = "network.proxy.http_port";
 
         public FirefoxClient()
-            : base(Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox")
+            : base(Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
         {
             
         }
@@ -51,26 +51,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                                  ushort.Parse(ReadPref(content, proxyPortPref)));
         }
 
-        protected override SettingsData BackupSettings()
-        {
-            if (File.Exists(SettingsPath))
-            {
-                File.Copy(SettingsPath, Constants.BackupsLocation.FirefoxSettings, true);
-            }
-
-            return new SettingsData();
-        }
-
-        protected override void RestoreSettings(SettingsData settings)
-        {
-            if (File.Exists(Constants.BackupsLocation.FirefoxSettings))
-            {
-                File.Copy(Constants.BackupsLocation.FirefoxSettings, SettingsPath, true);
-                File.Delete(Constants.BackupsLocation.FirefoxSettings);
-            }
-        }
-
-        private string SettingsPath
+        protected override string SettingsPath
         {
             get
             {

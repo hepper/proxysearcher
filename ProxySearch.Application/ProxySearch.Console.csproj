@@ -166,6 +166,7 @@
     <Compile Include="Code\Interfaces\IVersionProvider.cs" />
     <Compile Include="Code\ProxyClients\BrowserClient.cs" />
     <Compile Include="Code\ProxyClients\ChromeClient.cs" />
+    <Compile Include="Code\ProxyClients\ConfigurableRestartableBrowserClient.cs" />
     <Compile Include="Code\ProxyClients\FirefoxClient.cs" />
     <Compile Include="Code\ProxyClients\InternetExplorer\InternetExplorerClient.cs" />
     <Compile Include="Code\ProxyClients\InternetExplorer\WinInet\INTERNET_OPTION.cs" />

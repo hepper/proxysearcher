@@ -43,6 +43,7 @@ namespace ProxySearch.Console.Code
         public static class BackupsLocation
         {
             public static readonly string FirefoxSettings = Working.Directory + "firefox.settings.backup";
+            public static readonly string OperaSettings = Working.Directory + "opera.settings.backup";
         }
 
         public static class DefaultExportFolder
