@@ -377,6 +377,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internet explorer.
         /// </summary>
         internal static string InternetExplorer {
@@ -707,6 +716,15 @@ namespace ProxySearch.Console.Properties {
         internal static string WebServiceNetGeoIPServiceDescription {
             get {
                 return ResourceManager.GetString("WebServiceNetGeoIPServiceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot delete last search settings..
+        /// </summary>
+        internal static string YouCannotDeleteLastSearchSettings {
+            get {
+                return ResourceManager.GetString("YouCannotDeleteLastSearchSettings", resourceCulture);
             }
         }
         

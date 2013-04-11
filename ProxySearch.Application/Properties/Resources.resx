@@ -338,4 +338,10 @@ Response time: {0} s</value>
   <data name="PredefinedUrlList" xml:space="preserve">
     <value>HTTP (list of urls)</value>
   </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
+    <value>You cannot delete last search settings.</value>
+  </data>
 </root>

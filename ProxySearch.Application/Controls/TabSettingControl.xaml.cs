@@ -138,7 +138,10 @@ namespace ProxySearch.Console.Controls
 
         private void TabNameControl_Delete(object sender, RoutedEventArgs e)
         {
-            AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex - 1);
+            if (AllTabSettings.Count == 1)
+                MessageBox.Show(Properties.Resources.YouCannotDeleteLastSearchSettings, Properties.Resources.Information, MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+                AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex - 1);
         }
 
         private void PropertyTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -186,7 +189,7 @@ namespace ProxySearch.Console.Controls
             {
                 Context.Get<IBlackListManager>().Clear();
             }
-        }        
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
