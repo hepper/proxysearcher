@@ -17,6 +17,9 @@
                 <ResourceDictionary Source="Styles/DoubleUpDown.xaml"/>
                 <ResourceDictionary Source="Styles/CheckBox.xaml"/>
                 <ResourceDictionary Source="Styles/TextBlock.xaml"/>
+                <ResourceDictionary Source="Styles/ToggleButton.xaml"/>
+                <ResourceDictionary Source="Styles/TabControl.xaml"/>
+                <ResourceDictionary Source="Styles/ProgressBar.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

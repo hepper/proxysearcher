@@ -33,16 +33,10 @@
                     </DataTrigger>
                 </Style.Triggers>
             </Style>
-            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Background" Value="LightGray" />
+            <Style TargetType="TextBox" BasedOn="{StaticResource ReadOnlyTextBox}">
+              
                 <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding Converter={StaticResource pagingEnabledConverter}}" Value="False">
-                        <Setter Property="TextBox.IsReadOnly" Value="True" />
-                    </DataTrigger>
-                </Style.Triggers>
+                <Setter Property="HorizontalContentAlignment" Value="Center" />                
             </Style>
         </Grid.Resources>
 
@@ -63,7 +57,18 @@
             </Button.IsEnabled>
         </Button>
         <TextBox x:Name="CurrentPageTextBox" Grid.Column="3" Width="40" Margin="0,0,5,0" 
-                 Text="{Binding ElementName=Paging, Path=Page, Mode=TwoWay, TargetNullValue={x:Static system:String.Empty}, UpdateSourceTrigger=Explicit}" KeyUp="GoPage" />
+                 Text="{Binding ElementName=Paging, Path=Page, Mode=TwoWay, TargetNullValue={x:Static system:String.Empty}, UpdateSourceTrigger=Explicit}" KeyUp="GoPage">            
+            <TextBox.Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Converter={StaticResource pagingEnabledConverter}}" Value="True">
+                            <Setter Property="TextBox.IsReadOnly" Value="False" />
+                            <Setter Property="TextBox.Background" Value="Transparent" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>            
+        </TextBox>
         <Label Grid.Column="4">/</Label>
         <TextBox Grid.Column="5" Width="40" Margin="0,0,5,0" IsReadOnly="True" Text="{Binding Converter={StaticResource pageCountConverter}, Mode=OneWay}" />
         <Button Grid.Column="6" Content="&gt;" Width="40" Margin="0,0,5,0" Click="GoRight">

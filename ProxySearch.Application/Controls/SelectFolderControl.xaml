@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Grid.Column="0" Margin="0,0,5,0" Text="{Binding ElementName=ThisControl, Path=SelectedFolder, Mode=TwoWay}" 
-                 IsReadOnly="true" Background="LightGray" MouseDoubleClick="SelectFolder" Name="SelectedFoderTextBox" />
+                 Style="{StaticResource ReadOnlyTextBox}" MouseDoubleClick="SelectFolder" Name="SelectedFoderTextBox" />
 
         <Button Grid.Column="1" Width="25" FontWeight="Bold" Margin="0,0,5,0" IsEnabled="{Binding ElementName=ThisControl, Path=IsReadOnly, Converter={StaticResource boolInverterConverter}}"
                 Click="SelectFolder" ToolTip="Select folder">...</Button>

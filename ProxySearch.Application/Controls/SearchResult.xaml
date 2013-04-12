@@ -8,8 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400" Name="Result">
     <UserControl.Resources>
-        <converters:SizeToAngleConverter x:Key="sizeToAngleConverter" />
-        <converters:CenterConverter x:Key="centerConverter" />
         <converters:RowBackgroundColorConverter x:Key="rowBackgroundColorConverter" />
     </UserControl.Resources>
     <Grid>
@@ -18,25 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource WatermarkText}" />
-            </TextBlock.Style>
-            <TextBlock.RenderTransform>
-                <RotateTransform CenterX="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}, Path=ActualWidth, 
-                                 Converter={StaticResource centerConverter}}"
-                                 CenterY="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TextBlock}}, Path=ActualHeight, 
-                                 Converter={StaticResource centerConverter}}">
-                    <RotateTransform.Angle>
-                        <MultiBinding Converter="{StaticResource sizeToAngleConverter}">
-                            <Binding ElementName="Result" Path="ActualWidth" />
-                            <Binding ElementName="Result" Path="ActualHeight" />
-                        </MultiBinding>
-                    </RotateTransform.Angle>
-                </RotateTransform>
-            </TextBlock.RenderTransform>
-            Proxy Searcher
-        </TextBlock>
+        <controls:WatermarkControl Grid.Row="0" Grid.RowSpan="2" />
 
         <controls:DataGridHelpControl Grid.Row="0" Text="Please wait a little for results">
             <controls:DataGridHelpControl.Style>
@@ -73,7 +53,7 @@
             </controls:DataGridHelpControl.Style>
         </controls:DataGridHelpControl>
 
-        <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl"  Background="Transparent"
+        <DataGrid Grid.Row="0" ItemsSource="{Binding ElementName=Result, Path=PageData}" Name="DataGridControl"
                   VirtualizingStackPanel.IsVirtualizing="False" VirtualizingPanel.IsContainerVirtualizable="False" EnableColumnVirtualization="False" EnableRowVirtualization="False" 
                   Sorting="DataGridControl_Sorting" >
             <DataGrid.Style>
@@ -105,7 +85,7 @@
                 <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
                     <Style.Triggers>
                         <Trigger Property="DataGridRow.IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#A8B5FF" />
+                            <Setter Property="Background" Value="#7F6875FF" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -115,7 +95,7 @@
                 <DataGridTemplateColumn Header="Blacklist" Width="60" ToolTipService.ToolTip="Blacklist" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button BorderThickness="0" Width="30" Height="25" Focusable="False" Background="Transparent" Tag="{Binding}" Click="AddToBlackList_Click">
+                            <Button BorderThickness="0" Width="30" Height="25" Focusable="False" Tag="{Binding}" Click="AddToBlackList_Click">
                                 <Image Source="/Images/BlackList.png" ToolTip="Add to blacklist" />
                             </Button>
                         </DataTemplate>

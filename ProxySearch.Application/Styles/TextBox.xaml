@@ -11,8 +11,10 @@
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Background" Value="{x:Null}" />
-        <Setter Property="SelectionBrush" Value="Green" />
     </Style>
 
+    <Style x:Key="ReadOnlyTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource ControlStyle}">
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="Background" Value="#1F000000" />
+    </Style>
 </ResourceDictionary>

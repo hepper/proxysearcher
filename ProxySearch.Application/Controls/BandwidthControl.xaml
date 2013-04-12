@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Grid.Column="0" Margin="0,0,5,0">Ready</TextBox>
-            <Button Grid.Column="1" Width="40" Height="25" Name="MeasureButton" Click="MeasureButton_Click" ToolTip="Measure"  Background="White">
+            <Button Grid.Column="1" Width="40" Height="25" Name="MeasureButton" Click="MeasureButton_Click" ToolTip="Measure">
                 <Image Grid.Column="0" Source="/Images/Measure.png" />
             </Button>
         </Grid>
@@ -41,7 +41,7 @@
             </Grid.ColumnDefinitions>
 
             <ProgressBar Grid.Column="0" Value="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.Progress, Mode=OneWay}" Margin="0,0,5,0" ToolTip="Test is in progress" />
-            <Button Grid.Column="1" Width="40" Height="25" Click="CancelButton_Click" ToolTip="Cancel" Background="White">
+            <Button Grid.Column="1" Width="40" Height="25" Click="CancelButton_Click" ToolTip="Cancel">
                 <Image Grid.Column="0" Source="/Images/Cancel.png" />
             </Button>
         </Grid>
@@ -74,7 +74,7 @@
                     </MultiBinding>
                 </TextBox.Background>
             </TextBox>
-            <Button Grid.Column="1" Width="40" Height="25" Click="MeasureButton_Click" ToolTip="Retry" Background="White">
+            <Button Grid.Column="1" Width="40" Height="25" Click="MeasureButton_Click" ToolTip="Retry">
                 <Image Grid.Column="0" Source="/Images/Refresh.png" />
             </Button>
         </Grid>

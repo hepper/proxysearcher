@@ -9,100 +9,102 @@
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              x:Name="TabSettings" DataContext="{Binding RelativeSource={RelativeSource Self}}">
-
-    <TabControl ItemsSource="{Binding Path=ExtendedTabSettings}" Name="PropertyTabControl" SelectionChanged="PropertyTabControl_SelectionChanged">
-        <TabControl.ItemTemplate>
-            <DataTemplate>
-                <ContentControl Content="{Binding}">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type ui:GeneralTabSettings}">
-                            <Label>General</Label>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type settings:TabSettings}">
-                            <controls:TabNameControl TabName="{Binding Name, Mode=TwoWay}" Menu="TabNameControl_Menu"  Delete="TabNameControl_Delete"
+    <Grid>
+        <controls:WatermarkControl />
+        <TabControl ItemsSource="{Binding Path=ExtendedTabSettings}" Name="PropertyTabControl" SelectionChanged="PropertyTabControl_SelectionChanged">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type ui:GeneralTabSettings}">
+                                <Label>General</Label>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:TabSettings}">
+                                <controls:TabNameControl TabName="{Binding Name, Mode=TwoWay}" Menu="TabNameControl_Menu"  Delete="TabNameControl_Delete"
                                          Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}}" />
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type ui:DummyTabSettings}">
-                            <Label>+</Label>
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
-            </DataTemplate>
-        </TabControl.ItemTemplate>
-        <TabControl.ContentTemplate>
-            <DataTemplate>
-                <ContentControl Content="{Binding}">
-                    <ContentControl.Resources>
-                        <DataTemplate DataType="{x:Type ui:GeneralTabSettings}" >
-                            <Grid Margin="{StaticResource DefaultMargin}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type ui:DummyTabSettings}">
+                                <Label>+</Label>
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type ui:GeneralTabSettings}" >
+                                <Grid Margin="{StaticResource DefaultMargin}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="130" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="130" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <Label Grid.Row="0" Grid.Column="0">Check for updates</Label>
-                                <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.CheckUpdates}" />
+                                    <Label Grid.Row="0" Grid.Column="0">Check For Updates</Label>
+                                    <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.CheckUpdates}" />
 
-                                <controls:DetectableSelectorControl  Grid.Row="1" Grid.ColumnSpan="2" SelectorName="Geo IP" 
+                                    <controls:DetectableSelectorControl  Grid.Row="1" Grid.ColumnSpan="2" SelectorName="Geo IP" 
                                                      Arguments="{Binding ElementName=TabSettings, Path=AllSettings.GeoIPSettings}"
                                                      Detectables="{Binding ElementName=TabSettings, Path=GeoIPs}" 
                                                      SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedGeoIPIndex, Mode=TwoWay}"  />
 
-                                <Label Grid.Row="2" Grid.Column="0">Page size</Label>
+                                    <Label Grid.Row="2" Grid.Column="0">Page Size</Label>
                                 <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" TextAlignment="Left" Margin="0, 0, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.PageSize}" Minimum="5" Maximum="100" />
 
-                                <Label Grid.Row="3" Grid.Column="0">Thread count</Label>
+                                    <Label Grid.Row="3" Grid.Column="0">Thread Count</Label>
                                 <toolkit:IntegerUpDown Grid.Row="3" Grid.Column="1" TextAlignment="Left" Margin="0, 5, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.MaxThreadCount}" />
 
-                                <controls:ExportSearchResultControl Grid.Row="4" Grid.ColumnSpan="2" Margin="0, 0, 5, 0" />
-                                <controls:BandwidthSettingsControl Grid.Row="5" Grid.ColumnSpan="2" Margin="0, 5, 5, 0" />
+                                    <controls:ExportSearchResultControl Grid.Row="4" Grid.ColumnSpan="2" Margin="0, 0, 5, 0" />
+                                    <controls:BandwidthSettingsControl Grid.Row="5" Grid.ColumnSpan="2" Margin="0, 5, 5, 0" />
 
-                                <Grid  Grid.Row="6" Grid.ColumnSpan="2">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+                                    <Grid  Grid.Row="6" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                    <Button Grid.Column="0" Margin="0,10,10,0" Width="130" Click="ClearHistory_Click">Clear history</Button>
-                                    <Button Grid.Column="1" Margin="0,10,0,0" Width="130" Click="ClearBlackList_Click">Clear blacklist</Button>
-                                    <Button Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,0,0" Width="130" Click="RestoreDefaults_Click">Restore defaults</Button>
+                                        <Button Grid.Column="0" Margin="0,10,10,0" Width="130" Click="ClearHistory_Click">Clear history</Button>
+                                        <Button Grid.Column="1" Margin="0,10,0,0" Width="130" Click="ClearBlackList_Click">Clear blacklist</Button>
+                                        <Button Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,0,0" Width="130" Click="RestoreDefaults_Click">Restore defaults</Button>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type settings:TabSettings}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type settings:TabSettings}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                                <controls:DetectableSelectorControl Margin="5,10,5,5"  Grid.Row="0" SelectorName="Search Engine"
+                                    <controls:DetectableSelectorControl Margin="5,10,5,5"  Grid.Row="0" SelectorName="Search Engine"
                                                              Arguments="{Binding Path=SearchEngineSettings}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=SearchEngines}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedSearchEngineIndex, Mode=TwoWay}" />
-                                <controls:DetectableSelectorControl Margin="5,0,5,5" Grid.Row="1" SelectorName="Checker Type"
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5" Grid.Row="1" SelectorName="Checker Type"
                                                              Arguments="{Binding Path=ProxyCheckerSettings}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=ProxyCheckers}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedProxyCheckerIndex, Mode=TwoWay}" />
-                            </Grid>
-                        </DataTemplate>
-                        <DataTemplate DataType="{x:Type ui:DummyTabSettings}">
-                            <Label />
-                        </DataTemplate>
-                    </ContentControl.Resources>
-                </ContentControl>
-            </DataTemplate>
-        </TabControl.ContentTemplate>
-    </TabControl>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type ui:DummyTabSettings}">
+                                <Label />
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
 </UserControl>
