@@ -51,6 +51,17 @@ namespace ProxySearch.Console.Controls
             }
         }
 
+        public TabSettings CurrentTabSettings
+        {
+            get
+            {
+                var tabIndex = PropertyTabControl.SelectedIndex > 0 && PropertyTabControl.SelectedIndex <= AllTabSettings.Count
+                                   ? PropertyTabControl.SelectedIndex - 1
+                                   : 0;
+                return AllTabSettings[tabIndex];
+            }
+        }
+
         public ObservableCollection<object> ExtendedTabSettings
         {
             get;
@@ -85,11 +96,11 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return SearchEngines.FindIndex(item => item.GetType().AssemblyQualifiedName == AllTabSettings[PropertyTabControl.SelectedIndex - 1].SearchEngineDetectableType);
+                return SearchEngines.FindIndex(item => item.GetType().AssemblyQualifiedName == CurrentTabSettings.SearchEngineDetectableType);
             }
             set
             {
-                AllTabSettings[PropertyTabControl.SelectedIndex - 1].SearchEngineDetectableType = SearchEngines[value].GetType().AssemblyQualifiedName;
+                CurrentTabSettings.SearchEngineDetectableType = SearchEngines[value].GetType().AssemblyQualifiedName;
             }
         }
 
@@ -97,11 +108,11 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return ProxyCheckers.FindIndex(item => item.GetType().AssemblyQualifiedName == AllTabSettings[PropertyTabControl.SelectedIndex - 1].ProxyCheckerDetectableType);
+                return ProxyCheckers.FindIndex(item => item.GetType().AssemblyQualifiedName == CurrentTabSettings.ProxyCheckerDetectableType);
             }
             set
             {
-                AllTabSettings[PropertyTabControl.SelectedIndex - 1].ProxyCheckerDetectableType = ProxyCheckers[value].GetType().AssemblyQualifiedName;
+                CurrentTabSettings.ProxyCheckerDetectableType = ProxyCheckers[value].GetType().AssemblyQualifiedName;
             }
         }
 
