@@ -120,10 +120,6 @@
   <data name="AllSettingsWillBeRevertedToTheirDefaults" xml:space="preserve">
     <value>All settings will be reverted to their defaults. Do you want to continue?</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Application" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Application.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BuiltInGeoIPDescription" xml:space="preserve">
     <value>Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time</value>
   </data>
@@ -343,5 +339,9 @@ Response time: {0} s</value>
   </data>
   <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
     <value>You cannot delete last search settings.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="world128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\world128x128.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -70,16 +70,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon Application {
-            get {
-                object obj = ResourceManager.GetObject("Application", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time.
         /// </summary>
         internal static string BuiltInGeoIPDescription {
@@ -716,6 +706,16 @@ namespace ProxySearch.Console.Properties {
         internal static string WebServiceNetGeoIPServiceDescription {
             get {
                 return ResourceManager.GetString("WebServiceNetGeoIPServiceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon world128x128 {
+            get {
+                object obj = ResourceManager.GetObject("world128x128", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
