@@ -106,7 +106,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                if (Detectables == null || Arguments == null || !SelectedIndex.HasValue)
+                if (Detectables == null || Arguments == null || !SelectedIndex.HasValue || SelectedIndex.Value == -1 || DetectableComboBox.SelectedIndex == -1)
                 {
                     return null;
                 }
