@@ -3983,10 +3983,10 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
-		<row><td>NewShortcut1_38E2017719CD464E80F7659CB71015A1.exe</td><td/><td>C:\Projects\ProxySearcher\ProxySearch.Application\Resources\Application.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Projects\ProxySearcher\ProxySearch.Application\Resources\world128x128.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_70557077C73B43AD9FCEAB887B174C77.exe</td><td/><td>C:\Users\Burd\Desktop\ProxySearcher\ProxySearch.Application\Resources\Application.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_B681F507361441A5B03C825834605337.exe</td><td/><td>C:\Projects\ProxySearcher\ProxySearch.Application\Resources\Application.ico</td><td>0</td></row>
+		<row><td>NewShortcut1_D3203109D66F4268AC3B30344CA64E13.exe</td><td/><td>C:\Projects\ProxySearcher\ProxySearch.Application\Resources\world128x128.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4659,7 +4659,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING4##</td><td>ProxySearch.Console.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_38E2017719CD464E80F7659CB71015A1.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>NewShortcut1</td><td>DesktopFolder</td><td>##ID_STRING4##</td><td>ProxySearch.Console.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td>NewShortcut1_D3203109D66F4268AC3B30344CA64E13.exe</td><td>0</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
