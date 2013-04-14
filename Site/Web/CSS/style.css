@@ -55,6 +55,8 @@
     font-size: 30px;
     font-weight: normal;
     text-align: left;
+    line-height: 60px;
+    vertical-align: middle;
 }
 
 .text
@@ -192,4 +194,11 @@
 .social-buttons
 {
     float: right;
+    margin-top: 25px;
+}
+
+.program-logo
+{
+    float: left;
+    margin-right: 20px;
 }
