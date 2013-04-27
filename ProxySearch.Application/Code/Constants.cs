@@ -53,9 +53,6 @@ namespace ProxySearch.Console.Code
 
         public static class Browsers
         {
-            public static readonly string StartMenuInternet64Bit = @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet";
-            public static readonly string StartMenuInternet32Bit = @"SOFTWARE\Clients\StartMenuInternet";
-
             public static readonly string BrowserPath64Bit = @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet\{0}\shell\open\command";
             public static readonly string BrowserPath32Bit = @"SOFTWARE\Clients\StartMenuInternet\{0}\shell\open\command";
 

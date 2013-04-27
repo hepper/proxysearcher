@@ -18,20 +18,32 @@ namespace ProxySearch.Console.Code.ProxyClients
         {
             get
             {
-                return InstalledBrowsers.Contains(clientName);
+                return RegistryKey != null;
             }
         }
 
-        private List<string> InstalledBrowsers
+        private string browserPath = null;
+        protected string BrowserPath
         {
             get
             {
-                RegistryKey browserKeys = Registry.LocalMachine.OpenSubKey(Constants.Browsers.StartMenuInternet64Bit);
+                if (browserPath ==null)
+                    browserPath = (string)RegistryKey.GetValue(null);
 
-                if (browserKeys == null)
-                    browserKeys = Registry.LocalMachine.OpenSubKey(Constants.Browsers.StartMenuInternet32Bit);
+                return browserPath;
+            }
+        }
 
-                return browserKeys.GetSubKeyNames().ToList();
+        private RegistryKey RegistryKey
+        {
+            get
+            {
+                RegistryKey browserPath = Registry.LocalMachine.OpenSubKey(string.Format(Constants.Browsers.BrowserPath64Bit, clientName));
+
+                if (browserPath != null)
+                    return browserPath;
+
+                return Registry.LocalMachine.OpenSubKey(string.Format(Constants.Browsers.BrowserPath32Bit, clientName));
             }
         }
     }
