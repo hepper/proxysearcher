@@ -6,11 +6,11 @@ using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
 
-namespace ProxySearch.Engine.Checkers
+namespace ProxySearch.Engine.Utils
 {
-    public abstract class HttpProxyCheckerBase : ProxyCheckerBase
+    public class HttpUtils
     {
-        protected async override Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        public async Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             string result = await Context.Get<Downloader>().GetContentOrNull(ProxyTypeDetectorUrl, proxy, cancellationToken);
 

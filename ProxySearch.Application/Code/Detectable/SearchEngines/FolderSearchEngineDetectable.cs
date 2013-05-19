@@ -9,7 +9,8 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
     public class FolderSearchEngineDetectable : DetectableBase<ISearchEngine, FolderSearchEngine, FolderSearchEngineControl>
     {
         public FolderSearchEngineDetectable()
-            : base(Resources.FolderSearchEngine, Resources.FolderSearchEngineDescription, 1, new List<object> { Constants.DefaultExportFolder.Location })
+            : base(Resources.FolderSearchEngine, Resources.FolderSearchEngineDescription,
+                   1, new string[] { Resources.HttpProxyType, Resources.SocksProxyType }, new List<object> { Constants.DefaultExportFolder.Location })
         {
         }
     }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.SearchEngines;
@@ -10,7 +9,8 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
     class UrlListSearchEngineDetectable : DetectableBase<ISearchEngine, UrlListSearchEngine, UrlListPropertyControl>
     {
         public UrlListSearchEngineDetectable()
-            : base(Resources.UrlListEngine, Resources.UrlListEngineDescription, 2, new List<object>
+            : base(Resources.UrlListEngine, Resources.UrlListEngineDescription, 2, new string[] { Resources.HttpProxyType, Resources.SocksProxyType }, 
+            new List<object>
             {
                 "http://www.aliveproxy.com/proxy-list-port-3128/\n" +
                 "http://www.proxynova.com/proxy-server-list/port-3128/\n" +

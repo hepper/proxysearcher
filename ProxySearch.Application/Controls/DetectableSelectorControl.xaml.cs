@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
-using System.ComponentModel;
 
 namespace ProxySearch.Console.Controls
 {
@@ -72,7 +65,7 @@ namespace ProxySearch.Console.Controls
                 return (int?)this.GetValue(SelectedIndexProperty);
             }
             set
-            {
+            { 
                 this.SetValue(SelectedIndexProperty, value);
             }
         }
@@ -81,7 +74,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                if (Detectables == null || !SelectedIndex.HasValue)
+                if (Detectables == null || !SelectedIndex.HasValue || SelectedIndex.Value == -1)
                 {
                     return null;
                 }
@@ -111,7 +104,7 @@ namespace ProxySearch.Console.Controls
                     return null;
                 }
 
-                ParametersPair pair = Arguments.FirstOrDefault(item => item.TypeName == Detectables[SelectedIndex.Value].Implementation.AssemblyQualifiedName);
+                ParametersPair pair = Arguments.FirstOrDefault(item => item.TypeName == Detectables[SelectedIndex.Value].GetType().AssemblyQualifiedName);
                 List<object> parameters = (pair == null) ? Detectables[SelectedIndex.Value].DefaultSettings : pair.Parameters;
 
                 if (Detectables[DetectableComboBox.SelectedIndex].PropertyPage == null)

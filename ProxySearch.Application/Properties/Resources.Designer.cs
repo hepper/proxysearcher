@@ -367,6 +367,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HTTP.
+        /// </summary>
+        internal static string HttpProxyType {
+            get {
+                return ResourceManager.GetString("HttpProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This type allows to find http proxies.
+        /// </summary>
+        internal static string HttpProxyTypeDescription {
+            get {
+                return ResourceManager.GetString("HttpProxyTypeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Information.
         /// </summary>
         internal static string Information {
@@ -579,6 +597,33 @@ namespace ProxySearch.Console.Properties {
         internal static string SimpleSite {
             get {
                 return ResourceManager.GetString("SimpleSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SOCKS (Google).
+        /// </summary>
+        internal static string SocksGoogleSearchType {
+            get {
+                return ResourceManager.GetString("SocksGoogleSearchType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SOCKS.
+        /// </summary>
+        internal static string SocksProxyType {
+            get {
+                return ResourceManager.GetString("SocksProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This type allows to find socks proxies.
+        /// </summary>
+        internal static string SocksProxyTypeDesciption {
+            get {
+                return ResourceManager.GetString("SocksProxyTypeDesciption", resourceCulture);
             }
         }
         

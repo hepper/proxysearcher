@@ -10,7 +10,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrl : HttpProxyCheckerBase
+    public abstract class ProxyCheckerByUrlBase : ProxyCheckerBase
     {
         private string Url
         {
@@ -30,26 +30,28 @@ namespace ProxySearch.Engine.Checkers
             set;
         }
 
-        public ProxyCheckerByUrl(string url, double accuracy)
+        public ProxyCheckerByUrlBase(string url, double accuracy)
         {
             Url = url;
             Accuracy = accuracy;
 
             try
             {
-                string content = Context.Get<Downloader>().GetContentOrNull(Url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult();
+                string content = Context.Get<Downloader>().GetContentOrNull(url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult(); 
 
                 if (content == null)
                 {
-                    throw new InvalidOperationException(string.Format(Resources.CannotDownloadContent, Url));
+                    throw new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url));
                 }
 
                 AnalyzedText = AnalyzeText(content);
             }
-            catch(TaskCanceledException)
-            {
+            catch (TaskCanceledException)
+            {                
             }
         }
+
+        protected abstract Task<string> Download(string url, Proxy proxy, Action begin, Action firstTime, Action<int> end);
 
         protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
         {

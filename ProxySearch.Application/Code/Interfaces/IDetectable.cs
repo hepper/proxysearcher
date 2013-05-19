@@ -44,5 +44,10 @@ namespace ProxySearch.Console.Code.Interfaces
         {
             get;
         }
+
+        string[] SupportedProxyTypes
+        {
+            get;
+        }
     }
 }

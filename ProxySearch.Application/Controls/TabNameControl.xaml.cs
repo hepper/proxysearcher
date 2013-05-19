@@ -1,10 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Controls.Primitives;
-using System;
 using System.Windows.Threading;
 
 namespace ProxySearch.Console.Controls
@@ -20,6 +20,7 @@ namespace ProxySearch.Console.Controls
         public static RoutedEvent DeleteEvent = EventManager.RegisterRoutedEvent("Delete", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TabNameControl));
         public static RoutedEvent MenuEvent = EventManager.RegisterRoutedEvent("Menu", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(TabNameControl));
         public static readonly DependencyProperty TabNameProperty = DependencyProperty.Register("TabName", typeof(string), typeof(TabNameControl));
+        private string oldName;
 
         public TabNameControl()
         {
@@ -31,12 +32,13 @@ namespace ProxySearch.Console.Controls
                 Mode = BindingMode.TwoWay,
             };
 
-            label.SetBinding(Label.ContentProperty, binding);
-            textBox.SetBinding(TextBox.TextProperty, binding);
-
+            label = new Label();
+            label.SetBinding(Label.ContentProperty, binding);            
             label.MouseDoubleClick += label_MouseDoubleClick;
+
             textBox.LostFocus += textBox_LostFocus;
             textBox.KeyDown += textBox_KeyDown;
+            textBox.SetBinding(TextBox.TextProperty, binding);
         }
 
         public event RoutedEventHandler Delete
@@ -118,6 +120,10 @@ namespace ProxySearch.Console.Controls
             {
                 EndRename();
             }
+            else if (e.Key == Key.Escape)
+            {
+                CancelRename();
+            }
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -130,6 +136,7 @@ namespace ProxySearch.Console.Controls
 
         private void BeginRename()
         {
+            oldName = TabName;
             NameContent.Content = textBox;
 
             Dispatcher.BeginInvoke(DispatcherPriority.ApplicationIdle, new Action(() =>
@@ -143,6 +150,12 @@ namespace ProxySearch.Console.Controls
         private void EndRename()
         {
             NameContent.Content = label;
+        }
+
+        private void CancelRename()
+        {
+            textBox.Text = oldName;            
+            EndRename();
         }
     }
 }

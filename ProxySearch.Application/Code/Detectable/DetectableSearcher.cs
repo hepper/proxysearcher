@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Engine;
 using System.Reflection;
+using ProxySearch.Console.Code.Interfaces;
 
 namespace ProxySearch.Console.Code.Detectable
 {
@@ -18,6 +16,13 @@ namespace ProxySearch.Console.Code.Detectable
                                                   .Where(instance => instance.Interface == typeof(T))
                                                   .OrderBy(instance => instance.Order)
                                                   .ToList();
+        }
+
+        public List<IDetectable> Get<T>(IDetectable proxyTypeDetectable)
+        {
+            IProxyType proxyType = (IProxyType)Activator.CreateInstance(proxyTypeDetectable.Implementation);
+
+            return Get<T>().Where(item => item.SupportedProxyTypes.Contains(proxyType.Type)).ToList();
         }
     }
 }

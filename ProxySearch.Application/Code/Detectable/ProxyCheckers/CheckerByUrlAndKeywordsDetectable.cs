@@ -8,7 +8,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public class CheckerByUrlAndKeywordsDetectable : DetectableBase<IProxyChecker, ProxyCheckerByUrlAndKeywords, CheckerByUrlAndKeywordsControl>
     {
         public CheckerByUrlAndKeywordsDetectable()
-            : base(Resources.ProxyCheckerByUrlAndKeywords, Resources.ProxyCheckerByUrlAndKeywordsDescription, 2, new List<object>
+            : base(Resources.ProxyCheckerByUrlAndKeywords, Resources.ProxyCheckerByUrlAndKeywordsDescription, 1, new string[] { Resources.HttpProxyType }, new List<object>
                 {
                     Resources.GoogleDotCom,
                     Resources.GoogleDotComContent

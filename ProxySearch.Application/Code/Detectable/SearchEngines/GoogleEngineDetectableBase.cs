@@ -7,10 +7,11 @@ using ProxySearch.Engine.SearchEngines.Google;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
-    public class GoogleEngineDetectable : DetectableBase<ISearchEngine, GoogleSearchEngine, GoogleEnginePropertyControl>
+    public abstract class GoogleEngineDetectableBase : DetectableBase<ISearchEngine, GoogleSearchEngine, GoogleEnginePropertyControl>
     {
-        public GoogleEngineDetectable()
-            : base(Resources.GoogleDotCom, Resources.GoogleEngineDescription, 0, new List<object> { 40, "http proxy list 3128" })
+        public GoogleEngineDetectableBase(string supportedProxyType, string defaultKeywords)
+            : base(Resources.GoogleDotCom, Resources.GoogleEngineDescription, 0, new string[] { supportedProxyType },
+                   new List<object> { 40, defaultKeywords })
         {
         }
 

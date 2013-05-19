@@ -7,6 +7,7 @@ using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.Detectable.GeoIPs;
 using ProxySearch.Console.Code.Detectable.ProxyCheckers;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
+using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
@@ -27,9 +28,10 @@ namespace ProxySearch.Console.Code.Settings
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
-                    CreateHttpTabSettings(Resources.Google, new Guid("0EBFAAA5-C241-4560-822C-0E2429F3F03C")),
-                    CreatePredefinedListTabSettings(),
-                    CreateOpenTabSettings()
+                    CreateTabSettings<HTTPGoogleEngineDetectable, HttpCheckerByUrlDetectable>("0EBFAAA5-C241-4560-822C-0E2429F3F03C", Resources.Google, Resources.HttpProxyType),
+                    CreateTabSettings<UrlListSearchEngineDetectable, HttpCheckerByUrlDetectable>("7793FED8-36EC-4545-9D9F-8D70A12D311C", Resources.PredefinedUrlList, Resources.HttpProxyType),
+                    CreateTabSettings<SOCKSGoogleEngineDetectable, SocksCheckerByUrlDetectable>("29D8044B-FFC1-4FF1-AC8A-150FFEC365CE", Resources.SocksGoogleSearchType, Resources.SocksProxyType),
+                    CreateTabSettings<HTTPGoogleEngineDetectable, HttpCheckerByUrlDetectable>("D187270B-A4B2-4B47-A7A7-26DF26FD2EF1", Resources.Open, Resources.HttpProxyType)
                 }
             };
 
@@ -38,45 +40,29 @@ namespace ProxySearch.Console.Code.Settings
             return settings;
         }
 
-        public TabSettings CreateHttpTabSettings()
+        public TabSettings CreateDefaultTabSettings()
         {
-            return CreateHttpTabSettings(Resources.DefaultTabName, Guid.NewGuid());
+            return CreateTabSettings<HTTPGoogleEngineDetectable, HttpCheckerByUrlDetectable>(Guid.NewGuid(), Resources.DefaultTabName, Resources.HttpProxyType);
         }
 
-        private TabSettings CreateHttpTabSettings(string name, Guid guid)
+        private TabSettings CreateTabSettings<SearchEngineType, ProxyCheckerType>(string id, string name, string proxyType)
+            where SearchEngineType : IDetectable
+            where ProxyCheckerType : IDetectable
+        {
+            return CreateTabSettings<SearchEngineType, ProxyCheckerType>(new Guid(id), name, proxyType);
+        }
+
+        private TabSettings CreateTabSettings<SearchEngineType, ProxyCheckerType>(Guid id, string name, string proxyType)
+            where SearchEngineType : IDetectable
+            where ProxyCheckerType : IDetectable
         {
             return new TabSettings()
             {
-                Id = guid,
+                Id = id,
                 Name = name,
-                ProxyCheckerDetectableType = typeof(CheckerByUrlDetectable).AssemblyQualifiedName,
-                SearchEngineDetectableType = typeof(GoogleEngineDetectable).AssemblyQualifiedName,
-                SearchEngineSettings = GetSettings<ISearchEngine>(),
-                ProxyCheckerSettings = GetSettings<IProxyChecker>()
-            };
-        }
-
-        private TabSettings CreateOpenTabSettings()
-        {
-            return new TabSettings()
-            {
-                Id = new Guid("D187270B-A4B2-4B47-A7A7-26DF26FD2EF1"),
-                Name = Resources.Open,
-                ProxyCheckerDetectableType = typeof(TurnedOffProxyCheckerDetectable).AssemblyQualifiedName,
-                SearchEngineDetectableType = typeof(FolderSearchEngineDetectable).AssemblyQualifiedName,
-                SearchEngineSettings = GetSettings<ISearchEngine>(),
-                ProxyCheckerSettings = GetSettings<IProxyChecker>()
-            };
-        }
-
-        private TabSettings CreatePredefinedListTabSettings()
-        {
-            return new TabSettings()
-            {
-                Id = new Guid("7793FED8-36EC-4545-9D9F-8D70A12D311C"),
-                Name = Resources.PredefinedUrlList,
-                ProxyCheckerDetectableType = typeof(CheckerByUrlDetectable).AssemblyQualifiedName,
-                SearchEngineDetectableType = typeof(UrlListSearchEngineDetectable).AssemblyQualifiedName,
+                ProxyType = proxyType,
+                SearchEngineDetectableType = typeof(SearchEngineType).AssemblyQualifiedName,
+                ProxyCheckerDetectableType = typeof(ProxyCheckerType).AssemblyQualifiedName,
                 SearchEngineSettings = GetSettings<ISearchEngine>(),
                 ProxyCheckerSettings = GetSettings<IProxyChecker>()
             };
@@ -86,7 +72,7 @@ namespace ProxySearch.Console.Code.Settings
         {
             return Context.Get<IDetectableSearcher>().Get<T>().Select(item => new ParametersPair
             {
-                TypeName = item.Implementation.AssemblyQualifiedName,
+                TypeName = item.GetType().AssemblyQualifiedName,
                 Parameters = item.DefaultSettings
             }).ToList();
         }

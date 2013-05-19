@@ -128,17 +128,23 @@
     <Compile Include="Code\Detectable\GeoIPs\GeoIPDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\ProxyCheckers\CheckerByUrlDetectableBase.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\CheckerProxyNetDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\CheckerByUrlAndKeywordsDetectable.cs" />
-    <Compile Include="Code\Detectable\ProxyCheckers\CheckerByUrlDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\HttpCheckerByUrlDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\SimpleProxyCheckerDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Detectable\ProxyCheckers\TurnedOffProxyCheckerDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyType\HttpProxyTypeDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyType\SocksProxyTypeDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\SOCKSGoogleEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\FolderSearchEngineDetectable.cs" />
-    <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectable.cs">
+    <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\SearchEngines\HTTPGoogleEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\SocksCheckerByUrlDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\UrlListSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
@@ -163,6 +169,7 @@
     <Compile Include="Code\Interfaces\IProxyClient.cs" />
     <Compile Include="Code\Interfaces\IProxyClientRestartable.cs" />
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
+    <Compile Include="Code\Interfaces\IProxyType.cs" />
     <Compile Include="Code\Interfaces\ISearchControl.cs" />
     <Compile Include="Code\Interfaces\ISearchResult.cs" />
     <Compile Include="Code\Interfaces\IUsedProxies.cs" />
@@ -189,6 +196,9 @@
     <Compile Include="Code\ProxySearchFeedback.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\ProxyType\HttpProxyType.cs" />
+    <Compile Include="Code\ProxyType\ProxyTypeBase.cs" />
+    <Compile Include="Code\ProxyType\SocksProxyType.cs" />
     <Compile Include="Code\SearchResult\ProxyInfoComparer.cs" />
     <Compile Include="Code\SearchResult\PreventChangeSortingDirection.cs" />
     <Compile Include="Code\Serializer.cs">

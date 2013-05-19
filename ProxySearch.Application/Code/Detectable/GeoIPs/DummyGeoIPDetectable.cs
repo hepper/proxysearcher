@@ -7,7 +7,7 @@ namespace ProxySearch.Console.Code.Detectable.GeoIPs
     public class DummyGeoIPDetectable : SimpleDetectableBase<IGeoIP, TurnOffGeoIP>
     {
         public DummyGeoIPDetectable()
-            : base(Resources.DummyGeoIP, Resources.DummyGeoIPDescription, 0)
+            : base(Resources.DummyGeoIP, Resources.DummyGeoIPDescription, 0, null)
         {
         }
     }

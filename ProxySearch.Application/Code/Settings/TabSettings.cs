@@ -26,6 +26,12 @@ namespace ProxySearch.Console.Code.Settings
             set;
         }
 
+        public string ProxyType
+        {
+            get;
+            set;
+        }
+
         public string SearchEngineDetectableType
         {
             get;

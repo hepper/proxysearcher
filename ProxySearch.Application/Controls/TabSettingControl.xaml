@@ -60,10 +60,10 @@
                                                      SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedGeoIPIndex, Mode=TwoWay}"  />
 
                                     <Label Grid.Row="2" Grid.Column="0">Page Size</Label>
-                                <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" TextAlignment="Left" Margin="0, 0, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.PageSize}" Minimum="5" Maximum="100" />
+                                    <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" TextAlignment="Left" Margin="0, 0, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.PageSize}" Minimum="5" Maximum="100" />
 
                                     <Label Grid.Row="3" Grid.Column="0">Thread Count</Label>
-                                <toolkit:IntegerUpDown Grid.Row="3" Grid.Column="1" TextAlignment="Left" Margin="0, 5, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.MaxThreadCount}" />
+                                    <toolkit:IntegerUpDown Grid.Row="3" Grid.Column="1" TextAlignment="Left" Margin="0, 5, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.MaxThreadCount}" />
 
                                     <controls:ExportSearchResultControl Grid.Row="4" Grid.ColumnSpan="2" Margin="0, 0, 5, 0" />
                                     <controls:BandwidthSettingsControl Grid.Row="5" Grid.ColumnSpan="2" Margin="0, 5, 5, 0" />
@@ -86,13 +86,18 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <controls:DetectableSelectorControl Margin="5,10,5,5"  Grid.Row="0" SelectorName="Search Engine"
+                                    <controls:DetectableSelectorControl Name="ProxyType" Margin="5,10,5,5"  Grid.Row="0" SelectorName="Proxy Type"
+                                                             Arguments="{x:Null}"
+                                                             Detectables="{Binding ElementName=TabSettings, Path=ProxyTypes}"                                                             
+                                                             SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedProxyTypeIndex, Mode=TwoWay}" />
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5"  Grid.Row="1" SelectorName="Search Engine"
                                                              Arguments="{Binding Path=SearchEngineSettings}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=SearchEngines}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedSearchEngineIndex, Mode=TwoWay}" />
-                                    <controls:DetectableSelectorControl Margin="5,0,5,5" Grid.Row="1" SelectorName="Checker Type"
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5" Grid.Row="2" SelectorName="Checker Type"
                                                              Arguments="{Binding Path=ProxyCheckerSettings}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=ProxyCheckers}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedProxyCheckerIndex, Mode=TwoWay}" />

@@ -26,7 +26,7 @@ namespace ProxySearch.Console.Code
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
             IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
 
-            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable.Implementation,
+            ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable,
                                                                                      Settings.SelectedTabSettings.SearchEngineSettings,
                                                                                      searchEngineDetectable.InterfaceSettings);
             feedback.ExportAllowed = !(searchEngine is FolderSearchEngine);
@@ -34,10 +34,10 @@ namespace ProxySearch.Console.Code
             return new Application(searchEngine,
                                    new ProxyParser(Context.Get<IBlackList>()),
                                    feedback,
-                                   CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable.Implementation,
+                                   CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable,
                                                                                Settings.SelectedTabSettings.ProxyCheckerSettings,
                                                                                proxyCheckerDetectable.InterfaceSettings),
-                                   CreateImplementationInstance<IGeoIP>(geoIPDetectable.Implementation,
+                                   CreateImplementationInstance<IGeoIP>(geoIPDetectable,
                                                                         Settings.GeoIPSettings,
                                                                         geoIPDetectable.InterfaceSettings));
         }
@@ -62,11 +62,12 @@ namespace ProxySearch.Console.Code
             }
         }
 
-        private T CreateImplementationInstance<T>(Type type, List<ParametersPair> parametersList, List<object> interfacesList)
+        private T CreateImplementationInstance<T>(IDetectable detectable, List<ParametersPair> parametersList, List<object> interfacesList)
         {
             try
             {
-                ParametersPair parameterPair = parametersList.SingleOrDefault(item => item.TypeName == type.AssemblyQualifiedName);
+                Type type = detectable.Implementation;
+                ParametersPair parameterPair = parametersList.SingleOrDefault(item => item.TypeName == detectable.GetType().AssemblyQualifiedName);
 
                 if (parameterPair == null && !interfacesList.Any())
                     return (T)Activator.CreateInstance(type);

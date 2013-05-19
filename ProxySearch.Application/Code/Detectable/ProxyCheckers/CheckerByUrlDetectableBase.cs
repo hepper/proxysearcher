@@ -6,10 +6,11 @@ using ProxySearch.Engine.Checkers;
 
 namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
 {
-    public class CheckerByUrlDetectable : SimpleDetectableBase<IProxyChecker, ProxyCheckerByUrl>
+    public abstract class CheckerByUrlDetectableBase<ProxyCheckerType>: SimpleDetectableBase<IProxyChecker, ProxyCheckerType>
+       where ProxyCheckerType: IProxyChecker
     {
-        public CheckerByUrlDetectable()
-            : base(Resources.ProxyCheckerByUrl, Resources.ProxyCheckerByUrlDescription, 1)
+        public CheckerByUrlDetectableBase(string supportedProxyType)
+            : base(Resources.ProxyCheckerByUrl, Resources.ProxyCheckerByUrlDescription, 0, new string[] { supportedProxyType })
         {
         }
 

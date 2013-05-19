@@ -5,7 +5,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class SimpleProxyChecker : HttpProxyCheckerBase
+    public class SimpleProxyChecker : ProxyCheckerBase
     {
         protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
         {
@@ -22,6 +22,11 @@ namespace ProxySearch.Engine.Checkers
 
                 return true;
             }
+        }
+
+        protected override Task<object> GetProxyDetails(Proxy proxy, System.Threading.CancellationTokenSource cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

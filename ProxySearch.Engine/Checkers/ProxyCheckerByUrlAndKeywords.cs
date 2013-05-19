@@ -4,10 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Utils;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrlAndKeywords : HttpProxyCheckerBase
+    public class ProxyCheckerByUrlAndKeywords : ProxyCheckerBase
     {
         private string Url
         {
@@ -32,6 +33,11 @@ namespace ProxySearch.Engine.Checkers
             string content = await Context.Get<Downloader>().GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 
             return !Keywords.Any(item => !content.Contains(item));
+        }
+
+        protected override Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        {
+            return new HttpUtils().GetProxyDetails(proxy, cancellationToken);
         }
     }
 }

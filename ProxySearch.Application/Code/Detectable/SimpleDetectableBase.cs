@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ProxySearch.Console.Code.Interfaces;
-using System.Windows.Controls;
 
 namespace ProxySearch.Console.Code.Detectable
 {
     public abstract class SimpleDetectableBase<InterfaceType, ImplementationType> : IDetectable
     {
-        public SimpleDetectableBase(string friendlyName, string description, int order)
-        {            
+        public SimpleDetectableBase(string friendlyName, string description, int order, string[] supportedProxyTypes)
+        {
             FriendlyName = friendlyName;
             Description = description;
             Interface = typeof(InterfaceType);
             Implementation = typeof(ImplementationType);
             Order = order;
+            SupportedProxyTypes = supportedProxyTypes;
+        }
+
+        public SimpleDetectableBase(string friendlyName, string description, int order)
+            : this(friendlyName, description, order, new string[] { })
+        {
         }
 
         public string FriendlyName
@@ -43,6 +46,12 @@ namespace ProxySearch.Console.Code.Detectable
         }
 
         public int Order
+        {
+            get;
+            private set;
+        }
+
+        public string[] SupportedProxyTypes
         {
             get;
             private set;

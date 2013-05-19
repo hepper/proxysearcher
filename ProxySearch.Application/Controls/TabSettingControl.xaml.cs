@@ -72,7 +72,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<ISearchEngine>();
+                return Context.Get<IDetectableSearcher>().Get<ISearchEngine>(ProxyTypes[SelectedProxyTypeIndex]);
             }
         }
 
@@ -80,7 +80,15 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<IProxyChecker>();
+                return Context.Get<IDetectableSearcher>().Get<IProxyChecker>(ProxyTypes[SelectedProxyTypeIndex]);
+            }
+        }
+
+        public List<IDetectable> ProxyTypes
+        {
+            get
+            {
+                return Context.Get<IDetectableSearcher>().Get<IProxyType>();
             }
         }
 
@@ -101,6 +109,7 @@ namespace ProxySearch.Console.Controls
             set
             {
                 CurrentTabSettings.SearchEngineDetectableType = SearchEngines[value].GetType().AssemblyQualifiedName;
+                FirePropertyChanged("SelectedSearchEngineIndex");
             }
         }
 
@@ -113,6 +122,26 @@ namespace ProxySearch.Console.Controls
             set
             {
                 CurrentTabSettings.ProxyCheckerDetectableType = ProxyCheckers[value].GetType().AssemblyQualifiedName;
+                FirePropertyChanged("SelectedProxyCheckerIndex");
+            }
+        }
+
+        public int SelectedProxyTypeIndex
+        {
+            get
+            {
+                return ProxyTypes.FindIndex(item => ((IProxyType)Activator.CreateInstance(item.Implementation)).Type == CurrentTabSettings.ProxyType);
+            }
+            set
+            {
+                CurrentTabSettings.ProxyType = ((IProxyType)Activator.CreateInstance(ProxyTypes[value].Implementation)).Type;
+
+                UpdateBindings();
+
+                FirePropertyChanged("SelectedProxyTypeIndex");
+
+                SelectedSearchEngineIndex = 0;
+                SelectedProxyCheckerIndex = 0;
             }
         }
 
@@ -157,18 +186,27 @@ namespace ProxySearch.Console.Controls
 
         private void PropertyTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems.Count == 1 && e.AddedItems[0].GetType() == typeof(DummyTabSettings))
+            if (e.OriginalSource is TabControl)
             {
-                TabSettings settings = new DefaultSettingsFactory().CreateHttpTabSettings();
-                AllTabSettings.Add(settings);
-                PropertyTabControl.SelectedValue = settings;
-            }
+                if (e.AddedItems.Count == 1 && e.AddedItems[0].GetType() == typeof(DummyTabSettings))
+                {
+                    TabSettings settings = new DefaultSettingsFactory().CreateDefaultTabSettings();
+                    AllTabSettings.Add(settings);
+                    PropertyTabControl.SelectedValue = settings;
+                }
 
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs("SelectedProxyCheckerIndex"));
-                PropertyChanged(this, new PropertyChangedEventArgs("SelectedSearchEngineIndex"));
+                UpdateBindings();
             }
+        }
+
+        private void UpdateBindings()
+        {
+            FirePropertyChanged("SearchEngines");
+            FirePropertyChanged("ProxyCheckers");
+
+            FirePropertyChanged("SelectedProxyTypeIndex");
+            FirePropertyChanged("SelectedSearchEngineIndex");
+            FirePropertyChanged("SelectedProxyCheckerIndex");
         }
 
         private void TabNameControl_Menu(object sender, RoutedEventArgs e)
@@ -199,6 +237,14 @@ namespace ProxySearch.Console.Controls
             if (MessageBox.Show(Properties.Resources.DoYouReallyWantToClearBlacklist, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 Context.Get<IBlackListManager>().Clear();
+            }
+        }
+
+        private void FirePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

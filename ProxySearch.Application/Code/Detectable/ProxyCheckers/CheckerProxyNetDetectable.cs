@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
@@ -10,7 +9,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public class CheckerProxyNetDetectable : DetectableBase<IProxyChecker, CheckerProxyNet, CheckerProxyNetPropertyControl>
     {
         public CheckerProxyNetDetectable()
-            : base(Resources.CheckerProxyDotNet, Resources.CheckerProxyDotNetDescription, 3, new List<object> { 20, 10 })
+            : base(Resources.CheckerProxyDotNet, Resources.CheckerProxyDotNetDescription, 2, new string[] { Resources.HttpProxyType }, new List<object> { 20, 10 })
         {
         }
     }
