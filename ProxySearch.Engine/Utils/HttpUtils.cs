@@ -12,7 +12,7 @@ namespace ProxySearch.Engine.Utils
     {
         public async Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            string result = await Context.Get<Downloader>().GetContentOrNull(ProxyTypeDetectorUrl, proxy, cancellationToken);
+            string result = await Context.Get<HttpDownloader>().GetContentOrNull(ProxyTypeDetectorUrl, proxy, cancellationToken);
 
             if (result == null)
                 return new HttpProxyDetails(HttpProxyTypes.CannotVerify);

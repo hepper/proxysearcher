@@ -7,12 +7,13 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine
 {
-    public class Downloader
+    public class HttpDownloader
     {
         public Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return GetContentOrNull(url, proxy, cancellationToken, () => { }, () => { }, length => { });
         }
+
         public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken, Action begin, Action firstTime, Action<int> end)
         {
             IWebProxy webProxy = proxy == null ? null : new WebProxy(proxy.Address.ToString(), proxy.Port);

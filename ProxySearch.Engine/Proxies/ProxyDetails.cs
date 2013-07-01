@@ -76,7 +76,10 @@ namespace ProxySearch.Engine.Proxies
 
         public override string ToString()
         {
-            return Details.ToString();
+            if (Details != null)
+                return Details.ToString();
+
+            return string.Empty;
         }
     }
 }

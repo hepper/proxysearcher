@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
+using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Proxies;
@@ -21,7 +22,7 @@ namespace ProxySearch.Engine
         IProxyChecker checker;
         IGeoIP geoIP;
 
-        public Application(ISearchEngine searchEngine, IProxyParser proxyParser, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
+        public Application(ISearchEngine searchEngine, IProxyParser proxyParser, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP, IBandwidthManager bandwidthManager)
         {
             this.searchEngine = searchEngine;
             this.proxyParser = proxyParser;
@@ -29,6 +30,8 @@ namespace ProxySearch.Engine
             this.feedback = feedback;
             this.checker = checker;
             this.geoIP = geoIP ?? new TurnOffGeoIP();
+
+            Context.Set<IBandwidthManager>(bandwidthManager);
         }
 
         public async void SearchAsync()

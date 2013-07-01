@@ -37,7 +37,7 @@ namespace ProxySearch.Engine.Checkers
 
             try
             {
-                string content = Context.Get<Downloader>().GetContentOrNull(url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult(); 
+                string content = Context.Get<HttpDownloader>().GetContentOrNull(url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult(); 
 
                 if (content == null)
                 {
@@ -57,16 +57,18 @@ namespace ProxySearch.Engine.Checkers
         {
             try
             {
-                string content = await Context.Get<Downloader>().GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
+                string content = await Download(Url, info, begin, firstTime, end);
 
                 if (content == null)
                 {
                     return false;
                 }
 
-                return Compare(AnalyzedText, AnalyzeText(content)) <= Accuracy;
+                double accuracy = Compare(AnalyzedText, AnalyzeText(content));
+
+                return accuracy <= Accuracy;
             }
-            catch (HttpRequestException)
+            catch(Exception ex)
             {
                 return false;
             }

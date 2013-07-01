@@ -30,7 +30,7 @@ namespace ProxySearch.Engine.Checkers
 
         protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
         {
-            string content = await Context.Get<Downloader>().GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
+            string content = await Context.Get<HttpDownloader>().GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 
             return !Keywords.Any(item => !content.Contains(item));
         }

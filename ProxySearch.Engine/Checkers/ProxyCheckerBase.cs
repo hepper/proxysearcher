@@ -42,7 +42,7 @@ namespace ProxySearch.Engine.Checkers
                             };
 
                             if (bandwidth != null)
-                                Context.Get<BandwidthManager>().UpdateBandwidthData(proxyInfo, bandwidth);
+                                Context.Get<IBandwidthManager>().UpdateBandwidthData(proxyInfo, bandwidth);
 
                             feedback.OnAliveProxy(proxyInfo);
                         }

@@ -30,7 +30,6 @@ namespace ProxySearch.Console.Code
             {
                 new VersionManager().Check();
             }
-            Context.Set(new BandwidthManager());
          }
 
         public void Deinitialize()

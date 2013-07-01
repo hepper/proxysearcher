@@ -69,8 +69,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="Bandwidth\BandwidthManager.cs" />
+    <Compile Include="Bandwidth\BandwidthManagerBase.cs" />
+    <Compile Include="Bandwidth\HttpBandwidthManager.cs" />
     <Compile Include="Bandwidth\BanwidthInfo.cs" />
+    <Compile Include="Bandwidth\IBandwidthManager.cs" />
+    <Compile Include="Bandwidth\SocksBandwidthManager.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
@@ -81,7 +84,7 @@
     <Compile Include="IBlackList.cs" />
     <Compile Include="Proxies\Http\HttpProxyDetails.cs" />
     <Compile Include="Checkers\ProxyCheckerBase.cs" />
-    <Compile Include="Downloader.cs" />
+    <Compile Include="HttpDownloader.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrlAndKeywords.cs" />
     <Compile Include="Bandwidth\BandwidthData.cs" />
     <Compile Include="Bandwidth\BandwidthState.cs" />
@@ -115,6 +118,21 @@
     <Compile Include="Proxies\ProxyInfo.cs" />
     <Compile Include="ProxyParser.cs" />
     <Compile Include="SearchEngines\UrlList\UrlListSearchEngine.cs" />
+    <Compile Include="Socks\Mentalis\AuthMethod.cs" />
+    <Compile Include="Socks\Mentalis\AuthNone.cs" />
+    <Compile Include="Socks\Mentalis\AuthUserPass.cs" />
+    <Compile Include="Socks\Mentalis\IAsyncProxyResult.cs" />
+    <Compile Include="Socks\Mentalis\ProxyException.cs" />
+    <Compile Include="Socks\Mentalis\ProxySocket.cs" />
+    <Compile Include="Socks\Mentalis\Socks4Handler.cs" />
+    <Compile Include="Socks\Mentalis\Socks5Handler.cs" />
+    <Compile Include="Socks\Mentalis\SocksHandler.cs" />
+    <Compile Include="Socks\Ditrans\SocksHttpWebRequest.cs" />
+    <Compile Include="Socks\Ditrans\SocksHttpWebResponse.cs" />
+    <Compile Include="Socks\SocksWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Socks\SocksWebProxy.cs" />
     <Compile Include="TaskCounter.cs" />
     <Compile Include="TaskType.cs" />
     <Compile Include="Utils\HttpUtils.cs" />

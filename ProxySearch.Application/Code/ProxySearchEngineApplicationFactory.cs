@@ -7,7 +7,9 @@ using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.SearchEngines;
@@ -20,12 +22,11 @@ namespace ProxySearch.Console.Code
         public Application Create(ProxySearchFeedback feedback)
         {
             Context.Set(new CancellationTokenSource());
-            Context.Set<Downloader>(new Downloader());
+            Context.Set<HttpDownloader>(new HttpDownloader());
 
             IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
             IDetectable geoIPDetectable = CreateDetectableInstance<IGeoIP>(Settings.GeoIPDetectableType);
-
             ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable,
                                                                                      Settings.SelectedTabSettings.SearchEngineSettings,
                                                                                      searchEngineDetectable.InterfaceSettings);
@@ -39,7 +40,20 @@ namespace ProxySearch.Console.Code
                                                                                proxyCheckerDetectable.InterfaceSettings),
                                    CreateImplementationInstance<IGeoIP>(geoIPDetectable,
                                                                         Settings.GeoIPSettings,
-                                                                        geoIPDetectable.InterfaceSettings));
+                                                                        geoIPDetectable.InterfaceSettings), BandwidthManager);
+        }
+
+        private IBandwidthManager BandwidthManager
+        {
+            get
+            {
+                if (Settings.SelectedTabSettings.ProxyType == Resources.SocksProxyType)
+                {
+                    return new SocksBandwidthManager();
+                }
+
+                return new HttpBandwidthManager();
+            }
         }
 
         private AllSettings Settings

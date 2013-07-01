@@ -32,12 +32,12 @@ namespace ProxySearch.Console.Controls
 
         private void MeasureButton_Click(object sender, RoutedEventArgs e)
         {
-            Context.Get<BandwidthManager>().MeasureAsync(ProxyInfo);
+            Context.Get<IBandwidthManager>().MeasureAsync(ProxyInfo);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Context.Get<BandwidthManager>().Cancel(ProxyInfo);
+            Context.Get<IBandwidthManager>().Cancel(ProxyInfo);
         }
     }
 }
