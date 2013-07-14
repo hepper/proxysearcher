@@ -68,7 +68,7 @@ namespace ProxySearch.Engine.Checkers
 
                 return accuracy <= Accuracy;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return false;
             }

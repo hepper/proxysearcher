@@ -124,8 +124,10 @@ namespace ProxySearch.Engine.Socks.Mentalis
 			connect[1] = 1;
 			connect[2] = 0; //reserved
 			connect[3] = 1;
-			Array.Copy(AddressToBytes(remoteEP.Address.Address), 0, connect, 4, 4);
-			Array.Copy(PortToBytes(remoteEP.Port), 0, connect, 8, 2);
+#pragma warning disable
+            Array.Copy(AddressToBytes(remoteEP.Address.Address), 0, connect, 4, 4);
+#pragma warning restore
+            Array.Copy(PortToBytes(remoteEP.Port), 0, connect, 8, 2);
 			return connect;
 		}
 		/// <summary>

@@ -4,6 +4,8 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using ProxySearch.Engine.Socks.Mentalis;
 
 namespace ProxySearch.Engine.Socks.Ditrans
@@ -14,17 +16,14 @@ namespace ProxySearch.Engine.Socks.Ditrans
 
         private Uri _requestUri;
         private WebHeaderCollection _requestHeaders;
-        private string _method;        
-        private string _requestMessage;
+        private string _method;
         private byte[] _requestContentBuffer;
 
-        // darn MS for making everything internal (yeah, I'm talking about you, System.net.KnownHttpVerb)
-        static readonly StringCollection validHttpVerbs =
-            new StringCollection { "GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "OPTIONS" };
+        static readonly StringCollection validHttpVerbs = new StringCollection { "GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "OPTIONS" };
 
         #endregion
 
-        #region Constructor
+        #region Constructors
 
         private SocksHttpWebRequest(Uri requestUri)
         {
@@ -32,11 +31,50 @@ namespace ProxySearch.Engine.Socks.Ditrans
             MaxRedirectCount = 10;
         }
 
+        public SocksHttpWebRequest(string requestUri, IWebProxy proxy)
+            : this(new Uri(requestUri), proxy)
+        {
+        }
+
+        public SocksHttpWebRequest(Uri requestUri, IWebProxy proxy)
+            : this(requestUri)
+        {
+            Proxy = proxy;
+        }
+
         #endregion
 
         #region WebRequest Members
 
         private SocksHttpWebResponse _response;
+
+        public override IAsyncResult BeginGetResponse(AsyncCallback callback, object state)
+        {
+            var taskCompletionSource = new TaskCompletionSource<WebResponse>(state);
+            var task = Task.Run<WebResponse>(() =>
+            {
+                return GetResponse();
+            });
+
+            task.ContinueWith(t =>
+            {
+                if (t.IsFaulted)
+                    taskCompletionSource.TrySetException(t.Exception.InnerExceptions);
+                else if (t.IsCanceled)
+                    taskCompletionSource.TrySetCanceled();
+                else
+                    taskCompletionSource.TrySetResult(t.Result);
+
+                callback(taskCompletionSource.Task);
+            });
+
+            return taskCompletionSource.Task;
+        }
+
+        public override WebResponse EndGetResponse(IAsyncResult asyncResult)
+        {
+            return _response;
+        }
 
         public override WebResponse GetResponse()
         {
@@ -55,7 +93,7 @@ namespace ProxySearch.Engine.Socks.Ditrans
                 _response = InternalGetResponse();
                 int redirectsCount = 0;
 
-                while(AllowAutoRedirect && (_response.StatusCode == HttpStatusCode.Ambiguous ||
+                while (AllowAutoRedirect && (_response.StatusCode == HttpStatusCode.Ambiguous ||
                                             _response.StatusCode == HttpStatusCode.Moved ||
                                             _response.StatusCode == HttpStatusCode.Redirect ||
                                             _response.StatusCode == HttpStatusCode.RedirectMethod ||
@@ -69,7 +107,7 @@ namespace ProxySearch.Engine.Socks.Ditrans
                     _requestUri = new Uri(_response.Location);
                     _response = InternalGetResponse();
                     redirectsCount++;
-                }                
+                }
 
                 RequestSubmitted = true;
             }
@@ -89,6 +127,12 @@ namespace ProxySearch.Engine.Socks.Ditrans
         }
 
         public int MaxRedirectCount
+        {
+            get;
+            set;
+        }
+
+        public CancellationTokenSource CancellationToken
         {
             get;
             set;
@@ -166,19 +210,6 @@ namespace ProxySearch.Engine.Socks.Ditrans
         #endregion
 
         #region Methods
-
-        public static SocksHttpWebRequest Create(string requestUri, IWebProxy proxy)
-        {
-            return Create(new Uri(requestUri), proxy);
-        }
-
-        public static SocksHttpWebRequest Create(Uri requestUri, IWebProxy proxy)
-        {
-            SocksHttpWebRequest result = new SocksHttpWebRequest(requestUri);
-            result.Proxy = proxy;
-
-            return result;
-        }
 
         private string BuildHttpRequestMessage()
         {

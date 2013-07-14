@@ -22,7 +22,7 @@ namespace ProxySearch.Engine.Checkers
 
             return Task.Run(() =>
             {
-                using (SocksWebClient client = new SocksWebClient(proxy.Address, proxy.Port, ProxyTypes.Socks5))
+                using (SocksWebClient client = new SocksWebClient(proxy.Address, proxy.Port, ProxyTypes.Socks5, Context.Get<CancellationTokenSource>()))
                 {
                     string result = client.DownloadString(url);
 
