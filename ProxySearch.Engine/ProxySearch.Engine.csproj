@@ -124,6 +124,7 @@
     <Compile Include="Socks\Mentalis\IAsyncProxyResult.cs" />
     <Compile Include="Socks\Mentalis\ProxyException.cs" />
     <Compile Include="Socks\Mentalis\ProxySocket.cs" />
+    <Compile Include="Socks\Mentalis\ProxyTypes.cs" />
     <Compile Include="Socks\Mentalis\Socks4Handler.cs" />
     <Compile Include="Socks\Mentalis\Socks5Handler.cs" />
     <Compile Include="Socks\Mentalis\SocksHandler.cs" />

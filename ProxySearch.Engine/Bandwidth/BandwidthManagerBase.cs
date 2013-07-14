@@ -57,7 +57,7 @@ namespace ProxySearch.Engine.Bandwidth
 
         private double GetSpeed(BanwidthInfo result)
         {
-            if (result.EndCount != result.FirstCount)
+            if (result.EndTime != result.FirstTime)
             {
                 return (double)(result.EndCount - result.FirstCount) / (result.EndTime - result.FirstTime).TotalSeconds;
             }
@@ -68,6 +68,6 @@ namespace ProxySearch.Engine.Bandwidth
             }
 
             return int.MaxValue;
-        }    
+        }
     }
 }

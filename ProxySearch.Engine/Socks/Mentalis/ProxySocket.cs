@@ -36,23 +36,13 @@ using System.Net.Sockets;
 namespace ProxySearch.Engine.Socks.Mentalis
 {
     /// <summary>
-    /// Specifies the type of proxy servers that an instance of the ProxySocket class can use.
-    /// </summary>
-    public enum ProxyTypes
-    {
-        /// <summary>No proxy server; the ProxySocket object behaves exactly like an ordinary Socket object.</summary>
-        None,
-        /// <summary>A SOCKS4[A] proxy server.</summary>
-        Socks4,
-        /// <summary>A SOCKS5 proxy server.</summary>
-        Socks5
-    }
-    /// <summary>
     /// Implements a Socket class that can connect trough a SOCKS proxy server.
     /// </summary>
     /// <remarks>This class implements SOCKS4[A] and SOCKS5.<br>It does not, however, implement the BIND commands, so you cannot .</br></remarks>
     public class ProxySocket : Socket
     {
+        private AsyncCallback CallBack = null;
+
         /// <summary>
         /// Initializes a new instance of the ProxySocket class.
         /// </summary>
@@ -88,6 +78,7 @@ namespace ProxySearch.Engine.Socks.Mentalis
             ProxyPass = proxyPassword;
             ToThrow = new InvalidOperationException();
         }
+
         /// <summary>
         /// Establishes a connection to a remote device.
         /// </summary>
@@ -111,6 +102,7 @@ namespace ProxySearch.Engine.Socks.Mentalis
                     (new Socks5Handler(this, ProxyUser, ProxyPass)).Negotiate((IPEndPoint)remoteEP);
             }
         }
+
         /// <summary>
         /// Establishes a connection to a remote device.
         /// </summary>
@@ -139,6 +131,7 @@ namespace ProxySearch.Engine.Socks.Mentalis
                     (new Socks5Handler(this, ProxyUser, ProxyPass)).Negotiate(host, port);
             }
         }
+
         /// <summary>
         /// Begins an asynchronous request for a connection to a network device.
         /// </summary>
@@ -303,50 +296,23 @@ namespace ProxySearch.Engine.Socks.Mentalis
         /// <value>An IPEndPoint object that holds the IP address and the port of the proxy server.</value>
         public IPEndPoint ProxyEndPoint
         {
-            get
-            {
-                return m_ProxyEndPoint;
-            }
-            set
-            {
-                m_ProxyEndPoint = value;
-            }
+            get;
+            set;
         }
-        /// <summary>
-        /// Gets or sets the type of proxy server to use.
-        /// </summary>
-        /// <value>One of the ProxyTypes values.</value>
+
         public ProxyTypes ProxyType
         {
-            get
-            {
-                return m_ProxyType;
-            }
-            set
-            {
-                m_ProxyType = value;
-            }
+            get;
+            set;
         }
-        /// <summary>
-        /// Gets or sets a user-defined object.
-        /// </summary>
-        /// <value>The user-defined object.</value>
+
         private object State
         {
-            get
-            {
-                return m_State;
-            }
-            set
-            {
-                m_State = value;
-            }
+            get;
+            set;
         }
-        /// <summary>
-        /// Gets or sets the username to use when authenticating with the proxy.
-        /// </summary>
-        /// <value>A string that holds the username that's used when authenticating with the proxy.</value>
-        /// <exception cref="ArgumentNullException">The specified value is null.</exception>
+
+        private string m_ProxyUser = null;
         public string ProxyUser
         {
             get
@@ -360,11 +326,8 @@ namespace ProxySearch.Engine.Socks.Mentalis
                 m_ProxyUser = value;
             }
         }
-        /// <summary>
-        /// Gets or sets the password to use when authenticating with the proxy.
-        /// </summary>
-        /// <value>A string that holds the password that's used when authenticating with the proxy.</value>
-        /// <exception cref="ArgumentNullException">The specified value is null.</exception>
+
+        private string m_ProxyPass = null;
         public string ProxyPass
         {
             get
@@ -378,69 +341,23 @@ namespace ProxySearch.Engine.Socks.Mentalis
                 m_ProxyPass = value;
             }
         }
-        /// <summary>
-        /// Gets or sets the asynchronous result object.
-        /// </summary>
-        /// <value>An instance of the IAsyncProxyResult class.</value>
+
         private IAsyncProxyResult AsyncResult
         {
-            get
-            {
-                return m_AsyncResult;
-            }
-            set
-            {
-                m_AsyncResult = value;
-            }
+            get;
+            set;
         }
-        /// <summary>
-        /// Gets or sets the exception to throw when the EndConnect method is called.
-        /// </summary>
-        /// <value>An instance of the Exception class (or subclasses of Exception).</value>
+
         private Exception ToThrow
         {
-            get
-            {
-                return m_ToThrow;
-            }
-            set
-            {
-                m_ToThrow = value;
-            }
+            get;
+            set;
         }
-        /// <summary>
-        /// Gets or sets the remote port the user wants to connect to.
-        /// </summary>
-        /// <value>An integer that specifies the port the user wants to connect to.</value>
+
         private int RemotePort
         {
-            get
-            {
-                return m_RemotePort;
-            }
-            set
-            {
-                m_RemotePort = value;
-            }
-        }
-        // private variables
-        /// <summary>Holds the value of the State property.</summary>
-        private object m_State;
-        /// <summary>Holds the value of the ProxyEndPoint property.</summary>
-        private IPEndPoint m_ProxyEndPoint = null;
-        /// <summary>Holds the value of the ProxyType property.</summary>
-        private ProxyTypes m_ProxyType = ProxyTypes.None;
-        /// <summary>Holds the value of the ProxyUser property.</summary>
-        private string m_ProxyUser = null;
-        /// <summary>Holds the value of the ProxyPass property.</summary>
-        private string m_ProxyPass = null;
-        /// <summary>Holds a pointer to the method that should be called when the Socket is connected to the remote device.</summary>
-        private AsyncCallback CallBack = null;
-        /// <summary>Holds the value of the AsyncResult property.</summary>
-        private IAsyncProxyResult m_AsyncResult;
-        /// <summary>Holds the value of the ToThrow property.</summary>
-        private Exception m_ToThrow = null;
-        /// <summary>Holds the value of the RemotePort property.</summary>
-        private int m_RemotePort;
+            get;
+            set;
+        } 
     }
 }

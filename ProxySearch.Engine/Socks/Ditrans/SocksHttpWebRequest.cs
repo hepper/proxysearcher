@@ -6,118 +6,24 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Socks.Mentalis;
 
 namespace ProxySearch.Engine.Socks.Ditrans
 {
     public class SocksHttpWebRequest : WebRequest
     {
-        #region Member Variables
+        #region Properties
 
-        private Uri _requestUri;
-        private WebHeaderCollection _requestHeaders;
-        private string _method;
-        private byte[] _requestContentBuffer;
+        private byte[] requestContentBuffer;
 
-        static readonly StringCollection validHttpVerbs = new StringCollection { "GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "OPTIONS" };
-
-        #endregion
-
-        #region Constructors
-
-        private SocksHttpWebRequest(Uri requestUri)
-        {
-            _requestUri = requestUri;
-            MaxRedirectCount = 10;
-        }
-
-        public SocksHttpWebRequest(string requestUri, IWebProxy proxy)
-            : this(new Uri(requestUri), proxy)
-        {
-        }
-
-        public SocksHttpWebRequest(Uri requestUri, IWebProxy proxy)
-            : this(requestUri)
-        {
-            Proxy = proxy;
-        }
-
-        #endregion
-
-        #region WebRequest Members
-
-        private SocksHttpWebResponse _response;
-
-        public override IAsyncResult BeginGetResponse(AsyncCallback callback, object state)
-        {
-            var taskCompletionSource = new TaskCompletionSource<WebResponse>(state);
-            var task = Task.Run<WebResponse>(() =>
-            {
-                return GetResponse();
-            });
-
-            task.ContinueWith(t =>
-            {
-                if (t.IsFaulted)
-                    taskCompletionSource.TrySetException(t.Exception.InnerExceptions);
-                else if (t.IsCanceled)
-                    taskCompletionSource.TrySetCanceled();
-                else
-                    taskCompletionSource.TrySetResult(t.Result);
-
-                callback(taskCompletionSource.Task);
-            });
-
-            return taskCompletionSource.Task;
-        }
-
-        public override WebResponse EndGetResponse(IAsyncResult asyncResult)
-        {
-            return _response;
-        }
-
-        public override WebResponse GetResponse()
-        {
-            if (Proxy == null)
-            {
-                throw new InvalidOperationException("Proxy property cannot be null.");
-            }
-
-            if (String.IsNullOrEmpty(Method))
-            {
-                throw new InvalidOperationException("Method has not been set.");
-            }
-
-            if (!RequestSubmitted)
-            {
-                _response = InternalGetResponse();
-                int redirectsCount = 0;
-
-                while (AllowAutoRedirect && (_response.StatusCode == HttpStatusCode.Ambiguous ||
-                                            _response.StatusCode == HttpStatusCode.Moved ||
-                                            _response.StatusCode == HttpStatusCode.Redirect ||
-                                            _response.StatusCode == HttpStatusCode.RedirectMethod ||
-                                            _response.StatusCode == HttpStatusCode.RedirectKeepVerb))
-                {
-                    if (redirectsCount > MaxRedirectCount)
-                    {
-                        throw new InvalidOperationException("Too many redirects was requested by server");
-                    }
-
-                    _requestUri = new Uri(_response.Location);
-                    _response = InternalGetResponse();
-                    redirectsCount++;
-                }
-
-                RequestSubmitted = true;
-            }
-
-            return _response;
-        }
-
+        private Uri requestUri;
         public override Uri RequestUri
         {
-            get { return _requestUri; }
+            get
+            {
+                return requestUri;
+            }
         }
 
         public bool AllowAutoRedirect
@@ -140,44 +46,35 @@ namespace ProxySearch.Engine.Socks.Ditrans
 
         public override IWebProxy Proxy { get; set; }
 
+        private WebHeaderCollection requestHeaders = new WebHeaderCollection();
         public override WebHeaderCollection Headers
         {
             get
             {
-                if (_requestHeaders == null)
-                {
-                    _requestHeaders = new WebHeaderCollection();
-                }
-                return _requestHeaders;
+                return requestHeaders;
             }
             set
             {
-                if (RequestSubmitted)
-                {
-                    throw new InvalidOperationException("This operation cannot be performed after the request has been submitted.");
-                }
-                _requestHeaders = value;
+                ThrowIfRequestHasBeenSubmitted();
+                requestHeaders = value != null ? value : new WebHeaderCollection();
             }
         }
 
         public bool RequestSubmitted { get; private set; }
 
+        private string method;
         public override string Method
         {
             get
             {
-                return _method ?? "GET";
+                return method ?? "GET";
             }
             set
             {
-                if (validHttpVerbs.Contains(value))
-                {
-                    _method = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("value", string.Format("'{0}' is not a known HTTP verb.", value));
-                }
+                if (!new StringCollection { "GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "OPTIONS" }.Contains(value))
+                    throw new ArgumentOutOfRangeException("value", string.Format(Resources.IsNotKnownVerbFormat, value));
+
+                method = value;
             }
         }
 
@@ -185,122 +82,207 @@ namespace ProxySearch.Engine.Socks.Ditrans
 
         public override string ContentType { get; set; }
 
-        public override Stream GetRequestStream()
+        #endregion
+
+        #region Constructors
+
+        private SocksHttpWebRequest(Uri requestUri)
         {
-            if (RequestSubmitted)
+            this.requestUri = requestUri;
+            MaxRedirectCount = 10;
+        }
+
+        public SocksHttpWebRequest(string requestUri, IWebProxy proxy)
+            : this(new Uri(requestUri), proxy) { }
+
+        public SocksHttpWebRequest(Uri requestUri, IWebProxy proxy)
+            : this(requestUri)
+        {
+            Proxy = proxy;
+        }
+
+        #endregion
+
+        #region WebRequest Members
+
+        private SocksHttpWebResponse response;
+
+        public override IAsyncResult BeginGetResponse(AsyncCallback callback, object state)
+        {
+            var taskCompletionSource = new TaskCompletionSource<WebResponse>(state);
+
+            var task = Task.Run<WebResponse>(() =>
             {
-                throw new InvalidOperationException("This operation cannot be performed after the request has been submitted.");
+                return GetResponse();
+            });
+
+            task.ContinueWith(t =>
+            {
+                if (t.IsFaulted)
+                    taskCompletionSource.TrySetException(t.Exception.InnerExceptions);
+                else if (t.IsCanceled)
+                    taskCompletionSource.TrySetCanceled();
+                else
+                    taskCompletionSource.TrySetResult(t.Result);
+
+                callback(taskCompletionSource.Task);
+            });
+
+            return taskCompletionSource.Task;
+        }
+
+        public override WebResponse EndGetResponse(IAsyncResult asyncResult)
+        {
+            return response;
+        }
+
+        public override WebResponse GetResponse()
+        {
+            if (Proxy == null)
+            {
+                throw new InvalidOperationException(Resources.ProxyPropertyCannotBeNull);
             }
 
-            if (_requestContentBuffer == null)
+            if (!RequestSubmitted)
             {
-                _requestContentBuffer = new byte[ContentLength];
+                response = InternalGetResponse();
+                int redirectsCount = 0;
+
+                while (AllowAutoRedirect && (response.StatusCode == HttpStatusCode.Ambiguous ||
+                                            response.StatusCode == HttpStatusCode.Moved ||
+                                            response.StatusCode == HttpStatusCode.Redirect ||
+                                            response.StatusCode == HttpStatusCode.RedirectMethod ||
+                                            response.StatusCode == HttpStatusCode.RedirectKeepVerb))
+                {
+                    if (redirectsCount > MaxRedirectCount)
+                    {
+                        throw new InvalidOperationException(Resources.TooManyRedirectsWasRequestedByServer);
+                    }
+
+                    requestUri = new Uri(response.Location);
+                    response = InternalGetResponse();
+                    redirectsCount++;
+                }
+
+                RequestSubmitted = true;
+            }
+
+            return response;
+        }
+
+        public override Stream GetRequestStream()
+        {
+            ThrowIfRequestHasBeenSubmitted();
+
+            if (requestContentBuffer == null)
+            {
+                requestContentBuffer = new byte[ContentLength];
             }
             else if (ContentLength == default(long))
             {
-                _requestContentBuffer = new byte[int.MaxValue];
+                requestContentBuffer = new byte[int.MaxValue];
             }
-            else if (_requestContentBuffer.Length != ContentLength)
+            else if (requestContentBuffer.Length != ContentLength)
             {
-                Array.Resize(ref _requestContentBuffer, (int)ContentLength);
+                Array.Resize(ref requestContentBuffer, (int)ContentLength);
             }
-            return new MemoryStream(_requestContentBuffer);
+
+            return new MemoryStream(requestContentBuffer);
         }
 
         #endregion
 
         #region Methods
 
-        private string BuildHttpRequestMessage()
-        {
-            if (RequestSubmitted)
-            {
-                throw new InvalidOperationException("This operation cannot be performed after the request has been submitted.");
-            }
-
-            var message = new StringBuilder();
-            message.AppendFormat("{0} {1} HTTP/1.0\r\nHost: {2}\r\n", Method, RequestUri.PathAndQuery, RequestUri.Host);
-
-            // add the headers
-            foreach (var key in Headers.Keys)
-            {
-                message.AppendFormat("{0}: {1}\r\n", key, Headers[key.ToString()]);
-            }
-
-            if (!string.IsNullOrEmpty(ContentType))
-            {
-                message.AppendFormat("Content-Type: {0}\r\n", ContentType);
-            }
-            if (ContentLength > 0)
-            {
-                message.AppendFormat("Content-Length: {0}\r\n", ContentLength);
-            }
-
-            // add a blank line to indicate the end of the headers
-            message.Append("\r\n");
-
-            // add content
-            if (_requestContentBuffer != null && _requestContentBuffer.Length > 0)
-            {
-                using (var stream = new MemoryStream(_requestContentBuffer, false))
-                {
-                    using (var reader = new StreamReader(stream))
-                    {
-                        message.Append(reader.ReadToEnd());
-                    }
-                }
-            }
-
-            return message.ToString();
-        }
-
         private SocksHttpWebResponse InternalGetResponse()
         {
             var responseBuilder = new StringBuilder();
-            using (var _socksConnection =
-                new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            using (ProxySocket socksSocket = new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
             {
                 var proxyUri = Proxy.GetProxy(RequestUri);
                 var ipAddress = GetProxyIpAddress(proxyUri);
                 SocksWebProxy socksProxy = Proxy as SocksWebProxy;
 
-                _socksConnection.ProxyEndPoint = new IPEndPoint(ipAddress, proxyUri.Port);
-                _socksConnection.ProxyType = socksProxy == null ? ProxyTypes.Socks5 : socksProxy.ProxyType;
-
-                // open connection
-                _socksConnection.Connect(RequestUri.Host, 80);
-                // send an HTTP request
-                _socksConnection.Send(Encoding.ASCII.GetBytes(BuildHttpRequestMessage()));
-                // read the HTTP reply
+                socksSocket.ProxyType = socksProxy == null ? ProxyTypes.Socks4 : socksProxy.ProxyType;
+                socksSocket.ProxyEndPoint = new IPEndPoint(ipAddress, proxyUri.Port);
+                
+                socksSocket.Connect(RequestUri.Host, RequestUri.Port);
+                socksSocket.Send(Encoding.UTF8.GetBytes(BuildHttpRequestMessage()));
                 var buffer = new byte[1024];
-
-                var bytesReceived = _socksConnection.Receive(buffer);
+                var bytesReceived = socksSocket.Receive(buffer);
                 while (bytesReceived > 0)
                 {
-                    responseBuilder.Append(Encoding.ASCII.GetString(buffer, 0, bytesReceived));
-                    bytesReceived = _socksConnection.Receive(buffer);
+                    responseBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesReceived));
+                    bytesReceived = socksSocket.Receive(buffer);
                 }
             }
 
             return new SocksHttpWebResponse(responseBuilder.ToString());
         }
 
-        private static IPAddress GetProxyIpAddress(Uri proxyUri)
+        private string BuildHttpRequestMessage()
         {
-            IPAddress ipAddress;
-            if (!IPAddress.TryParse(proxyUri.Host, out ipAddress))
+            ThrowIfRequestHasBeenSubmitted();
+
+            var message = new StringBuilder();
+
+            message.AppendFormat("{0} {1} HTTP/1.0", Method, RequestUri.PathAndQuery).AppendLine();
+            message.AppendFormat("Host: {0}", RequestUri.Host).AppendLine();
+
+            foreach (var key in Headers.Keys)
             {
-                try
+                message.AppendFormat("{0}: {1}", key, Headers[key.ToString()]).AppendLine();
+            }
+
+            if (!string.IsNullOrEmpty(ContentType))
+            {
+                message.AppendFormat("Content-Type: {0}", ContentType).AppendLine();
+            }
+
+            if (ContentLength > 0)
+            {
+                message.AppendFormat("Content-Length: {0}", ContentLength).AppendLine();
+            }
+
+            message.AppendLine();
+
+            if (requestContentBuffer != null && requestContentBuffer.Length > 0)
+            {
+                using (var stream = new MemoryStream(requestContentBuffer, false))
+                using (var reader = new StreamReader(stream))
                 {
-                    return Dns.GetHostEntry(proxyUri.Host).AddressList[0];
-                }
-                catch (Exception e)
-                {
-                    throw new InvalidOperationException(
-                        string.Format("Unable to resolve proxy hostname '{0}' to a valid IP address.", proxyUri.Host), e);
+                    message.Append(reader.ReadToEnd());
                 }
             }
-            return ipAddress;
+
+            return message.ToString();
+        }
+
+        private IPAddress GetProxyIpAddress(Uri proxyUri)
+        {
+            IPAddress ipAddress;
+
+            if (IPAddress.TryParse(proxyUri.Host, out ipAddress))
+            {
+                return ipAddress;
+            }
+
+            try
+            {
+                return Dns.GetHostEntry(proxyUri.Host).AddressList[0];
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(string.Format(Resources.UnableToResolveProxyHostnameFormat, proxyUri.Host), e);
+            }
+        }
+
+        private void ThrowIfRequestHasBeenSubmitted()
+        {
+            if (RequestSubmitted)
+            {
+                throw new InvalidOperationException(Resources.ThisOperationCannotBePerformedAfterTheRequestHasBeenSubmitted);
+            }
         }
 
         #endregion

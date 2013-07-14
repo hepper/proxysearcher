@@ -15,21 +15,18 @@ namespace ProxySearch.Engine.Checkers
         {
 
         }
-        protected override Task<string> Download(string url, Proxy proxy, Action begin, Action firstTime, Action<int> end)
+        protected override async Task<string> Download(string url, Proxy proxy, Action begin, Action<int> firstTime, Action<int> end)
         {
             begin();
-            firstTime();
 
-            return Task.Run(() =>
+            using (SocksWebClient client = new SocksWebClient(proxy.Address, proxy.Port, ProxyTypes.Socks5, Context.Get<CancellationTokenSource>()))
             {
-                using (SocksWebClient client = new SocksWebClient(proxy.Address, proxy.Port, ProxyTypes.Socks5, Context.Get<CancellationTokenSource>()))
-                {
-                    string result = client.DownloadString(url);
+                string result = await client.DownloadStringTaskAsync(new Uri(url));
 
-                    end(result.Length);
-                    return result;
-                }
-            }, Context.Get<CancellationTokenSource>().Token);
+                firstTime(result.Length);
+                end(result.Length);
+                return result;
+            }
         }
 
         protected override Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)

@@ -27,12 +27,14 @@ namespace ProxySearch.Engine.Checkers
                         if (await Alive(proxyCopy, () => bandwidth = new BanwidthInfo()
                         {
                             BeginTime = DateTime.Now
-                        }, () => bandwidth.FirstTime = DateTime.Now, lenght =>
+                        }, lenght =>
                         {
-                           
+                            bandwidth.FirstTime = DateTime.Now;
                             bandwidth.FirstCount = lenght * 2;
-                            bandwidth.EndTime = bandwidth.FirstTime;
-                            bandwidth.EndCount = bandwidth.FirstCount;
+                        }, lenght =>
+                        {
+                            bandwidth.EndTime = DateTime.Now;
+                            bandwidth.EndCount = lenght * 2;
                         }))
                         {
                             ProxyInfo proxyInfo = new ProxyInfo(proxyCopy)
@@ -51,7 +53,7 @@ namespace ProxySearch.Engine.Checkers
             }
         }
 
-        protected abstract Task<bool> Alive(Proxy proxy, Action begin, Action firstTime, Action<int> end);
+        protected abstract Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end);
         protected abstract Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken);
     }
 }

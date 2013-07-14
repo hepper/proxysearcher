@@ -51,9 +51,9 @@ namespace ProxySearch.Engine.Checkers
             }
         }
 
-        protected abstract Task<string> Download(string url, Proxy proxy, Action begin, Action firstTime, Action<int> end);
+        protected abstract Task<string> Download(string url, Proxy proxy, Action begin, Action<int> firstTime, Action<int> end);
 
-        protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy info, Action begin, Action<int> firstTime, Action<int> end)
         {
             try
             {
@@ -64,9 +64,7 @@ namespace ProxySearch.Engine.Checkers
                     return false;
                 }
 
-                double accuracy = Compare(AnalyzedText, AnalyzeText(content));
-
-                return accuracy <= Accuracy;
+                return Compare(AnalyzedText, AnalyzeText(content)) <= Accuracy;
             }
             catch(Exception)
             {

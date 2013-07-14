@@ -7,7 +7,7 @@ namespace ProxySearch.Engine.Checkers
 {
     public class SimpleProxyChecker : ProxyCheckerBase
     {
-        protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy info, Action begin, Action<int> firstTime, Action<int> end)
         {
             using (TcpClient tcpClient = new TcpClient())
             {

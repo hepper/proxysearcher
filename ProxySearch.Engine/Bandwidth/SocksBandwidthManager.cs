@@ -33,8 +33,6 @@ namespace ProxySearch.Engine.Bandwidth
                 };
 
                 result.BeginTime = DateTime.Now;
-                result.FirstTime = result.BeginTime;
-                result.FirstCount = 0;
 
                 string data = await client.DownloadStringTaskAsync(new Uri(Resources.SpeedTestUrl));
 

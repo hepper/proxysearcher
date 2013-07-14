@@ -11,10 +11,10 @@ namespace ProxySearch.Engine
     {
         public Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            return GetContentOrNull(url, proxy, cancellationToken, () => { }, () => { }, length => { });
+            return GetContentOrNull(url, proxy, cancellationToken, () => { }, length => { }, length => { });
         }
 
-        public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken, Action begin, Action firstTime, Action<int> end)
+        public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken, Action begin, Action<int> firstTime, Action<int> end)
         {
             IWebProxy webProxy = proxy == null ? null : new WebProxy(proxy.Address.ToString(), proxy.Port);
 
@@ -37,9 +37,9 @@ namespace ProxySearch.Engine
                             return null;
                         }
 
-                        firstTime();
-                        
                         string content = await response.Content.ReadAsStringAsync();
+
+                        firstTime(content.Length);
                         end(content.Length);
 
                         return content;

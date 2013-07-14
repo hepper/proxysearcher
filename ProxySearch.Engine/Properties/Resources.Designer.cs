@@ -152,6 +152,24 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a known HTTP verb..
+        /// </summary>
+        internal static string IsNotKnownVerbFormat {
+            get {
+                return ResourceManager.GetString("IsNotKnownVerbFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proxy property cannot be null..
+        /// </summary>
+        internal static string ProxyPropertyCannotBeNull {
+            get {
+                return ResourceManager.GetString("ProxyPropertyCannotBeNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 23154081-CFE8-4AC3-A530-142CB55C486D.
         /// </summary>
         internal static string ProxyTypeDetectorGuid {
@@ -175,6 +193,24 @@ namespace ProxySearch.Engine.Properties {
         internal static string SpeedTestUrl {
             get {
                 return ResourceManager.GetString("SpeedTestUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This operation cannot be performed after the request has been submitted..
+        /// </summary>
+        internal static string ThisOperationCannotBePerformedAfterTheRequestHasBeenSubmitted {
+            get {
+                return ResourceManager.GetString("ThisOperationCannotBePerformedAfterTheRequestHasBeenSubmitted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too many redirects was requested by server.
+        /// </summary>
+        internal static string TooManyRedirectsWasRequestedByServer {
+            get {
+                return ResourceManager.GetString("TooManyRedirectsWasRequestedByServer", resourceCulture);
             }
         }
         
@@ -203,6 +239,15 @@ namespace ProxySearch.Engine.Properties {
         internal static string TurnedOffGeoIP {
             get {
                 return ResourceManager.GetString("TurnedOffGeoIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to resolve proxy hostname &apos;{0}&apos; to a valid IP address..
+        /// </summary>
+        internal static string UnableToResolveProxyHostnameFormat {
+            get {
+                return ResourceManager.GetString("UnableToResolveProxyHostnameFormat", resourceCulture);
             }
         }
         

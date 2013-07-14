@@ -28,7 +28,7 @@ namespace ProxySearch.Engine.Checkers
             Keywords = keywords.Split(' ');
         }
 
-        protected override async Task<bool> Alive(Proxy info, Action begin, Action firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy info, Action begin, Action<int> firstTime, Action<int> end)
         {
             string content = await Context.Get<HttpDownloader>().GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 

@@ -11,7 +11,7 @@ namespace ProxySearch.Engine.Checkers
     public class TurnedOffProxyChecker : ProxyCheckerBase
     {
         Hashtable hashtable = new Hashtable();
-        protected override Task<bool> Alive(Proxy proxy, Action begin, Action firstTime, Action<int> end)
+        protected override Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end)
         {
             return Task.FromResult(true);
         }
