@@ -14,11 +14,6 @@ namespace ProxySearch.Engine.Checkers
         {
         }
 
-        protected override async Task<string> Download(string url, Proxy proxy, Action begin, Action<int> firstTime, Action<int> end)
-        {
-            return await Context.Get<HttpDownloader>().GetContentOrNull(url, proxy, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
-        }
-
         protected override Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return new HttpUtils().GetProxyDetails(proxy, cancellationToken);

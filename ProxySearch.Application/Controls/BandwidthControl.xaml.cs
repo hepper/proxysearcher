@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
-using ProxySearch.Engine.Bandwidth;
+using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Controls
@@ -32,12 +32,12 @@ namespace ProxySearch.Console.Controls
 
         private void MeasureButton_Click(object sender, RoutedEventArgs e)
         {
-            Context.Get<IBandwidthManager>().MeasureAsync(ProxyInfo);
+            Context.Get<IHttpDownloaderContainer>().BandwidthManager.MeasureAsync(ProxyInfo);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Context.Get<IBandwidthManager>().Cancel(ProxyInfo);
+            Context.Get<IHttpDownloaderContainer>().BandwidthManager.Cancel(ProxyInfo);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading;
 using ProxySearch.Common;
@@ -9,11 +10,12 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
-using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.Checkers;
+using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.SearchEngines.FolderSearch;
+using ProxySearch.Engine.Socks;
 
 namespace ProxySearch.Console.Code
 {
@@ -22,7 +24,7 @@ namespace ProxySearch.Console.Code
         public Application Create(ProxySearchFeedback feedback)
         {
             Context.Set(new CancellationTokenSource());
-            Context.Set<HttpDownloader>(new HttpDownloader());
+            Context.Set<IHttpDownloaderContainer>(HttpDownloaderContainer);
 
             IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
@@ -40,19 +42,19 @@ namespace ProxySearch.Console.Code
                                                                                proxyCheckerDetectable.InterfaceSettings),
                                    CreateImplementationInstance<IGeoIP>(geoIPDetectable,
                                                                         Settings.GeoIPSettings,
-                                                                        geoIPDetectable.InterfaceSettings), BandwidthManager);
+                                                                        geoIPDetectable.InterfaceSettings));
         }
 
-        private IBandwidthManager BandwidthManager
+        private IHttpDownloaderContainer HttpDownloaderContainer
         {
             get
             {
                 if (Settings.SelectedTabSettings.ProxyType == Resources.SocksProxyType)
                 {
-                    return new SocksBandwidthManager();
+                    return new HttpDownloaderContainer<SocksHttpClientHandler>();
                 }
 
-                return new HttpBandwidthManager();
+                return new HttpDownloaderContainer<HttpClientHandler>();
             }
         }
 

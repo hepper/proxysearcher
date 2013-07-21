@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Engine.Proxies;
 
-namespace ProxySearch.Engine
+namespace ProxySearch.Engine.DownloaderContainers
 {
-    public class HttpDownloader
+    public class HttpDownloader<HttpClientHandlerType> : IHttpDownloader where HttpClientHandlerType : HttpClientHandler, new()
     {
         public Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken)
         {
@@ -16,16 +16,11 @@ namespace ProxySearch.Engine
 
         public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken, Action begin, Action<int> firstTime, Action<int> end)
         {
-            IWebProxy webProxy = proxy == null ? null : new WebProxy(proxy.Address.ToString(), proxy.Port);
-
             try
             {
-                using (HttpClientHandler handler = new HttpClientHandler())
+                using (HttpClientHandlerType handler = new HttpClientHandlerType())
                 {
-                    if (webProxy != null)
-                    {
-                        handler.Proxy = webProxy;
-                    }
+                    handler.Proxy = proxy == null ? null : new WebProxy(proxy.Address.ToString(), proxy.Port);
 
                     begin();
 

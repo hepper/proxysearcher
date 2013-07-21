@@ -69,22 +69,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="Bandwidth\BandwidthManagerBase.cs" />
-    <Compile Include="Bandwidth\HttpBandwidthManager.cs" />
+    <Compile Include="Bandwidth\BandwidthManager.cs" />
     <Compile Include="Bandwidth\BanwidthInfo.cs" />
     <Compile Include="Bandwidth\IBandwidthManager.cs" />
-    <Compile Include="Bandwidth\SocksBandwidthManager.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrlBase.cs" />
     <Compile Include="Checkers\SocksProxyCheckerByUrl.cs" />
     <Compile Include="Checkers\TurnedOffProxyChecker.cs" />
+    <Compile Include="DownloaderContainers\HttpDownloaderContainer.cs" />
     <Compile Include="EmptyBlackList.cs" />
     <Compile Include="IBlackList.cs" />
+    <Compile Include="DownloaderContainers\IHttpDownloader.cs" />
+    <Compile Include="DownloaderContainers\IHttpDownloaderContainer.cs" />
     <Compile Include="Proxies\Http\HttpProxyDetails.cs" />
     <Compile Include="Checkers\ProxyCheckerBase.cs" />
-    <Compile Include="HttpDownloader.cs" />
+    <Compile Include="DownloaderContainers\HttpDownloader.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrlAndKeywords.cs" />
     <Compile Include="Bandwidth\BandwidthData.cs" />
     <Compile Include="Bandwidth\BandwidthState.cs" />
@@ -128,14 +129,10 @@
     <Compile Include="Socks\Mentalis\Socks4Handler.cs" />
     <Compile Include="Socks\Mentalis\Socks5Handler.cs" />
     <Compile Include="Socks\Mentalis\SocksHandler.cs" />
-    <Compile Include="Socks\Ditrans\SocksHttpWebRequest.cs" />
-    <Compile Include="Socks\Ditrans\SocksHttpWebResponse.cs" />
-    <Compile Include="Socks\SocksWebClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Socks\SocksWebProxy.cs" />
+    <Compile Include="Socks\SocksHttpClientHandler.cs" />
     <Compile Include="TaskCounter.cs" />
     <Compile Include="TaskType.cs" />
+    <Compile Include="Utils\EndPointUtils.cs" />
     <Compile Include="Utils\HttpUtils.cs" />
   </ItemGroup>
   <ItemGroup>

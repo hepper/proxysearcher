@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
+using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 
@@ -37,7 +38,7 @@ namespace ProxySearch.Engine.Checkers
 
             try
             {
-                string content = Context.Get<HttpDownloader>().GetContentOrNull(url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult(); 
+                string content = Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult();
 
                 if (content == null)
                 {
@@ -47,17 +48,15 @@ namespace ProxySearch.Engine.Checkers
                 AnalyzedText = AnalyzeText(content);
             }
             catch (TaskCanceledException)
-            {                
+            {
             }
         }
 
-        protected abstract Task<string> Download(string url, Proxy proxy, Action begin, Action<int> firstTime, Action<int> end);
-
-        protected override async Task<bool> Alive(Proxy info, Action begin, Action<int> firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end)
         {
             try
             {
-                string content = await Download(Url, info, begin, firstTime, end);
+                string content = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(Url, proxy, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 
                 if (content == null)
                 {
@@ -66,7 +65,7 @@ namespace ProxySearch.Engine.Checkers
 
                 return Compare(AnalyzedText, AnalyzeText(content)) <= Accuracy;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }

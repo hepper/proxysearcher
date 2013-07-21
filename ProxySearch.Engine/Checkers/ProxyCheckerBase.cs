@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
+using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
@@ -44,7 +45,7 @@ namespace ProxySearch.Engine.Checkers
                             };
 
                             if (bandwidth != null)
-                                Context.Get<IBandwidthManager>().UpdateBandwidthData(proxyInfo, bandwidth);
+                                Context.Get<IHttpDownloaderContainer>().BandwidthManager.UpdateBandwidthData(proxyInfo, bandwidth);
 
                             feedback.OnAliveProxy(proxyInfo);
                         }
