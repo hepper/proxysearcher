@@ -130,6 +130,8 @@
     <Compile Include="Socks\Mentalis\Socks5Handler.cs" />
     <Compile Include="Socks\Mentalis\SocksHandler.cs" />
     <Compile Include="Socks\SocksHttpClientHandler.cs" />
+    <Compile Include="Socks\SocksHttpManager.cs" />
+    <Compile Include="Socks\SocksProgressMessageHandler.cs" />
     <Compile Include="TaskCounter.cs" />
     <Compile Include="TaskType.cs" />
     <Compile Include="Utils\EndPointUtils.cs" />

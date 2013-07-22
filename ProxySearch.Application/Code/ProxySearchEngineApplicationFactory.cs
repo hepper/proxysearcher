@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Handlers;
 using System.Reflection;
 using System.Threading;
 using ProxySearch.Common;
@@ -51,10 +52,10 @@ namespace ProxySearch.Console.Code
             {
                 if (Settings.SelectedTabSettings.ProxyType == Resources.SocksProxyType)
                 {
-                    return new HttpDownloaderContainer<SocksHttpClientHandler>();
+                    return new HttpDownloaderContainer<SocksHttpClientHandler, SocksProgressMessageHandler>();
                 }
 
-                return new HttpDownloaderContainer<HttpClientHandler>();
+                return new HttpDownloaderContainer<HttpClientHandler, ProgressMessageHandler>();
             }
         }
 

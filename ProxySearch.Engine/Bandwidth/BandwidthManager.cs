@@ -9,7 +9,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Engine.Bandwidth
 {
-    public class BandwidthManager<HttpClientHandlerType> : IBandwidthManager where HttpClientHandlerType : HttpClientHandler, new()
+    public class BandwidthManager<ProgressMessageHandlerType> : IBandwidthManager where ProgressMessageHandlerType : ProgressMessageHandler
     {
         public async void MeasureAsync(ProxyInfo proxyInfo)
         {
@@ -62,10 +62,10 @@ namespace ProxySearch.Engine.Bandwidth
             BanwidthInfo result = new BanwidthInfo();
             bool firstResponseTime = true;
 
-            using (HttpClientHandlerType handler = new HttpClientHandlerType())
+            using (HttpClientHandler handler = new HttpClientHandler())
             {
                 handler.Proxy = new WebProxy(proxyInfo.Address.ToString(), proxyInfo.Port);
-                using (ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler(handler))
+                using (ProgressMessageHandler progressMessageHandler = (ProgressMessageHandlerType)Activator.CreateInstance(typeof(ProgressMessageHandlerType), handler))
                 {
                     progressMessageHandler.HttpReceiveProgress += (sender, e) =>
                     {
