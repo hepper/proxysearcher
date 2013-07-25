@@ -6,11 +6,10 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
+using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
-using ProxySearch.Engine.Socks.Mentalis;
+using ProxySearch.Engine.Proxies.Socks;
 using ProxySearch.Engine.Utils;
 
 namespace ProxySearch.Engine.Socks
@@ -26,75 +25,111 @@ namespace ProxySearch.Engine.Socks
             HttpStatusCode.RedirectKeepVerb
         };
 
-        public Task<HttpResponseMessage> GetResponse(HttpRequestMessage request, CancellationToken cancellationToken, HttpClientHandler handler,
-                                               Action<int, long?> reportRequestProgress = null, Action<int, long?> reportResponseProgress = null)
+        public Task<HttpResponseMessage> GetResponse(SocksHttpManagerParameters parameters)
         {
-            if (handler.Proxy == null)
+            return HandleRedirects(parameters, () =>
             {
-                throw new ArgumentException("HttpClientHandler should have proxy");
-            }
-
-            return Task.Run(() =>
-            {
-                HttpResponseMessage response = GetResponseInternal(request, handler.Proxy.GetProxy(request.RequestUri), reportRequestProgress, reportResponseProgress);
-                int redirectsCount = 0;
-
-                while (handler.AllowAutoRedirect && redirectCodes.Contains(response.StatusCode))
+                switch (parameters.ProxyType)
                 {
-                    if (redirectsCount > handler.MaxAutomaticRedirections)
-                    {
-                        throw new InvalidOperationException(Resources.TooManyRedirectsWasRequestedByServer);
-                    }
-
-                    response = GetResponseInternal(request, handler.Proxy.GetProxy(request.RequestUri), reportRequestProgress, reportResponseProgress);
-                    redirectsCount++;
+                    case SocksProxyTypes.None:
+                        try
+                        {
+                            try
+                            {
+                                return ReadHttpResponseMessage(parameters, (socket, remoteEP) =>
+                                {
+                                    new SocksRequest().V4(socket, remoteEP);
+                                    Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks4);
+                                });
+                            }
+                            catch (SocksRequestFailedException)
+                            {
+                                return ReadHttpResponseMessage(parameters, (socket, remoteEP) =>
+                                {
+                                    new SocksRequest().V5(socket, remoteEP);
+                                    Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks5);
+                                });
+                            }
+                        }
+                        catch
+                        {
+                            return ReadHttpResponseMessage(parameters, (socket, remoteEP) =>
+                            {
+                                new SocksRequest().V5(socket, remoteEP);
+                                Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks5);
+                            });
+                        }
+                    case SocksProxyTypes.Socks4:
+                        return ReadHttpResponseMessage(parameters, new SocksRequest().V4);
+                    case SocksProxyTypes.Socks5:
+                        return ReadHttpResponseMessage(parameters, new SocksRequest().V5);
+                    default:
+                        throw new InvalidOperationException();
                 }
-
-                return response;
             });
         }
 
-        private HttpResponseMessage GetResponseInternal(HttpRequestMessage request, Uri proxy, Action<int, long?> reportRequestProgress, Action<int, long?> reportResponseProgress)
+        private HttpResponseMessage ReadHttpResponseMessage(SocksHttpManagerParameters parameters, Action<Socket, IPEndPoint> sendRequest)
         {
-            var responseBuilder = new StringBuilder();
-
-            using (ProxySocket socksSocket = new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
             {
-                socksSocket.ProxyType = ProxyTypes.Socks5;
-                socksSocket.ProxyEndPoint = new EndPointUtils().UriToIPEndPoint(proxy);
+                socket.Connect(new EndPointUtils().UriToIPEndPoint(GetProxyUri(parameters)));
 
-                FireEventProgress(reportRequestProgress, 0, null);
-                socksSocket.Connect(new EndPointUtils().UriToIPEndPoint(request.RequestUri));
+                sendRequest(socket, new EndPointUtils().UriToIPEndPoint(parameters.Request.RequestUri));
 
-                byte[] requestBytes = Encoding.UTF8.GetBytes(BuildHttpRequestMessage(request));
-                socksSocket.Send(requestBytes);
-                FireEventProgress(reportRequestProgress, requestBytes.Length, requestBytes.Length);
+                StringBuilder responseBuilder = new StringBuilder();
+
+                byte[] requestBytes = Encoding.UTF8.GetBytes(BuildHttpRequestMessage(parameters.Request));
+                socket.Send(requestBytes);
+                FireEventProgress(parameters.ReportRequestProgress, requestBytes.Length, requestBytes.Length);
 
                 long? total = null;
                 var buffer = new byte[1024];
-                var bytesReceived = socksSocket.Receive(buffer);
+                var bytesReceived = socket.Receive(buffer);
 
                 while (bytesReceived > 0)
                 {
                     responseBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesReceived));
 
-                    if (reportResponseProgress != null && !total.HasValue)
+                    if (parameters.ReportResponseProgress != null && !total.HasValue)
                     {
                         total = GetContentLength(responseBuilder.ToString());
                     }
 
                     if (total.HasValue)
                     {
-                        FireEventProgress(reportResponseProgress, responseBuilder.Length, total);
+                        FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, total);
                     }
 
-                    bytesReceived = socksSocket.Receive(buffer);
+                    bytesReceived = socket.Receive(buffer);
                 }
 
-                FireEventProgress(reportResponseProgress, responseBuilder.Length, responseBuilder.Length);
-            }
+                FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
 
-            return BuildHttpResponseMessage(responseBuilder.ToString());
+                return BuildHttpResponseMessage(responseBuilder.ToString());
+            }
+        }
+
+        private Task<HttpResponseMessage> HandleRedirects(SocksHttpManagerParameters parameters, Func<HttpResponseMessage> getResponseInternal)
+        {
+            return Task.Run(() =>
+            {
+                HttpResponseMessage response = getResponseInternal();
+                int redirectsCount = 0;
+
+                while (parameters.Handler.AllowAutoRedirect && redirectCodes.Contains(response.StatusCode))
+                {
+                    if (redirectsCount > parameters.Handler.MaxAutomaticRedirections)
+                    {
+                        throw new InvalidOperationException(Resources.TooManyRedirectsWasRequestedByServer);
+                    }
+
+                    response = getResponseInternal();
+                    redirectsCount++;
+                }
+
+                return response;
+            });
         }
 
         private long? GetContentLength(string partialContent)
@@ -125,13 +160,6 @@ namespace ProxySearch.Engine.Socks
             {
                 return null;
             }
-
-            //Regex regex = new Regex(@"Content-Length:\s*(?<Length>\d*)\s*");
-
-            //MatchCollection matches = regex.Matches(partialContent);
-
-            //if (matches.Count != 1)
-            //    return null;
         }
 
         private HttpResponseMessage BuildHttpResponseMessage(string response)
@@ -154,7 +182,7 @@ namespace ProxySearch.Engine.Socks
                 {
                     result.Headers.Add(headerEntry[0], value);
                 }
-                catch(InvalidOperationException)
+                catch (InvalidOperationException)
                 {
                     result.Content.Headers.Add(headerEntry[0], value);
                 }
@@ -187,8 +215,7 @@ namespace ProxySearch.Engine.Socks
                 message.AppendFormat("{0}: {1}", header.Key, header.Value).AppendLine();
             }
 
-            message.AppendLine();
-            return message.ToString();
+            return message.AppendLine().ToString();
         }
 
         private void FireEventProgress(Action<int, long?> eventHandler, int transfer, long? total)
@@ -197,6 +224,11 @@ namespace ProxySearch.Engine.Socks
             {
                 eventHandler(transfer, total);
             }
+        }
+
+        private Uri GetProxyUri(SocksHttpManagerParameters parameters)
+        {
+            return parameters.Handler.Proxy.GetProxy(parameters.Request.RequestUri);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
+using ProxySearch.Common;
 
 namespace ProxySearch.Engine.Socks
 {
@@ -24,8 +25,15 @@ namespace ProxySearch.Engine.Socks
             if (handler == null || handler.Proxy == null)
                 return base.SendAsync(request, cancellationToken);
 
-            return new SocksHttpManager().GetResponse(request, cancellationToken, handler, (transeffed, total) => OnHttpRequestProgress(request, CreateEventArgs(transeffed, total)),
-                                                                                           (transeffed, total) => OnHttpResponseProgress(request, CreateEventArgs(transeffed, total)));
+            return new SocksHttpManager().GetResponse(new SocksHttpManagerParameters
+            {
+                Request = request,
+                CancellationToken = cancellationToken,
+                Handler = handler,
+                ReportRequestProgress = (transeffed, total) => OnHttpRequestProgress(request, CreateEventArgs(transeffed, total)),
+                ReportResponseProgress = (transeffed, total) => OnHttpResponseProgress(request, CreateEventArgs(transeffed, total)),
+                ProxyType = Context.Get<ISocksProxyTypeHashtable>()[handler.Proxy.GetProxy(request.RequestUri).ToString()]
+            });
         }
 
         private HttpProgressEventArgs CreateEventArgs(int transeffer, long? total)

@@ -11,6 +11,7 @@ using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.SearchEngines;
+using ProxySearch.Engine.Socks;
 
 namespace ProxySearch.Engine
 {
@@ -30,6 +31,8 @@ namespace ProxySearch.Engine
             this.feedback = feedback;
             this.checker = checker;
             this.geoIP = geoIP ?? new TurnOffGeoIP();
+
+            Context.Set<ISocksProxyTypeHashtable>(new SocksProxyTypeHashtable());
         }
 
         public async void SearchAsync()
