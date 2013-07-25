@@ -34,28 +34,17 @@ namespace ProxySearch.Engine.Socks
                     case SocksProxyTypes.None:
                         try
                         {
-                            try
+                            return ReadHttpResponseMessage(parameters, async (stream, remoteEP) =>
                             {
-                                return ReadHttpResponseMessage(parameters, (socket, remoteEP) =>
-                                {
-                                    new SocksRequest().V4(socket, remoteEP);
-                                    Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks4);
-                                });
-                            }
-                            catch (SocksRequestFailedException)
-                            {
-                                return ReadHttpResponseMessage(parameters, (socket, remoteEP) =>
-                                {
-                                    new SocksRequest().V5(socket, remoteEP);
-                                    Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks5);
-                                });
-                            }
+                                await new SocksRequest().V4(stream, remoteEP);
+                                Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks4);
+                            });
                         }
-                        catch
+                        catch (SocksRequestFailedException)
                         {
-                            return ReadHttpResponseMessage(parameters, (socket, remoteEP) =>
+                            return ReadHttpResponseMessage(parameters, async (stream, remoteEP) =>
                             {
-                                new SocksRequest().V5(socket, remoteEP);
+                                await new SocksRequest().V5(stream, remoteEP);
                                 Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks5);
                             });
                         }
@@ -69,23 +58,23 @@ namespace ProxySearch.Engine.Socks
             });
         }
 
-        private HttpResponseMessage ReadHttpResponseMessage(SocksHttpManagerParameters parameters, Action<Socket, IPEndPoint> sendRequest)
+        private async Task<HttpResponseMessage> ReadHttpResponseMessage(SocksHttpManagerParameters parameters, Func<NetworkStream, IPEndPoint, Task> sendRequest)
         {
-            using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
+            using (TcpClient tcpClient = new TcpClient())
             {
-                socket.Connect(new EndPointUtils().UriToIPEndPoint(GetProxyUri(parameters)));
-
-                sendRequest(socket, new EndPointUtils().UriToIPEndPoint(parameters.Request.RequestUri));
+                Uri proxyUri = GetProxyUri(parameters);
+                await tcpClient.ConnectAsync(new EndPointUtils().GetIpAddress(proxyUri.Host), proxyUri.Port);
+                await sendRequest(tcpClient.GetStream(), new EndPointUtils().UriToIPEndPoint(parameters.Request.RequestUri));
 
                 StringBuilder responseBuilder = new StringBuilder();
 
                 byte[] requestBytes = Encoding.UTF8.GetBytes(BuildHttpRequestMessage(parameters.Request));
-                socket.Send(requestBytes);
+                await tcpClient.GetStream().WriteAsync(requestBytes, 0, requestBytes.Length);
                 FireEventProgress(parameters.ReportRequestProgress, requestBytes.Length, requestBytes.Length);
 
                 long? total = null;
                 var buffer = new byte[1024];
-                var bytesReceived = socket.Receive(buffer);
+                var bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length);
 
                 while (bytesReceived > 0)
                 {
@@ -101,7 +90,7 @@ namespace ProxySearch.Engine.Socks
                         FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, total);
                     }
 
-                    bytesReceived = socket.Receive(buffer);
+                    bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length);
                 }
 
                 FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
@@ -110,26 +99,23 @@ namespace ProxySearch.Engine.Socks
             }
         }
 
-        private Task<HttpResponseMessage> HandleRedirects(SocksHttpManagerParameters parameters, Func<HttpResponseMessage> getResponseInternal)
+        private async Task<HttpResponseMessage> HandleRedirects(SocksHttpManagerParameters parameters, Func<Task<HttpResponseMessage>> getResponse)
         {
-            return Task.Run(() =>
+            HttpResponseMessage response = await getResponse();
+            int redirectsCount = 0;
+
+            while (parameters.Handler.AllowAutoRedirect && redirectCodes.Contains(response.StatusCode))
             {
-                HttpResponseMessage response = getResponseInternal();
-                int redirectsCount = 0;
-
-                while (parameters.Handler.AllowAutoRedirect && redirectCodes.Contains(response.StatusCode))
+                if (redirectsCount > parameters.Handler.MaxAutomaticRedirections)
                 {
-                    if (redirectsCount > parameters.Handler.MaxAutomaticRedirections)
-                    {
-                        throw new InvalidOperationException(Resources.TooManyRedirectsWasRequestedByServer);
-                    }
-
-                    response = getResponseInternal();
-                    redirectsCount++;
+                    throw new InvalidOperationException(Resources.TooManyRedirectsWasRequestedByServer);
                 }
 
-                return response;
-            });
+                response = await getResponse();
+                redirectsCount++;
+            }
+
+            return response;
         }
 
         private long? GetContentLength(string partialContent)

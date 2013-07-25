@@ -2,38 +2,45 @@
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace ProxySearch.Engine.Socks
 {
     public class SocksRequest
     {
-        public void V4(Socket socket, IPEndPoint remoteEP)
+        public async Task V4(NetworkStream stream, IPEndPoint remoteEP)
         {
-            byte[] data = new byte[9] { 4, 1, 0, 0, 0, 0, 0, 0, 0 };
-
-            Array.Copy(PortToBytes((ushort)remoteEP.Port), 0, data, 2, 2);
-            Array.Copy(remoteEP.Address.GetAddressBytes(), 0, data, 4, 4);
-
-            //data[8] = 0;
-
-            socket.Send(data);
-            if (ReadBytes(socket, 8)[1] != 90)
+            try
             {
-                throw new SocksRequestFailedException("Negotiation failed.");
+                byte[] data = new byte[9] { 4, 1, 0, 0, 0, 0, 0, 0, 0 };
+
+                Array.Copy(PortToBytes((ushort)remoteEP.Port), 0, data, 2, 2);
+                Array.Copy(remoteEP.Address.GetAddressBytes(), 0, data, 4, 4);
+
+                await stream.WriteAsync(data, 0, data.Length);
+
+                if ((await ReadBytes(stream, 8))[1] != 90)
+                {
+                    throw new SocksRequestFailedException("Negotiation failed.");
+                }
+            }
+            catch
+            {
+                throw new SocksRequestFailedException();
             }
         }
 
-        public void V5(Socket socket, IPEndPoint remoteEP)
+        public async Task V5(NetworkStream stream, IPEndPoint remoteEP)
         {
-            AuthenticateV5(socket);
+            await AuthenticateV5(stream);
 
             byte[] data = new byte[10] { 5, 1, 0, 1, 0, 0, 0, 0, 0, 0 };
 
             Array.Copy(remoteEP.Address.GetAddressBytes(), 0, data, 4, 4);
             Array.Copy(PortToBytes((ushort)remoteEP.Port), 0, data, 8, 2);
 
-            socket.Send(data);
-            byte[] buffer = ReadBytes(socket, 4);
+            stream.Write(data, 0, data.Length);
+            byte[] buffer = await ReadBytes(stream, 4);
             if (buffer[1] != 0)
             {
                 throw new SocksRequestFailedException();
@@ -41,34 +48,34 @@ namespace ProxySearch.Engine.Socks
             switch (buffer[3])
             {
                 case 1:
-                    ReadBytes(socket, 6);
+                    await ReadBytes(stream, 6);
                     break;
                 case 3:
-                    ReadBytes(socket, ReadBytes(socket, 1).Single() + 2);
+                    await ReadBytes(stream, (await ReadBytes(stream, 1)).Single() + 2);
                     break;
                 case 4:
-                    ReadBytes(socket, 18);
+                    await ReadBytes(stream, 18);
                     break;
                 default:
                     throw new SocksRequestFailedException();
             }
         }
 
-        private void AuthenticateV5(Socket socket)
+        private async Task AuthenticateV5(NetworkStream stream)
         {
-            socket.Send(new byte[] { 5, 2, 0, 2 });
+            stream.Write(new byte[] { 5, 2, 0, 2 }, 0, 4);
 
-            switch (ReadBytes(socket, 2).Last())
+            switch ((await ReadBytes(stream, 2)).Last())
             {
                 case 0:
                     break;
                 case 2:
-                    socket.Send(new byte[] { 1, 0, 0 });
+                    await stream.WriteAsync(new byte[] { 1, 0, 0 }, 0, 3);
                     byte[] buffer = new byte[2];
                     int received = 0;
                     while (received != 2)
                     {
-                        received += socket.Receive(buffer, received, 2 - received, SocketFlags.None);
+                        received += await stream.ReadAsync(buffer, received, 2 - received);
                     }
 
                     if (buffer[1] != 0)
@@ -88,7 +95,7 @@ namespace ProxySearch.Engine.Socks
             return BitConverter.GetBytes(port).Reverse().ToArray();
         }
 
-        private byte[] ReadBytes(Socket socket, int count)
+        private async Task<byte[]> ReadBytes(NetworkStream stream, int count)
         {
             if (count <= 0)
                 throw new ArgumentException();
@@ -96,7 +103,7 @@ namespace ProxySearch.Engine.Socks
             int received = 0;
             while (received != count)
             {
-                int result = socket.Receive(buffer, received, count - received, SocketFlags.None);
+                int result = await stream.ReadAsync(buffer, received, count - received);
 
                 if (result == 0)
                 {
@@ -105,6 +112,7 @@ namespace ProxySearch.Engine.Socks
 
                 received += result;
             }
+
             return buffer;
         }
     }
