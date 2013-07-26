@@ -131,7 +131,6 @@
     <Compile Include="Socks\SocksRequestFailedException.cs" />
     <Compile Include="TaskCounter.cs" />
     <Compile Include="TaskType.cs" />
-    <Compile Include="Utils\EndPointUtils.cs" />
     <Compile Include="Utils\HttpUtils.cs" />
   </ItemGroup>
   <ItemGroup>
