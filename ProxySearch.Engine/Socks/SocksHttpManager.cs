@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies.Socks;
-using ProxySearch.Engine.Utils;
+using ProxySearch.Engine.Extensions;
 
 namespace ProxySearch.Engine.Socks
 {
@@ -32,7 +32,7 @@ namespace ProxySearch.Engine.Socks
             {
                 switch (parameters.ProxyType)
                 {
-                    case SocksProxyTypes.None:
+                    case SocksProxyTypes.Unchecked:
                         try
                         {
                             return await ReadHttpResponseMessage(parameters, async (stream, remoteEP, cancellationToken) =>
@@ -65,7 +65,9 @@ namespace ProxySearch.Engine.Socks
             using (TcpClient tcpClient = new TcpClient())
             {
                 Uri proxyUri = GetProxyUri(parameters);
-                await tcpClient.ConnectAsync(proxyUri.Host, proxyUri.Port);
+
+                await tcpClient.ConnectAsync(proxyUri.Host, proxyUri.Port, parameters.CancellationToken);
+
                 await sendRequest(tcpClient.GetStream(), parameters.Request.RequestUri, parameters.CancellationToken);
 
                 StringBuilder responseBuilder = new StringBuilder();

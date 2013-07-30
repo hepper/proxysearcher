@@ -665,7 +665,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not check.
+        ///   Looks up a localized string similar to Check manually after search.
         /// </summary>
         internal static string TurnedOffProxyChecker {
             get {

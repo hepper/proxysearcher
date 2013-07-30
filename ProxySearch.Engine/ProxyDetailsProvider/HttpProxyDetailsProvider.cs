@@ -7,9 +7,9 @@ using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
 
-namespace ProxySearch.Engine.Utils
+namespace ProxySearch.Engine.ProxyDetailsProvider
 {
-    public class HttpUtils
+    public class HttpProxyDetailsProvider : IProxyDetailsProvider
     {
         public async Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
@@ -24,6 +24,11 @@ namespace ProxySearch.Engine.Utils
                 return new HttpProxyDetails(HttpProxyTypes.ChangesContent);
 
             return new HttpProxyDetails(proxyType);
+        }
+
+        public object GetUncheckedProxyDetails()
+        {
+            return new HttpProxyDetails(HttpProxyTypes.Unchecked);
         }
 
         private string ProxyTypeDetectorUrl

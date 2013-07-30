@@ -2,8 +2,9 @@
 {
     public enum SocksProxyTypes
     {
-        None,
+        Unchecked,
         Socks4,
-        Socks5
+        Socks5,
+        CannotVerify        
     }
 }

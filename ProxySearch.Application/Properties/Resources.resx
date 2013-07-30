@@ -326,7 +326,7 @@ Response time: {0} s</value>
     <value>Open findings</value>
   </data>
   <data name="TurnedOffProxyChecker" xml:space="preserve">
-    <value>Do not check</value>
+    <value>Check manually after search</value>
   </data>
   <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
     <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>

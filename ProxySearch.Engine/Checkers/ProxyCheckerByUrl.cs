@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.ProxyDetailsProvider;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public abstract class ProxyCheckerByUrlBase : ProxyCheckerBase
+    public class ProxyCheckerByUrl<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
+                                                               where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
         private string Url
         {
@@ -31,7 +32,7 @@ namespace ProxySearch.Engine.Checkers
             set;
         }
 
-        public ProxyCheckerByUrlBase(string url, double accuracy)
+        public ProxyCheckerByUrl(string url, double accuracy)
         {
             Url = url;
             Accuracy = accuracy;

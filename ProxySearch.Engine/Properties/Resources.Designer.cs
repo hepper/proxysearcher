@@ -188,6 +188,42 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Socks v4.
+        /// </summary>
+        internal static string Socks4 {
+            get {
+                return ResourceManager.GetString("Socks4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This proxy type is working on transport layer of TCP/IP protocol and supports v4 of Socks proxy.
+        /// </summary>
+        internal static string Socks4Details {
+            get {
+                return ResourceManager.GetString("Socks4Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Socks v5.
+        /// </summary>
+        internal static string Socks5 {
+            get {
+                return ResourceManager.GetString("Socks5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This proxy type is working on transport layer of TCP/IP protocol and supports v5 of Socks proxy without authentication.
+        /// </summary>
+        internal static string Socks5Details {
+            get {
+                return ResourceManager.GetString("Socks5Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/Bandwidth.
         /// </summary>
         internal static string SpeedTestUrl {
@@ -266,6 +302,15 @@ namespace ProxySearch.Engine.Properties {
         internal static string UncheckedDetails {
             get {
                 return ResourceManager.GetString("UncheckedDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unsupported socks proxy type.
+        /// </summary>
+        internal static string UnsupportedSocksProxyType {
+            get {
+                return ResourceManager.GetString("UnsupportedSocksProxyType", resourceCulture);
             }
         }
     }

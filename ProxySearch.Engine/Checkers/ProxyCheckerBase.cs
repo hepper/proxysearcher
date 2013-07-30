@@ -6,13 +6,25 @@ using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
-using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.ProxyDetailsProvider;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public abstract class ProxyCheckerBase : IProxyChecker
+    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker 
+        where ProxyDetailsProviderType : IProxyDetailsProvider, new ()
     {
+        protected IProxyDetailsProvider DetailsProvider
+        {
+            get;
+            private set;
+        }
+
+        public ProxyCheckerBase()
+        {
+            DetailsProvider = new ProxyDetailsProviderType();
+        }
+
         public void CheckAsync(List<Proxy> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
         {
             foreach (Proxy proxy in proxies)
@@ -41,7 +53,7 @@ namespace ProxySearch.Engine.Checkers
                             ProxyInfo proxyInfo = new ProxyInfo(proxyCopy)
                             {
                                 CountryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString()),
-                                Details = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), GetProxyDetails)
+                                Details = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails)
                             };
 
                             if (bandwidth != null)
@@ -55,6 +67,15 @@ namespace ProxySearch.Engine.Checkers
         }
 
         protected abstract Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end);
-        protected abstract Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken);
+
+        protected virtual Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        {
+            return DetailsProvider.GetProxyDetails(proxy, cancellationToken);
+        }
+
+        protected virtual Task<object> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        {
+            return GetProxyDetails(proxy, cancellationToken);
+        }
     }
 }

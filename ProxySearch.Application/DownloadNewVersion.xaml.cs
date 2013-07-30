@@ -6,7 +6,6 @@ using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using ProxySearch.Console.Code;
 
 namespace ProxySearch.Console
 {

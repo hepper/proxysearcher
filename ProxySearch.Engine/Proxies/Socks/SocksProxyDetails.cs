@@ -9,18 +9,24 @@ namespace ProxySearch.Engine.Proxies.Socks
         {
             switch (type)
             {
-                case SocksProxyTypes.None:
+                case SocksProxyTypes.Unchecked:
+                    Name = Resources.Unchecked;
+                    Details = Resources.UncheckedDetails;
                     break;
                 case SocksProxyTypes.Socks4:
-                    Name = "SOCKS4";
-                    Details = "SOCKS4";
+                    Name = Resources.Socks4;
+                    Details = Resources.Socks4Details;
                     break;
-                case SocksProxyTypes.Socks5: 
-                    Name = "SOCKS5";
-                    Details = "SOCKS5";
+                case SocksProxyTypes.Socks5:
+                    Name = Resources.Socks5;
+                    Details = Resources.Socks5Details;
+                    break;
+                case SocksProxyTypes.CannotVerify:
+                    Name = Resources.CannotVerify;
+                    Details = Resources.CannotVerifyDetails;
                     break;
                 default:
-                    throw new InvalidOperationException("Unsupported socks proxy type");
+                    throw new InvalidOperationException(Resources.UnsupportedSocksProxyType);
             }
 
             Type = type;

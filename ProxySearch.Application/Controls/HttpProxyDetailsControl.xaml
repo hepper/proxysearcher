@@ -20,7 +20,7 @@
                         <DataTrigger Binding="{Binding Path=Details.IsUpdating, Mode=OneWay}" Value="True">
                             <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=Details.Detailds.Type, Mode=OneWay}" Value="Unchecked">
+                        <DataTrigger Binding="{Binding Path=Details.Details.Type, Mode=OneWay}" Value="Unchecked">
                             <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>

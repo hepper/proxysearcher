@@ -166,6 +166,18 @@ Never transfer secure data with public proxy.</value>
   <data name="ProxyTypeDetectorUrl" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/DetectProxyType.php?param={0}</value>
   </data>
+  <data name="Socks4" xml:space="preserve">
+    <value>Socks v4</value>
+  </data>
+  <data name="Socks4Details" xml:space="preserve">
+    <value>This proxy type is working on transport layer of TCP/IP protocol and supports v4 of Socks proxy</value>
+  </data>
+  <data name="Socks5" xml:space="preserve">
+    <value>Socks v5</value>
+  </data>
+  <data name="Socks5Details" xml:space="preserve">
+    <value>This proxy type is working on transport layer of TCP/IP protocol and supports v5 of Socks proxy without authentication</value>
+  </data>
   <data name="SpeedTestUrl" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/Bandwidth</value>
   </data>
@@ -193,5 +205,8 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   </data>
   <data name="UncheckedDetails" xml:space="preserve">
     <value>Ready for test</value>
+  </data>
+  <data name="UnsupportedSocksProxyType" xml:space="preserve">
+    <value>Unsupported socks proxy type</value>
   </data>
 </root>
