@@ -9,7 +9,8 @@ using ProxySearch.Engine.ProxyDetailsProvider;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class ProxyCheckerByUrlAndKeywords : ProxyCheckerBase<HttpProxyDetailsProvider>
+    public class ProxyCheckerByUrlAndKeywords<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
+                                                                          where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
         private string Url
         {
