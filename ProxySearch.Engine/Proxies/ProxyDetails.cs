@@ -7,20 +7,20 @@ namespace ProxySearch.Engine.Proxies
 {
     public class ProxyDetails : INotifyPropertyChanged
     {
-        public ProxyDetails(object details)
+        public ProxyDetails(ProxyTypeDetails details)
         {
             Details = details;
             IsUpdating = false;
         }
 
-        public ProxyDetails(object details, Func<ProxyInfo, CancellationTokenSource, Task<object>> updateMethod)
+        public ProxyDetails(ProxyTypeDetails details, Func<ProxyInfo, CancellationTokenSource, Task<ProxyTypeDetails>> updateMethod)
             : this(details)
         {
             UpdateMethod = updateMethod;
         }
 
-        private object details;
-        public object Details
+        private ProxyTypeDetails details;
+        public ProxyTypeDetails Details
         {
             get
             {
@@ -58,7 +58,7 @@ namespace ProxySearch.Engine.Proxies
             set;
         }
 
-        public Func<ProxyInfo, CancellationTokenSource, Task<object>> UpdateMethod
+        public Func<ProxyInfo, CancellationTokenSource, Task<ProxyTypeDetails>> UpdateMethod
         {
             get;
             private set;

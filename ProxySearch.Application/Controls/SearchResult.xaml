@@ -125,7 +125,7 @@
                 <DataGridTemplateColumn Header="Type" Width="33*" SortMemberPath="Details.Details.Type" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <controls:HttpProxyDetailsControl Proxy="{Binding}" />
+                            <controls:ProxyDetailsControl Proxy="{Binding}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

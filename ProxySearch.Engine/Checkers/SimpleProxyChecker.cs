@@ -30,12 +30,12 @@ namespace ProxySearch.Engine.Checkers
             }
         }
 
-        protected override Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected override Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return Task.FromResult(DetailsProvider.GetUncheckedProxyDetails());
         }
 
-        protected override Task<object> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected override Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return base.GetProxyDetails(proxy, cancellationToken);
         }

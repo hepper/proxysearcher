@@ -12,7 +12,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
 {
     public class SocksProxyDetailsProvider : IProxyDetailsProvider
     {
-        public async Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        public async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             UriBuilder uriBuilder = new UriBuilder();
             uriBuilder.Host = proxy.Address.ToString();
@@ -29,12 +29,12 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
             string content = await new HttpDownloaderContainer<SocksHttpClientHandler, SocksProgressMessageHandler>().HttpDownloader.GetContentOrNull(Resources.SpeedTestUrl, proxy, cancellationToken);
 
             if (content != null)
-                return Task.FromResult<object>(new SocksProxyDetails(hashtable[uriBuilder.ToString()]));
+                return new SocksProxyDetails(hashtable[uriBuilder.ToString()]);
 
-            return Task.FromResult<object>(new SocksProxyDetails(SocksProxyTypes.CannotVerify));
+            return new SocksProxyDetails(SocksProxyTypes.CannotVerify);
         }
 
-        public object GetUncheckedProxyDetails()
+        public ProxyTypeDetails GetUncheckedProxyDetails()
         {
             return new SocksProxyDetails(SocksProxyTypes.Unchecked);
         }

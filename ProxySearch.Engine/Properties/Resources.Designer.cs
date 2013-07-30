@@ -306,6 +306,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unsupported http proxy type.
+        /// </summary>
+        internal static string UnsupportedHttpProxyType {
+            get {
+                return ResourceManager.GetString("UnsupportedHttpProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unsupported socks proxy type.
         /// </summary>
         internal static string UnsupportedSocksProxyType {

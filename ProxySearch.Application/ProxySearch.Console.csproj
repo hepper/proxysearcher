@@ -259,8 +259,8 @@
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\HttpProxyDetailsControl.xaml.cs">
-      <DependentUpon>HttpProxyDetailsControl.xaml</DependentUpon>
+    <Compile Include="Controls\ProxyDetailsControl.xaml.cs">
+      <DependentUpon>ProxyDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
@@ -358,7 +358,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\HttpProxyDetailsControl.xaml">
+    <Page Include="Controls\ProxyDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

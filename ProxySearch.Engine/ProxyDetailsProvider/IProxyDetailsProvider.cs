@@ -6,7 +6,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
 {
     public interface IProxyDetailsProvider
     {
-        Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken);
-        object GetUncheckedProxyDetails();
+        Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken);
+        ProxyTypeDetails GetUncheckedProxyDetails();
     }
 }

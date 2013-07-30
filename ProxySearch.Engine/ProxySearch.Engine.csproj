@@ -98,6 +98,7 @@
     <Compile Include="Proxies\Http\HttpProxyTypes.cs" />
     <Compile Include="Proxies\Proxy.cs" />
     <Compile Include="Proxies\ProxyDetails.cs" />
+    <Compile Include="Proxies\ProxyTypeDetails.cs" />
     <Compile Include="Proxies\Socks\SocksProxyDetails.cs" />
     <Compile Include="ProxyDetailsProvider\IProxyDetailsProvider.cs" />
     <Compile Include="ProxyDetailsProvider\SocksProxyDetailsProvider.cs" />

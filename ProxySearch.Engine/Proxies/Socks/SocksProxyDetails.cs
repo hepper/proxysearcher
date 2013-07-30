@@ -3,56 +3,45 @@ using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Proxies.Socks
 {
-    public class SocksProxyDetails
+    public class SocksProxyDetails : ProxyTypeDetails
     {
         public SocksProxyDetails(SocksProxyTypes type)
+            : base(type.ToString(), GetName(type), GetDetails(type))
+        {
+        }
+
+        private static string GetName(SocksProxyTypes type)
         {
             switch (type)
             {
-                case SocksProxyTypes.Unchecked:
-                    Name = Resources.Unchecked;
-                    Details = Resources.UncheckedDetails;
-                    break;
                 case SocksProxyTypes.Socks4:
-                    Name = Resources.Socks4;
-                    Details = Resources.Socks4Details;
-                    break;
+                    return Resources.Socks4;
                 case SocksProxyTypes.Socks5:
-                    Name = Resources.Socks5;
-                    Details = Resources.Socks5Details;
-                    break;
+                    return Resources.Socks5;
+                case SocksProxyTypes.Unchecked:
+                    return Resources.Unchecked;
                 case SocksProxyTypes.CannotVerify:
-                    Name = Resources.CannotVerify;
-                    Details = Resources.CannotVerifyDetails;
-                    break;
+                    return Resources.CannotVerify;
                 default:
                     throw new InvalidOperationException(Resources.UnsupportedSocksProxyType);
             }
-
-            Type = type;
         }
 
-        public string Name
+        private static string GetDetails(SocksProxyTypes type)
         {
-            get;
-            private set;
-        }
-
-        public string Details
-        {
-            get;
-            private set;
-        }
-
-        public SocksProxyTypes Type
-        {
-            get;
-            private set;
-        }
-
-        public override string ToString()
-        {
-            return Name;
+            switch (type)
+            {
+                case SocksProxyTypes.Socks4:
+                    return Resources.Socks4Details;
+                case SocksProxyTypes.Socks5:
+                    return Resources.Socks5Details;
+                case SocksProxyTypes.Unchecked:
+                    return Resources.UncheckedDetails;
+                case SocksProxyTypes.CannotVerify:
+                    return Resources.CannotVerifyDetails;
+                default:
+                    throw new InvalidOperationException(Resources.UnsupportedSocksProxyType);
+            }
         }
     }
 }

@@ -3,62 +3,53 @@ using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Proxies.Http
 {
-    public class HttpProxyDetails
+    public class HttpProxyDetails : ProxyTypeDetails
     {
         public HttpProxyDetails(HttpProxyTypes type)
+            : base(type.ToString(), GetName(type), GetDetails(type))
+        {
+        }
+
+        private static string GetName(HttpProxyTypes type)
         {
             switch (type)
             {
                 case HttpProxyTypes.Anonymous:
-                    Name = Resources.Anonymous;
-                    Details = Resources.AnonymousDetails;
-                    break;
+                    return Resources.Anonymous;
                 case HttpProxyTypes.HighAnonymous:
-                    Name = Resources.HighAnonymous;
-                    Details = Resources.HighAnonymousDetails;
-                    break;
+                    return Resources.HighAnonymous;
                 case HttpProxyTypes.Transparent:
-                    Name = Resources.Transparent;
-                    Details = Resources.TransparentDetails;
-                    break;
+                    return Resources.Transparent;
                 case HttpProxyTypes.ChangesContent:
-                    Name = Resources.ChangesContent;
-                    Details = Resources.ChangesContentDetails;
-                    break;
-                case HttpProxyTypes.CannotVerify:
-                    Name = Resources.CannotVerify;
-                    Details = Resources.CannotVerifyDetails;
-                    break;
+                    return Resources.ChangesContent;
                 case HttpProxyTypes.Unchecked:
-                    Name = Resources.Unchecked;
-                    Details = Resources.UncheckedDetails;
-                    break;
+                    return Resources.Unchecked;
+                case HttpProxyTypes.CannotVerify:
+                    return Resources.CannotVerify;
+                default:
+                    throw new InvalidOperationException(Resources.UnsupportedHttpProxyType);
             }
-
-            Type = type;
         }
 
-        public string Name
+        private static string GetDetails(HttpProxyTypes type)
         {
-            get;
-            private set;
-        }
-
-        public string Details
-        {
-            get;
-            private set;
-        }
-
-        public HttpProxyTypes Type
-        {
-            get;
-            private set;
-        }
-
-        public override string ToString()
-        {
-            return Name;
+            switch (type)
+            {
+                case HttpProxyTypes.Anonymous:
+                    return Resources.AnonymousDetails;
+                case HttpProxyTypes.HighAnonymous:
+                    return Resources.HighAnonymousDetails;
+                case HttpProxyTypes.Transparent:
+                    return Resources.TransparentDetails;
+                case HttpProxyTypes.ChangesContent:
+                    return Resources.ChangesContentDetails;
+                case HttpProxyTypes.Unchecked:
+                    return Resources.UncheckedDetails;
+                case HttpProxyTypes.CannotVerify:
+                    return Resources.CannotVerifyDetails;
+                default:
+                    throw new InvalidOperationException(Resources.UnsupportedHttpProxyType);
+            }
         }
     }
 }

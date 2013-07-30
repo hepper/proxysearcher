@@ -68,12 +68,12 @@ namespace ProxySearch.Engine.Checkers
 
         protected abstract Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end);
 
-        protected virtual Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected virtual Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return DetailsProvider.GetProxyDetails(proxy, cancellationToken);
         }
 
-        protected virtual Task<object> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected virtual Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return GetProxyDetails(proxy, cancellationToken);
         }

@@ -206,6 +206,9 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   <data name="UncheckedDetails" xml:space="preserve">
     <value>Ready for test</value>
   </data>
+  <data name="UnsupportedHttpProxyType" xml:space="preserve">
+    <value>Unsupported http proxy type</value>
+  </data>
   <data name="UnsupportedSocksProxyType" xml:space="preserve">
     <value>Unsupported socks proxy type</value>
   </data>

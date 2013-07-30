@@ -11,7 +11,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
 {
     public class HttpProxyDetailsProvider : IProxyDetailsProvider
     {
-        public async Task<object> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        public async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             string result = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(ProxyTypeDetectorUrl, proxy, cancellationToken);
 
@@ -26,7 +26,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
             return new HttpProxyDetails(proxyType);
         }
 
-        public object GetUncheckedProxyDetails()
+        public ProxyTypeDetails GetUncheckedProxyDetails()
         {
             return new HttpProxyDetails(HttpProxyTypes.Unchecked);
         }

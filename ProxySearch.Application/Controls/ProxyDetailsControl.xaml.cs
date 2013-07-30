@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Engine.Proxies;
@@ -7,13 +6,13 @@ using ProxySearch.Engine.Proxies;
 namespace ProxySearch.Console.Controls
 {
     /// <summary>
-    /// Interaction logic for HttpProxyDetailsControl.xaml
+    /// Interaction logic for ProxyDetailsControl.xaml
     /// </summary>
-    public partial class HttpProxyDetailsControl : UserControl
+    public partial class ProxyDetailsControl : UserControl
     {
-        public static readonly DependencyProperty ProxyProperty = DependencyProperty.Register("Proxy", typeof(ProxyInfo), typeof(HttpProxyDetailsControl));
+        public static readonly DependencyProperty ProxyProperty = DependencyProperty.Register("Proxy", typeof(ProxyInfo), typeof(ProxyDetailsControl));
 
-        public HttpProxyDetailsControl()
+        public ProxyDetailsControl()
         {
             InitializeComponent();
         }
