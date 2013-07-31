@@ -152,6 +152,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid http response from socks proxy.
+        /// </summary>
+        internal static string InvalidHttpResponseFromSocksProxy {
+            get {
+                return ResourceManager.GetString("InvalidHttpResponseFromSocksProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; is not a known HTTP verb..
         /// </summary>
         internal static string IsNotKnownVerbFormat {

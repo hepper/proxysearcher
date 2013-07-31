@@ -154,6 +154,9 @@ Some methods could detect proxy usage , but they dont give 100% guarantee
 that proxy usage will be detected. It is safest type of public proxy.
 Never transfer secure data with public proxy.</value>
   </data>
+  <data name="InvalidHttpResponseFromSocksProxy" xml:space="preserve">
+    <value>Invalid http response from socks proxy</value>
+  </data>
   <data name="IsNotKnownVerbFormat" xml:space="preserve">
     <value>'{0}' is not a known HTTP verb.</value>
   </data>

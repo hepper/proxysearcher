@@ -51,7 +51,7 @@ namespace ProxySearch.Engine.Bandwidth
         public void UpdateBandwidthData(ProxyInfo proxyInfo, BanwidthInfo info)
         {
             double speed = GetSpeed(info);
-            double? respondTime = (info.FirstTime != info.EndTime) ? (double?)(info.FirstTime - info.BeginTime).TotalSeconds - info.FirstCount / speed : null;
+            double? respondTime = GetRespondTime(info, speed);
 
             proxyInfo.BandwidthData.State = BandwidthState.Completed;
             proxyInfo.BandwidthData.ResponseTime = respondTime < 0 ? 0 : respondTime;
@@ -112,6 +112,14 @@ namespace ProxySearch.Engine.Bandwidth
             }
 
             return int.MaxValue;
+        }
+
+        private static double? GetRespondTime(BanwidthInfo info, double speed)
+        {
+            if (info.FirstTime == info.EndTime || speed == 0)
+                return null;
+
+            return (double?)(info.FirstTime - info.BeginTime).TotalSeconds - info.FirstCount / speed;
         }
     }
 }

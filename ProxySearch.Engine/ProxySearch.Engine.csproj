@@ -79,7 +79,7 @@
     <Compile Include="Checkers\TurnedOffProxyChecker.cs" />
     <Compile Include="DownloaderContainers\HttpDownloaderContainer.cs" />
     <Compile Include="EmptyBlackList.cs" />
-    <Compile Include="Extensions\TcpClientExtension.cs" />
+    <Compile Include="Extended\TcpClientExtended.cs" />
     <Compile Include="IBlackList.cs" />
     <Compile Include="DownloaderContainers\IHttpDownloader.cs" />
     <Compile Include="DownloaderContainers\IHttpDownloaderContainer.cs" />

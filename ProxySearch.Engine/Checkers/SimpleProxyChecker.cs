@@ -3,9 +3,8 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
-using ProxySearch.Engine.Extensions;
+using ProxySearch.Engine.Extended;
 using ProxySearch.Engine.Proxies;
-using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.ProxyDetailsProvider;
 
 namespace ProxySearch.Engine.Checkers
@@ -15,28 +14,18 @@ namespace ProxySearch.Engine.Checkers
     {
         protected override async Task<bool> Alive(Proxy info, Action begin, Action<int> firstTime, Action<int> end)
         {
-            try
+            using (TcpClientExtended tcpClient = new TcpClientExtended())
             {
-                using (TcpClient tcpClient = new TcpClient())
+                try
                 {
-                    try
-                    {
-                        await tcpClient.ConnectAsync(info.Address, info.Port, Context.Get<CancellationTokenSource>().Token);
-                    }
-                    catch (SocketException)
-                    {
-                        return false;
-                    }
-
-                    return true;
+                    await tcpClient.ConnectAsync(info.Address, info.Port, Context.Get<CancellationTokenSource>().Token);
                 }
-            }
-            catch
-            {
-                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                    throw new TaskCanceledException();
+                catch (SocketException)
+                {
+                    return false;
+                }
 
-                throw;
+                return true;
             }
         }
 
