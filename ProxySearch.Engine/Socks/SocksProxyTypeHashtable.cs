@@ -24,6 +24,11 @@ namespace ProxySearch.Engine.Socks
         {
             get
             {
+                if (!Exists(proxyUrl))
+                {
+                    return SocksProxyTypes.Unchecked;
+                }
+
                 return (SocksProxyTypes)hashtable[proxyUrl];
             }
         }

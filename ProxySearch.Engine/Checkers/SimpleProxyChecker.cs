@@ -15,18 +15,28 @@ namespace ProxySearch.Engine.Checkers
     {
         protected override async Task<bool> Alive(Proxy info, Action begin, Action<int> firstTime, Action<int> end)
         {
-            using (TcpClient tcpClient = new TcpClient())
+            try
             {
-                try
+                using (TcpClient tcpClient = new TcpClient())
                 {
-                    await tcpClient.ConnectAsync(info.Address, info.Port, Context.Get<CancellationTokenSource>().Token);
-                }
-                catch (SocketException)
-                {
-                    return false;
-                }
+                    try
+                    {
+                        await tcpClient.ConnectAsync(info.Address, info.Port, Context.Get<CancellationTokenSource>().Token);
+                    }
+                    catch (SocketException)
+                    {
+                        return false;
+                    }
 
-                return true;
+                    return true;
+                }
+            }
+            catch
+            {
+                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                    throw new TaskCanceledException();
+
+                throw;
             }
         }
 

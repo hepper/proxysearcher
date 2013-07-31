@@ -43,7 +43,8 @@ namespace ProxySearch.Engine.Bandwidth
 
         public void Cancel(ProxyInfo proxyInfo)
         {
-            proxyInfo.BandwidthData.CancellationToken.Cancel();
+            if (proxyInfo.BandwidthData.CancellationToken != null)
+                proxyInfo.BandwidthData.CancellationToken.Cancel();
             proxyInfo.BandwidthData.CancellationToken = null;
         }
 

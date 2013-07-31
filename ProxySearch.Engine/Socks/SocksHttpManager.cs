@@ -62,44 +62,54 @@ namespace ProxySearch.Engine.Socks
 
         private async Task<HttpResponseMessage> ReadHttpResponseMessage(SocksHttpManagerParameters parameters, Func<NetworkStream, Uri, CancellationToken, Task> sendRequest)
         {
-            using (TcpClient tcpClient = new TcpClient())
+            try
             {
-                Uri proxyUri = GetProxyUri(parameters);
-
-                await tcpClient.ConnectAsync(proxyUri.Host, proxyUri.Port, parameters.CancellationToken);
-
-                await sendRequest(tcpClient.GetStream(), parameters.Request.RequestUri, parameters.CancellationToken);
-
-                StringBuilder responseBuilder = new StringBuilder();
-
-                byte[] requestBytes = Encoding.UTF8.GetBytes(BuildHttpRequestMessage(parameters.Request));
-                await tcpClient.GetStream().WriteAsync(requestBytes, 0, requestBytes.Length, parameters.CancellationToken);
-                FireEventProgress(parameters.ReportRequestProgress, requestBytes.Length, requestBytes.Length);
-
-                long? total = null;
-                var buffer = new byte[1024];
-                var bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length, parameters.CancellationToken);
-
-                while (bytesReceived > 0)
+                using (TcpClient tcpClient = new TcpClient())
                 {
-                    responseBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesReceived));
+                    Uri proxyUri = GetProxyUri(parameters);
 
-                    if (parameters.ReportResponseProgress != null && !total.HasValue)
+                    await tcpClient.ConnectAsync(proxyUri.Host, proxyUri.Port, parameters.CancellationToken);
+
+                    await sendRequest(tcpClient.GetStream(), parameters.Request.RequestUri, parameters.CancellationToken);
+
+                    StringBuilder responseBuilder = new StringBuilder();
+
+                    byte[] requestBytes = Encoding.UTF8.GetBytes(BuildHttpRequestMessage(parameters.Request));
+                    await tcpClient.GetStream().WriteAsync(requestBytes, 0, requestBytes.Length, parameters.CancellationToken);
+                    FireEventProgress(parameters.ReportRequestProgress, requestBytes.Length, requestBytes.Length);
+
+                    long? total = null;
+                    var buffer = new byte[1024];
+                    var bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length, parameters.CancellationToken);
+
+                    while (bytesReceived > 0)
                     {
-                        total = GetContentLength(responseBuilder.ToString());
+                        responseBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesReceived));
+
+                        if (parameters.ReportResponseProgress != null && !total.HasValue)
+                        {
+                            total = GetContentLength(responseBuilder.ToString());
+                        }
+
+                        if (total.HasValue)
+                        {
+                            FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, total);
+                        }
+
+                        bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length, parameters.CancellationToken);
                     }
 
-                    if (total.HasValue)
-                    {
-                        FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, total);
-                    }
+                    FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
 
-                    bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length, parameters.CancellationToken);
+                    return BuildHttpResponseMessage(responseBuilder.ToString());
                 }
+            }
+            catch
+            {
+                if (parameters.CancellationToken.IsCancellationRequested)
+                    throw new TaskCanceledException();
 
-                FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
-
-                return BuildHttpResponseMessage(responseBuilder.ToString());
+                throw;
             }
         }
 

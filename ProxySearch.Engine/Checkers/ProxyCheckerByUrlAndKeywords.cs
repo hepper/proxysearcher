@@ -34,6 +34,11 @@ namespace ProxySearch.Engine.Checkers
         {
             string content = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(Url, info, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 
+            if (content == null)
+            {
+                return false;
+            }
+
             return !Keywords.Any(item => !content.Contains(item));
         }
     }
