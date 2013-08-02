@@ -17,8 +17,8 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         private static readonly string proxyPortPref = "network.proxy.http_port";
 
         public FirefoxClient()
-            : base(Resources.HttpProxyType, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
-        {            
+            : base(Resources.HttpProxyType, Resources.Firefox, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
+        {
         }
 
         protected override void SetProxy(ProxyInfo proxyInfo)

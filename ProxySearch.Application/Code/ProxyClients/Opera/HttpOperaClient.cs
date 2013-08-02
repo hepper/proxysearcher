@@ -10,7 +10,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Opera
         private static readonly string SectionName = "Proxy";
 
         public HttpOperaClient()
-            : base(Resources.HttpProxyType, Resources.Opera, "/Images/Opera.png", 2, "Opera", "opera", Constants.BackupsLocation.OperaSettings)
+            : base(Resources.HttpProxyType, Resources.Opera, Resources.Opera, "/Images/Opera.png", 2, "Opera", "opera", Constants.BackupsLocation.OperaSettings)
         {
         }
 

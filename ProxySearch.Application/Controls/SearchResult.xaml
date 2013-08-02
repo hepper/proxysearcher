@@ -139,7 +139,7 @@
                 <DataGridTemplateColumn Header="Usage" Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" HorizontalContentAlignment="Center" />
+                            <controls:ProxyClientsControl ProxyInfo="{Binding}" controls:ProxyClientControl.Click="ProxyUsageChanged"  Name="ProxyClient" HorizontalContentAlignment="Center" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

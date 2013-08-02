@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
@@ -23,14 +23,14 @@ namespace ProxySearch.Console.Code.ProxyClients
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ProxyClientBase(string type, string name, string image, int order)
+        public ProxyClientBase(string type, string name, string settingsKey, string image, int order)
         {
             Type = type;
             Name = name;
             Image = image;
             Order = order;
+
+            SettingsKey = settingsKey;
         }
 
         public string Type
@@ -62,16 +62,36 @@ namespace ProxySearch.Console.Code.ProxyClients
             get;
         }
 
+        private ProxyInfo ProxyCache
+        {
+            get;
+            set;
+        }
+
+        private DateTime Timestamp
+        {
+            get;
+            set;
+        }
+
+        private string SettingsKey
+        {
+            get;
+            set;
+        }
+
         public ProxyInfo Proxy
         {
             get
             {
-                if (Settings == null)
+                if ((DateTime.UtcNow - Timestamp).TotalMilliseconds > 100)
                 {
-                    return null;
+                    ProxyCache = Settings != null ? GetProxy() : null;
                 }
 
-                return GetProxy();
+                Timestamp = DateTime.UtcNow;
+
+                return ProxyCache;
             }
             set
             {
@@ -92,8 +112,6 @@ namespace ProxySearch.Console.Code.ProxyClients
 
                     SetProxy(value);
                 }
-
-                FirePropertyChanged("Proxy");
             }
         }
 
@@ -103,23 +121,15 @@ namespace ProxySearch.Console.Code.ProxyClients
         protected abstract SettingsData BackupSettings();
         protected abstract void RestoreSettings(SettingsData settings);
 
-        protected void FirePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
         private string Settings
         {
             get
             {
-                return Context.Get<ProxyClientsSettings>()[Name];
+                return Context.Get<ProxyClientsSettings>()[SettingsKey];
             }
             set
             {
-                Context.Get<ProxyClientsSettings>()[Name] = value;
+                Context.Get<ProxyClientsSettings>()[SettingsKey] = value;
             }
         }
     }

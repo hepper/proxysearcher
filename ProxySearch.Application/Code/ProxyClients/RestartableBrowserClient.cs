@@ -14,8 +14,8 @@ namespace ProxySearch.Console.Code.ProxyClients
             set;
         }
 
-        public RestartableBrowserClient(string proxyType, string name, string image, int order, string clientName, string processName)
-            : base(proxyType, name, image, order, clientName)
+        public RestartableBrowserClient(string proxyType, string name, string settingsKey, string image, int order, string clientName, string processName)
+            : base(proxyType, name, settingsKey, image, order, clientName)
         {
             ProcessName = processName;
         }

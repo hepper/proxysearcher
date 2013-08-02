@@ -14,12 +14,19 @@ namespace ProxySearch.Console.Controls
     {
         public static readonly DependencyProperty ProxyInfoProperty = DependencyProperty.Register("ProxyInfo", typeof(ProxyInfo), typeof(ProxyClientControl));
         public static readonly DependencyProperty ProxyClientProperty = DependencyProperty.Register("ProxyClient", typeof(IProxyClient), typeof(ProxyClientControl));
+        public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent("Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ProxyClientControl));
 
-        private static event Action isCheckedChanged;
+        public event RoutedEventHandler Click
+        {
+            add { AddHandler(ClickEvent, value); }
+            remove { RemoveHandler(ClickEvent, value); }
+        }
+
+        private static event Action notifyAllInstances;
 
         public ProxyClientControl()
         {
-            isCheckedChanged += () =>
+            notifyAllInstances += () =>
             {
                 if (PropertyChanged != null)
                 {
@@ -101,13 +108,15 @@ namespace ProxySearch.Console.Controls
                     restartableProxyClient.Open();
                 }
 
-                isCheckedChanged();
+                RaiseEvent(new RoutedEventArgs(ProxyClientControl.ClickEvent));
+
+                notifyAllInstances();
             }
         }
 
         private void IsCheckedChanged(object sender, EventArgs e)
         {
-            isCheckedChanged();
+            notifyAllInstances();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -48,20 +48,6 @@ namespace ProxySearch.Console.Controls
 
             InitializeComponent();
 
-            foreach (IProxyClient client in Context.Get<IProxyClientSearcher>().Clients)
-            {
-                IProxyClient clientCopy = client;
-                clientCopy.PropertyChanged += (sender, e) =>
-                {
-                    if (clientCopy.Proxy != null)
-                    {
-                        Context.Get<IUsedProxies>().Add(clientCopy.Proxy);
-                    }
-
-                    PageData.Reset();
-                };
-            }
-
             SearchState = SearchProgress.NotStartedOrCancelled;
         }
 
@@ -176,7 +162,7 @@ namespace ProxySearch.Console.Controls
             {
                 client.Proxy = null;
             }
-            
+
             Context.Get<IBlackListManager>().Add(proxy);
             PageData.Remove(proxy);
 
@@ -192,6 +178,18 @@ namespace ProxySearch.Console.Controls
             }
 
             Data.Remove(proxy);
+        }
+
+        private void ProxyUsageChanged(object sender, RoutedEventArgs e)
+        {
+            ProxyClientControl control = (ProxyClientControl)e.OriginalSource;
+
+            if (control.ProxyInfo != null)
+            {
+                Context.Get<IUsedProxies>().Add(control.ProxyInfo);
+            }
+
+            PageData.Reset();
         }
 
         public void Started()

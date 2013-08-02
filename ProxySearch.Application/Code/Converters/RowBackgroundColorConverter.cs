@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows.Data;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine.Proxies;
 

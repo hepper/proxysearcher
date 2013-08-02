@@ -8,8 +8,8 @@ namespace ProxySearch.Console.Code.ProxyClients
     {
         private string clientName;
 
-        public BrowserClient(string proxyType, string name, string image, int order, string clientName)
-            : base(proxyType, name, image, order)
+        public BrowserClient(string proxyType, string name, string settingsKey, string image, int order, string clientName)
+            : base(proxyType, name, settingsKey, image, order)
         {
             this.clientName = clientName;
         }
@@ -27,7 +27,7 @@ namespace ProxySearch.Console.Code.ProxyClients
         {
             get
             {
-                if (browserPath ==null)
+                if (browserPath == null)
                     browserPath = (string)RegistryKey.GetValue(null);
 
                 return browserPath;

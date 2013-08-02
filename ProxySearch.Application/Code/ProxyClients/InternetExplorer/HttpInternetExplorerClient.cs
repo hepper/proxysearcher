@@ -14,7 +14,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         }
 
         public HttpInternetExplorerClient(string name, string image, int order, string clientName)
-            : base(Resources.HttpProxyType, name, image, order, clientName)
+            : base(Resources.HttpProxyType, name, Resources.InternetExplorer, image, order, clientName)
         {
         }
 
