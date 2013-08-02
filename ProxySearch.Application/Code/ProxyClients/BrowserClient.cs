@@ -8,8 +8,8 @@ namespace ProxySearch.Console.Code.ProxyClients
     {
         private string clientName;
 
-        public BrowserClient(string name, string image, int order, string clientName)
-            : base(name, image, order)
+        public BrowserClient(string proxyType, string name, string image, int order, string clientName)
+            : base(proxyType, name, image, order)
         {
             this.clientName = clientName;
         }

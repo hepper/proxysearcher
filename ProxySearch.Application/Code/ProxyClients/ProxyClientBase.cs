@@ -25,15 +25,18 @@ namespace ProxySearch.Console.Code.ProxyClients
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private static List<ProxyClientBase> Clients = new List<ProxyClientBase>();
-
-        public ProxyClientBase(string name, string image, int order)
+        public ProxyClientBase(string type, string name, string image, int order)
         {
+            Type = type;
             Name = name;
             Image = image;
             Order = order;
+        }
 
-            Clients.Add(this);
+        public string Type
+        {
+            get;
+            private set;
         }
 
         public string Name
@@ -90,10 +93,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                     SetProxy(value);
                 }
 
-                foreach (ProxyClientBase client in Clients)
-                {
-                    client.FirePropertyChanged("Proxy");
-                }
+                FirePropertyChanged("Proxy");
             }
         }
 

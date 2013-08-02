@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
+using ProxySearch.Engine.Extended;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies.Socks;
-using ProxySearch.Engine.Extended;
 
 namespace ProxySearch.Engine.Socks
 {
@@ -97,9 +97,10 @@ namespace ProxySearch.Engine.Socks
                     bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length, parameters.CancellationToken);
                 }
 
-                FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
+                HttpResponseMessage result =  BuildHttpResponseMessage(responseBuilder.ToString());
 
-                return BuildHttpResponseMessage(responseBuilder.ToString());
+                FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
+                return result;
             }
         }
 

@@ -15,12 +15,22 @@ namespace ProxySearch.Console.Controls
         public static readonly DependencyProperty ProxyInfoProperty = DependencyProperty.Register("ProxyInfo", typeof(ProxyInfo), typeof(ProxyClientControl));
         public static readonly DependencyProperty ProxyClientProperty = DependencyProperty.Register("ProxyClient", typeof(IProxyClient), typeof(ProxyClientControl));
 
+        private static event Action isCheckedChanged;
+
         public ProxyClientControl()
         {
+            isCheckedChanged += () =>
+            {
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs("IsChecked"));
+                }
+            };
+
             InitializeComponent();
 
-            DependencyPropertyDescriptor.FromProperty(ProxyClientProperty, typeof(ProxyClientControl)).AddValueChanged(this, ProxyClientPropertyChanged);
-            DependencyPropertyDescriptor.FromProperty(ProxyInfoProperty, typeof(ProxyClientControl)).AddValueChanged(this, ProxyInfoPropertyChanged);
+            DependencyPropertyDescriptor.FromProperty(ProxyClientProperty, typeof(ProxyClientControl)).AddValueChanged(this, IsCheckedChanged);
+            DependencyPropertyDescriptor.FromProperty(ProxyInfoProperty, typeof(ProxyClientControl)).AddValueChanged(this, IsCheckedChanged);
         }
 
         public ProxyInfo ProxyInfo
@@ -90,34 +100,14 @@ namespace ProxySearch.Console.Controls
                 {
                     restartableProxyClient.Open();
                 }
+
+                isCheckedChanged();
             }
         }
 
-        private void ProxyClientPropertyChanged(object sender, EventArgs e)
+        private void IsCheckedChanged(object sender, EventArgs e)
         {
-            FirePropertyChanged("IsChecked");
-            ProxyClient.PropertyChanged += ProxyClient_PropertyChanged;
-        }
-
-        private void ProxyInfoPropertyChanged(object sender, EventArgs e)
-        {
-            FirePropertyChanged("IsChecked");
-        }
-
-        private void ProxyClient_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == "Proxy")
-            {
-                FirePropertyChanged("IsChecked");
-            }
-        }
-
-        protected void FirePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            isCheckedChanged();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

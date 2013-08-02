@@ -5,12 +5,12 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients.Opera
 {
-    public class OperaClient : ConfigurableRestartableBrowserClient
+    public class HttpOperaClient : ConfigurableRestartableBrowserClient
     {
         private static readonly string SectionName = "Proxy";
 
-        public OperaClient()
-            : base(Resources.Opera, "/Images/Opera.png", 2, "Opera", "opera", Constants.BackupsLocation.OperaSettings)
+        public HttpOperaClient()
+            : base(Resources.HttpProxyType, Resources.Opera, "/Images/Opera.png", 2, "Opera", "opera", Constants.BackupsLocation.OperaSettings)
         {
         }
 

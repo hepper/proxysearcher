@@ -5,8 +5,8 @@ namespace ProxySearch.Console.Code.ProxyClients
     {
         private string backupPath;
 
-        public ConfigurableRestartableBrowserClient(string name, string image, int order, string clientName, string processName, string backupPath)
-            : base(name, image, order, clientName, processName)
+        public ConfigurableRestartableBrowserClient(string proxyType, string name, string image, int order, string clientName, string processName, string backupPath)
+            : base(proxyType, name, image, order, clientName, processName)
         {
             this.backupPath = backupPath;
         }

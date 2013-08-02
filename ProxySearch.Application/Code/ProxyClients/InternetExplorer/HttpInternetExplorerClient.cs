@@ -6,10 +6,15 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 {
-    public class InternetExplorerClient : BrowserClient
+    public class HttpInternetExplorerClient : BrowserClient
     {
-        public InternetExplorerClient()
-            : base(Resources.InternetExplorer, "/Images/InternerExplorer.gif", 0, "IEXPLORE.EXE")
+        public HttpInternetExplorerClient()
+            : this(Resources.InternetExplorer, "/Images/InternerExplorer.gif", 0, "IEXPLORE.EXE")
+        {
+        }
+
+        public HttpInternetExplorerClient(string name, string image, int order, string clientName)
+            : base(Resources.HttpProxyType, name, image, order, clientName)
         {
         }
 
@@ -18,7 +23,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             if (!UseProxy)
                 return null;
 
-            return new ProxyInfo( GetValue<string>(Constants.Browsers.IE.ProxyServer));
+            return new ProxyInfo(GetValue<string>(Constants.Browsers.IE.ProxyServer));
         }
 
         private string GetHttpProxy(string value)

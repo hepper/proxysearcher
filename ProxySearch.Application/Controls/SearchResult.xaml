@@ -129,14 +129,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Speed (response)" SortMemberPath="BandwidthData" Width="33*">
+                <DataGridTemplateColumn Header="Speed (response)" Width="33*" SortMemberPath="BandwidthData">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <controls:BandwidthControl ProxyInfo="{Binding}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Usage" Width="150">
+                <DataGridTemplateColumn Header="Usage" Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <controls:ProxyClientsControl ProxyInfo="{Binding}" Name="ProxyClient" HorizontalContentAlignment="Center" />

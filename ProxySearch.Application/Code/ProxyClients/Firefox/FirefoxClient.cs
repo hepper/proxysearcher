@@ -8,7 +8,7 @@ using ProxySearch.Console.Code.Extensions;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Proxies;
 
-namespace ProxySearch.Console.Code.ProxyClients
+namespace ProxySearch.Console.Code.ProxyClients.Firefox
 {
     public class FirefoxClient : ConfigurableRestartableBrowserClient
     {
@@ -17,9 +17,8 @@ namespace ProxySearch.Console.Code.ProxyClients
         private static readonly string proxyPortPref = "network.proxy.http_port";
 
         public FirefoxClient()
-            : base(Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
-        {
-            
+            : base(Resources.HttpProxyType, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
+        {            
         }
 
         protected override void SetProxy(ProxyInfo proxyInfo)
