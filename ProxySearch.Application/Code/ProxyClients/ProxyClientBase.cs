@@ -106,9 +106,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                 else
                 {
                     if (Settings == null)
-                    {
                         Settings = Serializer.Serialize(BackupSettings());
-                    }
 
                     SetProxy(value);
                 }
