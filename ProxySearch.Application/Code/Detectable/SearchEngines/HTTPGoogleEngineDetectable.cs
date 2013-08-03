@@ -2,9 +2,9 @@
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
-    public class HTTPGoogleEngineDetectable : GoogleEngineDetectableBase
+    public class HttpGoogleEngineDetectable : GoogleEngineDetectableBase
     {
-        public HTTPGoogleEngineDetectable():base(Resources.HttpProxyType, "http proxy list 3128")
+        public HttpGoogleEngineDetectable():base(Resources.HttpProxyType, "http proxy list 3128")
         {
 
         }

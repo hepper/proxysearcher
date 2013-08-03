@@ -9,8 +9,8 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public abstract class CheckerByUrlDetectableBase<ProxyCheckerType>: SimpleDetectableBase<IProxyChecker, ProxyCheckerType>
        where ProxyCheckerType: IProxyChecker
     {
-        public CheckerByUrlDetectableBase(string supportedProxyType)
-            : base(Resources.ProxyCheckerByUrl, Resources.ProxyCheckerByUrlDescription, 0, new string[] { supportedProxyType })
+        public CheckerByUrlDetectableBase(string proxyType)
+            : base(Resources.ProxyCheckerByUrl, Resources.ProxyCheckerByUrlDescription, 0, proxyType)
         {
         }
 

@@ -10,29 +10,42 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients.Firefox
 {
-    public class FirefoxClient : ConfigurableRestartableBrowserClient
+    public abstract class FirefoxClientBase : ConfigurableRestartableBrowserClient
     {
         private static readonly string proxyTypePref = "network.proxy.type";
-        private static readonly string proxyHttpPref = "network.proxy.http";
-        private static readonly string proxyPortPref = "network.proxy.http_port";
 
-        public FirefoxClient()
-            : base(Resources.HttpProxyType, Resources.Firefox, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
+        private string ProxyPref
         {
+            get;
+            set;
         }
 
-        protected override void SetProxy(ProxyInfo proxyInfo)
+        private string ProxyPortPref
         {
-            string content = File.ReadAllText(SettingsPath);
+            get;
+            set;
+        }
 
+        public FirefoxClientBase(string proxyType)
+            : base(proxyType, Resources.Firefox, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
+        {
+            ProxyPref = string.Concat("network.proxy.", ProtocolName);
+            ProxyPortPref = string.Format("network.proxy.{0}_port", ProtocolName);
+        }
+
+        protected sealed override void SetProxy(ProxyInfo proxyInfo)
+        {
+            File.WriteAllText(SettingsPath, SetProxy(proxyInfo, File.ReadAllText(SettingsPath)));
+        }
+
+        protected virtual string SetProxy(ProxyInfo proxyInfo, string content)
+        {
             content = WritePref(content, proxyTypePref, "1");
-            content = WritePref(content, proxyHttpPref, string.Format("\"{0}\"", proxyInfo.Address));
-            content = WritePref(content, proxyPortPref, proxyInfo.Port.ToString());
-
-            File.WriteAllText(SettingsPath, content);
+            content = WritePref(content, ProxyPref, string.Format("\"{0}\"", proxyInfo.Address));
+            return WritePref(content, ProxyPortPref, proxyInfo.Port.ToString());
         }
 
-        protected override ProxyInfo GetProxy()
+        protected sealed override ProxyInfo GetProxy()
         {
             if (!File.Exists(SettingsPath))
             {
@@ -41,13 +54,13 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
 
             string content = File.ReadAllText(SettingsPath);
 
-            if (ReadPref(content, proxyTypePref) != "1")
+            if (ReadPref(content, proxyTypePref) != "1" || ReadPref(content, ProxyPref) == null)
             {
                 return null;
             }
 
-            return new ProxyInfo(IPAddress.Parse(ReadPref(content, proxyHttpPref).Trim('"')),
-                                 ushort.Parse(ReadPref(content, proxyPortPref)));
+            return new ProxyInfo(IPAddress.Parse(ReadPref(content, ProxyPref).Trim('"')),
+                                 ushort.Parse(ReadPref(content, ProxyPortPref)));
         }
 
         protected override string SettingsPath
@@ -67,7 +80,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
             }
         }
 
-        private string ReadPref(string content, string name)
+        protected string ReadPref(string content, string name)
         {
             Regex regex = new Regex(GetRegularExpression(name));
 
@@ -79,7 +92,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
             return match.Groups["value"].Value;
         }
 
-        private string WritePref(string content, string name, string newValue)
+        protected string WritePref(string content, string name, string newValue)
         {
             string oldValue = ReadPref(content, name);
 
@@ -102,6 +115,20 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 return content;
 
             return new Regex(GetRegularExpression(name)).ReplaceGroup(content, "value", newValue);
+        }
+
+        private string ProtocolName
+        {
+            get
+            {
+                if (Type == Resources.HttpProxyType)
+                    return "http";
+
+                if (Type == Resources.SocksProxyType)
+                    return "socks";
+
+                throw new NotSupportedException();
+            }
         }
 
         private static string GetRegularExpression(string name)

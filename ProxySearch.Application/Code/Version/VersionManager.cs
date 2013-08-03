@@ -32,7 +32,7 @@ namespace ProxySearch.Console.Code.Version
                     if (Context.Get<IVersionProvider>().Version >= GetVersion(document))
                         return;
 
-                    if (MessageBox.Show(Resources.UpdateIsReadyToInstall, Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
+                    if (Context.Get<IMessageBox>().YesNoQuestion(Resources.UpdateIsReadyToInstall) != MessageBoxResult.Yes)
                         return;
 
                     new DownloadNewVersion(GetInstallerUrl(document)).ShowDialog();

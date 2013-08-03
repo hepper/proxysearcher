@@ -115,6 +115,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot set sock proxy for Firefox when socks version is not defined.
+        /// </summary>
+        internal static string CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined {
+            get {
+                return ResourceManager.GetString("CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot update program. Do you want to do it manually?.
         /// </summary>
         internal static string CannotUpdateProgram {
@@ -421,7 +430,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open findings.
+        ///   Looks up a localized string similar to Open findings as HTTP.
         /// </summary>
         internal static string Open {
             get {

@@ -179,7 +179,7 @@ namespace ProxySearch.Console.Controls
         private void TabNameControl_Delete(object sender, RoutedEventArgs e)
         {
             if (AllTabSettings.Count == 1)
-                MessageBox.Show(Properties.Resources.YouCannotDeleteLastSearchSettings, Properties.Resources.Information, MessageBoxButton.OK, MessageBoxImage.Information);
+                Context.Get<IMessageBox>().Information(Properties.Resources.YouCannotDeleteLastSearchSettings);
             else
                 AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex - 1);
         }
@@ -216,7 +216,7 @@ namespace ProxySearch.Console.Controls
 
         private void RestoreDefaults_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(Properties.Resources.AllSettingsWillBeRevertedToTheirDefaults, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (Context.Get<IMessageBox>().YesNoQuestion(Properties.Resources.AllSettingsWillBeRevertedToTheirDefaults) == MessageBoxResult.Yes)
             {
                 AllSettings = new DefaultSettingsFactory().Create();
                 Context.Get<ISearchControl>().Rebind();
@@ -226,7 +226,7 @@ namespace ProxySearch.Console.Controls
 
         private void ClearHistory_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(Properties.Resources.DoYouReallyWantToClearProxyUsageHistory, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (Context.Get<IMessageBox>().YesNoQuestion(Properties.Resources.DoYouReallyWantToClearProxyUsageHistory) == MessageBoxResult.Yes)
             {
                 Context.Get<IUsedProxies>().Clear();
             }
@@ -234,7 +234,7 @@ namespace ProxySearch.Console.Controls
 
         private void ClearBlackList_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show(Properties.Resources.DoYouReallyWantToClearBlacklist, Properties.Resources.Question, MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (Context.Get<IMessageBox>().YesNoQuestion(Properties.Resources.DoYouReallyWantToClearBlacklist) == MessageBoxResult.Yes)
             {
                 Context.Get<IBlackListManager>().Clear();
             }

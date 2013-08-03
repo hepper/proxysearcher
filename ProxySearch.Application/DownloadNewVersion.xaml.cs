@@ -6,6 +6,8 @@ using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using ProxySearch.Common;
+using ProxySearch.Console.Code.Interfaces;
 
 namespace ProxySearch.Console
 {
@@ -47,7 +49,7 @@ namespace ProxySearch.Console
             catch (Exception)
             {
                 Close();
-                if (MessageBox.Show(Properties.Resources.CannotUpdateProgram, Properties.Resources.Error, MessageBoxButton.OKCancel, MessageBoxImage.Error) == MessageBoxResult.OK)
+                if (Context.Get<IMessageBox>().OkCancelQuestion(Properties.Resources.CannotUpdateProgram) == MessageBoxResult.OK)
                 {
                     Process.Start(Properties.Resources.HomePageLink);
                     Application.Current.Shutdown();

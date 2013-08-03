@@ -7,7 +7,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public class SocksSimpleProxyCheckerDetectable : SimpleDetectableBase<IProxyChecker, SimpleProxyChecker<SocksProxyDetailsProvider>>
     {
         public SocksSimpleProxyCheckerDetectable()
-            : base(Resources.SimpleProxyChecker, Resources.SimpleProxyCheckerDescription, 3, new string[] { Resources.SocksProxyType })
+            : base(Resources.SimpleProxyChecker, Resources.SimpleProxyCheckerDescription, 3, Resources.SocksProxyType)
         {
         }
     }

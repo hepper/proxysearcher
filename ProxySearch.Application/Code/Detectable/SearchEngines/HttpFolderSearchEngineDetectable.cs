@@ -6,11 +6,11 @@ using ProxySearch.Engine.SearchEngines.FolderSearch;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
-    public class FolderSearchEngineDetectable : DetectableBase<ISearchEngine, FolderSearchEngine, FolderSearchEngineControl>
+    public class HttpFolderSearchEngineDetectable : DetectableBase<ISearchEngine, FolderSearchEngine, FolderSearchEngineControl>
     {
-        public FolderSearchEngineDetectable()
+        public HttpFolderSearchEngineDetectable()
             : base(Resources.FolderSearchEngine, Resources.FolderSearchEngineDescription,
-                   1, new string[] { Resources.HttpProxyType, Resources.SocksProxyType }, new List<object> { Constants.DefaultExportFolder.Location })
+                   1, Resources.HttpProxyType, new List<object> { Constants.DefaultExportFolder.Location })
         {
         }
     }

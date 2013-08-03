@@ -138,17 +138,20 @@
     </Compile>
     <Compile Include="Code\Detectable\ProxyCheckers\SocksCheckerByUrlAndKeywordDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\SocksSimpleProxyCheckerDetectable.cs" />
-    <Compile Include="Code\Detectable\ProxyCheckers\TurnedOffProxyCheckerDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\HttpTurnedOffProxyCheckerDetectable.cs" />
+    <Compile Include="Code\Detectable\ProxyCheckers\SocksTurnedOffProxyCheckerDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyType\HttpProxyTypeDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyType\SocksProxyTypeDetectable.cs" />
-    <Compile Include="Code\Detectable\SearchEngines\SOCKSGoogleEngineDetectable.cs" />
-    <Compile Include="Code\Detectable\SearchEngines\FolderSearchEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\SocksFolderSearchEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\SocksGoogleEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\HttpFolderSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\GoogleEngineDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Detectable\SearchEngines\HTTPGoogleEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\HttpGoogleEngineDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\SocksCheckerByUrlDetectable.cs" />
-    <Compile Include="Code\Detectable\SearchEngines\UrlListSearchEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\HttpUrlListSearchEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\SocksUrlListSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -169,6 +172,7 @@
     <Compile Include="Code\Interfaces\IDetectableSearcher.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Interfaces\IMessageBox.cs" />
     <Compile Include="Code\Interfaces\IProxyClient.cs" />
     <Compile Include="Code\Interfaces\IProxyClientRestartable.cs" />
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
@@ -181,7 +185,9 @@
     <Compile Include="Code\ProxyClients\Chrome\HttpChromeClient.cs" />
     <Compile Include="Code\ProxyClients\Chrome\SocksChromeClient.cs" />
     <Compile Include="Code\ProxyClients\ConfigurableRestartableBrowserClient.cs" />
-    <Compile Include="Code\ProxyClients\Firefox\FirefoxClient.cs" />
+    <Compile Include="Code\ProxyClients\Firefox\SocksFirefoxClient.cs" />
+    <Compile Include="Code\ProxyClients\Firefox\FirefoxClientBase.cs" />
+    <Compile Include="Code\ProxyClients\Firefox\HttpFirefoxClient.cs" />
     <Compile Include="Code\ProxyClients\InternetExplorer\HttpInternetExplorerClient.cs" />
     <Compile Include="Code\ProxyClients\InternetExplorer\InternetExplorerClientBase.cs" />
     <Compile Include="Code\ProxyClients\InternetExplorer\SocksInternetExplorerClient.cs" />
@@ -228,6 +234,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\UI\GeneralTabSettings.cs" />
+    <Compile Include="Code\UI\MessageBoxWrapper.cs" />
     <Compile Include="Code\UI\RowStyles.cs" />
     <Compile Include="Code\Version\VersionProvider.cs" />
     <Compile Include="Code\Version\VersionManager.cs" />

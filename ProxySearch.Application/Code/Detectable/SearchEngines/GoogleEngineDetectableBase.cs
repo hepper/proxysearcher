@@ -9,9 +9,8 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
     public abstract class GoogleEngineDetectableBase : DetectableBase<ISearchEngine, GoogleSearchEngine, GoogleEnginePropertyControl>
     {
-        public GoogleEngineDetectableBase(string supportedProxyType, string defaultKeywords)
-            : base(Resources.GoogleDotCom, Resources.GoogleEngineDescription, 0, new string[] { supportedProxyType },
-                   new List<object> { 40, defaultKeywords })
+        public GoogleEngineDetectableBase(string proxyType, string defaultKeywords)
+            : base(Resources.GoogleDotCom, Resources.GoogleEngineDescription, 0, proxyType, new List<object> { 40, defaultKeywords })
         {
         }
 

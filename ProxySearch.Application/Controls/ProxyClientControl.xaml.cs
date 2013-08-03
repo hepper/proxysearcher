@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Engine.Proxies;
 
@@ -82,13 +83,8 @@ namespace ProxySearch.Console.Controls
 
                 if (restartableProxyClient != null && restartableProxyClient.IsRunning)
                 {
-                    MessageBoxResult result = MessageBox.Show(
-                                                string.Format(Properties.Resources.DoYouWantToRestartBrowser, ProxyClient.Name),
-                                                Properties.Resources.Question,
-                                                MessageBoxButton.OKCancel,
-                                                MessageBoxImage.Question);
-
-                    if (result == MessageBoxResult.Cancel)
+                    if (Context.Get<IMessageBox>().OkCancelQuestion(
+                        string.Format(Properties.Resources.DoYouWantToRestartBrowser, ProxyClient.Name)) == MessageBoxResult.Cancel)
                     {
                         return;
                     }

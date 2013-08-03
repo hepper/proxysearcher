@@ -2,9 +2,9 @@
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
-    public class SOCKSGoogleEngineDetectable : GoogleEngineDetectableBase
+    public class SocksGoogleEngineDetectable : GoogleEngineDetectableBase
     {
-        public SOCKSGoogleEngineDetectable()
+        public SocksGoogleEngineDetectable()
             : base(Resources.SocksProxyType, "socks proxy list 1080")
         {
         }

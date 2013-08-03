@@ -22,7 +22,7 @@ namespace ProxySearch.Console.Code.Detectable
         {
             IProxyType proxyType = (IProxyType)Activator.CreateInstance(proxyTypeDetectable.Implementation);
 
-            return Get<T>().Where(item => item.SupportedProxyTypes.Contains(proxyType.Type)).ToList();
+            return Get<T>().Where(item => item.ProxyType == proxyType.Type).ToList();
         }
     }
 }

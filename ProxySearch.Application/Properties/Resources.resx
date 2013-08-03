@@ -323,7 +323,7 @@ Response time: {0} s</value>
     <value>HTTP (Google)</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open findings</value>
+    <value>Open findings as HTTP</value>
   </data>
   <data name="TurnedOffProxyChecker" xml:space="preserve">
     <value>Check manually after search</value>
@@ -358,5 +358,8 @@ Response time: {0} s</value>
   </data>
   <data name="SocksProxyTypeDesciption" xml:space="preserve">
     <value>This type allows to find socks proxies</value>
+  </data>
+  <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
+    <value>Cannot set sock proxy for Firefox when socks version is not defined</value>
   </data>
 </root>

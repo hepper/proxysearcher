@@ -6,10 +6,10 @@ using ProxySearch.Engine.SearchEngines.UrlList;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
-    class UrlListSearchEngineDetectable : DetectableBase<ISearchEngine, UrlListSearchEngine, UrlListPropertyControl>
+    public class HttpUrlListSearchEngineDetectable : DetectableBase<ISearchEngine, UrlListSearchEngine, UrlListPropertyControl>
     {
-        public UrlListSearchEngineDetectable()
-            : base(Resources.UrlListEngine, Resources.UrlListEngineDescription, 2, new string[] { Resources.HttpProxyType, Resources.SocksProxyType }, 
+        public HttpUrlListSearchEngineDetectable()
+            : base(Resources.UrlListEngine, Resources.UrlListEngineDescription, 2, Resources.HttpProxyType, 
             new List<object>
             {
                 "http://www.aliveproxy.com/proxy-list-port-3128/\n" +

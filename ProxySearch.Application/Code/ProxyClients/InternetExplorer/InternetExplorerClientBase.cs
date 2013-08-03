@@ -60,7 +60,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 
         protected override void SetProxy(ProxyInfo proxyInfo)
         {
-            WinINet.SetProxy(true, string.Format("socks={0}:{1}", proxyInfo.Address, proxyInfo.Port));
+            WinINet.SetProxy(true, string.Format("{0}={1}:{2}", ProtocolName, proxyInfo.Address, proxyInfo.Port));
         }
 
         protected override SettingsData BackupSettings()

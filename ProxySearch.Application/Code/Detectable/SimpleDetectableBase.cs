@@ -6,18 +6,18 @@ namespace ProxySearch.Console.Code.Detectable
 {
     public abstract class SimpleDetectableBase<InterfaceType, ImplementationType> : IDetectable
     {
-        public SimpleDetectableBase(string friendlyName, string description, int order, string[] supportedProxyTypes)
+        public SimpleDetectableBase(string friendlyName, string description, int order, string proxyType)
         {
             FriendlyName = friendlyName;
             Description = description;
             Interface = typeof(InterfaceType);
             Implementation = typeof(ImplementationType);
             Order = order;
-            SupportedProxyTypes = supportedProxyTypes;
+            ProxyType = proxyType;
         }
 
         public SimpleDetectableBase(string friendlyName, string description, int order)
-            : this(friendlyName, description, order, new string[] { })
+            : this(friendlyName, description, order, null)
         {
         }
 
@@ -51,7 +51,7 @@ namespace ProxySearch.Console.Code.Detectable
             private set;
         }
 
-        public string[] SupportedProxyTypes
+        public string ProxyType
         {
             get;
             private set;

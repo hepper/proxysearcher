@@ -7,7 +7,8 @@ using ProxySearch.Engine.ProxyDetailsProvider;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public class TurnedOffProxyChecker : ProxyCheckerBase<HttpProxyDetailsProvider>
+    public class TurnedOffProxyChecker<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
+        where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
         protected override Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end)
         {
@@ -16,7 +17,7 @@ namespace ProxySearch.Engine.Checkers
 
         protected override Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            return Task.FromResult<ProxyTypeDetails>(new HttpProxyDetails(HttpProxyTypes.Unchecked));
+            return Task.FromResult<ProxyTypeDetails>(base.DetailsProvider.GetUncheckedProxyDetails());
         }
 
         protected override Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)

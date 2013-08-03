@@ -6,6 +6,7 @@ using System.Windows.Threading;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Code.UI;
 
 namespace ProxySearch.Console
 {
@@ -22,6 +23,8 @@ namespace ProxySearch.Console
 
         public App()
         {
+            Context.Set<IMessageBox>(new MessageBoxWrapper());
+
             this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
             this.Startup += new StartupEventHandler(App_Startup);
             this.Exit += new ExitEventHandler(App_Exit);
@@ -82,9 +85,9 @@ namespace ProxySearch.Console
         public static void ShowException(Window owner, Exception exception)
         {
             if (owner == null)
-                MessageBox.Show(exception.Message, ProxySearch.Console.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                Context.Get<IMessageBox>().Error(exception.Message);
             else
-                MessageBox.Show(owner, exception.Message, ProxySearch.Console.Properties.Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+                Context.Get<IMessageBox>().Error(owner, exception.Message);
         }
     }
 }

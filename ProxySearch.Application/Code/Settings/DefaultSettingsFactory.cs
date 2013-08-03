@@ -28,11 +28,10 @@ namespace ProxySearch.Console.Code.Settings
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
-                    CreateTabSettings<HTTPGoogleEngineDetectable, HttpCheckerByUrlDetectable>("0EBFAAA5-C241-4560-822C-0E2429F3F03C", Resources.Google, Resources.HttpProxyType),
-                    CreateTabSettings<UrlListSearchEngineDetectable, HttpCheckerByUrlDetectable>("7793FED8-36EC-4545-9D9F-8D70A12D311C", Resources.PredefinedUrlList, Resources.HttpProxyType),
-                    CreateTabSettings<SOCKSGoogleEngineDetectable, SocksCheckerByUrlDetectable>("29D8044B-FFC1-4FF1-AC8A-150FFEC365CE", Resources.SocksGoogleSearchType, Resources.SocksProxyType),
-                    CreateTabSettings<FolderSearchEngineDetectable, TurnedOffProxyCheckerDetectable>("D187270B-A4B2-4B47-A7A7-26DF26FD2EF1", Resources.Open, Resources.HttpProxyType)
-                    //TODO: check here what to do with type
+                    CreateTabSettings<HttpGoogleEngineDetectable, HttpCheckerByUrlDetectable>("0EBFAAA5-C241-4560-822C-0E2429F3F03C", Resources.Google, Resources.HttpProxyType),
+                    CreateTabSettings<HttpUrlListSearchEngineDetectable, HttpCheckerByUrlDetectable>("7793FED8-36EC-4545-9D9F-8D70A12D311C", Resources.PredefinedUrlList, Resources.HttpProxyType),
+                    CreateTabSettings<SocksGoogleEngineDetectable, SocksCheckerByUrlDetectable>("29D8044B-FFC1-4FF1-AC8A-150FFEC365CE", Resources.SocksGoogleSearchType, Resources.SocksProxyType),
+                    CreateTabSettings<HttpFolderSearchEngineDetectable, HttpTurnedOffProxyCheckerDetectable>("D187270B-A4B2-4B47-A7A7-26DF26FD2EF1", Resources.Open, Resources.HttpProxyType)
                 }
             };
 
@@ -43,7 +42,7 @@ namespace ProxySearch.Console.Code.Settings
 
         public TabSettings CreateDefaultTabSettings()
         {
-            return CreateTabSettings<HTTPGoogleEngineDetectable, HttpCheckerByUrlDetectable>(Guid.NewGuid(), Resources.DefaultTabName, Resources.HttpProxyType);
+            return CreateTabSettings<HttpGoogleEngineDetectable, HttpCheckerByUrlDetectable>(Guid.NewGuid(), Resources.DefaultTabName, Resources.HttpProxyType);
         }
 
         private TabSettings CreateTabSettings<SearchEngineType, ProxyCheckerType>(string id, string name, string proxyType)
