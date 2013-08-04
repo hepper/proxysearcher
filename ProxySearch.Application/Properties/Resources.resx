@@ -362,4 +362,10 @@ Response time: {0} s</value>
   <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
     <value>Cannot set sock proxy for Firefox when socks version is not defined</value>
   </data>
+  <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
+    <value>This client doesn't support socks v5 proxies</value>
+  </data>
+  <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
+    <value>Type of proxy is not defined and this client doesn't support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?</value>
+  </data>
 </root>

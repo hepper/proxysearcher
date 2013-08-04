@@ -27,20 +27,6 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             return new ProxyInfo(ProxyString);
         }
 
-        private string ProtocolName
-        {
-            get
-            {
-                if (Type == Resources.HttpProxyType)
-                    return "http";
-
-                if (Type == Resources.SocksProxyType)
-                    return "socks";
-
-                throw new NotSupportedException();
-            }
-        }
-
         private string ProxyString
         {
             get
@@ -60,7 +46,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 
         protected override void SetProxy(ProxyInfo proxyInfo)
         {
-            WinINet.SetProxy(true, string.Format("{0}={1}:{2}", ProtocolName, proxyInfo.Address, proxyInfo.Port));
+            WinINet.SetProxy(true, string.Format("{0}={1}:{2}", GetProtocolName("http", "socks"), proxyInfo.Address, proxyInfo.Port));
         }
 
         protected override SettingsData BackupSettings()

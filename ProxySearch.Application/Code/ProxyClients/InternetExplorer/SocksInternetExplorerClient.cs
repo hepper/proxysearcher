@@ -1,4 +1,9 @@
-﻿using ProxySearch.Console.Properties;
+﻿using System.Windows;
+using ProxySearch.Common;
+using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Properties;
+using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Proxies.Socks;
 
 namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 {
@@ -12,6 +17,25 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         public SocksInternetExplorerClient(string name, string image, int order, string clientName)
             : base(Resources.SocksProxyType, name, image, order, clientName)
         {
+        }
+
+        protected override void SetProxy(ProxyInfo proxyInfo)
+        {
+            SocksProxyTypes type = ((SocksProxyDetails)proxyInfo.Details.Details).StrongType;
+
+            if (type == SocksProxyTypes.Socks5)
+            {
+                Context.Get<IMessageBox>().Information(Resources.ThisClientDoesntSupportSocks5Proxies);
+                return;
+            }
+
+            if (type != SocksProxyTypes.Socks4)
+            {
+                if (Context.Get<IMessageBox>().YesNoQuestion(Resources.TypeOfProxyIsNotDefinedDoYouWantToContinue) == MessageBoxResult.No)
+                    return;
+            }
+
+            base.SetProxy(proxyInfo);
         }
     }
 }

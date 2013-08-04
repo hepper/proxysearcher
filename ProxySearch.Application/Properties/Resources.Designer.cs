@@ -665,6 +665,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This client doesn&apos;t support socks v5 proxies.
+        /// </summary>
+        internal static string ThisClientDoesntSupportSocks5Proxies {
+            get {
+                return ResourceManager.GetString("ThisClientDoesntSupportSocks5Proxies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to https://sourceforge.net/p/proxysearcher/tickets/.
         /// </summary>
         internal static string TicketsLink {
@@ -688,6 +697,15 @@ namespace ProxySearch.Console.Properties {
         internal static string TurnedOffProxyCheckerDetails {
             get {
                 return ResourceManager.GetString("TurnedOffProxyCheckerDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type of proxy is not defined and this client doesn&apos;t support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?.
+        /// </summary>
+        internal static string TypeOfProxyIsNotDefinedDoYouWantToContinue {
+            get {
+                return ResourceManager.GetString("TypeOfProxyIsNotDefinedDoYouWantToContinue", resourceCulture);
             }
         }
         

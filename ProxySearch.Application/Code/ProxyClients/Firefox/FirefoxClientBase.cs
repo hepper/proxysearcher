@@ -29,9 +29,12 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         public FirefoxClientBase(string proxyType)
             : base(proxyType, Resources.Firefox, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
         {
-            ProxyPref = string.Concat("network.proxy.", ProtocolName);
-            ProxyPortPref = string.Format("network.proxy.{0}_port", ProtocolName);
+            string protocolName = GetProtocolName("http", "socks");
+
+            ProxyPref = string.Concat("network.proxy.", protocolName);
+            ProxyPortPref = string.Format("network.proxy.{0}_port", protocolName);
         }
+
 
         protected sealed override void SetProxy(ProxyInfo proxyInfo)
         {
@@ -115,20 +118,6 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 return content;
 
             return new Regex(GetRegularExpression(name)).ReplaceGroup(content, "value", newValue);
-        }
-
-        private string ProtocolName
-        {
-            get
-            {
-                if (Type == Resources.HttpProxyType)
-                    return "http";
-
-                if (Type == Resources.SocksProxyType)
-                    return "socks";
-
-                throw new NotSupportedException();
-            }
         }
 
         private static string GetRegularExpression(string name)

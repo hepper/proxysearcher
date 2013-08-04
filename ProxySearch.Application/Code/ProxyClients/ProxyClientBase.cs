@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients
@@ -111,6 +111,17 @@ namespace ProxySearch.Console.Code.ProxyClients
                     SetProxy(value);
                 }
             }
+        }
+
+        protected string GetProtocolName(string httpValue, string socksValue)
+        {
+            if (Type == Resources.HttpProxyType)
+                return httpValue;
+
+            if (Type == Resources.SocksProxyType)
+                return socksValue;
+
+            throw new NotSupportedException();
         }
 
         protected abstract void SetProxy(ProxyInfo proxyInfo);

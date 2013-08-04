@@ -2,10 +2,10 @@
 
 namespace ProxySearch.Console.Code.ProxyClients.Opera
 {
-    public class HttpOperaClient : OperaClientBase
+    public class SocksOperaClient : OperaClientBase
     {
-        public HttpOperaClient()
-            : base(Resources.HttpProxyType)
+        public SocksOperaClient()
+            : base(Resources.SocksProxyType)
         {
         }
     }

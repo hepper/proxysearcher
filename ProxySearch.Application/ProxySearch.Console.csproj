@@ -197,6 +197,8 @@
     <Compile Include="Code\ProxyClients\InternetExplorer\WinInet\WinINet.cs" />
     <Compile Include="Code\ProxyClients\Opera\IniFile.cs" />
     <Compile Include="Code\ProxyClients\Opera\HttpOperaClient.cs" />
+    <Compile Include="Code\ProxyClients\Opera\OperaClientBase.cs" />
+    <Compile Include="Code\ProxyClients\Opera\SocksOperaClient.cs" />
     <Compile Include="Code\ProxyClients\ProxyClientBase.cs" />
     <Compile Include="Code\ProxyClients\ProxyClientSearcher.cs" />
     <Compile Include="Code\ProxyClients\ProxyClientSettings.cs" />
