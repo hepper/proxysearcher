@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using ProxySearch.Engine.Extension;
 
 namespace ProxySearch.Engine.Extended
 {
@@ -40,10 +41,8 @@ namespace ProxySearch.Engine.Extended
 
         private async Task ConnectAsync(Func<Task> connectAction, CancellationToken cancellationToken)
         {
-            await Task.WhenAny(connectAction(), Task.Run(() =>
+            await Task.WhenAny(connectAction(), cancellationToken.AsAwaitable().ContinueWith(task =>
             {
-                cancellationToken.WaitHandle.WaitOne();
-
                 if (!IsDisposed)
                 {
                     IsCancelled = true;
