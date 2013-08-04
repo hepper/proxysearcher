@@ -385,6 +385,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open findings as HTTP.
+        /// </summary>
+        internal static string HttpOpen {
+            get {
+                return ResourceManager.GetString("HttpOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HTTP (list of urls).
+        /// </summary>
+        internal static string HttpPredefinedUrlList {
+            get {
+                return ResourceManager.GetString("HttpPredefinedUrlList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HTTP.
         /// </summary>
         internal static string HttpProxyType {
@@ -439,29 +457,11 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open findings as HTTP.
-        /// </summary>
-        internal static string Open {
-            get {
-                return ResourceManager.GetString("Open", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Opera.
         /// </summary>
         internal static string Opera {
             get {
                 return ResourceManager.GetString("Opera", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HTTP (list of urls).
-        /// </summary>
-        internal static string PredefinedUrlList {
-            get {
-                return ResourceManager.GetString("PredefinedUrlList", resourceCulture);
             }
         }
         
@@ -615,6 +615,24 @@ namespace ProxySearch.Console.Properties {
         internal static string SocksGoogleSearchType {
             get {
                 return ResourceManager.GetString("SocksGoogleSearchType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open findings as Socks.
+        /// </summary>
+        internal static string SocksOpen {
+            get {
+                return ResourceManager.GetString("SocksOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Socks (list of urls).
+        /// </summary>
+        internal static string SocksPredefinedUrlList {
+            get {
+                return ResourceManager.GetString("SocksPredefinedUrlList", resourceCulture);
             }
         }
         

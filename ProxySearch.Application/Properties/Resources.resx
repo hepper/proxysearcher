@@ -322,7 +322,7 @@ Response time: {0} s</value>
   <data name="Google" xml:space="preserve">
     <value>HTTP (Google)</value>
   </data>
-  <data name="Open" xml:space="preserve">
+  <data name="HttpOpen" xml:space="preserve">
     <value>Open findings as HTTP</value>
   </data>
   <data name="TurnedOffProxyChecker" xml:space="preserve">
@@ -331,7 +331,7 @@ Response time: {0} s</value>
   <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
     <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>
   </data>
-  <data name="PredefinedUrlList" xml:space="preserve">
+  <data name="HttpPredefinedUrlList" xml:space="preserve">
     <value>HTTP (list of urls)</value>
   </data>
   <data name="Information" xml:space="preserve">
@@ -370,6 +370,12 @@ Response time: {0} s</value>
   </data>
   <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
     <value>Type of proxy is not defined and this client doesn't support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?</value>
+  </data>
+  <data name="SocksOpen" xml:space="preserve">
+    <value>Open findings as Socks</value>
+  </data>
+  <data name="SocksPredefinedUrlList" xml:space="preserve">
+    <value>Socks (list of urls)</value>
   </data>
   <data name="WikipediaContent" xml:space="preserve">
     <value>&lt;title&gt;Wikipedia&lt;/title&gt;</value>
