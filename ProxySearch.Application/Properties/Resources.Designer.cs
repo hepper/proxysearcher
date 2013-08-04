@@ -610,15 +610,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://www.1112.net/lastpage.html.
-        /// </summary>
-        internal static string SimpleSiteUrl {
-            get {
-                return ResourceManager.GetString("SimpleSiteUrl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to SOCKS (Google).
         /// </summary>
         internal static string SocksGoogleSearchType {
@@ -787,6 +778,24 @@ namespace ProxySearch.Console.Properties {
         internal static string WebServiceNetGeoIPServiceDescription {
             get {
                 return ResourceManager.GetString("WebServiceNetGeoIPServiceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;title&gt;Wikipedia&lt;/title&gt;.
+        /// </summary>
+        internal static string WikipediaContent {
+            get {
+                return ResourceManager.GetString("WikipediaContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://www.wikipedia.org/.
+        /// </summary>
+        internal static string WikipediaDotOrgUrl {
+            get {
+                return ResourceManager.GetString("WikipediaDotOrgUrl", resourceCulture);
             }
         }
         

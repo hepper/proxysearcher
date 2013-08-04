@@ -10,11 +10,11 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
                  DetectableBase<IProxyChecker, ProxyCheckerByUrlAndKeywords<ProxyDetailsProviderType>, CheckerByUrlAndKeywordsControl>
                  where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
-        public CheckerByUrlAndKeywordDetectableBase(string proxyType)
+        public CheckerByUrlAndKeywordDetectableBase(string proxyType, string url, string keywords)
             : base(Resources.ProxyCheckerByUrlAndKeywords, Resources.ProxyCheckerByUrlAndKeywordsDescription, 1, proxyType, new List<object>
                 {
-                    Resources.GoogleDotCom,
-                    Resources.GoogleDotComContent
+                    url,
+                    keywords
                 })
         {
         }

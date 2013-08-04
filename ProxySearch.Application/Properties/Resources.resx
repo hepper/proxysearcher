@@ -362,13 +362,16 @@ Response time: {0} s</value>
   <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
     <value>Cannot set sock proxy for Firefox when socks version is not defined</value>
   </data>
-  <data name="SimpleSiteUrl" xml:space="preserve">
-    <value>http://www.1112.net/lastpage.html</value>
+  <data name="WikipediaDotOrgUrl" xml:space="preserve">
+    <value>http://www.wikipedia.org/</value>
   </data>
   <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
     <value>This client doesn't support socks v5 proxies</value>
   </data>
   <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
     <value>Type of proxy is not defined and this client doesn't support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?</value>
+  </data>
+  <data name="WikipediaContent" xml:space="preserve">
+    <value>&lt;title&gt;Wikipedia&lt;/title&gt;</value>
   </data>
 </root>

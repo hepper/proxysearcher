@@ -6,7 +6,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public class SocksCheckerByUrlAndKeywordsDetectable : CheckerByUrlAndKeywordDetectableBase<SocksProxyDetailsProvider>
     {
         public SocksCheckerByUrlAndKeywordsDetectable()
-            : base(Resources.SocksProxyType)
+            : base(Resources.SocksProxyType, Resources.WikipediaDotOrgUrl, Resources.WikipediaContent)
         {
         }
     }
