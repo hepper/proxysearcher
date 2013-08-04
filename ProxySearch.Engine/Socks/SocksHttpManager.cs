@@ -28,47 +28,47 @@ namespace ProxySearch.Engine.Socks
 
         public Task<HttpResponseMessage> GetResponse(SocksHttpManagerParameters parameters)
         {
-            return HandleRedirects(parameters, async () =>
+            return HandleRedirects(parameters, async uri =>
             {
                 switch (parameters.ProxyType)
                 {
                     case SocksProxyTypes.Unchecked:
                         try
                         {
-                            return await ReadHttpResponseMessage(parameters, async (stream, remoteEP, cancellationToken) =>
+                            return await ReadHttpResponseMessage(parameters, uri, async (stream, remoteEP, cancellationToken) =>
                             {
                                 await new SocksRequest().V4(stream, remoteEP, cancellationToken);
-                                Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks4);
+                                Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters, uri).ToString(), SocksProxyTypes.Socks4);
                             });
                         }
                         catch (SocksRequestFailedException)
                         {
                         }
 
-                        return await ReadHttpResponseMessage(parameters, async (stream, remoteEP, cancellationToken) =>
+                        return await ReadHttpResponseMessage(parameters, uri, async (stream, remoteEP, cancellationToken) =>
                         {
                             await new SocksRequest().V5(stream, remoteEP, cancellationToken);
-                            Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters).ToString(), SocksProxyTypes.Socks5);
+                            Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters, uri).ToString(), SocksProxyTypes.Socks5);
                         });
                     case SocksProxyTypes.Socks4:
-                        return await ReadHttpResponseMessage(parameters, new SocksRequest().V4);
+                        return await ReadHttpResponseMessage(parameters, uri, new SocksRequest().V4);
                     case SocksProxyTypes.Socks5:
-                        return await ReadHttpResponseMessage(parameters, new SocksRequest().V5);
+                        return await ReadHttpResponseMessage(parameters, uri, new SocksRequest().V5);
                     default:
                         throw new InvalidOperationException();
                 }
             });
         }
 
-        private async Task<HttpResponseMessage> ReadHttpResponseMessage(SocksHttpManagerParameters parameters, Func<NetworkStream, Uri, CancellationToken, Task> sendRequest)
+        private async Task<HttpResponseMessage> ReadHttpResponseMessage(SocksHttpManagerParameters parameters, Uri uri, Func<NetworkStream, Uri, CancellationToken, Task> sendRequest)
         {
             using (TcpClientExtended tcpClient = new TcpClientExtended())
             {
-                Uri proxyUri = GetProxyUri(parameters);
+                Uri proxyUri = GetProxyUri(parameters, uri);
 
                 await tcpClient.ConnectAsync(proxyUri.Host, proxyUri.Port, parameters.CancellationToken);
 
-                await sendRequest(tcpClient.GetStream(), parameters.Request.RequestUri, parameters.CancellationToken);
+                await sendRequest(tcpClient.GetStream(), uri, parameters.CancellationToken);
 
                 StringBuilder responseBuilder = new StringBuilder();
 
@@ -97,16 +97,16 @@ namespace ProxySearch.Engine.Socks
                     bytesReceived = await tcpClient.GetStream().ReadAsync(buffer, 0, buffer.Length, parameters.CancellationToken);
                 }
 
-                HttpResponseMessage result =  BuildHttpResponseMessage(responseBuilder.ToString());
+                HttpResponseMessage result = BuildHttpResponseMessage(responseBuilder.ToString());
 
                 FireEventProgress(parameters.ReportResponseProgress, responseBuilder.Length, responseBuilder.Length);
                 return result;
             }
         }
 
-        private async Task<HttpResponseMessage> HandleRedirects(SocksHttpManagerParameters parameters, Func<Task<HttpResponseMessage>> getResponse)
+        private async Task<HttpResponseMessage> HandleRedirects(SocksHttpManagerParameters parameters, Func<Uri, Task<HttpResponseMessage>> getResponse)
         {
-            HttpResponseMessage response = await getResponse();
+            HttpResponseMessage response = await getResponse(parameters.Request.RequestUri);
             int redirectsCount = 0;
 
             while (parameters.Handler.AllowAutoRedirect && redirectCodes.Contains(response.StatusCode))
@@ -116,7 +116,7 @@ namespace ProxySearch.Engine.Socks
                     throw new InvalidOperationException(Resources.TooManyRedirectsWasRequestedByServer);
                 }
 
-                response = await getResponse();
+                response = await getResponse(response.Headers.Location);
                 redirectsCount++;
             }
 
@@ -217,9 +217,9 @@ namespace ProxySearch.Engine.Socks
             }
         }
 
-        private Uri GetProxyUri(SocksHttpManagerParameters parameters)
+        private Uri GetProxyUri(SocksHttpManagerParameters parameters, Uri uri)
         {
-            return parameters.Handler.Proxy.GetProxy(parameters.Request.RequestUri);
+            return parameters.Handler.Proxy.GetProxy(uri);
         }
     }
 }

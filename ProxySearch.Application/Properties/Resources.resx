@@ -267,7 +267,7 @@
   <data name="SimpleProxyCheckerDescription" xml:space="preserve">
     <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies. Also this checker cannot determine type of proxy</value>
   </data>
-  <data name="SimpleSite" xml:space="preserve">
+  <data name="GoogleDotComUrl" xml:space="preserve">
     <value>http://google.com</value>
   </data>
   <data name="SortTypeIsNotSupported" xml:space="preserve">
@@ -361,6 +361,9 @@ Response time: {0} s</value>
   </data>
   <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
     <value>Cannot set sock proxy for Firefox when socks version is not defined</value>
+  </data>
+  <data name="SimpleSiteUrl" xml:space="preserve">
+    <value>http://www.1112.net/lastpage.html</value>
   </data>
   <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
     <value>This client doesn't support socks v5 proxies</value>

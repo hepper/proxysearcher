@@ -340,6 +340,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://google.com.
+        /// </summary>
+        internal static string GoogleDotComUrl {
+            get {
+                return ResourceManager.GetString("GoogleDotComUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine.
         /// </summary>
         internal static string GoogleEngineDescription {
@@ -601,11 +610,11 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://google.com.
+        ///   Looks up a localized string similar to http://www.1112.net/lastpage.html.
         /// </summary>
-        internal static string SimpleSite {
+        internal static string SimpleSiteUrl {
             get {
-                return ResourceManager.GetString("SimpleSite", resourceCulture);
+                return ResourceManager.GetString("SimpleSiteUrl", resourceCulture);
             }
         }
         

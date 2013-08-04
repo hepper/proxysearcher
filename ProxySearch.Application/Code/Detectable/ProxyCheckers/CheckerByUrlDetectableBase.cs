@@ -9,9 +9,10 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public abstract class CheckerByUrlDetectableBase<ProxyCheckerType>: SimpleDetectableBase<IProxyChecker, ProxyCheckerType>
        where ProxyCheckerType: IProxyChecker
     {
-        public CheckerByUrlDetectableBase(string proxyType)
+        public CheckerByUrlDetectableBase(string proxyType, string websiteUrl)
             : base(Resources.ProxyCheckerByUrl, Resources.ProxyCheckerByUrlDescription, 0, proxyType)
         {
+            WebsiteUrl = websiteUrl;
         }
 
         public override List<object> DefaultSettings
@@ -20,7 +21,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
             {
                 return new List<object>
                 {
-                    Resources.SimpleSite,
+                    WebsiteUrl,
                     0.1
                 };
             }
@@ -32,6 +33,12 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
             {
                 return typeof(ProxyCheckerByUrlControl);
             }
+        }
+
+        private string WebsiteUrl
+        {
+            get;
+            set;
         }
     }
 }
