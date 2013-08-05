@@ -10,7 +10,7 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
     {
         public SocksFolderSearchEngineDetectable()
             : base(Resources.FolderSearchEngine, Resources.FolderSearchEngineDescription,
-                   1, Resources.SocksProxyType, new List<object> { Constants.DefaultExportFolder.Location })
+                   1, Resources.SocksProxyType, new List<object> { Constants.DefaultExportFolder.Socks.Location })
         {
         }
     }

@@ -5,6 +5,8 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Proxies.Http;
+using ProxySearch.Engine.Proxies.Socks;
 
 namespace ProxySearch.Console.Code
 {
@@ -31,7 +33,7 @@ namespace ProxySearch.Console.Code
                 {
                     if (stream == null)
                     {
-                        stream = CreateFile();
+                        stream = CreateFile(GetSubFolderName(proxyInfo.Details.Details));
                     }
 
                     stream.WriteLine(proxyInfo.ToString());
@@ -64,14 +66,29 @@ namespace ProxySearch.Console.Code
                 stream.Dispose();
         }
 
-        private StreamWriter CreateFile()
+        private string GetSubFolderName(ProxyTypeDetails details)
         {
-            string directory = Context.Get<AllSettings>().ExportSettings.ExportFolder;
+            if (details is HttpProxyDetails)
+            {
+                return "Http";
+            }
+
+            if (details is SocksProxyDetails)
+            {
+                return "Socks";
+            }
+
+            throw new NotSupportedException();
+        }
+
+        private StreamWriter CreateFile(string subFolder)
+        {
+            string directory = Path.Combine(Context.Get<AllSettings>().ExportSettings.ExportFolder, subFolder);
 
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
 
-            string fileName = string.Format("{0}Search Results {1}.txt", directory, DateTime.Now.ToString("HH.mm.ss dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture));
+            string fileName = string.Format(@"{0}\Search Results {1}.txt", directory, DateTime.Now.ToString("HH.mm.ss dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture));
             return new StreamWriter(new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
                 AutoFlush = true
