@@ -33,7 +33,7 @@ namespace ProxySearch.Console.Code
                 {
                     if (stream == null)
                     {
-                        stream = CreateFile(GetSubFolderName(proxyInfo.Details.Details));
+                        stream = CreateFile(GetDirectory(proxyInfo.Details.Details));
                     }
 
                     stream.WriteLine(proxyInfo.ToString());
@@ -66,25 +66,23 @@ namespace ProxySearch.Console.Code
                 stream.Dispose();
         }
 
-        private string GetSubFolderName(ProxyTypeDetails details)
+        private string GetDirectory(ProxyTypeDetails details)
         {
             if (details is HttpProxyDetails)
             {
-                return "Http";
+                return Context.Get<AllSettings>().ExportSettings.HttpExportFolder;
             }
 
             if (details is SocksProxyDetails)
             {
-                return "Socks";
+                return Context.Get<AllSettings>().ExportSettings.SocksExportFolder;
             }
 
             throw new NotSupportedException();
         }
 
-        private StreamWriter CreateFile(string subFolder)
+        private StreamWriter CreateFile(string directory)
         {
-            string directory = Path.Combine(Context.Get<AllSettings>().ExportSettings.ExportFolder, subFolder);
-
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
 

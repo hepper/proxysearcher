@@ -48,7 +48,7 @@ namespace ProxySearch.Console.Code
 
         public static class DefaultExportFolder
         {
-            public static readonly string Location = Working.Directory + "SearchResult";
+            private static readonly string Location = Working.Directory + "SearchResult";
 
             public static class Http
             {

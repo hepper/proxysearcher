@@ -4,7 +4,8 @@
     {
         public ExportSettings()
         {
-            ExportFolder = Constants.DefaultExportFolder.Location;
+            HttpExportFolder = Constants.DefaultExportFolder.Http.Location;
+            SocksExportFolder = Constants.DefaultExportFolder.Socks.Location;
         }
 
         public bool ExportSearchResult
@@ -13,7 +14,13 @@
             set;
         }
 
-        public string ExportFolder
+        public string HttpExportFolder
+        {
+            get;
+            set;
+        }
+
+        public string SocksExportFolder
         {
             get;
             set;
