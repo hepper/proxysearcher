@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.Interfaces;
@@ -7,7 +8,6 @@ using ProxySearch.Console.Code.ProxyClients;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.Version;
 using ProxySearch.Engine;
-using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Console.Code
 {
@@ -30,13 +30,25 @@ namespace ProxySearch.Console.Code
             {
                 new VersionManager().Check();
             }
-         }
+        }
 
         public void Deinitialize()
         {
             File.WriteAllText(Constants.SettingsStorage.Location, Serializer.Serialize(Context.Get<AllSettings>()));
             SaveProxyList(Constants.UsedProxiesStorage.Location, Context.Get<IUsedProxies>().ProxyList);
             SaveProxyList(Constants.BlackListStorage.Location, Context.Get<IBlackListManager>().ProxyList);
+
+            if (Context.Get<AllSettings>().RevertUsedProxiesOnExit)
+            {
+                foreach (IProxyClient client in Context.Get<IProxyClientSearcher>()
+                                                .AllClients
+                                                .GroupBy(item => item.Name)
+                                                .Where(group => group.Any(item => item.Proxy != null))
+                                                .Select(group => group.First()))
+                {
+                    client.Proxy = null;
+                }
+            }
         }
 
         private AllSettings Settings

@@ -158,7 +158,7 @@ namespace ProxySearch.Console.Controls
         {
             ProxyInfo proxy = (ProxyInfo)((Button)sender).Tag;
 
-            foreach (IProxyClient client in Context.Get<IProxyClientSearcher>().Clients.Where(item => item.Proxy == proxy))
+            foreach (IProxyClient client in Context.Get<IProxyClientSearcher>().SelectedClients.Where(item => item.Proxy == proxy))
             {
                 client.Proxy = null;
             }

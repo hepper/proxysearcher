@@ -27,7 +27,14 @@ namespace ProxySearch.Console.Code.ProxyClients.Opera
                 return null;
             }
 
-            return new ProxyInfo(IniFile.ReadValue(SettingsPath, SectionName, string.Format("{0} server", ProtocolName)));
+            string addressPort = IniFile.ReadValue(SettingsPath, SectionName, string.Format("{0} server", ProtocolName));
+
+            if (string.IsNullOrWhiteSpace(addressPort))
+            {
+                return null;
+            }
+
+            return new ProxyInfo(addressPort);
         }
 
         protected override string SettingsPath

@@ -80,7 +80,7 @@ namespace ProxySearch.Console.Code.ProxyClients
             set;
         }
 
-        public ProxyInfo Proxy
+        public virtual ProxyInfo Proxy
         {
             get
             {

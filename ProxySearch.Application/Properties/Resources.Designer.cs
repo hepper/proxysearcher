@@ -214,7 +214,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to apply changes browser &apos;{0}&apos; should be restarted. Do you want to do it now?.
+        ///   Looks up a localized string similar to Browser &apos;{0}&apos; should be restarted in order to set or clear proxy. Do you want to do it now?.
         /// </summary>
         internal static string DoYouWantToRestartBrowser {
             get {

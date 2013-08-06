@@ -10,11 +10,11 @@ namespace ProxySearch.Console.Code.ProxyClients
 {
     public class ProxyClientSearcher : IProxyClientSearcher
     {
-        private Dictionary<string, List<IProxyClient>> clients;
+        private Dictionary<string, List<IProxyClient>> allClients;
 
         public ProxyClientSearcher()
         {
-            clients = Assembly.GetExecutingAssembly().GetTypes()
+            allClients = Assembly.GetExecutingAssembly().GetTypes()
                                   .Where(type => !type.IsAbstract)
                                   .Where(type => typeof(IProxyClient).IsAssignableFrom(type))
                                   .Select(type => (IProxyClient)Activator.CreateInstance(type))
@@ -23,13 +23,21 @@ namespace ProxySearch.Console.Code.ProxyClients
                                   .ToDictionary(group => group.Key, group => group.OrderBy(instance => instance.Order).ToList());
         }
 
-        public List<IProxyClient> Clients
+        public List<IProxyClient> SelectedClients
         {
             get
             {
                 string proxyType = Context.Get<AllSettings>().SelectedTabSettings.ProxyType;
 
-                return clients.ContainsKey(proxyType) ? clients[proxyType] : new List<IProxyClient>();
+                return allClients.ContainsKey(proxyType) ? allClients[proxyType] : new List<IProxyClient>();
+            }
+        }
+
+        public List<IProxyClient> AllClients
+        {
+            get 
+            {
+                return allClients.SelectMany(pair => pair.Value).ToList();
             }
         }
     }

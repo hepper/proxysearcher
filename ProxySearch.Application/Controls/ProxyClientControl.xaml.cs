@@ -78,34 +78,9 @@ namespace ProxySearch.Console.Controls
             }
             set
             {
-                IProxyClientRestartable restartableProxyClient = ProxyClient as IProxyClientRestartable;
-                bool restartRequested = false;
-
-                if (restartableProxyClient != null && restartableProxyClient.IsRunning)
-                {
-                    if (Context.Get<IMessageBox>().OkCancelQuestion(
-                        string.Format(Properties.Resources.DoYouWantToRestartBrowser, ProxyClient.Name)) == MessageBoxResult.Cancel)
-                    {
-                        return;
-                    }
-
-                    restartRequested = true;
-                }
-
-                if (restartRequested)
-                {
-                    restartableProxyClient.Close();
-                }
-
                 ProxyClient.Proxy = value ? ProxyInfo : null;
 
-                if (restartRequested)
-                {
-                    restartableProxyClient.Open();
-                }
-
                 RaiseEvent(new RoutedEventArgs(ProxyClientControl.ClickEvent));
-
                 notifyAllInstances();
             }
         }

@@ -15,7 +15,7 @@ namespace ProxySearch.Console.Code.Converters
         {
             ProxyInfo proxy = (ProxyInfo)value;
 
-            if (Context.Get<IProxyClientSearcher>().Clients.Any(item => item.Proxy == proxy))
+            if (Context.Get<IProxyClientSearcher>().SelectedClients.Any(item => item.Proxy == proxy))
             {
                 return RowStyles.Selected;
             }

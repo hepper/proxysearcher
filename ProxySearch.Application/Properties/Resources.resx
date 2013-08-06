@@ -163,7 +163,7 @@
     <value>Do you really want to clear proxy usage history?</value>
   </data>
   <data name="DoYouWantToRestartBrowser" xml:space="preserve">
-    <value>In order to apply changes browser '{0}' should be restarted. Do you want to do it now?</value>
+    <value>Browser '{0}' should be restarted in order to set or clear proxy. Do you want to do it now?</value>
   </data>
   <data name="DummyGeoIP" xml:space="preserve">
     <value>Turn off</value>

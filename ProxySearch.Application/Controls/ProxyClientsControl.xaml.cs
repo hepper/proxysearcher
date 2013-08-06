@@ -31,11 +31,11 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        public List<IProxyClient> Clients
+        public List<IProxyClient> SelectedClients
         {
             get
             {
-                return Context.Get<IProxyClientSearcher>().Clients;
+                return Context.Get<IProxyClientSearcher>().SelectedClients;
             }
         }
     }

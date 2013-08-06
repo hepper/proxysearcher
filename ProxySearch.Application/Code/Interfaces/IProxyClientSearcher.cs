@@ -8,7 +8,12 @@ namespace ProxySearch.Console.Code.Interfaces
 {
     public interface IProxyClientSearcher
     {
-        List<IProxyClient> Clients
+        List<IProxyClient> SelectedClients
+        {
+            get;
+        }
+
+        List<IProxyClient> AllClients
         {
             get;
         }

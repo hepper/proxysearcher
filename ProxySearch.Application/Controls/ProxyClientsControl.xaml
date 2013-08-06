@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              mc:Ignorable="d" Name="ProxyClients" >
-    <ItemsControl ItemsSource="{Binding ElementName=ProxyClients, Path=Clients}">
+    <ItemsControl ItemsSource="{Binding ElementName=ProxyClients, Path=SelectedClients}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <StackPanel Orientation="Horizontal"/>

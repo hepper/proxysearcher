@@ -16,6 +16,7 @@ namespace ProxySearch.Console.Code.Settings
             ExportSettings = new ExportSettings();
             PageSize = 20;
             MaxBandwidth = 1;
+            RevertUsedProxiesOnExit = true;
         }
 
         public bool CheckUpdates
@@ -55,6 +56,12 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public double MaxBandwidth
+        {
+            get;
+            set;
+        }
+
+        public bool RevertUsedProxiesOnExit
         {
             get;
             set;
