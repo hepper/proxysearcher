@@ -24,6 +24,6 @@
         </Grid.RowDefinitions>        
        
         <ContentControl Grid.Row="1" Name="Placeholder" />       
-        <controls:ActionInvokerControl Grid.Row="2" x:Name="ActionInvoker" />        
+        <controls:ActionInvokerControl Grid.Row="2" x:Name="ActionInvoker" />
     </Grid>
 </Window>

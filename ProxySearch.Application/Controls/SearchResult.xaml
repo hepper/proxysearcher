@@ -146,6 +146,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" />
+        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" 
+                                Visibility="{Binding ElementName=DataGridControl, Path=Visibility}" />
     </Grid>
 </UserControl>
