@@ -1,4 +1,4 @@
-﻿$("#download-page").ready(function () {
+$("#download-page").ready(function () {
     $("#download-right-now").click(function (a) {
         $("#menu-item-download").click();
     });
@@ -60,6 +60,9 @@ $("#download-page").ready(function () {
         $("#download-direct-link").attr("href", url);
         $("#download-direct-link").click(function (e) {
             e.preventDefault();
+            clearInterval(interval);
+            timeLeftId.text(0);
+            _gaq.push(["_trackEvent", "Program", "Download"]);
             window.location.href = url;
             return false;
         });
