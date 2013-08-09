@@ -1,8 +1,20 @@
+var ga = {
+    trackEvent: function (category, event) {
+        try {
+            _gaq.push(["_trackEvent", category, event]);
+        }
+        catch (exception) {
+            //Ignoring google analytics errors
+        }
+    }
+};
+
 $("#download-page").ready(function () {
     $("#download-right-now").click(function (a) {
         $("#menu-item-download").click();
     });
 });
+
 
 $(".menu-element").ready(function () {
     var menuItems = $('.menu-item');
@@ -17,6 +29,7 @@ $(".menu-element").ready(function () {
                 currentItem.removeClass("menu-item-selected");
                 currentPanel.show();
                 currentPanel.trigger("isVisible");
+                ga.trackEvent("TabClicked", currentItem.text());
             }
             else {
                 currentItem.removeClass("menu-item-active");
@@ -31,7 +44,7 @@ $(".menu-element").ready(function () {
             $(this).addClass("menu-item-selected");
         }
     }, function () {
-        
+
         $(this).removeClass("menu-item-selected");
     })
 });
@@ -62,7 +75,7 @@ $("#download-page").ready(function () {
             e.preventDefault();
             clearInterval(interval);
             timeLeftId.text(0);
-            _gaq.push(["_trackEvent", "Program", "Download"]);
+            ga.trackEvent("Program", "Download");
             window.location.href = url;
             return false;
         });
@@ -95,5 +108,11 @@ $(".screenshoot1-link").ready(function () {
         'speedIn': 600,
         'speedOut': 200,
         'overlayShow': false
+    });
+});
+
+$(".make-donation-now-link").ready(function () {
+    $(".make-donation-now-link").click(function () {
+        ga.trackEvent("Donate", "Clicked");
     });
 });
