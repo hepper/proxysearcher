@@ -22,8 +22,10 @@ namespace ProxySearch.Engine.Extended
             while (true)
             {
                 var tcs = taskCompletionSource;
+#pragma warning disable
                 if (!tcs.Task.IsCompleted || Interlocked.CompareExchange(ref taskCompletionSource, new TaskCompletionSource<bool>(), tcs) == tcs)
                     return;
+#pragma warning enable
             }
         }
     }

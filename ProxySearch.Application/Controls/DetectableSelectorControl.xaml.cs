@@ -19,6 +19,7 @@ namespace ProxySearch.Console.Controls
         public static readonly DependencyProperty DetectablesProperty = DependencyProperty.Register("Detectables", typeof(List<IDetectable>), typeof(DetectableSelectorControl));
         public static readonly DependencyProperty SelectedIndexProperty = DependencyProperty.Register("SelectedIndex", typeof(int?), typeof(DetectableSelectorControl));
         public static readonly DependencyProperty ArgumentsProperty = DependencyProperty.Register("Arguments", typeof(List<ParametersPair>), typeof(DetectableSelectorControl));
+        public static readonly DependencyProperty NameColumnWidthProperty = DependencyProperty.Register("NameColumnWidth", typeof(int), typeof(DetectableSelectorControl), new PropertyMetadata(130));
 
         public DetectableSelectorControl()
         {
@@ -43,6 +44,18 @@ namespace ProxySearch.Console.Controls
             set
             {
                 this.SetValue(SelectorNameProperty, value);
+            }
+        }
+
+        public int NameColumnWidth
+        {
+            get
+            {
+                return (int)this.GetValue(NameColumnWidthProperty);
+            }
+            set
+            {
+                this.SetValue(NameColumnWidthProperty, value);
             }
         }
 

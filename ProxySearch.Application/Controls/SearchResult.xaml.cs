@@ -8,10 +8,12 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Collections;
+using ProxySearch.Console.Code.Extensions;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
+using ProxySearch.Console.Code.Utils;
 using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Controls

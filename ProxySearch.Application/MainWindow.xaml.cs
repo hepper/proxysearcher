@@ -14,8 +14,6 @@ namespace ProxySearch.Console
     /// </summary>
     public partial class MainWindow : Window, ICaptchaWindow
     {
-        private SearchControl searchControl = new SearchControl();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -27,16 +25,16 @@ namespace ProxySearch.Console
 
         public void ShowControl(UserControl control)
         {
-            Placeholder.Content = control;
+            Context.Get<IControlNavigator>().GoTo(control);
         }
 
         public void GoToSearch()
         {
-            Placeholder.Content = searchControl;
+            Context.Get<IControlNavigator>().GoToSearch();
         }
 
         public void Show(string url)
-        {            
+        {
         }
     }
 }

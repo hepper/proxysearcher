@@ -32,6 +32,6 @@
             <Button Grid.Column="2" Width="100" Name="BeginSearch" Click="BeginSearch_Click">Search</Button>            
         </Grid>
 
-        <controls:SearchResult Grid.Row="2" x:Name="Results" Margin="0, 5, 0, 0" />        
+        <controls:SearchResult Grid.Row="2" Margin="0, 5, 0, 0" />
     </Grid>
 </UserControl>
