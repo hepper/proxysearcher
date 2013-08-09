@@ -4179,6 +4179,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 	<table name="LaunchCondition">
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
+		<row><td>(Not Version9X) And (Not VersionNT=400) And (Not VersionNT=500) And (Not VersionNT=501) And (Not VersionNT=502)</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_OS##</td></row>
 	</table>
 
 	<table name="ListBox">
