@@ -86,7 +86,14 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 if ((DateTime.UtcNow - Timestamp).TotalMilliseconds > 100)
                 {
-                    ProxyCache = Settings != null ? GetProxy() : null;
+                    if (ImportsInternetExplorerSettings)
+                    {
+                        ProxyCache = Context.Get<IProxyClientSearcher>().SelectedSystemProxy.Proxy;
+                    }
+                    else
+                    {
+                        ProxyCache = Settings != null ? GetProxy() : null;
+                    }
                 }
 
                 Timestamp = DateTime.UtcNow;
@@ -97,6 +104,12 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 if (value == null)
                 {
+                    if (ImportsInternetExplorerSettings)
+                    {
+                        Context.Get<IProxyClientSearcher>().SelectedSystemProxy.Proxy = value;
+                        return;
+                    }
+
                     if (Settings != null)
                     {
                         RestoreSettings(Serializer.Deserialize<SettingsData>(Settings));
@@ -126,6 +139,10 @@ namespace ProxySearch.Console.Code.ProxyClients
 
         protected abstract void SetProxy(ProxyInfo proxyInfo);
         protected abstract ProxyInfo GetProxy();
+        protected abstract bool ImportsInternetExplorerSettings
+        {
+            get;
+        }
 
         protected abstract SettingsData BackupSettings();
         protected abstract void RestoreSettings(SettingsData settings);

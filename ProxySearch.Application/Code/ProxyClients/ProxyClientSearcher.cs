@@ -5,6 +5,7 @@ using System.Reflection;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Console.Properties;
 
 namespace ProxySearch.Console.Code.ProxyClients
 {
@@ -30,6 +31,14 @@ namespace ProxySearch.Console.Code.ProxyClients
                 string proxyType = Context.Get<AllSettings>().SelectedTabSettings.ProxyType;
 
                 return allClients.ContainsKey(proxyType) ? allClients[proxyType] : new List<IProxyClient>();
+            }
+        }
+
+        public IProxyClient SelectedSystemProxy
+        {
+            get
+            {
+                return SelectedClients.Single(client => client.Name == Resources.InternetExplorer);
             }
         }
 

@@ -322,6 +322,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Google detects that your network sends automatic queries therefore this search type won&apos;t work at this moment. You could use search by list of urls which is not using google engine or try again later..
+        /// </summary>
+        internal static string GoogleDetectsSendingOfAutomaticQueries {
+            get {
+                return ResourceManager.GetString("GoogleDetectsSendingOfAutomaticQueries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://google.com.
         /// </summary>
         internal static string GoogleDotCom {

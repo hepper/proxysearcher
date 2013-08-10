@@ -380,4 +380,7 @@ Response time: {0} s</value>
   <data name="WikipediaContent" xml:space="preserve">
     <value>&lt;title&gt;Wikipedia&lt;/title&gt;</value>
   </data>
+  <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
+    <value>Google detects that your network sends automatic queries therefore this search type won't work at this moment. You could use search by list of urls which is not using google engine or try again later.</value>
+  </data>
 </root>

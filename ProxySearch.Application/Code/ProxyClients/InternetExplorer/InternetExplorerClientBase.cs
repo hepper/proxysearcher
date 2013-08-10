@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.Win32;
 using ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet;
 using ProxySearch.Console.Properties;
@@ -76,6 +75,14 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey(Constants.Browsers.IE.Settings))
             {
                 return (T)key.GetValue(name);
+            }
+        }
+
+        protected override bool ImportsInternetExplorerSettings
+        {
+            get 
+            {
+                return false; // Internet exprorer do not import his settings, it just uses his own.
             }
         }
     }

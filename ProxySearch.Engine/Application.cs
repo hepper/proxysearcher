@@ -36,28 +36,34 @@ namespace ProxySearch.Engine
 
         public async void SearchAsync()
         {
-            using (Context.Get<TaskCounter>().Listen(TaskType.Search))
+            try
             {
-                while (true)
+                using (Context.Get<TaskCounter>().Listen(TaskType.Search))
                 {
-                    Uri uri = await searchEngine.GetNext();
+                    while (true)
+                    {
+                        Uri uri = await searchEngine.GetNext();
 
-                    if (uri == null || Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                        return;
+                        if (uri == null || Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                            return;
 
-                    string document = await GetDocumentAsync(uri);
+                        string document = await GetDocumentAsync(uri);
 
-                    if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                        return;
+                        if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                            return;
 
-                    if (document == null)
-                        continue;
+                        if (document == null)
+                            continue;
 
-                    List<Proxy> proxies = await proxyParser.ParseProxiesAsync(document);
+                        List<Proxy> proxies = await proxyParser.ParseProxiesAsync(document);
 
-                    if (proxies.Any())
-                        checker.CheckAsync(proxies, feedback, geoIP);
+                        if (proxies.Any())
+                            checker.CheckAsync(proxies, feedback, geoIP);
+                    }
                 }
+            }
+            catch
+            {
             }
         }
 

@@ -52,5 +52,13 @@ namespace ProxySearch.Console.Code.ProxyClients.Opera
                 return GetProtocolName("HTTP", "SOCKS");
             }
         }
+
+        protected override bool ImportsInternetExplorerSettings
+        {
+            get 
+            {
+                return false;
+            }
+        }
     }
 }

@@ -55,7 +55,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 return null;
             }
 
-            string content = File.ReadAllText(SettingsPath);
+            string content = Content;
 
             if (ReadPref(content, proxyTypePref) != "1" || ReadPref(content, ProxyPref) == null)
             {
@@ -64,6 +64,14 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
 
             return new ProxyInfo(IPAddress.Parse(ReadPref(content, ProxyPref).Trim('"')),
                                  ushort.Parse(ReadPref(content, ProxyPortPref)));
+        }
+
+        private string Content
+        {
+            get
+            {
+                return File.ReadAllText(SettingsPath);
+            }
         }
 
         protected override string SettingsPath
@@ -118,6 +126,14 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 return content;
 
             return new Regex(GetRegularExpression(name)).ReplaceGroup(content, "value", newValue);
+        }
+
+        protected override bool ImportsInternetExplorerSettings
+        {
+            get
+            {
+                return ReadPref(Content, proxyTypePref) == null;
+            }
         }
 
         private static string GetRegularExpression(string name)

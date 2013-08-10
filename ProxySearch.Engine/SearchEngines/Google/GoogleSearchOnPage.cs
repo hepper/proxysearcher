@@ -15,22 +15,12 @@ namespace ProxySearch.Engine.SearchEngines.Google
         private string pageContent;
         private List<Uri> urls = new List<Uri>();
 
-        public async Task Initialize(Uri googlePage, ICaptchaWindow captchaWindow)
+        public async Task Initialize(Uri googlePage, ICaptchaWindow captchaWindow, int pageNumber)
         {
             using (HttpClient client = new HttpClient())
             using (HttpResponseMessage response = await client.GetAsync(googlePage, Context.Get<CancellationTokenSource>().Token))
             {
-                if (!response.IsSuccessStatusCode)
-                {
-                    if (response.StatusCode == HttpStatusCode.ServiceUnavailable)
-                    {
-                        captchaWindow.Show(response.RequestMessage.RequestUri.ToString());
-                    }
-
-                    return;
-                }
-
-                pageContent = await response.Content.ReadAsStringAsync();
+                pageContent = await GetContent(response, captchaWindow, pageNumber);
             }
 
             Regex regex = new Regex("<a[^>]*?href\\s*=\\s*(?<url>[\"']?([^\"'>]+?)['\"])?[^>]*?>");
@@ -54,6 +44,21 @@ namespace ProxySearch.Engine.SearchEngines.Google
                 if (!InException(uri))
                     urls.Add(uri);
             }
+        }
+
+        private async Task<string> GetContent(HttpResponseMessage response, ICaptchaWindow captchaWindow, int pageNumber)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                if (response.StatusCode != HttpStatusCode.ServiceUnavailable)
+                {
+                    throw new InvalidOperationException(string.Format("Cannot continue search because engine retrieve error '{0}'", response.StatusCode.ToString()));
+                }
+
+                return await captchaWindow.GetSolvedContentAsync(response.RequestMessage.RequestUri.ToString(), pageNumber, Context.Get<CancellationTokenSource>().Token);
+            }
+
+            return await response.Content.ReadAsStringAsync();
         }
 
         private bool InException(Uri url)

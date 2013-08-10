@@ -45,7 +45,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
                     allowedCount--;
                     searchOnPage = new GoogleSearchOnPage();
 
-                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)), captchaWindow);
+                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)), captchaWindow, linkNumber);
                 }
 
                 Uri res = searchOnPage.GetNext();

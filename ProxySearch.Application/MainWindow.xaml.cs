@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Controls;
 using ProxySearch.Engine.SearchEngines.Google;
 
 namespace ProxySearch.Console
@@ -35,6 +37,49 @@ namespace ProxySearch.Console
 
         public void Show(string url)
         {
+            throw new NotSupportedException();
+        }
+
+        public Task<string> GetSolvedContentAsync(string url, int pageNumber, CancellationToken cancellationToken)
+        {
+            Context.Get<IMessageBox>().Error(Properties.Resources.GoogleDetectsSendingOfAutomaticQueries);
+            throw new InvalidOperationException();
+
+            //Add 'Microsoft HTML object library' reference (COM)
+            //TaskCompletionSource<string> taskCompletionSource = new TaskCompletionSource<string>();
+
+            //webBrowser.Navigated += (sender, e) =>
+            //{
+            //    Dispatcher.Invoke(() =>
+            //    {
+            //        CaptchaRegion.Visibility = Visibility.Visible;
+
+            //        CaptchaExplanation.Content = string.Format("Page {0}", pageNumber);
+            //    });
+
+            //    LoadCompletedEventHandler handler = null;
+
+            //    handler = (sender1, e1) =>
+            //    {
+            //        IHTMLDocument2 document = webBrowser.Document as IHTMLDocument2;
+                    
+            //        string content = document.body.outerHTML;
+            //        string loweredContent = content.ToLower();
+
+            //        if (!loweredContent.Contains("captcha") && !loweredContent.Contains("redirecting") && !taskCompletionSource.Task.IsCompleted)
+            //        {
+            //            webBrowser.LoadCompleted -= handler;
+            //            Dispatcher.Invoke(() => CaptchaRegion.Visibility = Visibility.Collapsed);
+            //            taskCompletionSource.SetResult(content);
+            //        }
+            //    };
+
+            //    webBrowser.LoadCompleted += handler;
+            //};
+
+            //Dispatcher.Invoke(() => webBrowser.Navigate(new Uri(url)));
+
+            //return taskCompletionSource.Task;
         }
     }
 }

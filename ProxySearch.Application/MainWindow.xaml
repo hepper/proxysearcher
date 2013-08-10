@@ -21,9 +21,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>        
-       
-        <ContentControl Grid.Row="1" Name="Placeholder" />       
-        <controls:ActionInvokerControl Grid.Row="2" x:Name="ActionInvoker" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <ContentControl Grid.Row="1" Name="Placeholder" />
+        <Grid Grid.Row="2" Name="CaptchaRegion" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Name="CaptchaExplanation" />
+            <WebBrowser Grid.Row="1" x:Name="webBrowser" />
+        </Grid>
+
+        <controls:ActionInvokerControl Grid.Row="3" x:Name="ActionInvoker" />
     </Grid>
 </Window>
