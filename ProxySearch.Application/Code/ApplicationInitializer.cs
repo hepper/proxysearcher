@@ -3,10 +3,13 @@ using System.IO;
 using System.Linq;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.Version;
+using ProxySearch.Console.Controls;
+using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
 
 namespace ProxySearch.Console.Code
@@ -26,10 +29,14 @@ namespace ProxySearch.Console.Code
 
             Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
+
             if (!shutdown)
             {
                 new VersionManager().Check();
             }
+
+            Context.Get<IGA>().TrackEventAsync(EventType.Program, Resources.Started);
+            Context.Get<IGA>().TrackPageViewAsync(typeof(SearchControl).Name);
         }
 
         public void Deinitialize()
@@ -49,6 +56,9 @@ namespace ProxySearch.Console.Code
                     client.Proxy = null;
                 }
             }
+
+            Context.Get<IGA>().TrackPageViewAsync(string.Empty);
+            Context.Get<IGA>().TrackEventAsync(EventType.Program, Resources.Closed);
         }
 
         private AllSettings Settings

@@ -3,5 +3,6 @@
     public interface IVersionProvider
     {
         int Version { get; }
+        string VersionString { get; }
     }
 }   

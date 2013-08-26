@@ -160,6 +160,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Closed.
+        /// </summary>
+        internal static string Closed {
+            get {
+                return ResourceManager.GetString("Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom search.
         /// </summary>
         internal static string DefaultTabName {
@@ -304,7 +313,16 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search is in progress.  {0} proxies have been found..
+        ///   Looks up a localized string similar to Found and shown {0} proxies..
+        /// </summary>
+        internal static string FoundAndShownProxiesFormat {
+            get {
+                return ResourceManager.GetString("FoundAndShownProxiesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found {0} and shown {1} proxies..
         /// </summary>
         internal static string FoundProxiesFormat {
             get {
@@ -439,6 +457,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Installed.
+        /// </summary>
+        internal static string Installed {
+            get {
+                return ResourceManager.GetString("Installed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internet explorer.
         /// </summary>
         internal static string InternetExplorer {
@@ -565,6 +592,33 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        internal static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search cancelled.
+        /// </summary>
+        internal static string SearchCancelled {
+            get {
+                return ResourceManager.GetString("SearchCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search finished.
+        /// </summary>
+        internal static string SearchFinished {
+            get {
+                return ResourceManager.GetString("SearchFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search is cancelled on user request.
         /// </summary>
         internal static string SearchIsCancelledOnUserRequest {
@@ -588,6 +642,24 @@ namespace ProxySearch.Console.Properties {
         internal static string SearchIsFinishedProxiesWasNotFound {
             get {
                 return ResourceManager.GetString("SearchIsFinishedProxiesWasNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search started.
+        /// </summary>
+        internal static string SearchStarted {
+            get {
+                return ResourceManager.GetString("SearchStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShareStatistic.
+        /// </summary>
+        internal static string ShareCheckBox {
+            get {
+                return ResourceManager.GetString("ShareCheckBox", resourceCulture);
             }
         }
         
@@ -688,6 +760,15 @@ namespace ProxySearch.Console.Properties {
         internal static string SpeedRespondTooltipFormat {
             get {
                 return ResourceManager.GetString("SpeedRespondTooltipFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string Started {
+            get {
+                return ResourceManager.GetString("Started", resourceCulture);
             }
         }
         
@@ -833,6 +914,15 @@ namespace ProxySearch.Console.Properties {
             get {
                 object obj = ResourceManager.GetObject("world128x128", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value wrong formatted.
+        /// </summary>
+        internal static string WrongFormattedValue {
+            get {
+                return ResourceManager.GetString("WrongFormattedValue", resourceCulture);
             }
         }
         

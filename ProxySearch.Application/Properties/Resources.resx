@@ -187,7 +187,7 @@
     <value>/firstrun</value>
   </data>
   <data name="FoundProxiesFormat" xml:space="preserve">
-    <value>Search is in progress.  {0} proxies have been found.</value>
+    <value>Found {0} and shown {1} proxies.</value>
   </data>
   <data name="GoogleDotCom" xml:space="preserve">
     <value>http://google.com</value>
@@ -382,5 +382,35 @@ Response time: {0} s</value>
   </data>
   <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
     <value>Google detects that your network sends automatic queries therefore this search type won't work at this moment. You could use search by list of urls which is not using google engine or try again later.</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>Search cancelled</value>
+  </data>
+  <data name="SearchFinished" xml:space="preserve">
+    <value>Search finished</value>
+  </data>
+  <data name="SearchStarted" xml:space="preserve">
+    <value>Search started</value>
+  </data>
+  <data name="Installed" xml:space="preserve">
+    <value>Installed</value>
+  </data>
+  <data name="ShareCheckBox" xml:space="preserve">
+    <value>ShareStatistic</value>
+  </data>
+  <data name="FoundAndShownProxiesFormat" xml:space="preserve">
+    <value>Found and shown {0} proxies.</value>
+  </data>
+  <data name="WrongFormattedValue" xml:space="preserve">
+    <value>Value wrong formatted</value>
   </data>
 </root>

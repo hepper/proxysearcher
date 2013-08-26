@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine;
@@ -25,6 +26,7 @@ namespace ProxySearch.Console.Controls
 
         private void BeginSearch_Click(object sender, RoutedEventArgs e)
         {
+            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, BeginSearch.Content.ToString());
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
             Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);

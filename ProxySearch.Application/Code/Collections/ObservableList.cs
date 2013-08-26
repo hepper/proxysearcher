@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxySearch.Console.Code.Collections
 {
@@ -56,6 +52,21 @@ namespace ProxySearch.Console.Code.Collections
 
             FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
             FireCountChanged();
+
+            return result;
+        }
+
+        public new int RemoveAll(Predicate<T> match)
+        {
+            List<T> toDelete = this.FindAll(match);
+
+            int result = base.RemoveAll(match);
+
+            if (result != 0)
+            {
+                FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, toDelete));
+                FireCountChanged();
+            }
 
             return result;
         }

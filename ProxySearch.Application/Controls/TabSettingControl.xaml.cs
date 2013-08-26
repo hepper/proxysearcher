@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
@@ -245,6 +246,21 @@ namespace ProxySearch.Console.Controls
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        private void ShareStatisticCheckBoxChecked(object sender, RoutedEventArgs e)
+        {
+            bool savedShareUsageStatistic = AllSettings.ShareUsageStatistic;
+
+            try
+            {
+                AllSettings.ShareUsageStatistic = true;
+                Context.Get<IGA>().TrackEventAsync(EventType.CheckBoxChanged, Properties.Resources.ShareCheckBox, savedShareUsageStatistic);
+            }
+            finally
+            {
+                AllSettings.ShareUsageStatistic = savedShareUsageStatistic;
             }
         }
 

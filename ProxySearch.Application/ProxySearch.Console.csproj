@@ -111,6 +111,8 @@
     <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\CenterConverter.cs" />
+    <Compile Include="Code\Converters\FilteringButtonIsCheckedConverter.cs" />
+    <Compile Include="Code\Converters\FilteringPopupIsCheckedMultiConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
@@ -155,6 +157,16 @@
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Filters\FilterData.cs" />
+    <Compile Include="Code\GoogleAnalytics\EventType.cs" />
+    <Compile Include="Code\GoogleAnalytics\GAResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GAResources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\GoogleAnalytics\GoogleAnalyticsManager.cs" />
+    <Compile Include="Code\GoogleAnalytics\HitTypes.cs" />
+    <Compile Include="Code\Interfaces\IGA.cs" />
     <Compile Include="Code\Utils\Property.cs" />
     <Compile Include="Code\Extensions\RegexExtensions.cs" />
     <Compile Include="Code\GeoIPServiceAdapter.cs">
@@ -259,6 +271,9 @@
     <Compile Include="Controls\CheckerProxyNetPropertyControl.xaml.cs">
       <DependentUpon>CheckerProxyNetPropertyControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DataGridHeaderFilteringControl.xaml.cs">
+      <DependentUpon>DataGridHeaderFilteringControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DataGridHelpControl.xaml.cs">
       <DependentUpon>DataGridHelpControl.xaml</DependentUpon>
     </Compile>
@@ -267,6 +282,12 @@
     </Compile>
     <Compile Include="Controls\ExportSearchResultControl.xaml.cs">
       <DependentUpon>ExportSearchResultControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilteringButtonControl.xaml.cs">
+      <DependentUpon>FilteringButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FilteringPopupControl.xaml.cs">
+      <DependentUpon>FilteringPopupControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\FolderSearchEngineControl.xaml.cs">
       <DependentUpon>FolderSearchEngineControl.xaml</DependentUpon>
@@ -353,6 +374,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\DataGridHeaderFilteringControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\DataGridHelpControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -362,6 +387,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\ExportSearchResultControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FilteringButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FilteringPopupControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -526,6 +559,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Code\GoogleAnalytics\GAResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GAResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -593,6 +630,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\world128x128.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\filter.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

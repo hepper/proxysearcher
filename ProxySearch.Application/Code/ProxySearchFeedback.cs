@@ -1,8 +1,10 @@
 ﻿using System;
 using System.IO;
 using ProxySearch.Common;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
@@ -13,10 +15,12 @@ namespace ProxySearch.Console.Code
     public class ProxySearchFeedback : IProxySearchFeedback
     {
         private StreamWriter stream = null;
+        private bool isProxyFound = false;
 
         public ProxySearchFeedback()
         {
             ExportAllowed = true;
+            Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchStarted);
         }
 
         public bool ExportAllowed
@@ -41,6 +45,7 @@ namespace ProxySearch.Console.Code
             }
 
             Context.Get<ISearchResult>().Add(proxyInfo);
+            isProxyFound = true;
         }
 
         public void UpdateJobCount(TaskType type, int currentCount, int totalCount)
@@ -50,14 +55,16 @@ namespace ProxySearch.Console.Code
 
         public void OnSearchFinished()
         {
-            Context.Get<IActionInvoker>().Finished();
+            Context.Get<IActionInvoker>().Finished(!isProxyFound);
             CloseFile();
+            Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchFinished);
         }
 
         public void OnSearchCancelled()
         {
-            Context.Get<IActionInvoker>().Cancelled();
+            Context.Get<IActionInvoker>().Cancelled(!isProxyFound);
             CloseFile();
+            Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchCancelled);
         }
 
         private void CloseFile()

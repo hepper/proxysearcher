@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400" Name="Result">
+             d:DesignHeight="300" d:DesignWidth="800" Name="Result">
     <UserControl.Resources>
         <converters:RowBackgroundColorConverter x:Key="rowBackgroundColorConverter" />
     </UserControl.Resources>
@@ -43,7 +43,7 @@
                     <Style.Triggers>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding ElementName=Result, Path=PageData.Count}" Value="0" />
+                                <Condition Binding="{Binding ElementName=Result, Path=Data.Count}" Value="0" />
                                 <Condition Binding="{Binding ElementName=Result, Path=SearchState}" Value="Completed" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" />
@@ -59,7 +59,7 @@
             <DataGrid.Style>
                 <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=Result,  Path=PageData.Count}"  Value="0">
+                        <DataTrigger Binding="{Binding ElementName=Result,  Path=Data.Count}"  Value="0">
                             <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -108,26 +108,50 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Port" Width="70" SortMemberPath="Port" CanUserSort="True">
+                <DataGridTemplateColumn Width="70" SortMemberPath="Port" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Name="textBox" Text="{Binding Path=Port, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.Header>
+                        <controls:DataGridHeaderFilteringControl HeaderContent="Port" Data="{Binding ElementName=Result, Path=Ports}" x:Name="filterPortsHeader" />
+                    </DataGridTemplateColumn.Header>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Country" Width="33*" SortMemberPath="CountryInfo.Name" CanUserSort="True">
+                <DataGridTemplateColumn Width="33*" SortMemberPath="CountryInfo.Name" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Name="textBox" Text="{Binding Path=CountryInfo.Name, Mode=OneWay}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.Header>
+                        <controls:DataGridHeaderFilteringControl HeaderContent="Country" Data="{Binding ElementName=Result, Path=Countries}" x:Name="filterCountiesHeader" />
+                     </DataGridTemplateColumn.Header>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Type" Width="33*" SortMemberPath="Details.Details.Type" CanUserSort="True">
+                <DataGridTemplateColumn Width="33*" SortMemberPath="Details.Details.Type" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <controls:ProxyDetailsControl Proxy="{Binding}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.Header>
+                        <controls:DataGridHeaderFilteringControl HeaderContent="Type" Data="{Binding ElementName=Result, Path=Types}" x:Name="filterTypeHeader" />
+                    </DataGridTemplateColumn.Header>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Speed (response)" Width="33*" SortMemberPath="BandwidthData">
                     <DataGridTemplateColumn.CellTemplate>
@@ -146,7 +170,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=Data.Count}" Margin="0,5,0,5" 
+        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=FilteredData.Count}" Margin="0,5,0,5" 
                                 Visibility="{Binding ElementName=DataGridControl, Path=Visibility}" />
     </Grid>
 </UserControl>

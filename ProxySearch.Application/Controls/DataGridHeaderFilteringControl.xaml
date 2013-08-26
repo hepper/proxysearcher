@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.DataGridHeaderFilteringControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100" x:Name="DataGridHeaderFiltering">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <ContentPresenter Content="{Binding ElementName=DataGridHeaderFiltering, Path=HeaderContent}" Grid.Column="0" />
+        <controls:FilteringButtonControl Margin="3,0,0,0" Grid.Column="1" Data="{Binding ElementName=DataGridHeaderFiltering, Path=Data}" x:Name="filteringButtonControl" />
+    </Grid>
+</UserControl>

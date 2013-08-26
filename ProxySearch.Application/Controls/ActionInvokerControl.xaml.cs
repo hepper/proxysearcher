@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 
@@ -60,22 +61,23 @@ namespace ProxySearch.Console.Controls
             }));
         }
 
-        public void Finished()
+        public void Finished(bool setReadyStatus)
         {
-            Completed(Context.Get<ISearchResult>().Completed);
+            Completed(Context.Get<ISearchResult>().Completed, setReadyStatus);
         }
 
-        public void Cancelled()
+        public void Cancelled(bool setReadyStatus)
         {
-            Completed(Context.Get<ISearchResult>().Cancelled);
+            Completed(Context.Get<ISearchResult>().Cancelled, setReadyStatus);
         }
 
-        private void Completed(Action action)
+        private void Completed(Action action, bool setReadyStatus)
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 SetProgress(false);
-                SetInformation(Properties.Resources.Ready);
+                if (setReadyStatus)
+                    SetInformation(Properties.Resources.Ready);
                 Context.Get<ISearchControl>().Completed();
                 action();
             }));
@@ -97,6 +99,7 @@ namespace ProxySearch.Console.Controls
 
             if (Dispatcher.CheckAccess())
             {
+                Context.Get<IGA>().TrackException(exception);
                 Context.Get<IExceptionLogging>().Write(exception);
 
                 LastException = exception;
@@ -178,6 +181,8 @@ namespace ProxySearch.Console.Controls
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
+            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, Cancel.Content.ToString());
+
             Cancel.Content = Properties.Resources.Cancelling;
             Cancel.IsEnabled = false;
 

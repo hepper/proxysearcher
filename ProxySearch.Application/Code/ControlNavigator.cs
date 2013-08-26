@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Controls;
 
@@ -23,11 +24,13 @@ namespace ProxySearch.Console.Code
         public void GoTo(UserControl control)
         {
             Placeholder.Content = control;
+            Context.Get<IGA>().TrackPageViewAsync(control.GetType().Name);
         }
 
         public void GoToSearch()
         {
             Placeholder.Content = searchControl;
+            Context.Get<IGA>().TrackPageViewAsync(searchControl.GetType().Name);
         }
     }
 }

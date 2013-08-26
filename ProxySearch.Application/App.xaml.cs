@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Threading;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.UI;
 
@@ -24,6 +25,7 @@ namespace ProxySearch.Console
         public App()
         {
             Context.Set<IMessageBox>(new MessageBoxWrapper());
+            Context.Set<IGA>(new GoogleAnalyticsManager());
 
             this.DispatcherUnhandledException += new DispatcherUnhandledExceptionEventHandler(App_DispatcherUnhandledException);
             this.Startup += new StartupEventHandler(App_Startup);
@@ -42,6 +44,8 @@ namespace ProxySearch.Console
                 catch
                 {
                 }
+
+                Context.Get<IGA>().TrackEventAsync(EventType.General, Console.Properties.Resources.Installed);
             }
 
             CloseApplication = e.Args.Any(item => item == ProxySearch.Console.Properties.Resources.ShutdownArgument);

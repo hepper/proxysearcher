@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.FilteringPopupControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="10" d:DesignWidth="10" x:Name="FilteringPopup">
+    <UserControl.Resources>
+        <converters:FilteringPopupIsCheckedMultiConverter x:Key="filteringPopupIsCheckedMultiConverter" />
+    </UserControl.Resources>
+    <Popup Placement="Bottom" PlacementTarget="{Binding ElementName=FilteringPopup, Path=PlacementTarget}" StaysOpen="False" 
+           IsOpen="{Binding ElementName=FilteringPopup, Path=IsOpen}" MinWidth="200" MaxHeight="200" >
+        <Border Background="White" BorderBrush="Gray" BorderThickness="1">
+            <Grid Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button Name="ClearButton" Click="ClearClick" Margin="10,0,0,5" Grid.Row="0">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <TextBlock Text="Clear filtering" Foreground="Blue" Cursor="Hand" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <ListBox BorderThickness="0" ItemsSource="{Binding ElementName=FilteringPopup, Path=Data}" Grid.Row="1" Name="DataList">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Content="{Binding}" Checked="Checked" Unchecked="Unhecked">
+                                <CheckBox.IsChecked>
+                                    <MultiBinding Converter="{StaticResource filteringPopupIsCheckedMultiConverter}" Mode="OneWay">
+                                        <Binding  />
+                                        <Binding ElementName="FilteringPopup" Path="SelectedData" />
+                                    </MultiBinding>
+                                </CheckBox.IsChecked>
+                            </CheckBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+    </Popup>
+</UserControl>

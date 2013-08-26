@@ -73,8 +73,11 @@
                                     <Label Grid.Row="6" Grid.Column="0">Revert used proxies on exit</Label>
                                     <CheckBox Grid.Row="6" Grid.Column="1" Margin="0, 10, 0, 0"  IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.RevertUsedProxiesOnExit}" />
 
+                                    <Label Grid.Row="7" Grid.Column="0">Share usage statistic data</Label>
+                                    <CheckBox Grid.Row="7" Grid.Column="1" Margin="0, 10, 0, 0"  IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.ShareUsageStatistic}"
+                                              Checked="ShareStatisticCheckBoxChecked" Unchecked="ShareStatisticCheckBoxChecked" />
 
-                                    <Grid  Grid.Row="7" Grid.ColumnSpan="2">
+                                    <Grid  Grid.Row="8" Grid.ColumnSpan="2">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />

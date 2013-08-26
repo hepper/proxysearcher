@@ -17,6 +17,8 @@ namespace ProxySearch.Console.Code.Settings
             PageSize = 20;
             MaxBandwidth = 1;
             RevertUsedProxiesOnExit = true;
+            ClientId = Guid.NewGuid();
+            ShareUsageStatistic = true;
         }
 
         public bool CheckUpdates
@@ -62,6 +64,18 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public bool RevertUsedProxiesOnExit
+        {
+            get;
+            set;
+        }
+
+        public Guid ClientId 
+        { 
+            get; 
+            set; 
+        }
+
+        public bool ShareUsageStatistic
         {
             get;
             set;
