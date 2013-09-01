@@ -12,6 +12,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
     public class GoogleSearchOnPage
     {
         private static readonly string urlPrefix = "/url?q=";
+        private static readonly string urlSuffix = "&amp;sa=";
         private string pageContent;
         private List<Uri> urls = new List<Uri>();
 
@@ -36,13 +37,20 @@ namespace ProxySearch.Engine.SearchEngines.Google
 
                 url = url.Substring(urlPrefix.Length);
 
+                int index = url.IndexOf(urlSuffix);
+
+                if (index != -1)
+                    url = url.Substring(0, index);
+
                 if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
                     continue;
 
                 Uri uri = new Uri(url);
 
                 if (!InException(uri))
+                {                    
                     urls.Add(uri);
+                }
             }
         }
 

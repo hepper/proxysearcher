@@ -12,7 +12,8 @@ namespace ProxySearch.Engine.Parser
                 return new List<ParseDetails>
                 {
                     IPPortDetails,
-                    XproxyComDetails
+                    XproxyComDetails,
+                    ProxyListYComDetails
                 };
             }
         }
@@ -37,8 +38,21 @@ namespace ProxySearch.Engine.Parser
                 return new ParseDetails
                 {
                     Url = "www.xroxy.com",
-                    RawRegularExpression = GetRegex("host=(?<ipgroup>.{0}?)&port=(?<portgroup>.{1}?)"),
-                    Code = EmbeddedResource.ReadToEnd("ProxySearch.Engine.Resources.XproxyComParseCode._cs")
+                    RawRegularExpression = GetRegex("host=(?<ipgroup>{0}?)&port=(?<portgroup>{1}?)"),
+                    Code = EmbeddedResource.ReadToEnd("ProxySearch.Engine.Resources.ByIpAndPortParseCode._cs")
+                };
+            }
+        }
+
+        private ParseDetails ProxyListYComDetails
+        {
+            get
+            {
+                return new ParseDetails
+                {
+                    Url = "www.proxylisty.com",
+                    RawRegularExpression = GetRegex("<td>(?<ipgroup>{0}?)</td>(.|\n)*?>(?<portgroup>{1}?)</a></td>"),
+                    Code = EmbeddedResource.ReadToEnd("ProxySearch.Engine.Resources.ByIpAndPortParseCode._cs")
                 };
             }
         }
