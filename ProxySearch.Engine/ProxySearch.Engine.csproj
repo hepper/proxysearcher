@@ -56,6 +56,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -85,6 +86,11 @@
     <Compile Include="IBlackList.cs" />
     <Compile Include="DownloaderContainers\IHttpDownloader.cs" />
     <Compile Include="DownloaderContainers\IHttpDownloaderContainer.cs" />
+    <Compile Include="Parser\IParseMethod.cs" />
+    <Compile Include="Parser\IParseMethodsProvider.cs" />
+    <Compile Include="Parser\ParseDetails.cs" />
+    <Compile Include="Parser\RegexCompilerMethod.cs" />
+    <Compile Include="Parser\ParseMethodsProvider.cs" />
     <Compile Include="Proxies\Http\HttpProxyDetails.cs" />
     <Compile Include="Checkers\ProxyCheckerBase.cs" />
     <Compile Include="DownloaderContainers\HttpDownloader.cs" />
@@ -104,13 +110,16 @@
     <Compile Include="Proxies\Socks\SocksProxyDetails.cs" />
     <Compile Include="ProxyDetailsProvider\IProxyDetailsProvider.cs" />
     <Compile Include="ProxyDetailsProvider\SocksProxyDetailsProvider.cs" />
+    <EmbeddedResource Include="Resources\ProxyParserRuntime._cs" />
+    <EmbeddedResource Include="Resources\DefaultProxyParseCode._cs" />
+    <Compile Include="EmbeddedResource.cs" />
     <Compile Include="SearchEngines\FolderSearch\FolderSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchOnPage.cs" />
     <Compile Include="GeoIP\IGeoIP.cs" />
     <Compile Include="Checkers\IProxyChecker.cs" />
     <Compile Include="SearchEngines\Google\ICaptchaWindow.cs" />
-    <Compile Include="IProxyParser.cs" />
+    <Compile Include="Parser\IProxyProvider.cs" />
     <Compile Include="IProxySearchFeedback.cs" />
     <Compile Include="SearchEngines\ISearchEngine.cs" />
     <Compile Include="IWebBrowser.cs" />
@@ -122,7 +131,7 @@
     </Compile>
     <Compile Include="Checkers\SimpleProxyChecker.cs" />
     <Compile Include="Proxies\ProxyInfo.cs" />
-    <Compile Include="ProxyParser.cs" />
+    <Compile Include="Parser\ProxyProvider.cs" />
     <Compile Include="SearchEngines\UrlList\UrlListSearchEngine.cs" />
     <Compile Include="Socks\ISocksProxyTypeHashtable.cs" />
     <Compile Include="Proxies\Socks\SocksProxyTypes.cs" />

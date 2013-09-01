@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.Socks;
@@ -17,15 +18,15 @@ namespace ProxySearch.Engine
     public class Application
     {
         ISearchEngine searchEngine;
-        IProxyParser proxyParser;
+        IProxyProvider proxyProvider;
         IProxySearchFeedback feedback;
         IProxyChecker checker;
         IGeoIP geoIP;
 
-        public Application(ISearchEngine searchEngine, IProxyParser proxyParser, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
+        public Application(ISearchEngine searchEngine, IProxyProvider proxyProvider, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
         {
             this.searchEngine = searchEngine;
-            this.proxyParser = proxyParser;
+            this.proxyProvider = proxyProvider;
 
             this.feedback = feedback;
             this.checker = checker;
@@ -55,7 +56,7 @@ namespace ProxySearch.Engine
                         if (document == null)
                             continue;
 
-                        List<Proxy> proxies = await proxyParser.ParseProxiesAsync(document);
+                        List<Proxy> proxies = await proxyProvider.ParseProxiesAsync(uri, document);
 
                         if (proxies.Any())
                             checker.CheckAsync(proxies, feedback, geoIP);

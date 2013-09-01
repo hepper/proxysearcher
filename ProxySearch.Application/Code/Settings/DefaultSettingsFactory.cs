@@ -11,6 +11,7 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Console.Code.Settings
@@ -39,6 +40,15 @@ namespace ProxySearch.Console.Code.Settings
 
             settings.ExportSettings.ExportSearchResult = true;
             settings.SelectedTabSettingsId = settings.TabSettings[0].Id;
+            settings.AllParseDetails = new List<ParseDetailsPair>
+            {
+                new ParseDetailsPair
+                {
+                    Url = string.Empty, 
+                    Details = ParseDetails.IPPortDetails
+                }
+            };
+
             return settings;
         }
 

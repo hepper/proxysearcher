@@ -13,6 +13,7 @@ using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.ProxyDetailsProvider;
 using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Console.Controls
@@ -27,6 +28,7 @@ namespace ProxySearch.Console.Controls
             AllTabSettings.CollectionChanged += AllTabSettings_CollectionChanged;
             ExtendedTabSettings = new ObservableCollection<object>(AllTabSettings);
             ExtendedTabSettings.Insert(0, new GeneralTabSettings());
+            ExtendedTabSettings.Insert(1, new AdvancedTabSettings());
             ExtendedTabSettings.Add(new DummyTabSettings());
 
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace ProxySearch.Console.Controls
             get
             {
                 var tabIndex = PropertyTabControl.SelectedIndex > 0 && PropertyTabControl.SelectedIndex <= AllTabSettings.Count
-                                   ? PropertyTabControl.SelectedIndex - 1
+                                   ? PropertyTabControl.SelectedIndex - 2
                                    : 0;
                 return AllTabSettings[tabIndex];
             }
@@ -98,6 +100,14 @@ namespace ProxySearch.Console.Controls
             get
             {
                 return Context.Get<IDetectableSearcher>().Get<IGeoIP>();
+            }
+        }
+
+        public List<IDetectable> ProxyDetailsProvider
+        {
+            get
+            {
+                return Context.Get<IDetectableSearcher>().Get<IProxyDetailsProvider>();
             }
         }
 

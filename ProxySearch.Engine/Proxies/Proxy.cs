@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProxySearch.Engine.Proxies
 {
     public class Proxy
     {
-        public Proxy(IPAddress address, ushort port)
-        {
-            Init(address, port);
-        }
-
         public Proxy(string addressPort)
         {
             string[] args = addressPort.Split(':');
@@ -21,7 +12,22 @@ namespace ProxySearch.Engine.Proxies
             if (args.Length != 2)
                 throw new ArgumentException();
 
-            Init(IPAddress.Parse(args[0]), ushort.Parse(args[1]));
+            Init(args[0], args[1]);
+        }
+
+        public Proxy(string address, string port)
+        {
+            Init(address, port);
+        }
+
+        public Proxy(IPAddress address, ushort port)
+        {
+            Init(address, port);
+        }
+
+        private void Init(string address, string port)
+        {
+            Init(IPAddress.Parse(address), ushort.Parse(port));
         }
 
         private void Init(IPAddress address, ushort port)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Serialization;
+using ProxySearch.Engine.Parser;
 
 namespace ProxySearch.Console.Code.Settings
 {
@@ -19,6 +20,7 @@ namespace ProxySearch.Console.Code.Settings
             RevertUsedProxiesOnExit = true;
             ClientId = Guid.NewGuid();
             ShareUsageStatistic = true;
+            AllParseDetails = new List<ParseDetailsPair>();
         }
 
         public bool CheckUpdates
@@ -98,6 +100,12 @@ namespace ProxySearch.Console.Code.Settings
             {
                 selectedTabSettingsId = value;
             }
+        }
+
+        public List<ParseDetailsPair> AllParseDetails
+        {
+            get;
+            set;
         }
 
         [XmlIgnore]

@@ -14,6 +14,7 @@ using ProxySearch.Engine;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.SearchEngines.FolderSearch;
 using ProxySearch.Engine.Socks;
@@ -36,7 +37,8 @@ namespace ProxySearch.Console.Code
             feedback.ExportAllowed = !(searchEngine is FolderSearchEngine);
 
             return new Application(searchEngine,
-                                   new ProxyParser(Context.Get<IBlackList>()),
+                                   new ProxyProvider(Context.Get<IBlackList>(),
+                                                     new ParseMethodsProvider(Settings.AllParseDetails.ToDictionary(pair => pair.Url, pair => pair.Details))),
                                    feedback,
                                    CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable,
                                                                                Settings.SelectedTabSettings.ProxyCheckerSettings,
