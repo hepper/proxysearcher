@@ -58,7 +58,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                var tabIndex = PropertyTabControl.SelectedIndex > 0 && PropertyTabControl.SelectedIndex <= AllTabSettings.Count
+                var tabIndex = PropertyTabControl.SelectedIndex > 0 && PropertyTabControl.SelectedIndex - 1 <= AllTabSettings.Count
                                    ? PropertyTabControl.SelectedIndex - 2
                                    : 0;
                 return AllTabSettings[tabIndex];
@@ -176,7 +176,7 @@ namespace ProxySearch.Console.Controls
                     ExtendedTabSettings.Insert(ExtendedTabSettings.Count - 1, e.NewItems[0]);
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    PropertyTabControl.SelectedIndex = e.OldStartingIndex - 1;
+                    PropertyTabControl.SelectedIndex = e.OldStartingIndex + 1;
                     ExtendedTabSettings.Remove(e.OldItems[0]);
                     break;
                 case NotifyCollectionChangedAction.Move:
@@ -192,7 +192,7 @@ namespace ProxySearch.Console.Controls
             if (AllTabSettings.Count == 1)
                 Context.Get<IMessageBox>().Information(Properties.Resources.YouCannotDeleteLastSearchSettings);
             else
-                AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex - 1);
+                AllTabSettings.RemoveAt(PropertyTabControl.SelectedIndex - 2);
         }
 
         private void PropertyTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

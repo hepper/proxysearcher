@@ -40,14 +40,7 @@ namespace ProxySearch.Console.Code.Settings
 
             settings.ExportSettings.ExportSearchResult = true;
             settings.SelectedTabSettingsId = settings.TabSettings[0].Id;
-            settings.AllParseDetails = new List<ParseDetailsPair>
-            {
-                new ParseDetailsPair
-                {
-                    Url = string.Empty, 
-                    Details = ParseDetails.IPPortDetails
-                }
-            };
+            settings.ParseDetails = new DefaultParseDetails().ParseDetailsList;
 
             return settings;
         }

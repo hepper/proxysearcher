@@ -6,11 +6,11 @@ namespace ProxySearch.Engine.Parser
 {
     public class ParseMethodsProvider : IParseMethodsProvider
     {
-        private Dictionary<string, RegexCompilerMethod> methods;
+        private List<KeyValuePair<string, RegexCompilerMethod>> methods;
 
-        public ParseMethodsProvider(IEnumerable<KeyValuePair<string, ParseDetails>> parseDetails)
+        public ParseMethodsProvider(IEnumerable<ParseDetails> parseDetailsCollection)
         {
-            methods = parseDetails.ToDictionary(pair => pair.Key, pair => new RegexCompilerMethod(pair.Value));
+            methods = parseDetailsCollection.Select(details =>new KeyValuePair<string, RegexCompilerMethod>(details.Url, new RegexCompilerMethod(details))).ToList();
         }
 
         public IParseMethod GetMethod(Uri uri)

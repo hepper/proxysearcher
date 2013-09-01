@@ -13,10 +13,7 @@ namespace ProxySearch.Engine.Parser
         IParseMethodsProvider parseMethodProvider;
 
         public ProxyProvider()
-            : this(new EmptyBlackList(), new ParseMethodsProvider(new Dictionary<string, ParseDetails> 
-                                                                  {
-                                                                      {string.Empty, ParseDetails.IPPortDetails}
-                                                                  }))
+            : this(new EmptyBlackList(), new ParseMethodsProvider(new DefaultParseDetails().ParseDetailsList))
         {
         }
 

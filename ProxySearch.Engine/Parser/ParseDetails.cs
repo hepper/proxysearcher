@@ -1,11 +1,21 @@
 ﻿using System;
-using System.Xml.Serialization;
+using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Parser
 {
     public class ParseDetails
     {
-        public string RegularExpression
+        private static readonly string ipRegexValue =
+                                         @"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}";
+        private static readonly string portRegexValue = @"[0-9]+";
+
+        public string Url
+        {
+            get;
+            set;
+        }
+ 
+        public string RawRegularExpression
         {
             get;
             set;
@@ -15,19 +25,13 @@ namespace ProxySearch.Engine.Parser
         {
             get;
             set;
-        }
+        } 
 
-        public static ParseDetails IPPortDetails
+        public string RegularExpression
         {
             get
             {
-                string pattern = @"(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]+";
-
-                return new ParseDetails
-                {
-                    RegularExpression = pattern,
-                    Code = EmbeddedResource.ReadToEnd("ProxySearch.Engine.Resources.DefaultProxyParseCode._cs")
-                };
+                return RawRegularExpression.Replace(Resources.IPRegexKey, ipRegexValue).Replace(Resources.PortRegexKey, portRegexValue);
             }
         }
     }

@@ -161,11 +161,29 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;ipregex&gt;.
+        /// </summary>
+        internal static string IPRegexKey {
+            get {
+                return ResourceManager.GetString("IPRegexKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; is not a known HTTP verb..
         /// </summary>
         internal static string IsNotKnownVerbFormat {
             get {
                 return ResourceManager.GetString("IsNotKnownVerbFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;portregex&gt;.
+        /// </summary>
+        internal static string PortRegexKey {
+            get {
+                return ResourceManager.GetString("PortRegexKey", resourceCulture);
             }
         }
         

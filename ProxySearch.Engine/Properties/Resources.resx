@@ -157,8 +157,14 @@ Never transfer secure data with public proxy.</value>
   <data name="InvalidHttpResponseFromSocksProxy" xml:space="preserve">
     <value>Invalid http response from socks proxy</value>
   </data>
+  <data name="IPRegexKey" xml:space="preserve">
+    <value>&lt;ipregex&gt;</value>
+  </data>
   <data name="IsNotKnownVerbFormat" xml:space="preserve">
     <value>'{0}' is not a known HTTP verb.</value>
+  </data>
+  <data name="PortRegexKey" xml:space="preserve">
+    <value>&lt;portregex&gt;</value>
   </data>
   <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
     <value>Proxy property cannot be null.</value>

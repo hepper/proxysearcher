@@ -37,8 +37,7 @@ namespace ProxySearch.Console.Code
             feedback.ExportAllowed = !(searchEngine is FolderSearchEngine);
 
             return new Application(searchEngine,
-                                   new ProxyProvider(Context.Get<IBlackList>(),
-                                                     new ParseMethodsProvider(Settings.AllParseDetails.ToDictionary(pair => pair.Url, pair => pair.Details))),
+                                   new ProxyProvider(Context.Get<IBlackList>(), new ParseMethodsProvider(Settings.ParseDetails)),
                                    feedback,
                                    CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable,
                                                                                Settings.SelectedTabSettings.ProxyCheckerSettings,

@@ -20,7 +20,7 @@ namespace ProxySearch.Console.Code.Settings
             RevertUsedProxiesOnExit = true;
             ClientId = Guid.NewGuid();
             ShareUsageStatistic = true;
-            AllParseDetails = new List<ParseDetailsPair>();
+            ParseDetails = new List<ParseDetails>();
         }
 
         public bool CheckUpdates
@@ -71,10 +71,10 @@ namespace ProxySearch.Console.Code.Settings
             set;
         }
 
-        public Guid ClientId 
-        { 
-            get; 
-            set; 
+        public Guid ClientId
+        {
+            get;
+            set;
         }
 
         public bool ShareUsageStatistic
@@ -102,7 +102,7 @@ namespace ProxySearch.Console.Code.Settings
             }
         }
 
-        public List<ParseDetailsPair> AllParseDetails
+        public List<ParseDetails> ParseDetails
         {
             get;
             set;
