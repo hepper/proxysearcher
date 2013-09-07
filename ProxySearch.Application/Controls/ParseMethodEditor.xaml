@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.ParseMethodEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600" x:Name="ParseMethod">
+    <UserControl.Resources>
+        <converters:StringToIsEnableConverter x:Key="stringToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="20" Grid.Row="0" HorizontalAlignment="Center">Parsing method editor</TextBlock>
+
+        <GroupBox Header="Specify parsing details" Margin="5" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0"  Margin="5">Url</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding ElementName=ParseMethod, Path=ParseDetails.Url}" Name="UrlTextBox"></TextBox>
+
+                <Label Grid.Row="1" Grid.Column="0"  Margin="5">Regular expression</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding ElementName=ParseMethod, Path=ParseDetails.RawRegularExpression}"></TextBox>
+
+                <Label Grid.Row="2" Grid.Column="0"  Margin="5">Code</Label>
+                <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="5"
+                         Text="{Binding ElementName=ParseMethod, Path=ParseDetails.Code}"></TextBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Header="Test parsing details" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="5">Test url</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Name="TestUrlTextBox" />
+                <Button Grid.Row="0" Grid.Column="2" Width="100" Margin="5" Click="TestParseMethod" IsEnabled="{Binding ElementName=TestUrlTextBox, Path=Text, 
+                                                                                                                       Converter={StaticResource stringToVisibilityConverter}}">Test</Button>
+                <Label Grid.Row="1" Grid.Column="0" Margin="5">Test result</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Height="100" IsReadOnly="True" Name="TestResult" VerticalScrollBarVisibility="Auto" />
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Width="100" Margin="5" Click="ApplyChanges">Apply</Button>
+            <Button Width="100"  Margin="5" Click="Cancel">Cancel</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

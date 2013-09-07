@@ -21,7 +21,7 @@ namespace ProxySearch.Console.Controls
     /// <summary>
     /// Interaction logic for TabSettingControl.xaml
     /// </summary>
-    public partial class TabSettingControl : UserControl, INotifyPropertyChanged
+    public partial class TabSettingControl : UserControl, INotifyPropertyChanged, ISettingsTabNavigator
     {
         public TabSettingControl()
         {
@@ -32,6 +32,8 @@ namespace ProxySearch.Console.Controls
             ExtendedTabSettings.Add(new DummyTabSettings());
 
             InitializeComponent();
+
+            Context.Set<ISettingsTabNavigator>(this);
         }
 
         public AllSettings AllSettings
@@ -166,6 +168,11 @@ namespace ProxySearch.Console.Controls
             {
                 Context.Get<AllSettings>().GeoIPDetectableType = GeoIPs[value].GetType().AssemblyQualifiedName;
             }
+        }
+
+        public void OpenAdvancedTab()
+        {
+            PropertyTabControl.SelectedIndex = 1;
         }
 
         private void AllTabSettings_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

@@ -9,7 +9,7 @@
              d:DesignWidth="484" x:Name="Settings">
     <controls:BackControl DataContext="{Binding ElementName=Settings}">
         <controls:BackControl.Content>
-            <controls:TabSettingControl Grid.Row="0" Margin="{StaticResource DefaultMargin}" />
+            <controls:TabSettingControl Margin="{StaticResource DefaultMargin}" />
         </controls:BackControl.Content>
     </controls:BackControl>
 </UserControl>

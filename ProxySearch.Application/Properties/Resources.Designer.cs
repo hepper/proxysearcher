@@ -223,6 +223,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Do you really want to delete this parse method?.
+        /// </summary>
+        internal static string DoYouReallyWantToDeleteThisParseMethod {
+            get {
+                return ResourceManager.GetString("DoYouReallyWantToDeleteThisParseMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Browser &apos;{0}&apos; should be restarted in order to set or clear proxy. Do you want to do it now?.
         /// </summary>
         internal static string DoYouWantToRestartBrowser {
@@ -769,6 +778,15 @@ namespace ProxySearch.Console.Properties {
         internal static string Started {
             get {
                 return ResourceManager.GetString("Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test url doesn&apos;t match defined url.
+        /// </summary>
+        internal static string TestUrlDoesntMatchDefinedUrl {
+            get {
+                return ResourceManager.GetString("TestUrlDoesntMatchDefinedUrl", resourceCulture);
             }
         }
         

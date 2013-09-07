@@ -111,6 +111,7 @@
     <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\CenterConverter.cs" />
+    <Compile Include="Code\Converters\DeleteButtonVisibilityConverter.cs" />
     <Compile Include="Code\Converters\FilteringButtonIsCheckedConverter.cs" />
     <Compile Include="Code\Converters\FilteringPopupIsCheckedMultiConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
@@ -118,6 +119,8 @@
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
     <Compile Include="Code\Converters\RowBackgroundColorConverter.cs" />
     <Compile Include="Code\Converters\SizeToAngleConverter.cs" />
+    <Compile Include="Code\Converters\StringToIsEnableConverter.cs" />
+    <Compile Include="Code\Converters\UrlPathConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
     <Compile Include="Code\Detectable\DetectableBase.cs" />
     <Compile Include="Code\Detectable\DetectableSearcher.cs">
@@ -167,6 +170,7 @@
     <Compile Include="Code\GoogleAnalytics\GoogleAnalyticsManager.cs" />
     <Compile Include="Code\GoogleAnalytics\HitTypes.cs" />
     <Compile Include="Code\Interfaces\IGA.cs" />
+    <Compile Include="Code\Interfaces\ISettingsTabNavigator.cs" />
     <Compile Include="Code\UI\AdvancedTabSettings.cs" />
     <Compile Include="Code\Utils\Property.cs" />
     <Compile Include="Code\Extensions\RegexExtensions.cs" />
@@ -257,6 +261,9 @@
     <Compile Include="Controls\AboutControl.xaml.cs">
       <DependentUpon>AboutControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AdvancedTabControl.xaml.cs">
+      <DependentUpon>AdvancedTabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BackControl.xaml.cs">
       <DependentUpon>BackControl.xaml</DependentUpon>
     </Compile>
@@ -295,6 +302,9 @@
     </Compile>
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ParseMethodEditor.xaml.cs">
+      <DependentUpon>ParseMethodEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProxyDetailsControl.xaml.cs">
       <DependentUpon>ProxyDetailsControl.xaml</DependentUpon>
@@ -355,6 +365,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\AdvancedTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\BackControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -404,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GoogleEnginePropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ParseMethodEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -634,6 +652,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\filter.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DeleteRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\whitepaper.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -94,7 +94,7 @@
                                 </Grid>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type ui:AdvancedTabSettings}">
-                                <controls:DetectableSelectorControl SelectorName="Proxy detection" Detectables="{Binding ElementName=TabSettings, Path=ProxyDetailsProvider}" />
+                                <controls:AdvancedTabControl />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type settings:TabSettings}">
                                 <Grid>

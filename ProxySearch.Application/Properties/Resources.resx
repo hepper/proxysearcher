@@ -413,4 +413,10 @@ Response time: {0} s</value>
   <data name="WrongFormattedValue" xml:space="preserve">
     <value>Value wrong formatted</value>
   </data>
+  <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
+    <value>Do you really want to delete this parse method?</value>
+  </data>
+  <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
+    <value>Test url doesn't match defined url</value>
+  </data>
 </root>

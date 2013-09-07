@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.AdvancedTabControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls" 
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="500" x:Name="AdvancedTab">
+    <UserControl.Resources>
+        <converters:UrlPathConverter x:Key="urlPathConverter" />
+        <converters:DeleteButtonVisibilityConverter x:Key="deleteButtonVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="Wrap" Margin="5,5,5,5" Grid.Row="0">
+            On this tab you can customize parsing routine for specific sites. 
+            For this you need to know what is Regular Expressions, basics of C# and little bit lucky ;).
+            Details how to use this tab will be available on project's site later.
+        </TextBlock>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding ElementName=AdvancedTab, Path=ParseDetails}" Name="parseMethodsGrid">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Style.Triggers>
+                        <Trigger Property="DataGridRow.IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#7F6875FF" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Url" Width="80*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Url, Converter={StaticResource urlPathConverter}}"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Actions" Width="20*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Height="25" Width="25" Margin="5" ToolTip="Edit" Click="EditButtonClick" Tag="{Binding}">
+                                    <Image Source="/Images/whitepaper.gif" />
+                                </Button>
+                                <Button Height="25" Width="25" Margin="5" ToolTip="Delete" Click="DeleteButtonClick" Tag="{Binding}" 
+                                        Visibility="{Binding Converter={StaticResource deleteButtonVisibilityConverter}}">
+                                    <Image Source="/Images/DeleteRed.png" />
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="2" Width="160" HorizontalAlignment="Left" Margin="5">Add new parse method</Button>
+    </Grid>
+</UserControl>
