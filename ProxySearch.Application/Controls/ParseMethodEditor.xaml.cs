@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine.Parser;
+using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Controls
 {
@@ -20,6 +25,7 @@ namespace ProxySearch.Console.Controls
             InitializeComponent();
         }
 
+        private ParseDetails parseDetails = null;
         public ParseDetails ParseDetails
         {
             get
@@ -28,6 +34,7 @@ namespace ProxySearch.Console.Controls
             }
             set
             {
+                parseDetails = value;
                 UrlTextBox.IsEnabled = !string.IsNullOrEmpty(value.Url);
 
                 this.SetValue(ParseDetailsProperty, new ParseDetails
@@ -39,6 +46,12 @@ namespace ProxySearch.Console.Controls
             }
         }
 
+        public bool IsNew
+        {
+            get;
+            set;
+        }
+
         private static void GoBack()
         {
             SettingsControl settings = new SettingsControl();
@@ -48,6 +61,15 @@ namespace ProxySearch.Console.Controls
 
         private void ApplyChanges(object sender, System.Windows.RoutedEventArgs e)
         {
+            parseDetails.Url = ParseDetails.Url;
+            parseDetails.RawRegularExpression = ParseDetails.RawRegularExpression;
+            parseDetails.Code = ParseDetails.Code;
+
+            if (IsNew)
+            {
+                Context.Get<AllSettings>().ParseDetails.Add(ParseDetails);
+            }
+
             GoBack();
         }
 
@@ -73,6 +95,17 @@ namespace ProxySearch.Console.Controls
             TestResult.Text = message;
         }
 
+        private string DownloadContent()
+        {
+            using (HttpClient client = new HttpClient())
+            using (HttpResponseMessage response = client.GetAsync(TestUri).GetAwaiter().GetResult())
+            {
+                response.EnsureSuccessStatusCode();
+
+                return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            }
+        }
+
         private void DoTest()
         {
             if (!TestUri.ToString().Contains(ParseDetails.Url))
@@ -80,17 +113,14 @@ namespace ProxySearch.Console.Controls
                 throw new InvalidOperationException(Properties.Resources.TestUrlDoesntMatchDefinedUrl);
             }
 
-            string document = null;
+            Regex regex = new Regex(ParseDetails.RegularExpression);
 
-            using (HttpClient client = new HttpClient())
-            using (HttpResponseMessage response = client.GetAsync(TestUri).GetAwaiter().GetResult())
-            {
-                response.EnsureSuccessStatusCode();
+            IEnumerable<Proxy> proxies = new RegexCompilerMethod(ParseDetails).Parse(DownloadContent());
 
-                document = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            }
-
-            SetTestResult(document);
+            if (proxies.Any())
+                SetTestResult(string.Join(Environment.NewLine, proxies));
+            else
+                SetTestResult(Properties.Resources.NoOneProxyHasBeenFound);
         }
 
         private Uri TestUri

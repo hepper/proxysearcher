@@ -25,6 +25,7 @@ namespace ProxySearch.Engine.Parser
             };
 
             parameters.ReferencedAssemblies.Add("System.dll");
+            parameters.ReferencedAssemblies.Add("System.Web.dll");
             parameters.ReferencedAssemblies.Add("ProxySearch.Engine.dll");
 
             CompilerResults compilerResult = new CSharpCodeProvider().CompileAssemblyFromSource(parameters, classString);

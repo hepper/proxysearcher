@@ -502,6 +502,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No one proxy has been found.
+        /// </summary>
+        internal static string NoOneProxyHasBeenFound {
+            get {
+                return ResourceManager.GetString("NoOneProxyHasBeenFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opera.
         /// </summary>
         internal static string Opera {

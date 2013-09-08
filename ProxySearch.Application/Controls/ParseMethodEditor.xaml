@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock FontSize="20" Grid.Row="0" HorizontalAlignment="Center">Parsing method editor</TextBlock>
+        <TextBlock FontSize="20" Grid.Row="0" HorizontalAlignment="Center">Parsing method editor (beta)</TextBlock>
 
         <GroupBox Header="Specify parsing details" Margin="5" Grid.Row="1">
             <Grid>
@@ -65,7 +65,7 @@
                 <Button Grid.Row="0" Grid.Column="2" Width="100" Margin="5" Click="TestParseMethod" IsEnabled="{Binding ElementName=TestUrlTextBox, Path=Text, 
                                                                                                                        Converter={StaticResource stringToVisibilityConverter}}">Test</Button>
                 <Label Grid.Row="1" Grid.Column="0" Margin="5">Test result</Label>
-                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Height="100" IsReadOnly="True" Name="TestResult" VerticalScrollBarVisibility="Auto" />
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Height="100" IsReadOnly="True" Name="TestResult" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
             </Grid>
         </GroupBox>
 

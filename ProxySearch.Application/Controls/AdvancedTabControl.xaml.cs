@@ -35,9 +35,18 @@ namespace ProxySearch.Console.Controls
             }
         }
 
+        private void AddButtonClick(object sender, RoutedEventArgs e)
+        {
+            Context.Get<IControlNavigator>().GoTo(new ParseMethodEditor() { ParseDetails = new ParseDetails() 
+                                                                                           { Url = "Enter domain name here", 
+                                                                                             RawRegularExpression = ".*",
+                                                                                             Code="return null;" }, 
+                                                                            IsNew = true });
+        }
+
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
-            Context.Get<IControlNavigator>().GoTo(new ParseMethodEditor() { ParseDetails = (ParseDetails)((Button)sender).Tag });
+            Context.Get<IControlNavigator>().GoTo(new ParseMethodEditor() { ParseDetails = (ParseDetails)((Button)sender).Tag, IsNew = false });
         }
     }
 }

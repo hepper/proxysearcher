@@ -13,7 +13,8 @@ namespace ProxySearch.Engine.Parser
                 {
                     IPPortDetails,
                     XproxyComDetails,
-                    ProxyListYComDetails
+                    ProxyListYComDetails,
+                    PublicProxyBlogspotCom
                 };
             }
         }
@@ -53,6 +54,19 @@ namespace ProxySearch.Engine.Parser
                     Url = "www.proxylisty.com",
                     RawRegularExpression = GetRegex(@"<td>(?<ipgroup>{0}?)</td>(.|\n)*?>(?<portgroup>{1}?)</a></td>"),
                     Code = EmbeddedResource.ReadToEnd("ProxySearch.Engine.Resources.ByIpAndPortParseCode._cs")
+                };
+            }
+        }
+
+        private ParseDetails PublicProxyBlogspotCom
+        {
+            get
+            {
+                return new ParseDetails
+                {
+                    Url = "public-proxy.blogspot.com",
+                    RawRegularExpression = GetRegex(@"<br>(?<ipport>.*?)<br>"),
+                    Code = "return new Proxy(HttpUtility.HtmlDecode((string)(match.Groups[\"ipport\"]).Value));"
                 };
             }
         }

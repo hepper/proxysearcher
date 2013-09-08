@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.RegularExpressions;
 using ProxySearch.Engine.Proxies;
+using System.Web;
 
 namespace ProxySearch.Engine.Resources
 {{

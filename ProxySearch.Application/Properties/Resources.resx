@@ -419,4 +419,7 @@ Response time: {0} s</value>
   <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
     <value>Test url doesn't match defined url</value>
   </data>
+  <data name="NoOneProxyHasBeenFound" xml:space="preserve">
+    <value>No one proxy has been found</value>
+  </data>
 </root>

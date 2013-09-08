@@ -57,6 +57,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="2" Width="160" HorizontalAlignment="Left" Margin="5">Add new parse method</Button>
+        <Button Grid.Row="2" Width="160" HorizontalAlignment="Left" Margin="5" Click="AddButtonClick">Add new parse method</Button>
     </Grid>
 </UserControl>

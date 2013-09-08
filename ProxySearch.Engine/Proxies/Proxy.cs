@@ -97,5 +97,10 @@ namespace ProxySearch.Engine.Proxies
         {
             return Address.GetHashCode() + Port.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return AddressPort;
+        }
     }
 }
