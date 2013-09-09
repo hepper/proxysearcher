@@ -154,7 +154,7 @@ namespace ProxySearch.Console.Controls
 
                             if (page < Paging.Page)
                             {
-                                PageData.Insert(0, Data[(Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize]);
+                                PageData.Insert(0, FilteredData[(Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize]);
                             }
                             else if (page == Paging.Page)
                             {
