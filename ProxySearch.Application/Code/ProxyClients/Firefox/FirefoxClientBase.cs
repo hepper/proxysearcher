@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -78,8 +79,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         {
             get
             {
-                string folder = string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"\Mozilla\Firefox\Profiles\");
-                string settingFolder = Directory.GetDirectories(folder).Where(path => path.EndsWith(".default")).First();
+                string settingFolder = DefaultProfiles.First();
                 string userSettings = string.Concat(settingFolder, @"\user.js");
 
                 if (File.Exists(userSettings))
@@ -88,6 +88,35 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 }
 
                 return string.Concat(settingFolder, @"\prefs.js");
+            }
+        }
+
+        public override bool IsInstalled
+        {
+            get
+            {
+                if (!base.IsInstalled)
+                {
+                    return false;
+                }
+
+                return DefaultProfiles.Any();
+            }
+        }
+
+        private IEnumerable<string> DefaultProfiles
+        {
+            get
+            {
+                return Directory.GetDirectories(ProfilesFolderPath).Where(path => path.EndsWith(".default"));
+            }
+        }
+
+        private string ProfilesFolderPath
+        {
+            get
+            {
+                return string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"\Mozilla\Firefox\Profiles\");
             }
         }
 

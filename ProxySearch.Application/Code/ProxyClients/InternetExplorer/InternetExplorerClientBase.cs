@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.Win32;
 using ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet;
 using ProxySearch.Console.Properties;
@@ -32,7 +33,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             {
                 string[] arguments = GetValue<string>(Constants.Browsers.IE.ProxyServer).Split(';');
 
-                string value = arguments.SingleOrDefault(item => item.StartsWith(string.Concat(Type, "=")));
+                string value = arguments.SingleOrDefault(item => item.StartsWith(string.Concat(Type, "="), StringComparison.CurrentCultureIgnoreCase));
 
                 if (value == null)
                 {
