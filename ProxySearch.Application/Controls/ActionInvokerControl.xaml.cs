@@ -85,9 +85,11 @@ namespace ProxySearch.Console.Controls
 
         public void Update(int count)
         {
+            string text = string.Format(Properties.Resources.JobCountFormat, count);
+
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                ProgressText.Content = string.Format(Properties.Resources.JobCountFormat, count);
+                ProgressText.Content = text;
             }));
         }
 
