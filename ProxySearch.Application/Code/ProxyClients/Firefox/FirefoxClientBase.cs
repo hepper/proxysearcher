@@ -51,14 +51,9 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
 
         protected sealed override ProxyInfo GetProxy()
         {
-            if (!File.Exists(SettingsPath))
-            {
-                return null;
-            }
+            string content = GetContentOrNull();
 
-            string content = Content;
-
-            if (ReadPref(content, proxyTypePref) != "1" || ReadPref(content, ProxyPref) == null)
+            if (content == null || ReadPref(content, proxyTypePref) != "1" || ReadPref(content, ProxyPref) == null)
             {
                 return null;
             }
@@ -67,12 +62,14 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                                  ushort.Parse(ReadPref(content, ProxyPortPref)));
         }
 
-        private string Content
+        private string GetContentOrNull()
         {
-            get
+            if (!File.Exists(SettingsPath))
             {
-                return File.ReadAllText(SettingsPath);
+                return null;
             }
+
+            return File.ReadAllText(SettingsPath);
         }
 
         protected override string SettingsPath
@@ -161,7 +158,9 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         {
             get
             {
-                return ReadPref(Content, proxyTypePref) == null;
+                string content = GetContentOrNull();
+
+                return content == null? true: ReadPref(content, proxyTypePref) == null;
             }
         }
 

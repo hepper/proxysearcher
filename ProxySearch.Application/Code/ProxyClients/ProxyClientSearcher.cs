@@ -30,7 +30,12 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 string proxyType = Context.Get<AllSettings>().SelectedTabSettings.ProxyType;
 
-                return allClients.ContainsKey(proxyType) ? allClients[proxyType] : new List<IProxyClient>();
+                if (!allClients.ContainsKey(proxyType))
+                {
+                    throw new InvalidOperationException(string.Format("Unknown proxy type: '{0}'", proxyType));
+                }
+
+                return allClients[proxyType];
             }
         }
 

@@ -69,8 +69,10 @@ namespace ProxySearch.Console.Code
 
         private void CloseFile()
         {
-            if (stream != null)
+            if (stream != null && stream.BaseStream != null)
+            {
                 stream.Dispose();
+            }
         }
 
         private string GetDirectory(ProxyTypeDetails details)

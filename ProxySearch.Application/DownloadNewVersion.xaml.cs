@@ -59,7 +59,7 @@ namespace ProxySearch.Console
 
         private async Task<string> DownloadInstallation(string loadPath)
         {
-            string filePath = Path.ChangeExtension(System.IO.Path.GetTempFileName(), "exe");
+            string filePath = Path.ChangeExtension(Path.GetTempFileName(), "exe");
 
             using (HttpClientHandler handler = new HttpClientHandler())
             using (ProgressMessageHandler progressMessageHandler = new ProgressMessageHandler(handler))
