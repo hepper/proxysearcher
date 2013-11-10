@@ -80,7 +80,7 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot download content of &apos;{0}&apos;. In order to fix this issue go to Tools-&gt;Properties and change proxy checker url to valid one.
+        ///   Looks up a localized string similar to Cannot download content of &apos;{0}&apos;. Probably you don&apos;t have internet connection or &apos;{0}&apos; is blocked for your network. If it&apos;s blocked then go to Tools-&gt;Properties and change proxy checker &apos;By Url&apos; to &apos;By Url and Keywords&apos; (this checked type is espessially for blocked sites)..
         /// </summary>
         internal static string CannotDownloadContent {
             get {

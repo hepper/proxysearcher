@@ -125,7 +125,7 @@
 Never transfer secure data with public proxy.</value>
   </data>
   <data name="CannotDownloadContent" xml:space="preserve">
-    <value>Cannot download content of '{0}'. In order to fix this issue go to Tools-&gt;Properties and change proxy checker url to valid one</value>
+    <value>Cannot download content of '{0}'. Probably you don't have internet connection or '{0}' is blocked for your network. If it's blocked then go to Tools-&gt;Properties and change proxy checker 'By Url' to 'By Url and Keywords' (this checked type is espessially for blocked sites).</value>
   </data>
   <data name="CannotVerify" xml:space="preserve">
     <value>Cannot verify</value>
