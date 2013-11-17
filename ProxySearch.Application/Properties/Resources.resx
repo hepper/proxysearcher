@@ -150,9 +150,6 @@
   <data name="DefaultTabName" xml:space="preserve">
     <value>Custom search</value>
   </data>
-  <data name="DefaultTypeIsntDefinedForInterface" xml:space="preserve">
-    <value>Default type isn't defined for interface '{0}'</value>
-  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>

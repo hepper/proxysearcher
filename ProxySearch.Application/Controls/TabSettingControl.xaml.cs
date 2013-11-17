@@ -9,12 +9,14 @@ using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Code.Language;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.ProxyDetailsProvider;
 using ProxySearch.Engine.SearchEngines;
+using System.Linq;
 
 namespace ProxySearch.Console.Controls
 {
@@ -110,6 +112,26 @@ namespace ProxySearch.Console.Controls
             get
             {
                 return Context.Get<IDetectableSearcher>().Get<IProxyDetailsProvider>();
+            }
+        }
+
+        public List<Language> SupportedLanguages
+        {
+            get
+            {
+                return new LanguageManager().SupoportedLanguages;
+            }
+        }
+
+        public Language SelectedLanguage
+        {
+            get
+            {
+                return new LanguageManager().CurrentLanguage;
+            }
+            set
+            {
+                AllSettings.SelectedCulture = value.Culture;
             }
         }
 

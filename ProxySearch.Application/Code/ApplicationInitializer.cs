@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.GoogleAnalytics;
@@ -29,6 +31,9 @@ namespace ProxySearch.Console.Code
 
             Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);
+            Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
             if (!shutdown)
             {

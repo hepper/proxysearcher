@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllSettingsWillBeRevertedToTheirDefaults" xml:space="preserve">
+    <value>Все текущие установки будут заменены установками по умолчанию. Вы хотите продолжить?</value>
+  </data>
+  <data name="BuiltInGeoIPDescription" xml:space="preserve">
+    <value>Встроенный  определитель географического расположения. Эта опция хороша быстротой определения географического расположения, но эти данные могут быть не последними и определение расположения занимает  относительно много процесорного времени.</value>
+  </data>
+  <data name="BuiltInGeoIPName" xml:space="preserve">
+    <value>Встроенный</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="Cancelling" xml:space="preserve">
+    <value>Отменяю</value>
+  </data>
+  <data name="CannotFindInstallationUrl" xml:space="preserve">
+    <value>Невозможно найти исталляционный адрес программы.</value>
+  </data>
+  <data name="CannotUpdateProgram" xml:space="preserve">
+    <value>Невозможно обновить программу. Вы хотите сделать это вручную?</value>
+  </data>
+  <data name="CheckerProxyDotNetDescription" xml:space="preserve">
+    <value>Этот механизм проверки использует онлайн сервис http://checkerproxy.net.  Он может проверять HTTP\HTTPS и SOCKS4\SOCKS5 прокси. Минусом этого механизма является невозможность проверки работоспособности найденного прокси для вашего сегмента сети.</value>
+  </data>
+  <data name="Chrome" xml:space="preserve">
+    <value>Хром</value>
+  </data>
+  <data name="DefaultTabName" xml:space="preserve">
+    <value>Свой поиск</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="DoYouReallyWantToClearProxyUsageHistory" xml:space="preserve">
+    <value>Вы на самом деле хотите очистить историю использования прокси?</value>
+  </data>
+  <data name="DoYouWantToRestartBrowser" xml:space="preserve">
+    <value>Браузер '{0}' нужно перегрузить для того, чтобы установить или очистить прокси. Вы хотите сделать это сейчас</value>
+  </data>
+  <data name="DummyGeoIP" xml:space="preserve">
+    <value>Выключить</value>
+  </data>
+  <data name="DummyGeoIPDescription" xml:space="preserve">
+    <value>Выключает определитель георафического расположения. Этот метод работает быстрее если сравнивать с другими методами, но географическое расположение найденный прокси не будет установлено.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ErrorHasHappenedDuringTest" xml:space="preserve">
+    <value>Произошла ошибка при тестировании</value>
+  </data>
+  <data name="FoundProxiesFormat" xml:space="preserve">
+    <value>Найдено {0} и показано {1} прокси серверов.</value>
+  </data>
+  <data name="GoogleEngineDescription" xml:space="preserve">
+    <value>Использует http://google.com сайт для поиска прокси. Если Вы не можете открыть http://google.com в браузере тогда используйте другой тип поиска.</value>
+  </data>
+  <data name="JobCountFormat" xml:space="preserve">
+    <value>Количество проверок {0}</value>
+  </data>
+  <data name="ProxyCheckerByUrl" xml:space="preserve">
+    <value>По адресу</value>
+  </data>
+  <data name="ProxyCheckerByUrlAndKeywords" xml:space="preserve">
+    <value>По адресу и ключевым словам</value>
+  </data>
+  <data name="ProxyCheckerByUrlAndKeywordsDescription" xml:space="preserve">
+    <value>This proxy checker could be useful if you don't have access to http page, but know his url and list of keywords what should be on page. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change keywords, probably page doesn't contains them. All specified keywords separates with space, all of them should be on the page, as keyword could be specified piece of http code without space(s). Because of content downloading this checker takes internet traffic.</value>
+  </data>
+  <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
+    <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change accuracy, probably page's content is too dynamic. Because of downloading page content this checker takes internet traffic.</value>
+  </data>
+  <data name="ProxySearcherVersionFormat" xml:space="preserve">
+    <value>Proxy Searcher {0}.{1}</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="RoundFormat" xml:space="preserve">
+    <value>{0:0.##}</value>
+  </data>
+  <data name="RowStyleIsNotSupported" xml:space="preserve">
+    <value>Row style '{0}' is not supported</value>
+  </data>
+  <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
+    <value>Search is cancelled on user request</value>
+  </data>
+  <data name="SearchIsFinishedProxiesWasFound" xml:space="preserve">
+    <value>Search is finished. {0} proxies was found</value>
+  </data>
+  <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
+    <value>Search is finished. No proxy was found. Change search query and try again</value>
+  </data>
+  <data name="ShutdownArgument" xml:space="preserve">
+    <value>/shutdown</value>
+  </data>
+  <data name="SimpleProxyChecker" xml:space="preserve">
+    <value>By IP:Port</value>
+  </data>
+  <data name="SimpleProxyCheckerDescription" xml:space="preserve">
+    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies. Also this checker cannot determine type of proxy</value>
+  </data>
+  <data name="GoogleDotComUrl" xml:space="preserve">
+    <value>http://google.com</value>
+  </data>
+  <data name="SortTypeIsNotSupported" xml:space="preserve">
+    <value>Sort type by '{0}' is not supported</value>
+  </data>
+  <data name="SpeedRespondTextFormat" xml:space="preserve">
+    <value>{0:0.##} ({1})</value>
+  </data>
+  <data name="SpeedRespondTooltipFormat" xml:space="preserve">
+    <value>Speed: {1:0.##} Mb/s
+Response time: {0} s</value>
+  </data>
+  <data name="TicketsLink" xml:space="preserve">
+    <value>https://sourceforge.net/p/proxysearcher/tickets/</value>
+  </data>
+  <data name="Uninstalling" xml:space="preserve">
+    <value>Uninstalling</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="UpdateIsReadyToInstall" xml:space="preserve">
+    <value>New version of Proxy Searcher is available. Do you want to get it now?</value>
+  </data>
+  <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
+    <value>Wait until current operation is finished</value>
+  </data>
+  <data name="WebServiceNetGeoIPService" xml:space="preserve">
+    <value>http://www.webservicex.net/geoipservice.asmx</value>
+  </data>
+  <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
+    <value>Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser then use other type of Geo IP</value>
+  </data>
+  <data name="YouShouldClearValueBeforeSetNewOne" xml:space="preserve">
+    <value>You should clear value before set new one</value>
+  </data>
+  <data name="FolderSearchEngine" xml:space="preserve">
+    <value>Поиск в папке</value>
+  </data>
+  <data name="FolderSearchEngineDescription" xml:space="preserve">
+    <value>Если у вас есть папка которая содержит файлы с прокси внутри в формате [ip]:[port] Вы можете выбрать этот способ поиска. К сожалению он не может найти новые прокси, но он проверит или прокси в файлах рабочие для текущего сегмента сети. Этот способ поиска хорошо работает вместе с вкюченный експортированием найденный прокси.</value>
+  </data>
+  <data name="UrlListEngine" xml:space="preserve">
+    <value>By Url List</value>
+  </data>
+  <data name="UrlListEngineDescription" xml:space="preserve">
+    <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
+  </data>
+  <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
+    <value>Вы на самом деле хотите очистить чёрный список?</value>
+  </data>
+  <data name="Google" xml:space="preserve">
+    <value>HTTP (Google)</value>
+  </data>
+  <data name="HttpOpen" xml:space="preserve">
+    <value>Открыть наденный HTTP прокси</value>
+  </data>
+  <data name="TurnedOffProxyChecker" xml:space="preserve">
+    <value>Check manually after search</value>
+  </data>
+  <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
+    <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>
+  </data>
+  <data name="HttpPredefinedUrlList" xml:space="preserve">
+    <value>HTTP (список адресов)</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
+    <value>You cannot delete last search settings.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="world128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\world128x128.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HttpProxyTypeDescription" xml:space="preserve">
+    <value>Этот метод позволяет находить http прокси</value>
+  </data>
+  <data name="SocksGoogleSearchType" xml:space="preserve">
+    <value>SOCKS (Google)</value>
+  </data>
+  <data name="SocksProxyType" xml:space="preserve">
+    <value>SOCKS</value>
+  </data>
+  <data name="SocksProxyTypeDesciption" xml:space="preserve">
+    <value>This type allows to find socks proxies</value>
+  </data>
+  <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
+    <value>Невозможно установить SOCKS прокси для FireFox если версия SOCKS не была определена</value>
+  </data>
+  <data name="WikipediaDotOrgUrl" xml:space="preserve">
+    <value>http://www.wikipedia.org/</value>
+  </data>
+  <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
+    <value>This client doesn't support socks v5 proxies</value>
+  </data>
+  <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
+    <value>Type of proxy is not defined and this client doesn't support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?</value>
+  </data>
+  <data name="SocksOpen" xml:space="preserve">
+    <value>Open findings as Socks</value>
+  </data>
+  <data name="SocksPredefinedUrlList" xml:space="preserve">
+    <value>Socks (list of urls)</value>
+  </data>
+  <data name="WikipediaContent" xml:space="preserve">
+    <value>&lt;title&gt;Wikipedia&lt;/title&gt;</value>
+  </data>
+  <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
+    <value>Google опередил что Ваша сеть отсылает автоматические запросы, поэтому этот тип поиска не будет работать в этот момент времени. Вы можете использовать другие методы поиска которые не используют Google или попробовать попозже.</value>
+  </data>
+  <data name="Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>Search cancelled</value>
+  </data>
+  <data name="SearchFinished" xml:space="preserve">
+    <value>Search finished</value>
+  </data>
+  <data name="SearchStarted" xml:space="preserve">
+    <value>Search started</value>
+  </data>
+  <data name="ShareCheckBox" xml:space="preserve">
+    <value>ShareStatistic</value>
+  </data>
+  <data name="FoundAndShownProxiesFormat" xml:space="preserve">
+    <value>Найдено и показано {0} прокси серверов.</value>
+  </data>
+  <data name="WrongFormattedValue" xml:space="preserve">
+    <value>Value wrong formatted</value>
+  </data>
+  <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
+    <value>Вы на самом деле хотите удалить этот метод разбора текста</value>
+  </data>
+  <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
+    <value>Test url doesn't match defined url</value>
+  </data>
+  <data name="NoOneProxyHasBeenFound" xml:space="preserve">
+    <value>Прокси не были найдены</value>
+  </data>
+</root>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Xml.Serialization;
+using ProxySearch.Console.Code.Language;
 using ProxySearch.Engine.Parser;
 
 namespace ProxySearch.Console.Code.Settings
@@ -21,6 +22,7 @@ namespace ProxySearch.Console.Code.Settings
             ClientId = Guid.NewGuid();
             ShareUsageStatistic = true;
             ParseDetails = new List<ParseDetails>();
+            SelectedCulture = new LanguageManager().DefaultLanguage.Culture;
         }
 
         public bool CheckUpdates
@@ -84,6 +86,12 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public ObservableCollection<TabSettings> TabSettings
+        {
+            get;
+            set;
+        }
+
+        public string SelectedCulture
         {
             get;
             set;

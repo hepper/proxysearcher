@@ -8,6 +8,7 @@ using ProxySearch.Console.Code.Detectable.GeoIPs;
 using ProxySearch.Console.Code.Detectable.ProxyCheckers;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Code.Language;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
@@ -41,7 +42,7 @@ namespace ProxySearch.Console.Code.Settings
             settings.ExportSettings.ExportSearchResult = true;
             settings.SelectedTabSettingsId = settings.TabSettings[0].Id;
             settings.ParseDetails = new DefaultParseDetails().ParseDetailsList;
-
+ 
             return settings;
         }
 

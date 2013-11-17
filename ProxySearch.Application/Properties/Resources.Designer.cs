@@ -178,15 +178,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default type isn&apos;t defined for interface &apos;{0}&apos;.
-        /// </summary>
-        internal static string DefaultTypeIsntDefinedForInterface {
-            get {
-                return ResourceManager.GetString("DefaultTypeIsntDefinedForInterface", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         internal static string Details {
