@@ -73,7 +73,7 @@ namespace ProxySearch.Console.Controls
         {
             return Data.GroupBy(keySelector)
                            .Select(group => new FilterData(group.Key, group.Count()))
-                           .OrderBy(country => country);
+                           .OrderBy(filterData => filterData.Data);
         }
 
         public SearchResult()

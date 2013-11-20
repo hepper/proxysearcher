@@ -2,7 +2,7 @@
 
 namespace ProxySearch.Console.Code.Filters
 {
-    public class FilterData : IComparable
+    public class FilterData
     {
         public FilterData(IComparable data, int count)
         {
@@ -25,16 +25,6 @@ namespace ProxySearch.Console.Code.Filters
         public override string ToString()
         {
             return string.Format("{0} [{1}]", Data, Count);
-        }
-
-        public int CompareTo(object obj)
-        {
-            FilterData data = obj as FilterData;
-
-            if (data == null)
-                return -1;
-
-            return Data.CompareTo(data.Data);
         }
     }
 }
