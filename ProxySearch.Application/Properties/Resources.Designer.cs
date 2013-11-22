@@ -592,15 +592,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Row style &apos;{0}&apos; is not supported.
-        /// </summary>
-        internal static string RowStyleIsNotSupported {
-            get {
-                return ResourceManager.GetString("RowStyleIsNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string Search {
@@ -691,7 +682,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don&apos;t require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies. Also this checker cannot determine type of proxy.
+        ///   Looks up a localized string similar to This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don&apos;t require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies..
         /// </summary>
         internal static string SimpleProxyCheckerDescription {
             get {
@@ -845,15 +836,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown.
-        /// </summary>
-        internal static string Unknown {
-            get {
-                return ResourceManager.GetString("Unknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to New version of Proxy Searcher is available. Do you want to get it now?.
         /// </summary>
         internal static string UpdateIsReadyToInstall {
@@ -932,15 +914,6 @@ namespace ProxySearch.Console.Properties {
             get {
                 object obj = ResourceManager.GetObject("world128x128", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Value wrong formatted.
-        /// </summary>
-        internal static string WrongFormattedValue {
-            get {
-                return ResourceManager.GetString("WrongFormattedValue", resourceCulture);
             }
         }
         

@@ -184,110 +184,74 @@
     <value>По адресу и ключевым словам</value>
   </data>
   <data name="ProxyCheckerByUrlAndKeywordsDescription" xml:space="preserve">
-    <value>This proxy checker could be useful if you don't have access to http page, but know his url and list of keywords what should be on page. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change keywords, probably page doesn't contains them. All specified keywords separates with space, all of them should be on the page, as keyword could be specified piece of http code without space(s). Because of content downloading this checker takes internet traffic.</value>
+    <value>Этот метод проверки может быть полезным если у вас нет доступа к http странице, но вы знаете её адрес и список ключевых слов которые присутствуют на ней. Этот метод медленее в сравнении с проверкой по адресу и порту но работает лучше. Если этот метод ничего не возвращает тогда попробуйте поменять ключевые слова (возможно страница не содержит их). Все ключевые слова должны быть разделены пробелом и должны присутсвовать на странице, В качестве ключевого слова можно указывать часть html кода без пробелов. Из-за скачивания контента страницы этот способ исполькует интернет траффик.</value>
   </data>
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
-    <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change accuracy, probably page's content is too dynamic. Because of downloading page content this checker takes internet traffic.</value>
-  </data>
-  <data name="ProxySearcherVersionFormat" xml:space="preserve">
-    <value>Proxy Searcher {0}.{1}</value>
+    <value>Этот метод проверки скачивает содержимое указанного адреса сначала без прокси, а потом вместе с ним. Если содержание контента приблизительно одинаковое тогда прокси считается рабочим. Этот метод медленее в сравнении с проверкой по адресу и порту но работает лучше. Если этот метод ничего не возвращает тогда попробуйте уменьшить точность, возможно содержание страницы слишком динамичное. Из-за скачивания контента страницы этот способ исполькует интернет траффик.</value>
   </data>
   <data name="Question" xml:space="preserve">
-    <value>Question</value>
+    <value>Вопрос</value>
   </data>
   <data name="QuestionMark" xml:space="preserve">
     <value>?</value>
   </data>
   <data name="Ready" xml:space="preserve">
-    <value>Ready</value>
-  </data>
-  <data name="RoundFormat" xml:space="preserve">
-    <value>{0:0.##}</value>
-  </data>
-  <data name="RowStyleIsNotSupported" xml:space="preserve">
-    <value>Row style '{0}' is not supported</value>
+    <value>Ожидание</value>
   </data>
   <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
-    <value>Search is cancelled on user request</value>
+    <value>Поиск отменен на запрос пользователя</value>
   </data>
   <data name="SearchIsFinishedProxiesWasFound" xml:space="preserve">
-    <value>Search is finished. {0} proxies was found</value>
+    <value>Поиск закончен. {0} прокси было найдено</value>
   </data>
   <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
-    <value>Search is finished. No proxy was found. Change search query and try again</value>
-  </data>
-  <data name="ShutdownArgument" xml:space="preserve">
-    <value>/shutdown</value>
+    <value>Поиск закончен. Ничкго не найдено . Поменяйте условия поиска и попробуйте снова.</value>
   </data>
   <data name="SimpleProxyChecker" xml:space="preserve">
-    <value>By IP:Port</value>
+    <value>По адресу и порту</value>
   </data>
   <data name="SimpleProxyCheckerDescription" xml:space="preserve">
-    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies. Also this checker cannot determine type of proxy</value>
-  </data>
-  <data name="GoogleDotComUrl" xml:space="preserve">
-    <value>http://google.com</value>
+    <value>Этот способ проверки смотрит или интернет адрес и порт открыт для использования. Может использоваться для проверки любых типов прокси. Он быстрый потому что не использует внешних сервисов. Но метод не может проверить или кандидат является рабочим прокси сервером поэтому он может вернуть не рабочие прокси.</value>
   </data>
   <data name="SortTypeIsNotSupported" xml:space="preserve">
-    <value>Sort type by '{0}' is not supported</value>
-  </data>
-  <data name="SpeedRespondTextFormat" xml:space="preserve">
-    <value>{0:0.##} ({1})</value>
+    <value>Сортировка по '{0}' не поддерживается</value>
   </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
-    <value>Speed: {1:0.##} Mb/s
-Response time: {0} s</value>
-  </data>
-  <data name="TicketsLink" xml:space="preserve">
-    <value>https://sourceforge.net/p/proxysearcher/tickets/</value>
-  </data>
-  <data name="Uninstalling" xml:space="preserve">
-    <value>Uninstalling</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>Unknown</value>
+    <value>Скорость: {1:0.##} Мб/с
+Время отклика: {0} с</value>
   </data>
   <data name="UpdateIsReadyToInstall" xml:space="preserve">
-    <value>New version of Proxy Searcher is available. Do you want to get it now?</value>
+    <value>Выпущенная более новая версия программы. Хотите установать ее сейчас?</value>
   </data>
   <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
-    <value>Wait until current operation is finished</value>
-  </data>
-  <data name="WebServiceNetGeoIPService" xml:space="preserve">
-    <value>http://www.webservicex.net/geoipservice.asmx</value>
+    <value>Подождите окончания текущего действия</value>
   </data>
   <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
-    <value>Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser then use other type of Geo IP</value>
-  </data>
-  <data name="YouShouldClearValueBeforeSetNewOne" xml:space="preserve">
-    <value>You should clear value before set new one</value>
+    <value>Использует http://www.webservicex.net/geoipservice.asmx сервис для опеределения географического расположения прокси. Если адрес http://www.webservicex.net/geoipservice.asmx не открывается в браузере тогда используйте другой тип определения географического местоположения</value>
   </data>
   <data name="FolderSearchEngine" xml:space="preserve">
-    <value>Поиск в папке</value>
+    <value>По файлам в папке</value>
   </data>
   <data name="FolderSearchEngineDescription" xml:space="preserve">
     <value>Если у вас есть папка которая содержит файлы с прокси внутри в формате [ip]:[port] Вы можете выбрать этот способ поиска. К сожалению он не может найти новые прокси, но он проверит или прокси в файлах рабочие для текущего сегмента сети. Этот способ поиска хорошо работает вместе с вкюченный експортированием найденный прокси.</value>
   </data>
   <data name="UrlListEngine" xml:space="preserve">
-    <value>By Url List</value>
+    <value>По списку адресов</value>
   </data>
   <data name="UrlListEngineDescription" xml:space="preserve">
-    <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
+    <value>Этот метод проверки использует список адресов содержащих прокси сервека в формате [адрес]:[порт]. К сожалению он не находит новых источников прокси но может найти новые прокси если они появлятся на указанных страницах.</value>
   </data>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
     <value>Вы на самом деле хотите очистить чёрный список?</value>
   </data>
-  <data name="Google" xml:space="preserve">
-    <value>HTTP (Google)</value>
-  </data>
   <data name="HttpOpen" xml:space="preserve">
-    <value>Открыть наденный HTTP прокси</value>
+    <value>Открыть найденные HTTP прокси</value>
   </data>
   <data name="TurnedOffProxyChecker" xml:space="preserve">
-    <value>Check manually after search</value>
+    <value>Проверить вручную после поиска</value>
   </data>
   <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
-    <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>
+    <value>Этот метод проверки возвращает все прокси без проверки. Как правило используется для открытия  результатов предыдущих поисков.</value>
   </data>
   <data name="HttpPredefinedUrlList" xml:space="preserve">
     <value>HTTP (список адресов)</value>
@@ -296,7 +260,7 @@ Response time: {0} s</value>
     <value>Информация</value>
   </data>
   <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
-    <value>You cannot delete last search settings.</value>
+    <value>Нельзя удалить единственный критерий поиска.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="world128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -308,65 +272,47 @@ Response time: {0} s</value>
   <data name="SocksGoogleSearchType" xml:space="preserve">
     <value>SOCKS (Google)</value>
   </data>
-  <data name="SocksProxyType" xml:space="preserve">
-    <value>SOCKS</value>
-  </data>
   <data name="SocksProxyTypeDesciption" xml:space="preserve">
-    <value>This type allows to find socks proxies</value>
+    <value>Этот тип разрешает найти SOCK прокси</value>
   </data>
   <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
     <value>Невозможно установить SOCKS прокси для FireFox если версия SOCKS не была определена</value>
   </data>
-  <data name="WikipediaDotOrgUrl" xml:space="preserve">
-    <value>http://www.wikipedia.org/</value>
-  </data>
   <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
-    <value>This client doesn't support socks v5 proxies</value>
+    <value>Этот клиент не поддерживает socks 5-й версии</value>
   </data>
   <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
-    <value>Type of proxy is not defined and this client doesn't support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?</value>
+    <value>Тим прокси неопределенный. Этот клиент не поддерживаетsocks 5-й версии, поэтому socks 5-й версии не будет работать с этим клиентом. Продолжить?</value>
   </data>
   <data name="SocksOpen" xml:space="preserve">
-    <value>Open findings as Socks</value>
+    <value>Открыть найденные SOCKS прокси</value>
   </data>
   <data name="SocksPredefinedUrlList" xml:space="preserve">
-    <value>Socks (list of urls)</value>
-  </data>
-  <data name="WikipediaContent" xml:space="preserve">
-    <value>&lt;title&gt;Wikipedia&lt;/title&gt;</value>
+    <value>Socks (список адресов)</value>
   </data>
   <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
     <value>Google опередил что Ваша сеть отсылает автоматические запросы, поэтому этот тип поиска не будет работать в этот момент времени. Вы можете использовать другие методы поиска которые не используют Google или попробовать попозже.</value>
   </data>
-  <data name="Started" xml:space="preserve">
-    <value>Started</value>
-  </data>
   <data name="Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Поиск</value>
   </data>
   <data name="SearchCancelled" xml:space="preserve">
-    <value>Search cancelled</value>
+    <value>Поиск отменён</value>
   </data>
   <data name="SearchFinished" xml:space="preserve">
-    <value>Search finished</value>
+    <value>Поиск закончен</value>
   </data>
   <data name="SearchStarted" xml:space="preserve">
-    <value>Search started</value>
-  </data>
-  <data name="ShareCheckBox" xml:space="preserve">
-    <value>ShareStatistic</value>
+    <value>Поиск начат.</value>
   </data>
   <data name="FoundAndShownProxiesFormat" xml:space="preserve">
     <value>Найдено и показано {0} прокси серверов.</value>
-  </data>
-  <data name="WrongFormattedValue" xml:space="preserve">
-    <value>Value wrong formatted</value>
   </data>
   <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
     <value>Вы на самом деле хотите удалить этот метод разбора текста</value>
   </data>
   <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
-    <value>Test url doesn't match defined url</value>
+    <value>Тестовый адрес не содержит исходного адреса</value>
   </data>
   <data name="NoOneProxyHasBeenFound" xml:space="preserve">
     <value>Прокси не были найдены</value>

@@ -243,9 +243,6 @@
   <data name="RoundFormat" xml:space="preserve">
     <value>{0:0.##}</value>
   </data>
-  <data name="RowStyleIsNotSupported" xml:space="preserve">
-    <value>Row style '{0}' is not supported</value>
-  </data>
   <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
     <value>Search is cancelled on user request</value>
   </data>
@@ -262,7 +259,7 @@
     <value>By IP:Port</value>
   </data>
   <data name="SimpleProxyCheckerDescription" xml:space="preserve">
-    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies. Also this checker cannot determine type of proxy</value>
+    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies.</value>
   </data>
   <data name="GoogleDotComUrl" xml:space="preserve">
     <value>http://google.com</value>
@@ -282,9 +279,6 @@ Response time: {0} s</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
     <value>Uninstalling</value>
-  </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>Unknown</value>
   </data>
   <data name="UpdateIsReadyToInstall" xml:space="preserve">
     <value>New version of Proxy Searcher is available. Do you want to get it now?</value>
@@ -406,9 +400,6 @@ Response time: {0} s</value>
   </data>
   <data name="FoundAndShownProxiesFormat" xml:space="preserve">
     <value>Found and shown {0} proxies.</value>
-  </data>
-  <data name="WrongFormattedValue" xml:space="preserve">
-    <value>Value wrong formatted</value>
   </data>
   <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
     <value>Do you really want to delete this parse method?</value>
