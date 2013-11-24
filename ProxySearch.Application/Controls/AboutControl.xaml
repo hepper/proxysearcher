@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
-             xmlns:controls="clr-namespace:ProxySearch.Console.Controls" Name="About">
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:Resource="clr-namespace:ProxySearch.Console.Controls.Resources" Name="About">
     <controls:BackControl DataContext="{Binding ElementName=About}">
         <controls:BackControl.Content>
             <Grid>
@@ -27,8 +28,8 @@
                     </Button.Template>
                 </Button>
 
-                <TextBlock HorizontalAlignment="Center" Grid.Row="2" FontSize="16" Text="If you want to help us make program better and have ideas how to do that then" Margin="0,0,0,10"/>
-                <Button  HorizontalAlignment="Center" Grid.Row="3" Content="leave your feedback" Click="LeaveYourFeedback">
+                <TextBlock HorizontalAlignment="Center" Grid.Row="2" FontSize="16" Text="{x:Static Resource:AboutControl.HelpUsToMakeProxySearcherBetter}" Margin="0,0,0,10"/>
+                <Button  HorizontalAlignment="Center" Grid.Row="3" Content="{x:Static Resource:AboutControl.LeaveYourFeedback}" Click="LeaveYourFeedback">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <TextBlock Text="{TemplateBinding Content}" FontSize="20"  Cursor="Hand" Foreground="Blue" />

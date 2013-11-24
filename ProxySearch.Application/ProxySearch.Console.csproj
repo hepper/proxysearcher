@@ -323,6 +323,11 @@
     <Compile Include="Controls\ProxyClientsControl.xaml.cs">
       <DependentUpon>ProxyClientsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\AboutControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AboutControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -589,6 +594,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GAResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\AboutControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AboutControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\AboutControl.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>

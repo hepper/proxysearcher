@@ -69,9 +69,13 @@ namespace ProxySearch.Console.Code
 
         private void CloseFile()
         {
-            if (stream != null && stream.BaseStream != null)
+            lock (this)
             {
-                stream.Dispose();
+                if (stream != null && stream.BaseStream != null)
+                {
+                    stream.Dispose();
+                    stream = null;
+                }
             }
         }
 
