@@ -68,13 +68,13 @@
             <DataGrid.CellStyle>
                 <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Used">
+                        <DataTrigger Binding="{Binding Path=Proxy, Converter={StaticResource rowBackgroundColorConverter}}" Value="Used">
                             <Setter Property="Background" Value="#0F050505" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Selected">
+                        <DataTrigger Binding="{Binding Path=Proxy, Converter={StaticResource rowBackgroundColorConverter}}" Value="Selected">
                             <Setter Property="Background" Value="#9FA8B5FF" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding Converter={StaticResource rowBackgroundColorConverter}}" Value="Unused">
+                        <DataTrigger Binding="{Binding Path=Proxy, Converter={StaticResource rowBackgroundColorConverter}}" Value="Unused">
                             <Setter Property="Background" Value="Transparent" />
                         </DataTrigger>
                     </Style.Triggers>

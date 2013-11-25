@@ -314,11 +314,13 @@ namespace ProxySearch.Console.Controls
             ProxyClientControl control = (ProxyClientControl)e.OriginalSource;
 
             if (control.ProxyInfo != null)
-            {
+            { 
                 Context.Get<IUsedProxies>().Add(control.ProxyInfo);
+                foreach (ProxyInfo proxy in PageData)
+                {
+                    proxy.NotifyProxyChanged();
+                }
             }
-
-            PageData.Reset();
         }
 
         public void Started()
