@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="763" Name="ActionInvoker">
     <UserControl.Resources>
@@ -17,14 +18,13 @@
             <ColumnDefinition Width="100px" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Name="StatusText">Ready</Label>
-        <Button Grid.Column="1" Margin="0,0,5,0" Click="Error_Click" Visibility="Hidden" Name="ErrorButton">
-            Error
-        </Button>
+        <Label Grid.Column="0" Name="StatusText" Content="{x:Static resources:ActionInvokerControl.Ready}" />
+        <Button Grid.Column="1" Margin="0,0,5,0" Click="Error_Click" Visibility="Hidden" Name="ErrorButton" 
+                Content="{x:Static resources:ActionInvokerControl.Error}" />
 
         <ProgressBar Grid.Column="2" Name="ProgressBar" IsTabStop="False" IsEnabled="false"
                      Foreground="{Binding ElementName=ActionInvoker, Path=ActiveThreads, Converter={StaticResource valueToColorConverter}}" />
         <Label Grid.Column="2" Name="ProgressText" HorizontalContentAlignment="Center" />
-        <Button Grid.Column="3" IsEnabled="False" Name="Cancel" Margin="5,0,0,0" Click="Cancel_Click">Cancel</Button>
+        <Button Grid.Column="3" IsEnabled="False" Name="Cancel" Margin="5,0,0,0" Click="Cancel_Click" Content="{x:Static resources:ActionInvokerControl.Cancel}" />
     </Grid>
 </UserControl>

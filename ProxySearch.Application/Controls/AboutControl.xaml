@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
-             xmlns:Resource="clr-namespace:ProxySearch.Console.Controls.Resources" Name="About">
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources" Name="About">
     <controls:BackControl DataContext="{Binding ElementName=About}">
         <controls:BackControl.Content>
             <Grid>
@@ -28,8 +28,8 @@
                     </Button.Template>
                 </Button>
 
-                <TextBlock HorizontalAlignment="Center" Grid.Row="2" FontSize="16" Text="{x:Static Resource:AboutControl.HelpUsToMakeProxySearcherBetter}" Margin="0,0,0,10"/>
-                <Button  HorizontalAlignment="Center" Grid.Row="3" Content="{x:Static Resource:AboutControl.LeaveYourFeedback}" Click="LeaveYourFeedback">
+                <TextBlock HorizontalAlignment="Center" Grid.Row="2" FontSize="16" Text="{x:Static resources:AboutControl.HelpUsToMakeProxySearcherBetter}" Margin="0,0,0,10"/>
+                <Button  HorizontalAlignment="Center" Grid.Row="3" Content="{x:Static resources:AboutControl.LeaveYourFeedback}" Click="LeaveYourFeedback">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <TextBlock Text="{TemplateBinding Content}" FontSize="20"  Cursor="Hand" Foreground="Blue" />
@@ -38,7 +38,7 @@
                 </Button>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="5" Margin="0,0,20,20">
-                    <Button   Click="ProxySearchNews" Content="News" Margin="0, 0, 10, 0">
+                    <Button   Click="ProxySearchNews" Content="{x:Static resources:AboutControl.News}" Margin="0, 0, 10, 0">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <TextBlock Text="{TemplateBinding Content}" Cursor="Hand" Foreground="Blue" />
@@ -46,7 +46,7 @@
                         </Button.Template>
                     </Button>
 
-                    <Button Click="Tickets" Content="Tickets" Margin="0, 0, 10, 0">
+                    <Button Click="Tickets" Content="{x:Static resources:AboutControl.Tickets}" Margin="0, 0, 10, 0">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <TextBlock Text="{TemplateBinding Content}" Cursor="Hand" Foreground="Blue" />
@@ -54,7 +54,7 @@
                         </Button.Template>
                     </Button>
 
-                    <Button Click="Donate" Content="Donate">
+                    <Button Click="Donate" Content="{x:Static resources:AboutControl.Donate}">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <TextBlock Text="{TemplateBinding Content}" Cursor="Hand" Foreground="Blue" />

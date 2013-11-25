@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"      
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="196" d:DesignWidth="300">
 
@@ -16,7 +17,7 @@
                 </Grid.RowDefinitions>
 
                 <ContentPresenter Grid.Row="1" />
-                <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click" Margin="{StaticResource DefaultMargin}">Back to Search</Button>
+                <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click" Margin="{StaticResource DefaultMargin}" Content="{x:Static resources:BackControl.BackToSearch}" />
             </Grid>
         </ControlTemplate>
     </UserControl.Template>

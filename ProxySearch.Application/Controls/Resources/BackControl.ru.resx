@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Donate" xml:space="preserve">
-    <value>Donate</value>
-  </data>
-  <data name="HelpUsToMakeProxySearcherBetter" xml:space="preserve">
-    <value>If you want to help us make program better and have ideas how to do that then</value>
-  </data>
-  <data name="LeaveYourFeedback" xml:space="preserve">
-    <value>leave your feedback</value>
-  </data>
-  <data name="News" xml:space="preserve">
-    <value>News</value>
-  </data>
-  <data name="Tickets" xml:space="preserve">
-    <value>Tickets</value>
+  <data name="BackToSearch" xml:space="preserve">
+    <value>Вернуться</value>
   </data>
 </root>

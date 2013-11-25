@@ -22,14 +22,14 @@ namespace ProxySearch.Console.Controls.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AboutControl {
+    public class BackControl {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AboutControl() {
+        internal BackControl() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProxySearch.Console.Controls.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.AboutControl", typeof(AboutControl).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.BackControl", typeof(BackControl).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,11 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Donate.
+        ///   Looks up a localized string similar to Back to Search.
         /// </summary>
-        public static string Donate {
+        public static string BackToSearch {
             get {
-                return ResourceManager.GetString("Donate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you want to help us make program better and have ideas how to do that then.
-        /// </summary>
-        public static string HelpUsToMakeProxySearcherBetter {
-            get {
-                return ResourceManager.GetString("HelpUsToMakeProxySearcherBetter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to leave your feedback.
-        /// </summary>
-        public static string LeaveYourFeedback {
-            get {
-                return ResourceManager.GetString("LeaveYourFeedback", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to News.
-        /// </summary>
-        public static string News {
-            get {
-                return ResourceManager.GetString("News", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tickets.
-        /// </summary>
-        public static string Tickets {
-            get {
-                return ResourceManager.GetString("Tickets", resourceCulture);
+                return ResourceManager.GetString("BackToSearch", resourceCulture);
             }
         }
     }

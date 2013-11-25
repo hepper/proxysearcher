@@ -328,6 +328,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AboutControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\ActionInvokerControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActionInvokerControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\BackControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BackControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -599,6 +609,16 @@
       <LastGenOutput>AboutControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\AboutControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActionInvokerControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\BackControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BackControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\BackControl.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
