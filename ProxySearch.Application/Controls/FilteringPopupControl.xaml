@@ -29,10 +29,10 @@
                 <ListBox BorderThickness="0" ItemsSource="{Binding ElementName=FilteringPopup, Path=Data}" Grid.Row="1" Name="DataList">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Content="{Binding}" Checked="Checked" Unchecked="Unhecked">
+                            <CheckBox Content="{Binding Path=DataCount}" Tag="{Binding}" Checked="Checked" Unchecked="Unhecked">
                                 <CheckBox.IsChecked>
                                     <MultiBinding Converter="{StaticResource filteringPopupIsCheckedMultiConverter}" Mode="OneWay">
-                                        <Binding  />
+                                        <Binding Path="Data"  />
                                         <Binding ElementName="FilteringPopup" Path="SelectedData" />
                                     </MultiBinding>
                                 </CheckBox.IsChecked>

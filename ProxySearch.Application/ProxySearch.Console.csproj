@@ -173,6 +173,7 @@
     <Compile Include="Code\Interfaces\ISettingsTabNavigator.cs" />
     <Compile Include="Code\Language\Language.cs" />
     <Compile Include="Code\Language\LanguageManager.cs" />
+    <Compile Include="Code\SearchResult\FilterDataComparer.cs" />
     <Compile Include="Code\UI\AdvancedTabSettings.cs" />
     <Compile Include="Code\Utils\Property.cs" />
     <Compile Include="Code\Extensions\RegexExtensions.cs" />

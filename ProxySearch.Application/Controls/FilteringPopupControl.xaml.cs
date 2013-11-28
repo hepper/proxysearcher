@@ -96,7 +96,7 @@ namespace ProxySearch.Console.Controls
 
         private void Checked(object sender, RoutedEventArgs e)
         {
-            FilterData item = (FilterData)((CheckBox)e.OriginalSource).Content;
+            FilterData item = (FilterData)((CheckBox)e.OriginalSource).Tag;
 
             if (!SelectedData.Contains(item.Data))
                 SelectedData.Add(item.Data);
@@ -104,7 +104,7 @@ namespace ProxySearch.Console.Controls
 
         private void Unhecked(object sender, RoutedEventArgs e)
         {
-            FilterData item = (FilterData)((CheckBox)e.OriginalSource).Content;
+            FilterData item = (FilterData)((CheckBox)e.OriginalSource).Tag;
 
             if (SelectedData.Contains(item.Data))
                 SelectedData.Remove(item.Data);

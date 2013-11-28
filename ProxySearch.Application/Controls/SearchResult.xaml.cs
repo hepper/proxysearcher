@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -45,35 +46,22 @@ namespace ProxySearch.Console.Controls
             set;
         }
 
-        public IEnumerable<FilterData> Countries
+        public ObservableList<FilterData> Countries
         {
-            get
-            {
-                return GetDataForFiltering(proxy => proxy.CountryInfo.Name);
-            }
+            get;
+            set;
         }
 
-        public IEnumerable<FilterData> Ports
+        public ObservableList<FilterData> Ports
         {
-            get
-            {
-                return GetDataForFiltering(proxy => proxy.Port);
-            }
+            get;
+            set;
         }
 
-        public IEnumerable<FilterData> Types
+        public ObservableList<FilterData> Types
         {
-            get
-            {
-                return GetDataForFiltering(proxy => proxy.Details.Details.Name);
-            }
-        }
-
-        private IEnumerable<FilterData> GetDataForFiltering<TKey>(Func<ProxyInfo, TKey> keySelector) where TKey : IComparable
-        {
-            return Data.GroupBy(keySelector)
-                           .Select(group => new FilterData(group.Key, group.Count()))
-                           .OrderBy(filterData => filterData.Data);
+            get;
+            set;
         }
 
         public SearchResult()
@@ -82,9 +70,15 @@ namespace ProxySearch.Console.Controls
             FilteredData = new ObservableList<ProxyInfo>();
             PageData = new ObservableList<ProxyInfo>();
 
+            Countries = new ObservableList<FilterData>();
+            Ports = new ObservableList<FilterData>();
+            Types = new ObservableList<FilterData>();
+
             Data.CollectionChanged += (sender, e) =>
             {
-                UpdateFilteringBinding();
+                UpdateFiltering(Countries, e, proxy => proxy.CountryInfo.Name);
+                UpdateFiltering(Ports, e, proxy => proxy.Port);
+                UpdateFiltering(Types, e, proxy => proxy.Details.Details.Name);
             };
 
             Context.Set<ISearchResult>(this);
@@ -191,11 +185,55 @@ namespace ProxySearch.Console.Controls
                    filterTypeHeader.SelectedData.Any() && !filterTypeHeader.SelectedData.Contains(proxy.Details.Details.Name);
         }
 
-        private void UpdateFilteringBinding()
+        private void UpdateFiltering<TKey>(ObservableList<FilterData> list,
+                                           NotifyCollectionChangedEventArgs e,
+                                           Func<ProxyInfo, TKey> keySelector) where TKey : IComparable
         {
-            FirePropertyChanged(Property.GetName<SearchResult, IEnumerable<FilterData>>(item => item.Countries));
-            FirePropertyChanged(Property.GetName<SearchResult, IEnumerable<FilterData>>(item => item.Ports));
-            FirePropertyChanged(Property.GetName<SearchResult, IEnumerable<FilterData>>(item => item.Types));
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    foreach (ProxyInfo proxy in e.NewItems)
+                    {
+                        TKey data = keySelector(proxy);
+
+                        FilterData filterData = new FilterData { Data = data };
+
+                        int index = list.BinarySearch(filterData, new FilterDataComparer());
+
+                        if (index < 0)
+                        {
+                            index = ~index;
+                            filterData.Count = 1;
+                            list.Insert(index, filterData);
+                        }
+                        else
+                        {
+                            list[index].Count++;
+                        }
+                    }
+
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (ProxyInfo proxy in e.OldItems)
+                    {
+                        int index = list.BinarySearch(new FilterData { Data = keySelector(proxy) }, new FilterDataComparer());
+
+                        if (index > 0)
+                        {
+                            if (list[index].Count == 0)
+                                list.Remove(list[index]);
+                            else
+                                list[index].Count--;
+                        }
+                    }
+
+                    break;
+                case NotifyCollectionChangedAction.Reset:
+                    list.Clear();
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
         }
 
         private int GetInsertIndex(List<ProxyInfo> data, ProxyInfo proxy, PreventChangeSortingDirection preventor)
@@ -207,11 +245,6 @@ namespace ProxySearch.Console.Controls
                 if (index < 0)
                 {
                     index = ~index;
-                }
-
-                if (index >= 0)
-                {
-                    return index;
                 }
             }
 
@@ -305,7 +338,6 @@ namespace ProxySearch.Console.Controls
             Data.Remove(proxy);
             FilteredData.Remove(proxy);
 
-            UpdateFilteringBinding();
             UpdateStatusString();
         }
 
@@ -314,7 +346,7 @@ namespace ProxySearch.Console.Controls
             ProxyClientControl control = (ProxyClientControl)e.OriginalSource;
 
             if (control.ProxyInfo != null)
-            { 
+            {
                 Context.Get<IUsedProxies>().Add(control.ProxyInfo);
                 foreach (ProxyInfo proxy in PageData)
                 {

@@ -10,13 +10,13 @@ namespace ProxySearch.Console.Code.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            FilterData value = values[0] as FilterData;
+            IComparable value = values[0] as IComparable;
             ObservableList<IComparable> checkedList = values[1] as ObservableList<IComparable>;
  
             if (value == null || checkedList == null)
                 return false;
 
-            return checkedList.Contains(value.Data);
+            return checkedList.Contains(value);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

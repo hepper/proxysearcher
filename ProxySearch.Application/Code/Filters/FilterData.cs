@@ -1,30 +1,64 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace ProxySearch.Console.Code.Filters
 {
-    public class FilterData
+    public class FilterData : INotifyPropertyChanged
     {
-        public FilterData(IComparable data, int count)
-        {
-            Data = data;
-            Count = count;
-        }
-
+        private IComparable data;
         public IComparable Data
         {
-            get;
-            private set;
+            get
+            {
+                return data;
+            }
+            set 
+            {
+                if (data == value)
+                    return;
+
+                data = value;
+
+                FireChangedProperty("Data");
+                FireChangedProperty("DataCount");
+            }
         }
 
+        private int count;
         public int Count
         {
-            get;
-            private set;
+            get
+            {
+                return count;
+            }
+            set
+            {
+                if (count == value)
+                    return;
+
+                count = value;
+
+                FireChangedProperty("Count");
+                FireChangedProperty("DataCount");
+            }
         }
 
-        public override string ToString()
+        public string DataCount
         {
-            return string.Format("{0} [{1}]", Data, Count);
+            get 
+            {
+                return string.Format("{0} [{1}]", Data, Count);
+            }
         }
+
+        private void FireChangedProperty(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
