@@ -34,7 +34,7 @@ namespace ProxySearch.Console.Code.Collections
             FireCountChanged();
         }
 
-        public new void AddRange(IEnumerable<T> collection)
+        public void AddRange(IEnumerable<T> collection)
         {
             base.AddRange(collection);
 

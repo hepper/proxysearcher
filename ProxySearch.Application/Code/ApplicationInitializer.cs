@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Xml;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.GoogleAnalytics;
@@ -75,8 +77,20 @@ namespace ProxySearch.Console.Code
                     return new DefaultSettingsFactory().Create();
                 }
 
-                string settingsXml = File.ReadAllText(Constants.SettingsStorage.Location);
-                return Serializer.Deserialize<AllSettings>(settingsXml);
+                try
+                {
+                    string settingsXml = File.ReadAllText(Constants.SettingsStorage.Location);
+                    return Serializer.Deserialize<AllSettings>(settingsXml);
+                }
+                catch (InvalidOperationException e)
+                {
+                    if (e.InnerException is XmlException)
+                    {
+                        return new DefaultSettingsFactory().Create();
+                    }
+
+                    throw;
+                }
             }
         }
 

@@ -218,9 +218,9 @@ namespace ProxySearch.Console.Controls
                     {
                         int index = list.BinarySearch(new FilterData { Data = keySelector(proxy) }, new FilterDataComparer());
 
-                        if (index > 0)
+                        if (index >= 0)
                         {
-                            if (list[index].Count == 0)
+                            if (list[index].Count == 1)
                                 list.Remove(list[index]);
                             else
                                 list[index].Count--;
@@ -245,6 +245,11 @@ namespace ProxySearch.Console.Controls
                 if (index < 0)
                 {
                     index = ~index;
+                }
+
+                if (index >= 0)
+                {
+                    return index;
                 }
             }
 
