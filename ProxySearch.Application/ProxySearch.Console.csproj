@@ -351,6 +351,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckerByUrlAndKeywordsControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\CheckerProxyNetPropertyControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckerProxyNetPropertyControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\ExportSearchResultControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExportSearchResultControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\SearchControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -650,6 +660,16 @@
       <LastGenOutput>CheckerByUrlAndKeywordsControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CheckerProxyNetPropertyControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExportSearchResultControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\SearchControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SearchControl.Designer.cs</LastGenOutput>

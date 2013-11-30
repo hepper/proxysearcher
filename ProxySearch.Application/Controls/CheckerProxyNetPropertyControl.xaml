@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignWidth="300" Name="CheckerProxyNet">
     <Grid>
@@ -17,9 +18,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0">Timeout</Label>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:CheckerProxyNetPropertyControl.Timeout}" />
         <toolkit:IntegerUpDown Grid.Row="0" Grid.Column="1" TextAlignment="Left" Value="{Binding ElementName=CheckerProxyNet, Path=Timeout, Mode=TwoWay}" />
-        <Label Grid.Row="1" Grid.Column="0">Batch size</Label>
+        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static resources:CheckerProxyNetPropertyControl.BatchSize}" />
         <toolkit:IntegerUpDown Grid.Row="1" Grid.Column="1" TextAlignment="Left" Value="{Binding ElementName=CheckerProxyNet, Path=BatchSize, Mode=TwoWay}" Minimum="1" />
     </Grid>
 </UserControl>

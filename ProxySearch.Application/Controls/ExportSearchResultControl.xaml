@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="500" Name="ExportData">
     <UserControl.Resources>
@@ -21,15 +22,15 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0">Enable Export</Label>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:ExportSearchResultControl.EnableExport}" />
         <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,7,0,5" IsChecked="{Binding ElementName=ExportData, Path=Settings.ExportSearchResult}" Name="EnableCheckBox" />
-        
-        <Label Grid.Row="1" Grid.Column="0" Margin="0,0,5,0">Http Export Folder</Label>
+
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,0,5,0" Content="{x:Static resources:ExportSearchResultControl.HttpExportFolder}" />
 
         <controls:SelectFolderControl Margin="0,0,0,5" Grid.Row="1" Grid.Column="1" SelectedFolder="{Binding ElementName=ExportData, Path=Settings.HttpExportFolder, Mode=TwoWay}" 
                                        IsReadOnly="{Binding ElementName=EnableCheckBox, Path=IsChecked, Converter={StaticResource boolInverterConverter}}" />
 
-        <Label Grid.Row="2" Grid.Column="0">Socks Export Folder</Label>
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static resources:ExportSearchResultControl.SocksExportFolder}" />
         <controls:SelectFolderControl Grid.Row="2" Grid.Column="1" SelectedFolder="{Binding ElementName=ExportData, Path=Settings.SocksExportFolder, Mode=TwoWay}" 
                                        IsReadOnly="{Binding ElementName=EnableCheckBox, Path=IsChecked, Converter={StaticResource boolInverterConverter}}" />
     </Grid>
