@@ -13,7 +13,7 @@
     <Grid Margin="{StaticResource DefaultMargin}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="50px" />
+            <ColumnDefinition Width="100px" />
             <ColumnDefinition Width="200px" />
             <ColumnDefinition Width="100px" />
         </Grid.ColumnDefinitions>

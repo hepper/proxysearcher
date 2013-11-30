@@ -114,12 +114,9 @@ namespace ProxySearch.Console.Controls
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                using (new PreventChangeSortingDirection(DataGridControl))
-                {
-                    Data.Clear();
-                    FilteredData.Clear();
-                    PageData.Clear();
-                }
+                Data.Clear();
+                FilteredData.Clear();
+                PageData.Clear();
             }));
         }
 
@@ -164,10 +161,7 @@ namespace ProxySearch.Console.Controls
 
         private void PageChanged(object sender, RoutedEventArgs e)
         {
-            using (new PreventChangeSortingDirection(DataGridControl))
-            {
-                UpdatePageData();
-            }
+            UpdatePageData();
         }
 
         private bool IsFilteringEnabled

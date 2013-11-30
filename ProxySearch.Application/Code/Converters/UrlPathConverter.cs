@@ -13,7 +13,7 @@ namespace ProxySearch.Console.Code.Converters
             if (text == null)
                 return null;
 
-            return text == string.Empty ? "<all sites>" : text;
+            return text == string.Empty ? Properties.Resources.AllSites : text;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

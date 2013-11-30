@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls" 
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="500" x:Name="AdvancedTab">
     <UserControl.Resources>
@@ -17,11 +18,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock TextWrapping="Wrap" Margin="5,5,5,5" Grid.Row="0">
-            On this tab you can customize parsing routine for specific sites. 
-            For this you need to know what is Regular Expressions, basics of C# and little bit lucky ;).
-            Details how to use this tab will be available on project's site later.
-        </TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="5,5,5,5" Grid.Row="0" Text="{x:Static resources:AdvancedTabControl.Details}" />
         <DataGrid Grid.Row="1" ItemsSource="{Binding ElementName=AdvancedTab, Path=ParseDetails}" Name="parseMethodsGrid">
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource {x:Type DataGridRow}}">
@@ -33,21 +30,21 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Url" Width="80*">
+                <DataGridTemplateColumn Header="{x:Static resources:AdvancedTabControl.Url}" Width="80*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Text="{Binding Path=Url, Converter={StaticResource urlPathConverter}}"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Actions" Width="20*">
+                <DataGridTemplateColumn Header="{x:Static resources:AdvancedTabControl.Actions}" Width="20*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Height="25" Width="25" Margin="5" ToolTip="Edit" Click="EditButtonClick" Tag="{Binding}">
+                                <Button Height="25" Width="25" Margin="5" ToolTip="{x:Static resources:AdvancedTabControl.Edit}" Click="EditButtonClick" Tag="{Binding}">
                                     <Image Source="/Images/whitepaper.gif" />
                                 </Button>
-                                <Button Height="25" Width="25" Margin="5" ToolTip="Delete" Click="DeleteButtonClick" Tag="{Binding}" 
+                                <Button Height="25" Width="25" Margin="5" ToolTip="{x:Static resources:AdvancedTabControl.Delete}" Click="DeleteButtonClick" Tag="{Binding}" 
                                         Visibility="{Binding Converter={StaticResource deleteButtonVisibilityConverter}}">
                                     <Image Source="/Images/DeleteRed.png" />
                                 </Button>
@@ -57,6 +54,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="2" Width="160" HorizontalAlignment="Left" Margin="5" Click="AddButtonClick">Add new parse method</Button>
+        <Button Grid.Row="2" Width="Auto" Padding="7 3 7 3" HorizontalAlignment="Left" Margin="5" Click="AddButtonClick" Content="{x:Static resources:AdvancedTabControl.AddNewParseMethod}" />
     </Grid>
 </UserControl>

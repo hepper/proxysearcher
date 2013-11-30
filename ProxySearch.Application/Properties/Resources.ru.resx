@@ -317,4 +317,7 @@
   <data name="NoOneProxyHasBeenFound" xml:space="preserve">
     <value>Прокси не были найдены</value>
   </data>
+  <data name="AllSites" xml:space="preserve">
+    <value>&lt;все сайты&gt;</value>
+  </data>
 </root>

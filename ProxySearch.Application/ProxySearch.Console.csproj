@@ -334,6 +334,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ActionInvokerControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\AdvancedTabControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdvancedTabControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\BackControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -615,6 +620,13 @@
       <LastGenOutput>ActionInvokerControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\AdvancedTabControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AdvancedTabControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\AdvancedTabControl.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\BackControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BackControl.Designer.cs</LastGenOutput>

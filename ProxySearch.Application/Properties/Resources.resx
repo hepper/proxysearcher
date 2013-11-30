@@ -410,4 +410,7 @@ Response time: {0} s</value>
   <data name="NoOneProxyHasBeenFound" xml:space="preserve">
     <value>No one proxy has been found</value>
   </data>
+  <data name="AllSites" xml:space="preserve">
+    <value>&lt;all sites&gt;</value>
+  </data>
 </root>

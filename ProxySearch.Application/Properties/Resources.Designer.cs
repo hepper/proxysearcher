@@ -70,6 +70,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;all sites&gt;.
+        /// </summary>
+        internal static string AllSites {
+            get {
+                return ResourceManager.GetString("AllSites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time.
         /// </summary>
         internal static string BuiltInGeoIPDescription {
