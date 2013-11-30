@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="146" d:DesignWidth="688" x:Name="MainFrameControl">
 
@@ -20,16 +21,16 @@
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition Width="100" />                
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0">Search Type</Label>
+            <Label Grid.Column="0" Content="{x:Static resources:SearchControl.SearchType}" />
             <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=MainFrameControl, Path=TabSettings}" 
                       SelectedValuePath="Id" SelectedValue="{Binding ElementName=MainFrameControl, Path=CurrentTabId}" 
                       DisplayMemberPath="Name" Name="CurrentTab" Margin="5, 0, 5, 0" />
-            <Button Grid.Column="2" Width="100" Name="BeginSearch" Click="BeginSearch_Click">Search</Button>            
+            <Button Grid.Column="2" Width="100" Name="BeginSearch" Click="BeginSearch_Click" Content="{x:Static resources:SearchControl.Search}" />            
         </Grid>
 
         <controls:SearchResult Grid.Row="2" Margin="0, 5, 0, 0" />

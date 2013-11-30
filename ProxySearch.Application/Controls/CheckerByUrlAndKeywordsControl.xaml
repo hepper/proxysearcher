@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" Name="CheckerByUrlAndKeywords" >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,10 +16,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0">Url</Label>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:CheckerByUrlAndKeywordsControl.Url}" />
         <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=Url, Mode=TwoWay}"  />
 
-        <Label Grid.Row="1" Grid.Column="0">Keywords</Label>
+        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static resources:CheckerByUrlAndKeywordsControl.Keywords}" />
         <TextBox Grid.Row="1" Name="slider" Grid.Column="1" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=Keywords, Mode=TwoWay}" />        
     </Grid>
 </UserControl>

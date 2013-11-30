@@ -273,9 +273,6 @@
     <Compile Include="Controls\BandwidthControl.xaml.cs">
       <DependentUpon>BandwidthControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\BandwidthSettingsControl.xaml.cs">
-      <DependentUpon>BandwidthSettingsControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\CheckerByUrlAndKeywordsControl.xaml.cs">
       <DependentUpon>CheckerByUrlAndKeywordsControl.xaml</DependentUpon>
     </Compile>
@@ -349,6 +346,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BandwidthControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\CheckerByUrlAndKeywordsControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckerByUrlAndKeywordsControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\SearchControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -407,10 +414,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\BandwidthControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\BandwidthSettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -642,6 +645,16 @@
       <LastGenOutput>BandwidthControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CheckerByUrlAndKeywordsControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\SearchControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\SearchControl.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
