@@ -344,6 +344,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BackControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\BandwidthControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BandwidthControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -632,6 +637,11 @@
       <LastGenOutput>BackControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\BackControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\BandwidthControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>BandwidthControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\BandwidthControl.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>

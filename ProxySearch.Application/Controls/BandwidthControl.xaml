@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="150" Name="Bandwidth">
     <UserControl.Resources>
@@ -29,8 +30,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <TextBox Grid.Column="0" Margin="0,0,5,0">Ready</TextBox>
-            <Button Grid.Column="1" Width="40" Height="25" Name="MeasureButton" Click="MeasureButton_Click" ToolTip="Measure">
+            <TextBox Grid.Column="0" Margin="0,0,5,0" Text="{x:Static resources:BandwidthControl.Ready}" />
+            <Button Grid.Column="1" Width="40" Height="25" Name="MeasureButton" Click="MeasureButton_Click" ToolTip="{x:Static resources:BandwidthControl.Measure}">
                 <Image Grid.Column="0" Source="/Images/Measure.png" />
             </Button>
         </Grid>
@@ -40,8 +41,9 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <ProgressBar Grid.Column="0" Value="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.Progress, Mode=OneWay}" Margin="0,0,5,0" ToolTip="Test is in progress" />
-            <Button Grid.Column="1" Width="40" Height="25" Click="CancelButton_Click" ToolTip="Cancel">
+            <ProgressBar Grid.Column="0" Value="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.Progress, Mode=OneWay}" Margin="0,0,5,0" 
+                         ToolTip="{x:Static resources:BandwidthControl.TestIsInProgress}" />
+            <Button Grid.Column="1" Width="40" Height="25" Click="CancelButton_Click" ToolTip="{x:Static resources:BandwidthControl.Cancel}">
                 <Image Grid.Column="0" Source="/Images/Cancel.png" />
             </Button>
         </Grid>
@@ -74,7 +76,7 @@
                     </MultiBinding>
                 </TextBox.Background>
             </TextBox>
-            <Button Grid.Column="1" Width="40" Height="25" Click="MeasureButton_Click" ToolTip="Retry">
+            <Button Grid.Column="1" Width="40" Height="25" Click="MeasureButton_Click" ToolTip="{x:Static resources:BandwidthControl.Retry}">
                 <Image Grid.Column="0" Source="/Images/Refresh.png" />
             </Button>
         </Grid>
