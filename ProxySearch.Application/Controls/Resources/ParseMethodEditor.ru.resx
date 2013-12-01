@@ -117,23 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Действия</value>
+  <data name="Apply" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
-  <data name="AddNewParseMethod" xml:space="preserve">
-    <value>Добавить новый метод разбора</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Удалить</value>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>На этой закладке можно настраивать методы разбора для указанных сайтов. Для этого требуются знания регулярных выражений, основ C# и немного удачи ;). Документация использования этой закладки будкт доступна позже на странице проекта.</value>
+  <data name="ParsingMethodEditor" xml:space="preserve">
+    <value>Редактор метода разбора (бета)</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Изменить</value>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>Регулярное выражение</value>
   </data>
-  <data name="EnterDomainNameHere" xml:space="preserve">
-    <value>Введите доменное имя вместо этого текста</value>
+  <data name="SpecifyParsingDetails" xml:space="preserve">
+    <value>Укажите детали разбора</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Тестировать</value>
+  </data>
+  <data name="TestParsingDetails" xml:space="preserve">
+    <value>Протестировать метод разбора</value>
+  </data>
+  <data name="TestResult" xml:space="preserve">
+    <value>Результаты тестирования</value>
+  </data>
+  <data name="TestUrl" xml:space="preserve">
+    <value>Тестовый адрес</value>
   </data>
   <data name="Url" xml:space="preserve">
     <value>Адрес</value>

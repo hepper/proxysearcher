@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignWidth="300" Name="ProxyCheckerByUrl">
     <UserControl.Resources>
@@ -22,10 +23,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0">Url</Label>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:ProxyCheckerByUrlControl.Url}" />
         <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ElementName=ProxyCheckerByUrl, Path=Url, Mode=TwoWay}"  />
 
-        <Label Grid.Row="1" Grid.Column="0">Accuracy</Label>
+        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static resources:ProxyCheckerByUrlControl.Accuracy}" />
         <Slider Grid.Row="1" Name="slider" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding ElementName=ProxyCheckerByUrl, Path=Accuracy, Mode=TwoWay}" TickFrequency="0.05" IsSnapToTickEnabled="True" />
         <Label Grid.Row="1" Grid.Column="2" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource accuracyConverter}}" />
     </Grid>

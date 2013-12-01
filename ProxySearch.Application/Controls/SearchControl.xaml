@@ -29,7 +29,7 @@
             <Label Grid.Column="0" Content="{x:Static resources:SearchControl.SearchType}" />
             <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=MainFrameControl, Path=TabSettings}" 
                       SelectedValuePath="Id" SelectedValue="{Binding ElementName=MainFrameControl, Path=CurrentTabId}" 
-                      DisplayMemberPath="Name" Name="CurrentTab" Margin="5, 0, 5, 0" />
+                      DisplayMemberPath="Name" Name="CurrentTab" Margin="5, 0, 5, 0" MinWidth="150" Padding="10 5 10 5" />
             <Button Grid.Column="2" Width="100" Name="BeginSearch" Click="BeginSearch_Click" Content="{x:Static resources:SearchControl.Search}" />            
         </Grid>
 

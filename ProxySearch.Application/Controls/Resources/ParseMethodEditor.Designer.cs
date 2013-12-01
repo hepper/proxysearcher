@@ -22,14 +22,14 @@ namespace ProxySearch.Console.Controls.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AdvancedTabControl {
+    public class ParseMethodEditor {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AdvancedTabControl() {
+        internal ParseMethodEditor() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProxySearch.Console.Controls.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.AdvancedTabControl", typeof(AdvancedTabControl).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.ParseMethodEditor", typeof(ParseMethodEditor).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,92 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Actions.
+        ///   Looks up a localized string similar to Apply.
         /// </summary>
-        public static string Actions {
+        public static string Apply {
             get {
-                return ResourceManager.GetString("Actions", resourceCulture);
+                return ResourceManager.GetString("Apply", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new parse method.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string AddNewParseMethod {
+        public static string Cancel {
             get {
-                return ResourceManager.GetString("AddNewParseMethod", resourceCulture);
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete.
+        ///   Looks up a localized string similar to Code.
         /// </summary>
-        public static string Delete {
+        public static string Code {
             get {
-                return ResourceManager.GetString("Delete", resourceCulture);
+                return ResourceManager.GetString("Code", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to On this tab you can customize parsing routine for specific sites. For this you need to know what is Regular Expressions, basics of C# and little bit lucky ;). Details how to use this tab will be available on project&apos;s site later..
+        ///   Looks up a localized string similar to Parsing method editor (beta).
         /// </summary>
-        public static string Details {
+        public static string ParsingMethodEditor {
             get {
-                return ResourceManager.GetString("Details", resourceCulture);
+                return ResourceManager.GetString("ParsingMethodEditor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit.
+        ///   Looks up a localized string similar to Regular expression.
         /// </summary>
-        public static string Edit {
+        public static string RegularExpression {
             get {
-                return ResourceManager.GetString("Edit", resourceCulture);
+                return ResourceManager.GetString("RegularExpression", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter domain name here.
+        ///   Looks up a localized string similar to Specify parsing details.
         /// </summary>
-        public static string EnterDomainNameHere {
+        public static string SpecifyParsingDetails {
             get {
-                return ResourceManager.GetString("EnterDomainNameHere", resourceCulture);
+                return ResourceManager.GetString("SpecifyParsingDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        public static string Test {
+            get {
+                return ResourceManager.GetString("Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test parsing details.
+        /// </summary>
+        public static string TestParsingDetails {
+            get {
+                return ResourceManager.GetString("TestParsingDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test result.
+        /// </summary>
+        public static string TestResult {
+            get {
+                return ResourceManager.GetString("TestResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test url.
+        /// </summary>
+        public static string TestUrl {
+            get {
+                return ResourceManager.GetString("TestUrl", resourceCulture);
             }
         }
         

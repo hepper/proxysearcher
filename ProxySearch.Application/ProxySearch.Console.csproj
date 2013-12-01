@@ -371,6 +371,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GoogleEnginePropertyControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\ParseMethodEditor.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParseMethodEditor.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\ProxyCheckerByUrlControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProxyCheckerByUrlControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\SearchControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -690,6 +700,16 @@
       <LastGenOutput>GoogleEnginePropertyControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ParseMethodEditor.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ParseMethodEditor.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ParseMethodEditor.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProxyCheckerByUrlControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\SearchControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SearchControl.Designer.cs</LastGenOutput>

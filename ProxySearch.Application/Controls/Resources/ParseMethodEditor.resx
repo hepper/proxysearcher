@@ -117,23 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Actions</value>
+  <data name="Apply" xml:space="preserve">
+    <value>Apply</value>
   </data>
-  <data name="AddNewParseMethod" xml:space="preserve">
-    <value>Add new parse method</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>On this tab you can customize parsing routine for specific sites. For this you need to know what is Regular Expressions, basics of C# and little bit lucky ;). Details how to use this tab will be available on project's site later.</value>
+  <data name="ParsingMethodEditor" xml:space="preserve">
+    <value>Parsing method editor (beta)</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+  <data name="RegularExpression" xml:space="preserve">
+    <value>Regular expression</value>
   </data>
-  <data name="EnterDomainNameHere" xml:space="preserve">
-    <value>Enter domain name here</value>
+  <data name="SpecifyParsingDetails" xml:space="preserve">
+    <value>Specify parsing details</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="TestParsingDetails" xml:space="preserve">
+    <value>Test parsing details</value>
+  </data>
+  <data name="TestResult" xml:space="preserve">
+    <value>Test result</value>
+  </data>
+  <data name="TestUrl" xml:space="preserve">
+    <value>Test url</value>
   </data>
   <data name="Url" xml:space="preserve">
     <value>Url</value>
