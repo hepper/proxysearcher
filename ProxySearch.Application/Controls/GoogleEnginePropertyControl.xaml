@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
              d:DesignHeight="64" d:DesignWidth="398" x:Name="GooglePropertyControl">
     <Grid>
@@ -17,10 +18,10 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Grid.Column="0">Page Count</Label>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:GoogleEnginePropertyControl.PageCount}" />
         <toolkit:IntegerUpDown Grid.Row="0" Grid.Column="1" TextAlignment="Left" Value="{Binding ElementName=GooglePropertyControl, Path=SearchPageCount, Mode=TwoWay}" />
 
-        <Label Grid.Row="1" Grid.Column="0" Margin="0,5,0,0">Search Keywords</Label>
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,5,0,0" Content="{x:Static resources:GoogleEnginePropertyControl.SearchKeywords}" />
         <TextBox Grid.Row="1" Grid.Column="1" Margin="0,5,0,0" Text="{Binding ElementName=GooglePropertyControl, Path=SearchKeywords, Mode=TwoWay}" />
     </Grid>
 </UserControl>

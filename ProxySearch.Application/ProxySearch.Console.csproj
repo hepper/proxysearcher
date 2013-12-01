@@ -361,6 +361,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExportSearchResultControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\FolderSearchEngineControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FolderSearchEngineControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\GoogleEnginePropertyControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GoogleEnginePropertyControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\SearchControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -670,6 +680,16 @@
       <LastGenOutput>ExportSearchResultControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\FolderSearchEngineControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FolderSearchEngineControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\FolderSearchEngineControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GoogleEnginePropertyControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\SearchControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SearchControl.Designer.cs</LastGenOutput>
