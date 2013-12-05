@@ -381,10 +381,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProxyCheckerByUrlControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\ProxyDetailsControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProxyDetailsControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\SearchControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\SearchResult.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchResult.resx</DependentUpon>
     </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
@@ -710,11 +720,21 @@
       <LastGenOutput>ProxyCheckerByUrlControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ProxyDetailsControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProxyDetailsControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ProxyDetailsControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\SearchControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SearchControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\SearchControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\SearchResult.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchResult.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\SearchResult.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
