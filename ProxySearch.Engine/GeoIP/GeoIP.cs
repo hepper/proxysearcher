@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.GeoIP
 {
@@ -10,7 +9,7 @@ namespace ProxySearch.Engine.GeoIP
             return await Task.Run<CountryInfo>(() => new CountryInfo
             {
                 Code = null,
-                Name = Resources.TurnedOffGeoIP
+                Name = string.Empty
             });
         }
     }

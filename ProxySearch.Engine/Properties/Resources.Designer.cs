@@ -170,15 +170,6 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; is not a known HTTP verb..
-        /// </summary>
-        internal static string IsNotKnownVerbFormat {
-            get {
-                return ResourceManager.GetString("IsNotKnownVerbFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;portregex&gt;.
         /// </summary>
         internal static string PortRegexKey {
@@ -260,15 +251,6 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This operation cannot be performed after the request has been submitted..
-        /// </summary>
-        internal static string ThisOperationCannotBePerformedAfterTheRequestHasBeenSubmitted {
-            get {
-                return ResourceManager.GetString("ThisOperationCannotBePerformedAfterTheRequestHasBeenSubmitted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Too many redirects was requested by server.
         /// </summary>
         internal static string TooManyRedirectsWasRequestedByServer {
@@ -293,15 +275,6 @@ namespace ProxySearch.Engine.Properties {
         internal static string TransparentDetails {
             get {
                 return ResourceManager.GetString("TransparentDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Turned Off.
-        /// </summary>
-        internal static string TurnedOffGeoIP {
-            get {
-                return ResourceManager.GetString("TurnedOffGeoIP", resourceCulture);
             }
         }
         

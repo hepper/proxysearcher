@@ -34,8 +34,8 @@ namespace ProxySearch.Console.Code
             Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
 
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);
-            Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
 
             if (!shutdown)
             {

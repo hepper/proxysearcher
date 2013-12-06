@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d"
              d:DesignHeight="30" d:DesignWidth="300" Name="ThisControl">
     <UserControl.Resources>
@@ -20,9 +21,9 @@
                  Style="{StaticResource ReadOnlyTextBox}" MouseDoubleClick="SelectFolder" Name="SelectedFoderTextBox" />
 
         <Button Grid.Column="1" Width="25" FontWeight="Bold" Margin="0,0,5,0" IsEnabled="{Binding ElementName=ThisControl, Path=IsReadOnly, Converter={StaticResource boolInverterConverter}}"
-                Click="SelectFolder" ToolTip="Select folder">...</Button>
+                Click="SelectFolder" ToolTip="{x:Static resources:SelectFolderControl.SelectFolder}">...</Button>
         <Button Grid.Column="2" Width="25" FontWeight="Bold" IsEnabled="{Binding ElementName=ThisControl, Path=IsReadOnly, Converter={StaticResource boolInverterConverter}}"
-                Click="ExploreFolder" ToolTip="Open selected folder">&gt;</Button>
+                Click="ExploreFolder" ToolTip="{x:Static resources:SelectFolderControl.OpenSelectedFolder}">&gt;</Button>
 
     </Grid>
 </UserControl>

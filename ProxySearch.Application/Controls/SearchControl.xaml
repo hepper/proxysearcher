@@ -20,8 +20,8 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="100" />                
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="280" />
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -30,7 +30,7 @@
             <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=MainFrameControl, Path=TabSettings}" 
                       SelectedValuePath="Id" SelectedValue="{Binding ElementName=MainFrameControl, Path=CurrentTabId}" 
                       DisplayMemberPath="Name" Name="CurrentTab" Margin="5, 0, 5, 0" MinWidth="150" Padding="10 5 10 5" />
-            <Button Grid.Column="2" Width="100" Name="BeginSearch" Click="BeginSearch_Click" Content="{x:Static resources:SearchControl.Search}" />            
+            <Button Grid.Column="2"  Name="BeginSearch" Click="BeginSearch_Click" Content="{x:Static resources:SearchControl.Search}" />            
         </Grid>
 
         <controls:SearchResult Grid.Row="2" Margin="0, 5, 0, 0" />

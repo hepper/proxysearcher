@@ -396,6 +396,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchResult.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\SelectFolderControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SelectFolderControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\TabSettingControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TabSettingControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\ToolbarControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToolbarControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -735,6 +750,23 @@
       <LastGenOutput>SearchResult.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\SearchResult.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\SelectFolderControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SelectFolderControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\SelectFolderControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\TabSettingControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TabSettingControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\TabSettingControl.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ToolbarControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ToolbarControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ToolbarControl.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>

@@ -6,6 +6,7 @@
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              xmlns:settings="clr-namespace:ProxySearch.Console.Code.Settings"
              xmlns:ui="clr-namespace:ProxySearch.Console.Code.UI"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              x:Name="TabSettings" DataContext="{Binding RelativeSource={RelativeSource Self}}">
@@ -17,10 +18,10 @@
                     <ContentControl Content="{Binding}">
                         <ContentControl.Resources>
                             <DataTemplate DataType="{x:Type ui:GeneralTabSettings}">
-                                <Label>General</Label>
+                                <Label Content="{x:Static resources:TabSettingControl.General}" />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type ui:AdvancedTabSettings}">
-                                <Label>Advanced</Label>
+                                <Label Content="{x:Static resources:TabSettingControl.Advanced}" />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type settings:TabSettings}">
                                 <controls:TabNameControl TabName="{Binding Name, Mode=TwoWay}" Menu="TabNameControl_Menu"  Delete="TabNameControl_Delete"
@@ -57,30 +58,31 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0">Check For Updates</Label>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:TabSettingControl.CheckForUpdates}" />
                                     <CheckBox Grid.Row="0" Grid.Column="1" Margin="0,10,0,0" IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.CheckUpdates}" />
 
-                                    <controls:DetectableSelectorControl  Grid.Row="1" Grid.ColumnSpan="2" SelectorName="Geo IP" NameColumnWidth="200" 
+                                    <controls:DetectableSelectorControl  Grid.Row="1" Grid.ColumnSpan="2" 
+                                                     SelectorName="{x:Static resources:TabSettingControl.GeoIP}" NameColumnWidth="200" 
                                                      Arguments="{Binding ElementName=TabSettings, Path=AllSettings.GeoIPSettings}"
                                                      Detectables="{Binding ElementName=TabSettings, Path=GeoIPs}" 
                                                      SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedGeoIPIndex, Mode=TwoWay}"  />
 
-                                    <Label Grid.Row="2" Grid.Column="0">Page Size</Label>
+                                    <Label Grid.Row="2" Grid.Column="0" Content="{x:Static resources:TabSettingControl.PageSize}" />
                                     <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" TextAlignment="Left" Margin="0, 0, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.PageSize}" Minimum="5" Maximum="100" />
 
-                                    <Label Grid.Row="3" Grid.Column="0">Thread Count</Label>
+                                    <Label Grid.Row="3" Grid.Column="0" Content="{x:Static resources:TabSettingControl.ThreadCount}" />
                                     <toolkit:IntegerUpDown Grid.Row="3" Grid.Column="1" TextAlignment="Left" Margin="0, 5, 5, 0"  Value="{Binding ElementName=TabSettings, Path=AllSettings.MaxThreadCount}" />
 
                                     <controls:ExportSearchResultControl Grid.Row="4" Grid.ColumnSpan="2" Margin="0, 0, 5, 0" />
 
-                                    <Label Grid.Row="5" Grid.Column="0">Revert used proxies on exit</Label>
+                                    <Label Grid.Row="5" Grid.Column="0" Content="{x:Static resources:TabSettingControl.RevertUsedProxiesOnExit}" />
                                     <CheckBox Grid.Row="5" Grid.Column="1" Margin="0, 10, 0, 0"  IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.RevertUsedProxiesOnExit}" />
 
-                                    <Label Grid.Row="6" Grid.Column="0">Share usage statistic data</Label>
+                                    <Label Grid.Row="6" Grid.Column="0" Content="{x:Static resources:TabSettingControl.ShareUsageStatisticData}" />
                                     <CheckBox Grid.Row="6" Grid.Column="1" Margin="0, 10, 0, 0"  IsChecked="{Binding ElementName=TabSettings, Path=AllSettings.ShareUsageStatistic}"
                                               Checked="ShareStatisticCheckBoxChecked" Unchecked="ShareStatisticCheckBoxChecked" />
 
-                                    <Label Grid.Row="7" Grid.Column="0">Interface language</Label>
+                                    <Label Grid.Row="7" Grid.Column="0" Content="{x:Static resources:TabSettingControl.InterfaceLanguage}" />
                                     <ComboBox Grid.Row="7" Grid.Column="1" Margin="0, 5, 0, 0" ItemsSource="{Binding ElementName=TabSettings, Path=SupportedLanguages}" DisplayMemberPath="Name" 
                                                                                                SelectedItem="{Binding ElementName=TabSettings, Path=SelectedLanguage}" />
                                     <Grid  Grid.Row="8" Grid.ColumnSpan="2">
@@ -90,9 +92,13 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Button Grid.Column="0" Margin="0,10,10,0" Width="130" Click="ClearHistory_Click">Clear history</Button>
-                                        <Button Grid.Column="1" Margin="0,10,0,0" Width="130" Click="ClearBlackList_Click">Clear blacklist</Button>
-                                        <Button Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,0,0" Width="130" Click="RestoreDefaults_Click">Restore defaults</Button>
+                                        <Button Grid.Column="0" Margin="0,10,10,0" Padding="10,0,10,0" Click="ClearHistory_Click" 
+                                                Content="{x:Static resources:TabSettingControl.ClearHistory}" />
+                                        <Button Grid.Column="1" Margin="0,10,0,0" Padding="10,0,10,0" Click="ClearBlackList_Click"
+                                                Content="{x:Static resources:TabSettingControl.ClearBlacklist}" />
+                                        <Button Grid.Column="2" HorizontalAlignment="Right" Margin="0,10,0,0" Padding="10,0,10,0" 
+                                                Click="RestoreDefaults_Click"
+                                                Content="{x:Static resources:TabSettingControl.RestoreDefaults}" />
                                     </Grid>
                                 </Grid>
                             </DataTemplate>
@@ -107,15 +113,18 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <controls:DetectableSelectorControl Name="ProxyType" Margin="5,10,5,5"  Grid.Row="0" SelectorName="Proxy Type"
+                                    <controls:DetectableSelectorControl Name="ProxyType" Margin="5,10,5,5"  Grid.Row="0" 
+                                                             SelectorName="{x:Static resources:TabSettingControl.ProxyType}"
                                                              Arguments="{x:Null}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=ProxyTypes}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedProxyTypeIndex, Mode=TwoWay}" />
-                                    <controls:DetectableSelectorControl Margin="5,0,5,5"  Grid.Row="1" SelectorName="Search Engine"
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5"  Grid.Row="1" 
+                                                             SelectorName="{x:Static resources:TabSettingControl.SearchEngine}"
                                                              Arguments="{Binding Path=SearchEngineSettings}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=SearchEngines}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedSearchEngineIndex, Mode=TwoWay}" />
-                                    <controls:DetectableSelectorControl Margin="5,0,5,5" Grid.Row="2" SelectorName="Checker Type"
+                                    <controls:DetectableSelectorControl Margin="5,0,5,5" Grid.Row="2" 
+                                                             SelectorName="{x:Static resources:TabSettingControl.CheckerType}"
                                                              Arguments="{Binding Path=ProxyCheckerSettings}"
                                                              Detectables="{Binding ElementName=TabSettings, Path=ProxyCheckers}"                                                             
                                                              SelectedIndex="{Binding ElementName=TabSettings, Path=SelectedProxyCheckerIndex, Mode=TwoWay}" />
