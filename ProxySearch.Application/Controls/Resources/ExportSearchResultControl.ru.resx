@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Country" xml:space="preserve">
+    <value>Страна</value>
+  </data>
   <data name="EnableExport" xml:space="preserve">
     <value>Экспорт результатов</value>
   </data>
   <data name="HttpExportFolder" xml:space="preserve">
     <value>Папка экспорта для Http</value>
+  </data>
+  <data name="IpAndPort" xml:space="preserve">
+    <value>Адрес и порт</value>
+  </data>
+  <data name="ProxyType" xml:space="preserve">
+    <value>Тип прокси</value>
+  </data>
+  <data name="SelectExportColumns" xml:space="preserve">
+    <value>Колонки для експорта</value>
   </data>
   <data name="SocksExportFolder" xml:space="preserve">
     <value>Папка экспорта для Socks</value>

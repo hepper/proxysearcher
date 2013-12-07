@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel;
 using System.Net;
+using System.Text;
+using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Engine.Proxies
@@ -58,9 +60,30 @@ namespace ProxySearch.Engine.Proxies
             }
         }
 
+        public string ToString(bool exportCountry, bool exportProxyType)
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append(AddressPort);
+
+            if (exportCountry)
+            {
+                builder.Append("\t");
+                builder.Append(CountryInfo.Name);
+            }
+
+            if (exportProxyType)
+            {
+                builder.Append("\t");
+                builder.Append(Details);
+            }
+
+            return builder.ToString();
+        }
+
         public override string ToString()
         {
-            return string.Format("{0}\t{1}\t{2}", AddressPort, CountryInfo.Name, Details);
+            return ToString(true, true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

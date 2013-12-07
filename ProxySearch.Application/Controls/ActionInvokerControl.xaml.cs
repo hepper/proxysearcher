@@ -127,31 +127,22 @@ namespace ProxySearch.Console.Controls
             StatusText.Content = text;
         }
 
-        private Timer timer = null;
-
         private void SetProgress(bool setProgress)
         {
             ProgressBar.IsIndeterminate = setProgress;
             if (setProgress)
             {
                 ProgressText.Content = string.Format(Properties.Resources.JobCountFormat, 0);
-                timer = new Timer(state => UpdateThreadPoolInfo());
-                timer.Change(0, 2000);
             }
             else
             {
-                if (timer != null)
-                {
-                    timer.Dispose();
-                    timer = null;
-                }
-
                 Cancel.Content = Properties.Resources.Cancel;
                 ProgressText.Content = null;
                 ActiveThreads = 0;
             }
 
             Cancel.IsEnabled = setProgress;
+            UpdateThreadPoolInfo();
         }
 
         private void UpdateThreadPoolInfo()

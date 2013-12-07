@@ -29,10 +29,16 @@ namespace ProxySearch.Engine.Checkers
         {
             foreach (Proxy proxy in proxies)
             {
+                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                    return;
+
                 Proxy proxyCopy = proxy;
 
                 Task.Run(async () =>
                 {
+                    if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                        return;
+
                     using (Context.Get<TaskCounter>().Listen(TaskType.Search))
                     {
                         BanwidthInfo bandwidth = null;
@@ -50,6 +56,9 @@ namespace ProxySearch.Engine.Checkers
                             bandwidth.EndCount = lenght * 2;
                         }))
                         {
+                            if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                                return;
+
                             ProxyInfo proxyInfo = new ProxyInfo(proxyCopy)
                             {
                                 CountryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString()),

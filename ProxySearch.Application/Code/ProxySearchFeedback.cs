@@ -17,6 +17,14 @@ namespace ProxySearch.Console.Code
         private StreamWriter stream = null;
         private bool isProxyFound = false;
 
+        private ExportSettings ExportSettings
+        {
+            get
+            {
+                return Context.Get<AllSettings>().ExportSettings;
+            }
+        }
+
         public ProxySearchFeedback()
         {
             ExportAllowed = true;
@@ -31,7 +39,7 @@ namespace ProxySearch.Console.Code
 
         public void OnAliveProxy(ProxyInfo proxyInfo)
         {
-            if (ExportAllowed && Context.Get<AllSettings>().ExportSettings.ExportSearchResult)
+            if (ExportAllowed && ExportSettings.ExportSearchResult)
             {
                 lock (this)
                 {
@@ -40,7 +48,7 @@ namespace ProxySearch.Console.Code
                         stream = CreateFile(GetDirectory(proxyInfo.Details.Details));
                     }
 
-                    stream.WriteLine(proxyInfo.ToString());
+                    stream.WriteLine(proxyInfo.ToString(ExportSettings.ExportCountry, ExportSettings.ExportProxyType));
                 }
             }
 

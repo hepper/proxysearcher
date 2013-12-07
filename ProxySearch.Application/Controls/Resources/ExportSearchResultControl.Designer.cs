@@ -61,6 +61,15 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Export.
         /// </summary>
         public static string EnableExport {
@@ -75,6 +84,33 @@ namespace ProxySearch.Console.Controls.Resources {
         public static string HttpExportFolder {
             get {
                 return ResourceManager.GetString("HttpExportFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IP and Port.
+        /// </summary>
+        public static string IpAndPort {
+            get {
+                return ResourceManager.GetString("IpAndPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proxy type.
+        /// </summary>
+        public static string ProxyType {
+            get {
+                return ResourceManager.GetString("ProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Export Columns.
+        /// </summary>
+        public static string SelectExportColumns {
+            get {
+                return ResourceManager.GetString("SelectExportColumns", resourceCulture);
             }
         }
         
