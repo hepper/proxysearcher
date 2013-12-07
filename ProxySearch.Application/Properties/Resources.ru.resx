@@ -320,4 +320,7 @@
   <data name="AllSites" xml:space="preserve">
     <value>&lt;все сайты&gt;</value>
   </data>
+  <data name="FeedbackLink" xml:space="preserve">
+    <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedbackru/</value>
+  </data>
 </root>

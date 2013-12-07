@@ -676,6 +676,7 @@
     <EmbeddedResource Include="Controls\Resources\AboutControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AboutControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\AboutControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.resx">
