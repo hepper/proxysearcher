@@ -341,7 +341,10 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{A7061298-FB40-437A-93C2-ECC74AC02769}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{3ADE9FB4-1FE6-4715-8649-ADEC6E4501F7}</td><td>RU</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ProxySearch.Application.resources.dll</td><td>{183B3D17-52A1-4327-B728-F2BECA0B75BA}</td><td>RU</td><td>2</td><td/><td>proxysearch.application.reso</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Console.Primary_output</td><td>{F07BF063-D47A-4263-9E69-0CFE53449979}</td><td>INSTALLDIR</td><td>2</td><td/><td>proxysearch.console.primary_</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ProxySearch.Engine.resources.dll</td><td>{BF75A74C-C442-4178-B323-6D79337FAE06}</td><td>RU</td><td>2</td><td/><td>proxysearch.engine.resources</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1054,6 +1057,7 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>RU</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1163,6 +1167,7 @@
 		<row><td>PrintHoodFolder</td><td>TARGETDIR</td><td>.:PRINTH~1|PrintHood</td><td/><td>0</td><td/></row>
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
+		<row><td>RU</td><td>INSTALLDIR</td><td>ru</td><td/><td>0</td><td/></row>
 		<row><td>RecentFolder</td><td>TARGETDIR</td><td>.:Recent</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
@@ -1867,7 +1872,10 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ProxySearch.Application.resources.dll</td></row>
 		<row><td>AlwaysInstall</td><td>ProxySearch.Console.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ProxySearch.Engine.resources.dll</td></row>
 	</table>
 
 	<table name="File">
@@ -1882,7 +1890,9 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>proxysearch.application.reso</td><td>ProxySearch.Application.resources.dll</td><td>PROXYS~1.DLL|ProxySearch.Application.resources.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Projects\ProxySearcher\ProxySearch.Application\bin\Release\ru\ProxySearch.Application.resources.dll</td><td>1</td><td/></row>
 		<row><td>proxysearch.console.primary_</td><td>ProxySearch.Console.Primary_output</td><td>ProxySearch.Console.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;ProxySearch.Console&gt;|Built</td><td>3</td><td/></row>
+		<row><td>proxysearch.engine.resources</td><td>ProxySearch.Engine.resources.dll</td><td>PROXYS~1.DLL|ProxySearch.Engine.resources.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Projects\ProxySearcher\ProxySearch.Application\bin\Release\ru\ProxySearch.Engine.resources.dll</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2138,7 +2148,10 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_C6C53284_3606_4E47_BCFB_6C217E35C910_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_BABCF349_F822_448A_94CF_043F9A5B1D3B_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ProxySearch.Application.resources.dll</td><td/><td/><td>_00D0E1B0_E898_4DC3_83B6_2073394656B6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ProxySearch.Console.Primary_output</td><td/><td/><td>_0234ED19_C99A_487D_8555_A2C31DE6C884_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ProxySearch.Engine.resources.dll</td><td/><td/><td>_96F1CA3D_6E95_4939_98E4_A0411BA96337_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
