@@ -438,11 +438,6 @@
     <Compile Include="DownloadNewVersion.xaml.cs">
       <DependentUpon>DownloadNewVersion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.ru.Designer.cs">
-      <DependentUpon>Resources.ru.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Service References\GeoIPService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -769,8 +764,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
