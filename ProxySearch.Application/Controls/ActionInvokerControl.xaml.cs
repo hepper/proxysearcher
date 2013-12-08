@@ -90,6 +90,7 @@ namespace ProxySearch.Console.Controls
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 ProgressText.Content = text;
+                UpdateThreadPoolInfo();
             }));
         }
 
@@ -151,7 +152,9 @@ namespace ProxySearch.Console.Controls
             int competitionPortThreads;
             ThreadPool.GetAvailableThreads(out workerThreads, out competitionPortThreads);
 
-            ActiveThreads = (int)(100 * ((double)Context.Get<AllSettings>().MaxThreadCount - workerThreads) / Context.Get<AllSettings>().MaxThreadCount);
+            int threads = Math.Min(workerThreads, competitionPortThreads);
+
+            ActiveThreads = (int)(100 * ((double)Context.Get<AllSettings>().MaxThreadCount - threads) / Context.Get<AllSettings>().MaxThreadCount);
         }
 
         private int activeThreads;

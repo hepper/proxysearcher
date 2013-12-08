@@ -11,8 +11,8 @@ using ProxySearch.Engine.ProxyDetailsProvider;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker 
-        where ProxyDetailsProviderType : IProxyDetailsProvider, new ()
+    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker
+        where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
         protected IProxyDetailsProvider DetailsProvider
         {
