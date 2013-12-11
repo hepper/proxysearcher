@@ -32,7 +32,7 @@ namespace ProxySearch.Console.Code.ProxyClients
 
                 if (!allClients.ContainsKey(proxyType))
                 {
-                    throw new InvalidOperationException(string.Format("Unknown proxy type: '{0}'", proxyType));
+                    return new List<IProxyClient>();
                 }
 
                 return allClients[proxyType];
