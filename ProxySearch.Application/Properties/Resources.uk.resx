@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllSettingsWillBeRevertedToTheirDefaults" xml:space="preserve">
+    <value>Всі поточні налаштування будуть замінені налаштування по замовчуванню. Ви хочете продовжити?</value>
+  </data>
+  <data name="BuiltInGeoIPDescription" xml:space="preserve">
+    <value>Вбудоване визначення країни. Ця опція вирізняється швидкодією. При цьому дані можуть бути застарілими, а визначення країни займає відносно багато процесорного часу.</value>
+  </data>
+  <data name="BuiltInGeoIPName" xml:space="preserve">
+    <value>Вбудоване</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Відмінити</value>
+  </data>
+  <data name="Cancelling" xml:space="preserve">
+    <value>Відміняю</value>
+  </data>
+  <data name="CannotFindInstallationUrl" xml:space="preserve">
+    <value>Неможливо відкрити інсталяційну адресу програми.</value>
+  </data>
+  <data name="CannotUpdateProgram" xml:space="preserve">
+    <value>Неможливо обновити програму. Ви хочете зробити це самостійно?</value>
+  </data>
+  <data name="CheckerProxyDotNetDescription" xml:space="preserve">
+    <value>Цей метод перевірки використовує онлайн сервіс http://checkerproxy.net. Він може перевіряти HTTP\HTTPS і SOCKS4\SOCKS5 проксі. Мінусом цього механізму є неможливість перевірки  невозможность проверки працездатності знайденого проксі у Вашому сегменті мережі.</value>
+  </data>
+  <data name="Chrome" xml:space="preserve">
+    <value>Хром</value>
+  </data>
+  <data name="DefaultTabName" xml:space="preserve">
+    <value>Свій пошук</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Деталі</value>
+  </data>
+  <data name="DoYouReallyWantToClearProxyUsageHistory" xml:space="preserve">
+    <value>Ви насправді хочете очистити історію використання проксі?</value>
+  </data>
+  <data name="DoYouWantToRestartBrowser" xml:space="preserve">
+    <value>Браузер '{0}' потрібно перезавантажити для того, щоб встановити або очистити проксі. Ви хочете зробити це зараз?</value>
+  </data>
+  <data name="DummyGeoIP" xml:space="preserve">
+    <value>Вимкнути</value>
+  </data>
+  <data name="DummyGeoIPDescription" xml:space="preserve">
+    <value>Вимикає визначення країни. Цей метод працює швидше в порівнянні з іншими методами, але країни знайдених проксі не будуть визначені.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="ErrorHasHappenedDuringTest" xml:space="preserve">
+    <value>Произошла ошибка при тестировании</value>
+  </data>
+  <data name="FoundProxiesFormat" xml:space="preserve">
+    <value>Найдено {0} и показано {1} прокси серверов.</value>
+  </data>
+  <data name="GoogleEngineDescription" xml:space="preserve">
+    <value>Использует http://google.com сайт для поиска прокси. Если Вы не можете открыть http://google.com в браузере тогда используйте другой тип поиска.</value>
+  </data>
+  <data name="JobCountFormat" xml:space="preserve">
+    <value>Количество проверок {0}</value>
+  </data>
+  <data name="ProxyCheckerByUrl" xml:space="preserve">
+    <value>По адресу</value>
+  </data>
+  <data name="ProxyCheckerByUrlAndKeywords" xml:space="preserve">
+    <value>По адресу и ключевым словам</value>
+  </data>
+  <data name="ProxyCheckerByUrlAndKeywordsDescription" xml:space="preserve">
+    <value>Этот метод проверки может быть полезным если у вас нет доступа к http странице, но вы знаете её адрес и список ключевых слов которые присутствуют на ней. Этот метод медленее в сравнении с проверкой по адресу и порту но работает лучше. Если этот метод ничего не возвращает тогда попробуйте поменять ключевые слова (возможно страница не содержит их). Все ключевые слова должны быть разделены пробелом и должны присутсвовать на странице, В качестве ключевого слова можно указывать часть html кода без пробелов. Из-за скачивания контента страницы этот способ использует интернет траффик.</value>
+  </data>
+  <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
+    <value>Этот метод проверки скачивает содержимое указанного адреса сначала без прокси, а потом вместе с ним. Если содержание контента приблизительно одинаковое тогда прокси считается рабочим. Этот метод медленее в сравнении с проверкой по адресу и порту но работает лучше. Если этот метод ничего не возвращает тогда попробуйте уменьшить точность, возможно содержание страницы слишком динамичное. Из-за скачивания контента страницы этот способ использует интернет траффик.</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Вопрос</value>
+  </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Ожидание</value>
+  </data>
+  <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
+    <value>Поиск отменен на запрос пользователя</value>
+  </data>
+  <data name="SearchIsFinishedProxiesWasFound" xml:space="preserve">
+    <value>Поиск закончен. {0} прокси было найдено</value>
+  </data>
+  <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
+    <value>Поиск закончен. Ничкго не найдено . Поменяйте условия поиска и попробуйте снова.</value>
+  </data>
+  <data name="SimpleProxyChecker" xml:space="preserve">
+    <value>По адресу и порту</value>
+  </data>
+  <data name="SimpleProxyCheckerDescription" xml:space="preserve">
+    <value>Этот метод проверки смотрит или интернет адрес и порт открыт для использования. Может использоваться для проверки любых типов прокси. Он быстрый потому что не использует внешних сервисов. Но метод не может проверить или кандидат является рабочим прокси сервером поэтому он может вернуть не рабочие прокси.</value>
+  </data>
+  <data name="SortTypeIsNotSupported" xml:space="preserve">
+    <value>Сортировка по '{0}' не поддерживается</value>
+  </data>
+  <data name="SpeedRespondTooltipFormat" xml:space="preserve">
+    <value>Скорость: {1:0.##} Мб/с
+Время отклика: {0} с</value>
+  </data>
+  <data name="UpdateIsReadyToInstall" xml:space="preserve">
+    <value>Выпущенная более новая версия программы. Хотите установать ее сейчас?</value>
+  </data>
+  <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
+    <value>Подождите окончания текущего действия</value>
+  </data>
+  <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
+    <value>Использует http://www.webservicex.net/geoipservice.asmx сервис для определения страны в которой находится прокси. Если адрес http://www.webservicex.net/geoipservice.asmx не открывается в браузере тогда используйте другой тип определения страны</value>
+  </data>
+  <data name="FolderSearchEngine" xml:space="preserve">
+    <value>По файлам в папке</value>
+  </data>
+  <data name="FolderSearchEngineDescription" xml:space="preserve">
+    <value>Если у вас есть папка которая содержит файлы с прокси внутри в формате [ip]:[port] Вы можете выбрать этот способ поиска. К сожалению он не может найти новые прокси, но он проверит или прокси в файлах рабочие для текущего сегмента сети. Этот способ поиска хорошо работает вместе с вкюченный експортированием найденный прокси.</value>
+  </data>
+  <data name="UrlListEngine" xml:space="preserve">
+    <value>По списку адресов</value>
+  </data>
+  <data name="UrlListEngineDescription" xml:space="preserve">
+    <value>Этот метод проверки использует список адресов содержащих прокси сервека в формате [адрес]:[порт]. К сожалению он не находит новых источников прокси но может найти новые прокси если они появлятся на указанных страницах.</value>
+  </data>
+  <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
+    <value>Ви насправді хочете очистити чорний список?</value>
+  </data>
+  <data name="HttpOpen" xml:space="preserve">
+    <value>Открыть найденные HTTP прокси</value>
+  </data>
+  <data name="TurnedOffProxyChecker" xml:space="preserve">
+    <value>Проверить вручную после поиска</value>
+  </data>
+  <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
+    <value>Этот метод проверки возвращает все прокси без проверки. Как правило используется для открытия  результатов предыдущих поисков.</value>
+  </data>
+  <data name="HttpPredefinedUrlList" xml:space="preserve">
+    <value>HTTP (список адресов)</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
+    <value>Нельзя удалить единственный критерий поиска.</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="world128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\world128x128.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HttpProxyTypeDescription" xml:space="preserve">
+    <value>Этот тип разрешает найти HTTP прокси</value>
+  </data>
+  <data name="SocksGoogleSearchType" xml:space="preserve">
+    <value>SOCKS (Google)</value>
+  </data>
+  <data name="SocksProxyTypeDesciption" xml:space="preserve">
+    <value>Этот тип разрешает найти SOCKS прокси</value>
+  </data>
+  <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
+    <value>Неможливо встановити SOCKS проксі для FireFox якщо версія SOCKS не була аизначена</value>
+  </data>
+  <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
+    <value>Этот клиент не поддерживает socks 5-й версии</value>
+  </data>
+  <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
+    <value>Тим прокси неопределенный. Этот клиент не поддерживаетsocks 5-й версии, поэтому socks 5-й версии не будет работать с этим клиентом. Продолжить?</value>
+  </data>
+  <data name="SocksOpen" xml:space="preserve">
+    <value>Открыть найденные SOCKS прокси</value>
+  </data>
+  <data name="SocksPredefinedUrlList" xml:space="preserve">
+    <value>Socks (список адресов)</value>
+  </data>
+  <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
+    <value>Google опередил что Ваша сеть отсылает автоматические запросы, поэтому этот тип поиска не будет работать в этот момент времени. Вы можете использовать другие методы поиска которые не используют Google или попробовать попозже.</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>Поиск отменён</value>
+  </data>
+  <data name="SearchFinished" xml:space="preserve">
+    <value>Поиск закончен</value>
+  </data>
+  <data name="SearchStarted" xml:space="preserve">
+    <value>Поиск начат.</value>
+  </data>
+  <data name="FoundAndShownProxiesFormat" xml:space="preserve">
+    <value>Найдено и показано {0} прокси серверов.</value>
+  </data>
+  <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
+    <value>Ви насправді хочете знищити вибраний метод розбору тексту?</value>
+  </data>
+  <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
+    <value>Тестовый адрес не содержит исходного адреса</value>
+  </data>
+  <data name="NoOneProxyHasBeenFound" xml:space="preserve">
+    <value>Прокси не были найдены</value>
+  </data>
+  <data name="AllSites" xml:space="preserve">
+    <value>&lt;всі сайти&gt;</value>
+  </data>
+  <data name="FeedbackLink" xml:space="preserve">
+    <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedbackru/</value>
+  </data>
+  <data name="Firefox" xml:space="preserve">
+    <value>Файрфокс</value>
+  </data>
+  <data name="InternetExplorer" xml:space="preserve">
+    <value>Интернет екплорер</value>
+  </data>
+  <data name="Opera" xml:space="preserve">
+    <value>Опера</value>
+  </data>
+  <data name="Resources" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Resources_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+</root>

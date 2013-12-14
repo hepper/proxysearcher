@@ -117,25 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Действия</value>
+  <data name="AddToBlacklist" xml:space="preserve">
+    <value>Додати в чорний список</value>
   </data>
-  <data name="AddNewParseMethod" xml:space="preserve">
-    <value>Добавить новый метод разбора</value>
+  <data name="Blacklist" xml:space="preserve">
+    <value>Блокувати</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Удалить</value>
+  <data name="Country" xml:space="preserve">
+    <value>Країна</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>На этой закладке можно настраивать методы разбора для указанных сайтов. Для этого требуются знания регулярных выражений, основ C# и немного удачи ;). Документация использования этой закладки будет доступна позже на странице проекта.</value>
+  <data name="IPAddress" xml:space="preserve">
+    <value>IP адреса</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Изменить</value>
+  <data name="PleaseWaitALittleForResult" xml:space="preserve">
+    <value>Будь-ласка почекайте трішки поки триває пошук</value>
   </data>
-  <data name="EnterDomainNameHere" xml:space="preserve">
-    <value>Введите доменное имя вместо этого текста</value>
+  <data name="Port" xml:space="preserve">
+    <value>Порт</value>
   </data>
-  <data name="Url" xml:space="preserve">
-    <value>Адрес</value>
+  <data name="SpeedResponce" xml:space="preserve">
+    <value>Швидкість (відгук)</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="UpsWeDidntFindAnything" xml:space="preserve">
+    <value>На жаль нічого не було знайдено. Будь-ласка перевірте налаштування пошуку. Якщо налаштування правильні то будь-ласка напишіть нам в техпідтримку. і ми постараємося виправити проблему.</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Використання</value>
   </data>
 </root>

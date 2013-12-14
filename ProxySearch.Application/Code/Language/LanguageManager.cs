@@ -23,7 +23,12 @@ namespace ProxySearch.Console.Code.Language
                     {
                         Name = "Русский",
                         Culture = "ru-RU"
-                    }
+                    },
+                    new Language
+                    {
+                        Name = "Українська",
+                        Culture = "uk-UA"
+                    },
                 };
             }
         }

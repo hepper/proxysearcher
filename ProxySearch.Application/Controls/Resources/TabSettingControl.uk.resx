@@ -117,25 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Действия</value>
+  <data name="Advanced" xml:space="preserve">
+    <value>Просунуті</value>
   </data>
-  <data name="AddNewParseMethod" xml:space="preserve">
-    <value>Добавить новый метод разбора</value>
+  <data name="CheckerType" xml:space="preserve">
+    <value>Метод перевірки</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Удалить</value>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Перевіряти поновлення</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>На этой закладке можно настраивать методы разбора для указанных сайтов. Для этого требуются знания регулярных выражений, основ C# и немного удачи ;). Документация использования этой закладки будет доступна позже на странице проекта.</value>
+  <data name="ClearBlacklist" xml:space="preserve">
+    <value>Очистити чорний список</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Изменить</value>
+  <data name="ClearHistory" xml:space="preserve">
+    <value>Очистити історію</value>
   </data>
-  <data name="EnterDomainNameHere" xml:space="preserve">
-    <value>Введите доменное имя вместо этого текста</value>
+  <data name="General" xml:space="preserve">
+    <value>Основні</value>
   </data>
-  <data name="Url" xml:space="preserve">
-    <value>Адрес</value>
+  <data name="GeoIP" xml:space="preserve">
+    <value>Визначення країни</value>
+  </data>
+  <data name="InterfaceLanguage" xml:space="preserve">
+    <value>Мова інтерфейсу</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Рядків на сторінці</value>
+  </data>
+  <data name="ProxyType" xml:space="preserve">
+    <value>Тип проксі</value>
+  </data>
+  <data name="RestoreDefaults" xml:space="preserve">
+    <value>Налаштування по замовчуванню</value>
+  </data>
+  <data name="RevertUsedProxiesOnExit" xml:space="preserve">
+    <value>Забирати проксі при виході</value>
+  </data>
+  <data name="SearchEngine" xml:space="preserve">
+    <value>Метод пошуку</value>
+  </data>
+  <data name="ShareUsageStatisticData" xml:space="preserve">
+    <value>Слати звіти про помилки</value>
+  </data>
+  <data name="ThreadCount" xml:space="preserve">
+    <value>Максимальна кіль. потоків</value>
   </data>
 </root>
