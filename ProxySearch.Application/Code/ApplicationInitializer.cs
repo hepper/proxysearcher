@@ -21,9 +21,14 @@ namespace ProxySearch.Console.Code
     {
         public void Initialize(bool shutdown)
         {
+            Context.Set(Settings);
+
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
+
             Context.Set<IDetectableSearcher>(new DetectableSearcher());
             Context.Set<IProxyClientSearcher>(new ProxyClientSearcher());
-            Context.Set(Settings);
+            
             Context.Set<IUsedProxies>(new ProxyStorage(ReadProxyList(Constants.UsedProxiesStorage.Location)));
 
             ProxyStorage blacklist = new ProxyStorage(ReadProxyList(Constants.BlackListStorage.Location));
@@ -32,9 +37,6 @@ namespace ProxySearch.Console.Code
 
             Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
-
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);
-            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
 
             if (!shutdown)
             {

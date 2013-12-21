@@ -159,14 +159,8 @@
   <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
     <value>Proxy свойство не может равняться null</value>
   </data>
-  <data name="Socks4" xml:space="preserve">
-    <value>Socks 4</value>
-  </data>
   <data name="Socks4Details" xml:space="preserve">
     <value>Этот тип прокси работает на транспортном уровне стека протоколов TCP/IP и поддерживает четвертую версию Socks прокси</value>
-  </data>
-  <data name="Socks5" xml:space="preserve">
-    <value>Socks 5</value>
   </data>
   <data name="Socks5Details" xml:space="preserve">
     <value>Этот тип прокси работает на транспортном уровне стека протоколов TCP/IP и поддерживает пятую версию Socks прокси</value>
@@ -182,13 +176,13 @@
 Это наихудший тип прокси. Никогда не передевайте личные данные через публичные прокси.</value>
   </data>
   <data name="UnableToResolveProxyHostnameFormat" xml:space="preserve">
-    <value>Unable to resolve proxy hostname '{0}' to a valid IP address.</value>
+    <value>Невозможно определить валидный интернет адрес по хосту '{0}'.</value>
   </data>
   <data name="Unchecked" xml:space="preserve">
     <value>Не проверен</value>
   </data>
   <data name="UncheckedDetails" xml:space="preserve">
-    <value>Готов к проверки</value>
+    <value>Готов к проверке</value>
   </data>
   <data name="UnsupportedHttpProxyType" xml:space="preserve">
     <value>Неподдерживаемый тип http прокси</value>

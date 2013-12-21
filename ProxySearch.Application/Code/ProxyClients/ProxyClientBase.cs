@@ -88,10 +88,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                 {
                     if (ImportsInternetExplorerSettings)
                     {
-                        if (SelectedSystemProxyClient != null)
-                        {
-                            ProxyCache = SelectedSystemProxyClient.Proxy;
-                        }
+                        ProxyCache = Context.Get<IProxyClientSearcher>().SelectedSystemProxy.Proxy;
                     }
                     else
                     {
@@ -109,11 +106,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                 {
                     if (ImportsInternetExplorerSettings)
                     {
-                        if (SelectedSystemProxyClient != null)
-                        {
-                            SelectedSystemProxyClient.Proxy = null;
-                        }
-
+                        Context.Get<IProxyClientSearcher>().SelectedSystemProxy.Proxy = value;
                         return;
                     }
 
@@ -163,14 +156,6 @@ namespace ProxySearch.Console.Code.ProxyClients
             set
             {
                 Context.Get<ProxyClientsSettings>()[SettingsKey] = value;
-            }
-        }
-
-        private IProxyClient SelectedSystemProxyClient
-        {
-            get
-            {
-                return Context.Get<IProxyClientSearcher>().SelectedSystemProxy;
             }
         }
     }

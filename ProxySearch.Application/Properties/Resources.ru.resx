@@ -192,9 +192,6 @@
   <data name="Question" xml:space="preserve">
     <value>Вопрос</value>
   </data>
-  <data name="QuestionMark" xml:space="preserve">
-    <value>?</value>
-  </data>
   <data name="Ready" xml:space="preserve">
     <value>Ожидание</value>
   </data>
@@ -205,7 +202,7 @@
     <value>Поиск закончен. {0} прокси было найдено</value>
   </data>
   <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
-    <value>Поиск закончен. Ничкго не найдено . Поменяйте условия поиска и попробуйте снова.</value>
+    <value>Поиск закончен. Ничего не найдено . Поменяйте условия поиска и попробуйте снова.</value>
   </data>
   <data name="SimpleProxyChecker" xml:space="preserve">
     <value>По адресу и порту</value>
@@ -239,7 +236,7 @@
     <value>По списку адресов</value>
   </data>
   <data name="UrlListEngineDescription" xml:space="preserve">
-    <value>Этот метод проверки использует список адресов содержащих прокси сервека в формате [адрес]:[порт]. К сожалению он не находит новых источников прокси но может найти новые прокси если они появлятся на указанных страницах.</value>
+    <value>Этот метод проверки использует список адресов содержащих прокси сервера в формате [адрес]:[порт]. К сожалению он не находит новых источников прокси но может найти новые прокси если они появлятся на указанных страницах.</value>
   </data>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
     <value>Вы на самом деле хотите очистить чёрный список?</value>
@@ -282,7 +279,7 @@
     <value>Этот клиент не поддерживает socks 5-й версии</value>
   </data>
   <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
-    <value>Тим прокси неопределенный. Этот клиент не поддерживаетsocks 5-й версии, поэтому socks 5-й версии не будет работать с этим клиентом. Продолжить?</value>
+    <value>Тип прокси неопределенный. Этот клиент не поддерживает socks 5-й версии, поэтому socks 5-й версии не будет работать с этим клиентом. Продолжить?</value>
   </data>
   <data name="SocksOpen" xml:space="preserve">
     <value>Открыть найденные SOCKS прокси</value>
@@ -327,7 +324,7 @@
     <value>Файрфокс</value>
   </data>
   <data name="InternetExplorer" xml:space="preserve">
-    <value>Интернет екплорер</value>
+    <value>Интернет експлорер</value>
   </data>
   <data name="Opera" xml:space="preserve">
     <value>Опера</value>

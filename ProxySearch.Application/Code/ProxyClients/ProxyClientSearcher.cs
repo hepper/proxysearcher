@@ -43,7 +43,7 @@ namespace ProxySearch.Console.Code.ProxyClients
         {
             get
             {
-                return SelectedClients.SingleOrDefault(client => client.Name == Resources.InternetExplorer);
+                return SelectedClients.Single(client => client.Name == Resources.InternetExplorer);
             }
         }
 

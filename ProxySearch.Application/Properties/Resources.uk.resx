@@ -121,7 +121,7 @@
     <value>Всі поточні налаштування будуть замінені налаштування по замовчуванню. Ви хочете продовжити?</value>
   </data>
   <data name="BuiltInGeoIPDescription" xml:space="preserve">
-    <value>Вбудоване визначення країни. Ця опція вирізняється швидкодією. При цьому дані можуть бути застарілими, а визначення країни займає відносно багато процесорного часу.</value>
+    <value>Вбудоване визначення країни. Ця опція відрізняється швидкодією. При цьому дані можуть бути застарілими, а визначення країни займає відносно багато процесорного часу.</value>
   </data>
   <data name="BuiltInGeoIPName" xml:space="preserve">
     <value>Вбудоване</value>
@@ -166,168 +166,165 @@
     <value>Помилка</value>
   </data>
   <data name="ErrorHasHappenedDuringTest" xml:space="preserve">
-    <value>Произошла ошибка при тестировании</value>
+    <value>При тестуванні сталася помилка</value>
   </data>
   <data name="FoundProxiesFormat" xml:space="preserve">
-    <value>Найдено {0} и показано {1} прокси серверов.</value>
+    <value>Найдено {0} і показано {1} проксі серверів.</value>
   </data>
   <data name="GoogleEngineDescription" xml:space="preserve">
-    <value>Использует http://google.com сайт для поиска прокси. Если Вы не можете открыть http://google.com в браузере тогда используйте другой тип поиска.</value>
+    <value>Використовує http://google.com сайт для пошуку проксі. Якщо Ви не можете відкрити http://google.com в браузері тоді використайте інший тип пошуку.</value>
   </data>
   <data name="JobCountFormat" xml:space="preserve">
-    <value>Количество проверок {0}</value>
+    <value>Кількість перевірок {0}</value>
   </data>
   <data name="ProxyCheckerByUrl" xml:space="preserve">
-    <value>По адресу</value>
+    <value>За адресою</value>
   </data>
   <data name="ProxyCheckerByUrlAndKeywords" xml:space="preserve">
-    <value>По адресу и ключевым словам</value>
+    <value>За адресою і ключовими словами</value>
   </data>
   <data name="ProxyCheckerByUrlAndKeywordsDescription" xml:space="preserve">
-    <value>Этот метод проверки может быть полезным если у вас нет доступа к http странице, но вы знаете её адрес и список ключевых слов которые присутствуют на ней. Этот метод медленее в сравнении с проверкой по адресу и порту но работает лучше. Если этот метод ничего не возвращает тогда попробуйте поменять ключевые слова (возможно страница не содержит их). Все ключевые слова должны быть разделены пробелом и должны присутсвовать на странице, В качестве ключевого слова можно указывать часть html кода без пробелов. Из-за скачивания контента страницы этот способ использует интернет траффик.</value>
+    <value>Цей метод перевірки може бути корисним якщо у Вас немає доступа до http сторінки, але Ви знаєте її адресу і список ключових слів які на ній присутні. Цей метод повільніший в порівнянні з методом перевірки за адресою і портом, але працює краще. Якщо метод нічого не повертає спробуйте змінити ключові слова (можливо сторінка їх не містить). Всі ключові слова повинні бути розділеними пробілами і повинні бути присутніми на сторінці. В якості ключового слова можна вказувати частину html кода без пробілів. Через скачування вмісту сторінки цей спосіб використовує інтернет трафік.</value>
   </data>
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
-    <value>Этот метод проверки скачивает содержимое указанного адреса сначала без прокси, а потом вместе с ним. Если содержание контента приблизительно одинаковое тогда прокси считается рабочим. Этот метод медленее в сравнении с проверкой по адресу и порту но работает лучше. Если этот метод ничего не возвращает тогда попробуйте уменьшить точность, возможно содержание страницы слишком динамичное. Из-за скачивания контента страницы этот способ использует интернет траффик.</value>
+    <value>Цей метод перевірки скачує вміст вказаного адресу спочатку без проксі, а потім разм з ним. Якщо вміст приблизно однаковий тоді проксі вважається робочим. Цей метод повільніший в порівнянні з методом перевірки за адресою і портом, але працює краще. Якщо метод нічого не повертає то спробуйте зменшити точність - можливо вміст сторінки занадто динамічний. Через скачування вмісту сторінки цей спосіб використовує інтернет трафік.</value>
   </data>
   <data name="Question" xml:space="preserve">
-    <value>Вопрос</value>
-  </data>
-  <data name="QuestionMark" xml:space="preserve">
-    <value>?</value>
+    <value>Питання</value>
   </data>
   <data name="Ready" xml:space="preserve">
-    <value>Ожидание</value>
+    <value>Очікування</value>
   </data>
   <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
-    <value>Поиск отменен на запрос пользователя</value>
+    <value>Пошук відмінено на запит користувача</value>
   </data>
   <data name="SearchIsFinishedProxiesWasFound" xml:space="preserve">
-    <value>Поиск закончен. {0} прокси было найдено</value>
+    <value>Пошук закінчено. {0} проксі було знайдено</value>
   </data>
   <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
-    <value>Поиск закончен. Ничкго не найдено . Поменяйте условия поиска и попробуйте снова.</value>
+    <value>Пошук закінчено. Нічого не знайдено. Змініть умови пошуку і спробуйте знову.</value>
   </data>
   <data name="SimpleProxyChecker" xml:space="preserve">
-    <value>По адресу и порту</value>
+    <value>За адресою і портом</value>
   </data>
   <data name="SimpleProxyCheckerDescription" xml:space="preserve">
-    <value>Этот метод проверки смотрит или интернет адрес и порт открыт для использования. Может использоваться для проверки любых типов прокси. Он быстрый потому что не использует внешних сервисов. Но метод не может проверить или кандидат является рабочим прокси сервером поэтому он может вернуть не рабочие прокси.</value>
+    <value>Цей метод перевірки дивиться чи інтернет адреса і порт відкриті для використання. Може використовуватися для перевірки будь-яких типів проксі. Він швидкий тому що не використовує додаткових сервісів. Але метод не може перевірити чи кандидат є робочим проксі тому часто повертає неробочі проксі.</value>
   </data>
   <data name="SortTypeIsNotSupported" xml:space="preserve">
-    <value>Сортировка по '{0}' не поддерживается</value>
+    <value>Сортування по '{0}' не піддтримується</value>
   </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
-    <value>Скорость: {1:0.##} Мб/с
-Время отклика: {0} с</value>
+    <value>Швидкість: {1:0.##} Мб/с
+Час відгуку: {0} с</value>
   </data>
   <data name="UpdateIsReadyToInstall" xml:space="preserve">
-    <value>Выпущенная более новая версия программы. Хотите установать ее сейчас?</value>
+    <value>Опублікована більш нова версія програми. Хочете встановити її зараз?</value>
   </data>
   <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
-    <value>Подождите окончания текущего действия</value>
+    <value>Зачекайте закінчення поточної дії</value>
   </data>
   <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
-    <value>Использует http://www.webservicex.net/geoipservice.asmx сервис для определения страны в которой находится прокси. Если адрес http://www.webservicex.net/geoipservice.asmx не открывается в браузере тогда используйте другой тип определения страны</value>
+    <value>Використовує http://www.webservicex.net/geoipservice.asmx сервіс для визначення країни в якій знаходиться проксі. Якщо адреса http://www.webservicex.net/geoipservice.asmx не відкривається в браузері тоді використовуйте інший тип визначення країни</value>
   </data>
   <data name="FolderSearchEngine" xml:space="preserve">
-    <value>По файлам в папке</value>
+    <value>По файлам в папці</value>
   </data>
   <data name="FolderSearchEngineDescription" xml:space="preserve">
-    <value>Если у вас есть папка которая содержит файлы с прокси внутри в формате [ip]:[port] Вы можете выбрать этот способ поиска. К сожалению он не может найти новые прокси, но он проверит или прокси в файлах рабочие для текущего сегмента сети. Этот способ поиска хорошо работает вместе с вкюченный експортированием найденный прокси.</value>
+    <value>Якщо у Вас є папка яка містить файли з проксі в потрібному форматі Ви можете вибрати цей спосіб пошуку. На жаль він не може знайти нові проксі, але метод перевірить чи є робочими проксі в файлах для поточного сегменту мережі. Цей спосіб добре працює разом з включеним експортуванням знайдених проксі.</value>
   </data>
   <data name="UrlListEngine" xml:space="preserve">
-    <value>По списку адресов</value>
+    <value>За списком адрес</value>
   </data>
   <data name="UrlListEngineDescription" xml:space="preserve">
-    <value>Этот метод проверки использует список адресов содержащих прокси сервека в формате [адрес]:[порт]. К сожалению он не находит новых источников прокси но может найти новые прокси если они появлятся на указанных страницах.</value>
+    <value>Цей метод перевірки використовує список адрес які містять проксі сервера в форматі [адреса]:[порт]. На жаль він не знаходить нових джерел проксі, але може знайти нові проксі якщо вони з'являються на вказаних сторінках.</value>
   </data>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
     <value>Ви насправді хочете очистити чорний список?</value>
   </data>
   <data name="HttpOpen" xml:space="preserve">
-    <value>Открыть найденные HTTP прокси</value>
+    <value>Відкрити знайдені HTTP проксі</value>
   </data>
   <data name="TurnedOffProxyChecker" xml:space="preserve">
-    <value>Проверить вручную после поиска</value>
+    <value>Перевірити вручну після пошуку</value>
   </data>
   <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
-    <value>Этот метод проверки возвращает все прокси без проверки. Как правило используется для открытия  результатов предыдущих поисков.</value>
+    <value>Цей метод повертає всі проксі без перевірки. Як правило використовується для відкриття результатів попередніх пошуків.</value>
   </data>
   <data name="HttpPredefinedUrlList" xml:space="preserve">
-    <value>HTTP (список адресов)</value>
+    <value>HTTP (список адрес)</value>
   </data>
   <data name="Information" xml:space="preserve">
-    <value>Информация</value>
+    <value>Інформация</value>
   </data>
   <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
-    <value>Нельзя удалить единственный критерий поиска.</value>
+    <value>Не можна знащати останній критерій пошуку</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="world128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\world128x128.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="HttpProxyTypeDescription" xml:space="preserve">
-    <value>Этот тип разрешает найти HTTP прокси</value>
+    <value>Цей тип дозволяє знайти HTTP проксі</value>
   </data>
   <data name="SocksGoogleSearchType" xml:space="preserve">
     <value>SOCKS (Google)</value>
   </data>
   <data name="SocksProxyTypeDesciption" xml:space="preserve">
-    <value>Этот тип разрешает найти SOCKS прокси</value>
+    <value>Цей тип дозволяє знайти SOCKS проксі</value>
   </data>
   <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
     <value>Неможливо встановити SOCKS проксі для FireFox якщо версія SOCKS не була аизначена</value>
   </data>
   <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
-    <value>Этот клиент не поддерживает socks 5-й версии</value>
+    <value>Цей кліент не підтримує socks 5-ї версії</value>
   </data>
   <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
-    <value>Тим прокси неопределенный. Этот клиент не поддерживаетsocks 5-й версии, поэтому socks 5-й версии не будет работать с этим клиентом. Продолжить?</value>
+    <value>Тип проксі невизначений. Цей клієнт не підтримує socks 5-ї версиї, через це socks 5-ї версії не буде працювати з  цим клієнтом. Продовжити?</value>
   </data>
   <data name="SocksOpen" xml:space="preserve">
-    <value>Открыть найденные SOCKS прокси</value>
+    <value>Відкрити знайдені SOCKS проксі</value>
   </data>
   <data name="SocksPredefinedUrlList" xml:space="preserve">
-    <value>Socks (список адресов)</value>
+    <value>Socks (список адрес)</value>
   </data>
   <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
-    <value>Google опередил что Ваша сеть отсылает автоматические запросы, поэтому этот тип поиска не будет работать в этот момент времени. Вы можете использовать другие методы поиска которые не используют Google или попробовать попозже.</value>
+    <value>Google визначив що Ваша мережа відправляє автоматичні запити, тому цей тип пошуку працювати не буде в даний момент часу. Ви можете використати інші методи пошуку які не використовують Google або спробувати пізніше.</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Поиск</value>
+    <value>Пошук</value>
   </data>
   <data name="SearchCancelled" xml:space="preserve">
-    <value>Поиск отменён</value>
+    <value>Пошук відмінено</value>
   </data>
   <data name="SearchFinished" xml:space="preserve">
-    <value>Поиск закончен</value>
+    <value>Пошук закінчений</value>
   </data>
   <data name="SearchStarted" xml:space="preserve">
-    <value>Поиск начат.</value>
+    <value>Пошук почато.</value>
   </data>
   <data name="FoundAndShownProxiesFormat" xml:space="preserve">
-    <value>Найдено и показано {0} прокси серверов.</value>
+    <value>Знайдено і показано {0} проксі серверів.</value>
   </data>
   <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
     <value>Ви насправді хочете знищити вибраний метод розбору тексту?</value>
   </data>
   <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
-    <value>Тестовый адрес не содержит исходного адреса</value>
+    <value>Тестова адреса не містить вихідної адреси</value>
   </data>
   <data name="NoOneProxyHasBeenFound" xml:space="preserve">
-    <value>Прокси не были найдены</value>
+    <value>Проксі не були знайдені</value>
   </data>
   <data name="AllSites" xml:space="preserve">
     <value>&lt;всі сайти&gt;</value>
   </data>
   <data name="FeedbackLink" xml:space="preserve">
-    <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedbackru/</value>
+    <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedbackua/</value>
   </data>
   <data name="Firefox" xml:space="preserve">
     <value>Файрфокс</value>
   </data>
   <data name="InternetExplorer" xml:space="preserve">
-    <value>Интернет екплорер</value>
+    <value>Інтернет експлорер</value>
   </data>
   <data name="Opera" xml:space="preserve">
     <value>Опера</value>

@@ -151,7 +151,7 @@
     <value>Налаштування по замовчуванню</value>
   </data>
   <data name="RevertUsedProxiesOnExit" xml:space="preserve">
-    <value>Забирати проксі при виході</value>
+    <value>Вимикати проксі при виході</value>
   </data>
   <data name="SearchEngine" xml:space="preserve">
     <value>Метод пошуку</value>

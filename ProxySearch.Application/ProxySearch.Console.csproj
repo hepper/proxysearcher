@@ -715,6 +715,8 @@
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\TabSettingControl.uk.resx">
       <SubType>Designer</SubType>
@@ -725,7 +727,9 @@
     <EmbeddedResource Include="Controls\Resources\ProxyDetailsControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ParseMethodEditor.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\FolderSearchEngineControl.uk.resx" />
-    <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.uk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ExportSearchResultControl.Designer.cs</LastGenOutput>
@@ -739,6 +743,7 @@
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>GoogleEnginePropertyControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\ParseMethodEditor.resx">
@@ -749,6 +754,7 @@
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ProxyCheckerByUrlControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\ProxyDetailsControl.resx">

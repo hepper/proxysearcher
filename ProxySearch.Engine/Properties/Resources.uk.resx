@@ -117,25 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Actions" xml:space="preserve">
-    <value>Дії</value>
+  <data name="Anonymous" xml:space="preserve">
+    <value>Анонімний</value>
   </data>
-  <data name="AddNewParseMethod" xml:space="preserve">
-    <value>Додати новий метод розбору</value>
+  <data name="AnonymousDetails" xml:space="preserve">
+    <value>Цей тип проксі ховає вашу адресу але використання проксі може бути легко визначено. 
+Ніколи не передевайте особисті дані через публічні проксі.</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Знищити</value>
+  <data name="CannotDownloadContent" xml:space="preserve">
+    <value>Неможливо скачати вміст сторінки '{0}'. Можливо у Вас немає інтернет з'єдання або сторінка '{0}' заблокована в Вашій мережі. Якщо сторінка заблокована тоді відкрийте Інструменти-&gt;Налаштування і змініть метод перевірки  'За адресою' на 'За адресою і ключовими словами' (цей метод перевірки спеціально призначений для роботи з заблокованими сайтами).</value>
   </data>
-  <data name="Details" xml:space="preserve">
-    <value>На цій закладці можна налаштовувати методи разбору для вказаних сайтів. Для цього потрібні знання регулярних виразів, основ C# і трішечки удачі ;). Документація використання цієї закладки буде доступна пізніше на сторінці проекту.</value>
+  <data name="CannotVerify" xml:space="preserve">
+    <value>Не визначений</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Змінити</value>
+  <data name="CannotVerifyDetails" xml:space="preserve">
+    <value>На жаль визначити тип проксі в даний момент неможливо. Можливо він не працює в даний момент часу або блоку наш тестовий сервіс. 
+Тим не менше даний проксі можна використовувати. Ніколи не передевайте особисті дані через публічні проксі.</value>
   </data>
-  <data name="EnterDomainNameHere" xml:space="preserve">
-    <value>Введіть доменне ім'я замість цого тексту</value>
+  <data name="ChangesContent" xml:space="preserve">
+    <value>Змінює вміст</value>
   </data>
-  <data name="Url" xml:space="preserve">
-    <value>Адреса</value>
+  <data name="ChangesContentDetails" xml:space="preserve">
+    <value>Під час визначення типу проксі скачаний вміст відрізняється від очікуваного. Можливо цей проксі платний, містить віруси або пропонує рекламу.
+Постарайтеся не використовувати проксі цього типу.
+Ніколи не передевайте особисті дані через публічні проксі.</value>
+  </data>
+  <data name="HighAnonymous" xml:space="preserve">
+    <value>Елітний</value>
+  </data>
+  <data name="HighAnonymousDetails" xml:space="preserve">
+    <value>Цей тип проксі ховає Вашу інтернет адресу і використання проксі не можу бути легко встановлено.
+Деякі методи можуть визначити використання проксі, але вони не дають 100% гарантіх правильності визначення. Це найкращий тип публічного проксі.
+Ніколи не передевайте особисті дані через публічні проксі.</value>
+  </data>
+  <data name="InvalidHttpResponseFromSocksProxy" xml:space="preserve">
+    <value>Неправильна http відповідь від socks проксі</value>
+  </data>
+  <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
+    <value>Proxy властивість не може дорівнювати null</value>
+  </data>
+  <data name="Socks4Details" xml:space="preserve">
+    <value>Цей тип проксі працює на транспортному рівні стека протоколів TCP/IP і підтримує четверту версію Socks проксі.
+Ніколи не передевайте особисті дані через публічні проксі.</value>
+  </data>
+  <data name="Socks5Details" xml:space="preserve">
+    <value>Цей тип проксі працює на транспортному рівні стека протоколів TCP/IP і підтримує п'яту версію Socks проксі.
+Ніколи не передевайте особисті дані через публічні проксі.</value>
+  </data>
+  <data name="TooManyRedirectsWasRequestedByServer" xml:space="preserve">
+    <value>Надто багато перенаправлень запрошено сервером</value>
+  </data>
+  <data name="Transparent" xml:space="preserve">
+    <value>Прозорий</value>
+  </data>
+  <data name="TransparentDetails" xml:space="preserve">
+    <value>Цей тип проксі не ховає Вашу адресу і використання проксі може бути легко встановлено. 
+Це найгірший тип проксі. Ніколи не передевайте особисті дані через публічні проксі.</value>
+  </data>
+  <data name="UnableToResolveProxyHostnameFormat" xml:space="preserve">
+    <value>Неможливо визначити валідну інтернет адресу по хосту '{0}'.</value>
+  </data>
+  <data name="Unchecked" xml:space="preserve">
+    <value>Не перевірений</value>
+  </data>
+  <data name="UncheckedDetails" xml:space="preserve">
+    <value>Готовий до перевірки</value>
+  </data>
+  <data name="UnsupportedHttpProxyType" xml:space="preserve">
+    <value>Цей тип http проксі не підтримується</value>
+  </data>
+  <data name="UnsupportedSocksProxyType" xml:space="preserve">
+    <value>Цей тип socks проксі не підтримується</value>
   </data>
 </root>
