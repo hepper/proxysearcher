@@ -21,12 +21,12 @@ namespace ProxySearch.Console.Code
     {
         public void Initialize(bool shutdown)
         {
+            Context.Set<IDetectableSearcher>(new DetectableSearcher());
             Context.Set(Settings);
 
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
-
-            Context.Set<IDetectableSearcher>(new DetectableSearcher());
+            
             Context.Set<IProxyClientSearcher>(new ProxyClientSearcher());
             
             Context.Set<IUsedProxies>(new ProxyStorage(ReadProxyList(Constants.UsedProxiesStorage.Location)));
