@@ -76,7 +76,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         {
             get
             {
-                string settingFolder = DefaultProfiles.First();
+                string settingFolder = ProfileFolderPath;
                 string userSettings = string.Concat(settingFolder, @"\user.js");
 
                 if (File.Exists(userSettings))
@@ -97,23 +97,39 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                     return false;
                 }
 
-                return DefaultProfiles.Any();
+                return ProfileFolderPath != null;
             }
         }
 
-        private IEnumerable<string> DefaultProfiles
+        private string ProfileFolderPath
         {
             get
             {
-                return Directory.GetDirectories(ProfilesFolderPath).Where(path => path.EndsWith(".default"));
-            }
-        }
+                string mozilla = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Mozilla");
 
-        private string ProfilesFolderPath
-        {
-            get
-            {
-                return string.Concat(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"\Mozilla\Firefox\Profiles\");
+                if (Directory.Exists(mozilla))
+                {
+                    string firefox = Path.Combine(mozilla, "Firefox");
+
+                    if (Directory.Exists(firefox))
+                    {
+                        string profileFile = Path.Combine(firefox, "profiles.ini");
+
+                        if (File.Exists(profileFile))
+                        {
+                            using (StreamReader reader = new StreamReader(profileFile))
+                            {
+                                string[] lines = reader.ReadToEnd().Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+                                string location = lines.First(x => x.Contains("Path=")).Split(new string[] { "=" }, StringSplitOptions.None)[1];
+
+                                return Path.Combine(firefox, location);
+                            }
+                        }
+                    }
+                }
+
+                return null;
             }
         }
 
@@ -160,7 +176,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
             {
                 string content = GetContentOrNull();
 
-                return content == null? true: ReadPref(content, proxyTypePref) == null;
+                return content == null ? true : ReadPref(content, proxyTypePref) == null;
             }
         }
 
