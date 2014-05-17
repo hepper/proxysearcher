@@ -171,7 +171,18 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <controls:PagingControl x:Name="Paging" PageChanged="PageChanged" Grid.Row="1" Count="{Binding ElementName=Result, Path=FilteredData.Count}" Margin="0,5,0,5" 
-                                Visibility="{Binding ElementName=DataGridControl, Path=Visibility}" />
+        <Grid Grid.Row="1" Visibility="{Binding ElementName=DataGridControl, Path=Visibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <controls:PagingControl Grid.Column="1" x:Name="Paging" PageChanged="PageChanged"  Count="{Binding ElementName=Result, Path=FilteredData.Count}" Margin="0,5,0,5" />
+
+            <Button Grid.Column="2" Width="30" HorizontalAlignment="Right" Margin="0 5 10 5" ToolTip="Copy search results into clipboard" Click="CopyDataIntoBuffer">
+                <Image Source="/Images/copy.png" />
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

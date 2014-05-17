@@ -64,6 +64,14 @@ namespace ProxySearch.Console.Controls
             set;
         }
 
+        private ExportSettings ExportSettings
+        {
+            get
+            {
+                return Context.Get<AllSettings>().ExportSettings;
+            }
+        }
+
         public SearchResult()
         {
             Data = new ObservableList<ProxyInfo>();
@@ -390,5 +398,13 @@ namespace ProxySearch.Console.Controls
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void CopyDataIntoBuffer(object sender, RoutedEventArgs e)
+        {
+            string[] values = FilteredData.Select(info=> info.ToString(ExportSettings.ExportCountry, ExportSettings.ExportProxyType))
+                                  .ToArray();
+
+            Clipboard.SetText(string.Join(Environment.NewLine, values));
+        }
     }
 }
