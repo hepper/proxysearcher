@@ -7,6 +7,5 @@ namespace ProxySearch.Engine
         void OnAliveProxy(ProxyInfo proxyInfo);
         void OnSearchFinished();
         void OnSearchCancelled();
-        void UpdateJobCount(TaskType type, int currentCount, int totalCount);
     }
 }

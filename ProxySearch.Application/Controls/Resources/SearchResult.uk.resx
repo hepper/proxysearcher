@@ -123,6 +123,9 @@
   <data name="Blacklist" xml:space="preserve">
     <value>Блокувати</value>
   </data>
+  <data name="CopySearchResultsIntoClipboard" xml:space="preserve">
+    <value>Копіювати результати пошуку в буфер обміну</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Країна</value>
   </data>

@@ -8,15 +8,12 @@ namespace ProxySearch.Console.Code.Interfaces
         {
             get;
         }
-
-        IProxyClient SelectedSystemProxy
-        {
-            get;
-        }
-
+        
         List<IProxyClient> AllClients
         {
             get;
         }
+
+        IProxyClient GetInternetExplorerClientOrNull();
     }
 }

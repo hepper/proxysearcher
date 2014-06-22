@@ -39,17 +39,14 @@ namespace ProxySearch.Console.Code.ProxyClients
             }
         }
 
-        public IProxyClient SelectedSystemProxy
+        public IProxyClient GetInternetExplorerClientOrNull()
         {
-            get
-            {
-                return SelectedClients.Single(client => client.Name == Resources.InternetExplorer);
-            }
+            return SelectedClients.SingleOrDefault(client => client.Name == Resources.InternetExplorer);
         }
 
         public List<IProxyClient> AllClients
         {
-            get 
+            get
             {
                 return allClients.SelectMany(pair => pair.Value).ToList();
             }

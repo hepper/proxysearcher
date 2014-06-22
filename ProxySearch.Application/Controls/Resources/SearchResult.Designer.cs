@@ -79,6 +79,15 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy search results into clipboard.
+        /// </summary>
+        public static string CopySearchResultsIntoClipboard {
+            get {
+                return ResourceManager.GetString("CopySearchResultsIntoClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         public static string Country {

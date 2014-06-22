@@ -78,7 +78,6 @@ namespace ProxySearch.Console.Controls
                 SetProgress(false);
                 if (setReadyStatus)
                     SetInformation(Properties.Resources.Ready);
-                Context.Get<ISearchControl>().Completed();
                 action();
             }));
         }

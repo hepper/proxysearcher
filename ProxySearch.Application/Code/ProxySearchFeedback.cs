@@ -53,12 +53,8 @@ namespace ProxySearch.Console.Code
             }
 
             Context.Get<ISearchResult>().Add(proxyInfo);
-            isProxyFound = true;
-        }
 
-        public void UpdateJobCount(TaskType type, int currentCount, int totalCount)
-        {
-            Context.Get<IActionInvoker>().Update(totalCount);
+            isProxyFound = true;
         }
 
         public void OnSearchFinished()

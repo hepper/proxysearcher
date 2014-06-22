@@ -86,9 +86,9 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 if ((DateTime.UtcNow - Timestamp).TotalMilliseconds > 100)
                 {
-                    if (ImportsInternetExplorerSettings)
+                    if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull() != null)
                     {
-                        ProxyCache = Context.Get<IProxyClientSearcher>().SelectedSystemProxy.Proxy;
+                        ProxyCache = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull().Proxy;
                     }
                     else
                     {
@@ -104,9 +104,9 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 if (value == null)
                 {
-                    if (ImportsInternetExplorerSettings)
+                    if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull() != null)
                     {
-                        Context.Get<IProxyClientSearcher>().SelectedSystemProxy.Proxy = value;
+                        Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull().Proxy = value;
                         return;
                     }
 

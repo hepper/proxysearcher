@@ -35,10 +35,10 @@ namespace ProxySearch.Console.Controls
         private void DoBeginSearch()
         {
             Context.Set(new TaskCounter());
+            Context.Get<TaskCounter>().JobCountChanged += (type, currentCount, totalCount) => Context.Get<IActionInvoker>().Update(totalCount);
+            Context.Get<TaskCounter>().OnStarted += Context.Get<IActionInvoker>().Begin;
 
             ProxySearchFeedback feedback = new ProxySearchFeedback();
-
-            Context.Get<TaskCounter>().OnStarted += Context.Get<IActionInvoker>().Begin;
 
             Context.Get<TaskCounter>().OnCompleted += () =>
             {
@@ -50,20 +50,15 @@ namespace ProxySearch.Console.Controls
                 {
                     feedback.OnSearchFinished();
                 }
-            };
 
-            Context.Get<TaskCounter>().JobCountChanged += feedback.UpdateJobCount;
+                Dispatcher.Invoke(() => BeginSearch.IsEnabled = true);
+            };
 
             using (Context.Get<TaskCounter>().Listen(TaskType.Init))
             {
                 Engine.Application application = new ProxySearchEngineApplicationFactory().Create(feedback);
                 application.SearchAsync();
             }
-        }
-
-        public void Completed()
-        {
-            BeginSearch.IsEnabled = true;
         }
 
         public ObservableCollection<TabSettings> TabSettings

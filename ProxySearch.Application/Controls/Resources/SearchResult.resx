@@ -123,6 +123,9 @@
   <data name="Blacklist" xml:space="preserve">
     <value>Blacklist</value>
   </data>
+  <data name="CopySearchResultsIntoClipboard" xml:space="preserve">
+    <value>Copy search results into clipboard</value>
+  </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>

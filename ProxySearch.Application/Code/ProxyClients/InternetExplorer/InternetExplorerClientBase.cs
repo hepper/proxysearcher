@@ -67,7 +67,10 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         {
             get
             {
-                return GetValue<int>(Constants.Browsers.IE.ProxyEnabled) != 0;
+                int proxyEnabled = GetValue<int>(Constants.Browsers.IE.ProxyEnabled);
+                string proxyServer = GetValue<string>(Constants.Browsers.IE.ProxyServer);
+
+                return proxyEnabled != 0 && proxyServer != null;
             }
         }
 
@@ -83,7 +86,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         {
             get 
             {
-                return false; // Internet exprorer do not import his settings, it just uses his own.
+                return false; // Internet explorer do not import his settings, it just uses his own.
             }
         }
     }
