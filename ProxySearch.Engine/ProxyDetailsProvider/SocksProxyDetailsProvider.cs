@@ -10,33 +10,45 @@ using ProxySearch.Engine.Socks;
 
 namespace ProxySearch.Engine.ProxyDetailsProvider
 {
-    public class SocksProxyDetailsProvider : IProxyDetailsProvider
+    public class SocksProxyDetailsProvider : ProxyDetailsProviderBase
     {
-        public async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            UriBuilder uriBuilder = new UriBuilder();
-            uriBuilder.Host = proxy.Address.ToString();
-            uriBuilder.Port = proxy.Port;
+            string proxyUriString = GetProxyUriString(proxy);
 
             ISocksProxyTypeHashtable hashtable = Context.Get<ISocksProxyTypeHashtable>();
 
-            if (hashtable.Exists(uriBuilder.ToString()))
+            if (hashtable.Exists(proxyUriString))
             {
-                SocksProxyTypes socksProxyType = hashtable[uriBuilder.ToString()];
+                SocksProxyTypes socksProxyType = hashtable[proxyUriString];
                 return new SocksProxyDetails(socksProxyType);
             }
 
-            string content = await new HttpDownloaderContainer<SocksHttpClientHandler, SocksProgressMessageHandler>().HttpDownloader.GetContentOrNull(Resources.SpeedTestUrl, proxy, cancellationToken);
+            var httpDownloaderContainer = new HttpDownloaderContainer<SocksHttpClientHandler, SocksProgressMessageHandler>();
+
+            string content = await httpDownloaderContainer.HttpDownloader.GetContentOrNull(GetProxyTypeDetectorUrl(proxy, 
+                                                                                                                   Resources.SocksProxyType), 
+                                                                                           proxy, 
+                                                                                           cancellationToken);
 
             if (content != null)
-                return new SocksProxyDetails(hashtable[uriBuilder.ToString()]);
+                return new SocksProxyDetails(hashtable[proxyUriString]);
 
             return new SocksProxyDetails(SocksProxyTypes.CannotVerify);
         }
 
-        public ProxyTypeDetails GetUncheckedProxyDetails()
+        public override ProxyTypeDetails GetUncheckedProxyDetails()
         {
             return new SocksProxyDetails(SocksProxyTypes.Unchecked);
+        }
+
+        private static string GetProxyUriString(Proxy proxy)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+            uriBuilder.Host = proxy.Address.ToString();
+            uriBuilder.Port = proxy.Port;
+            
+            return uriBuilder.ToString();
         }
     }
 }

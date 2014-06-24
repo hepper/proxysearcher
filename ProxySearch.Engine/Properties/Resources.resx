@@ -170,7 +170,7 @@ Never transfer secure data with public proxy.</value>
     <value>23154081-CFE8-4AC3-A530-142CB55C486D</value>
   </data>
   <data name="ProxyTypeDetectorUrl" xml:space="preserve">
-    <value>http://proxysearcher.sourceforge.net/DetectProxyType.php?param={0}</value>
+    <value>http://proxysearcher.sourceforge.net/DetectProxyType.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}</value>
   </data>
   <data name="Socks4" xml:space="preserve">
     <value>Socks v4</value>
@@ -211,5 +211,11 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   </data>
   <data name="UnsupportedSocksProxyType" xml:space="preserve">
     <value>Unsupported socks proxy type</value>
+  </data>
+  <data name="HttpProxyType" xml:space="preserve">
+    <value>HTTP</value>
+  </data>
+  <data name="SocksProxyType" xml:space="preserve">
+    <value>SOCKS</value>
   </data>
 </root>

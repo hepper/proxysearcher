@@ -9,11 +9,13 @@ using ProxySearch.Engine.Proxies.Http;
 
 namespace ProxySearch.Engine.ProxyDetailsProvider
 {
-    public class HttpProxyDetailsProvider : IProxyDetailsProvider
+    public class HttpProxyDetailsProvider : ProxyDetailsProviderBase
     {
-        public async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            string result = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(ProxyTypeDetectorUrl, proxy, cancellationToken);
+            string result = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(GetProxyTypeDetectorUrl(proxy, Resources.HttpProxyType),
+                                                                                                          proxy,
+                                                                                                          cancellationToken);
 
             if (result == null)
                 return new HttpProxyDetails(HttpProxyTypes.CannotVerify);
@@ -26,17 +28,9 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
             return new HttpProxyDetails(proxyType);
         }
 
-        public ProxyTypeDetails GetUncheckedProxyDetails()
+        public override ProxyTypeDetails GetUncheckedProxyDetails()
         {
             return new HttpProxyDetails(HttpProxyTypes.Unchecked);
-        }
-
-        private string ProxyTypeDetectorUrl
-        {
-            get
-            {
-                return string.Format(Resources.ProxyTypeDetectorUrl, Guid.NewGuid());
-            }
         }
     }
 }

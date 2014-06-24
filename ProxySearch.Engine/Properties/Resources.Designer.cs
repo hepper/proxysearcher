@@ -152,6 +152,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HTTP.
+        /// </summary>
+        internal static string HttpProxyType {
+            get {
+                return ResourceManager.GetString("HttpProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid http response from socks proxy.
         /// </summary>
         internal static string InvalidHttpResponseFromSocksProxy {
@@ -197,7 +206,7 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyType.php?param={0}.
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}.
         /// </summary>
         internal static string ProxyTypeDetectorUrl {
             get {
@@ -238,6 +247,15 @@ namespace ProxySearch.Engine.Properties {
         internal static string Socks5Details {
             get {
                 return ResourceManager.GetString("Socks5Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SOCKS.
+        /// </summary>
+        internal static string SocksProxyType {
+            get {
+                return ResourceManager.GetString("SocksProxyType", resourceCulture);
             }
         }
         
