@@ -79,5 +79,11 @@ namespace ProxySearch.Console.Code
                 public static readonly string Section = "Proxy";
             }
         }
+
+        public static class RegistrySettings
+        {
+            public static readonly string Location = @"Software\Proxy Searcher";
+            public static readonly string ClientId = @"ClientId";
+        }
     }
 }

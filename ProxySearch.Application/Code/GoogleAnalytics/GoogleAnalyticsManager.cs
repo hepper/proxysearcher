@@ -53,7 +53,7 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
                         {
                             new KeyValuePair<string, string>(GAResources.ProtocolVersionKey, GAResources.ProtocolVersionFirst),
                             new KeyValuePair<string, string>(GAResources.AccountIdKey, GAResources.AccountId),
-                            new KeyValuePair<string, string>(GAResources.ClientIdKey, Context.Get<AllSettings>().ClientId.ToString()),
+                            new KeyValuePair<string, string>(GAResources.ClientIdKey, Context.Get<AllSettings>().RegistrySettings.ClientId),
                             new KeyValuePair<string, string>(GAResources.ApplicationNameKey, GAResources.ApplicationName),
                             new KeyValuePair<string, string>(GAResources.HitTypeKey, hitType.ToString().ToLower()),
                             new KeyValuePair<string, string>(GAResources.ProgramVersionKey, Context.Get<IVersionProvider>().VersionString)

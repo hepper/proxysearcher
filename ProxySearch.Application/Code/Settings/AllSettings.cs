@@ -19,10 +19,10 @@ namespace ProxySearch.Console.Code.Settings
             PageSize = 20;
             MaxBandwidth = 1;
             RevertUsedProxiesOnExit = true;
-            ClientId = Guid.NewGuid();
             ShareUsageStatistic = true;
             ParseDetails = new List<ParseDetails>();
             SelectedCulture = new LanguageManager().DefaultLanguage.Culture;
+            RegistrySettings = new RegistrySettings();
         }
 
         public bool CheckUpdates
@@ -68,12 +68,6 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public bool RevertUsedProxiesOnExit
-        {
-            get;
-            set;
-        }
-
-        public Guid ClientId
         {
             get;
             set;
@@ -127,6 +121,13 @@ namespace ProxySearch.Console.Code.Settings
             {
                 selectedTabSettingsId = value.Id;
             }
+        }
+
+        [XmlIgnore]
+        public RegistrySettings RegistrySettings
+        {
+            get;
+            set;
         }
     }
 }
