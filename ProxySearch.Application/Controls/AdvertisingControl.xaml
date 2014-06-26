@@ -11,6 +11,9 @@
         <Storyboard x:Key="ExpandControl" Storyboard.TargetProperty="(UserControl.Width)">
             <DoubleAnimation From="0" To="140" Duration="0:0:1"/>
         </Storyboard>
+        <Storyboard x:Key="CollapseControl" Storyboard.TargetProperty="(UserControl.Width)">
+            <DoubleAnimation From="140" To="0" Duration="0:0:1"/>
+        </Storyboard>
     </UserControl.Resources>
 
     <Grid>
@@ -25,6 +28,7 @@
             </WindowsFormsHost>
         </Border>
 
-        <Label Grid.Row="1" HorizontalContentAlignment="Center" Content="{x:Static resources:AdvertisingControl.Advertising}" Margin="6" />
+        <ToggleButton Grid.Row="1" Content="{x:Static resources:AdvertisingControl.Advertising}" Margin="6" IsChecked="True"
+                      Click="Close_Click"/>
     </Grid>
 </UserControl>

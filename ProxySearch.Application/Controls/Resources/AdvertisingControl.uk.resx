@@ -120,4 +120,7 @@
   <data name="Advertising" xml:space="preserve">
     <value>Реклама</value>
   </data>
+  <data name="CloseAdvertisingQuestion" xml:space="preserve">
+    <value>Перегляд і відвідування посилань рекламного блоку дозволяє отримувати кошти на розробку нових можливостей в Proxy Searcher. Ви втрачаєте можливість здійснити підтримку програми якщо закриєте рекламний блок. Продовжити?</value>
+  </data>
 </root>

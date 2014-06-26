@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using ProxySearch.Common;
@@ -36,9 +37,7 @@ namespace ProxySearch.Console.Controls
         {
             if (!hasErrorHappened)
             {
-                Storyboard storyBoard = (Storyboard)FindResource("ExpandControl");
-                Storyboard.SetTarget(storyBoard, this);
-                storyBoard.Begin();
+                PlayAnimation("ExpandControl");
             }
         }
 
@@ -75,6 +74,22 @@ namespace ProxySearch.Console.Controls
             catch (Win32Exception exception)
             {
                 Context.Get<IGA>().TrackException(exception);
+            }
+        }
+
+        private void PlayAnimation(string name)
+        {
+            Storyboard storyBoard = (Storyboard)FindResource(name);
+            Storyboard.SetTarget(storyBoard, this);
+            storyBoard.Begin();
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            if (Context.Get<IMessageBox>()
+                       .OkCancelQuestion(ProxySearch.Console.Controls.Resources.AdvertisingControl.CloseAdvertisingQuestion) == MessageBoxResult.OK)
+            {
+                PlayAnimation("CollapseControl");
             }
         }
     }
