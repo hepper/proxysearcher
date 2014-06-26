@@ -18,6 +18,7 @@ namespace ProxySearch.Console
     {
         private CancellationTokenSource cancellationToken = new CancellationTokenSource();
         private bool downloaded = false;
+        private bool closeButtonPressed = false;
 
         public DownloadNewVersion(string installPath)
         {
@@ -42,17 +43,17 @@ namespace ProxySearch.Console
                 downloaded = true;
                 Application.Current.Shutdown();
             }
-            catch (TaskCanceledException)
+            catch (Exception exception)
             {
                 Close();
-            }
-            catch (Exception)
-            {
-                Close();
-                if (Context.Get<IMessageBox>().OkCancelQuestion(Properties.Resources.CannotUpdateProgram) == MessageBoxResult.OK)
+
+                if ( !(exception is TaskCanceledException) || !closeButtonPressed)
                 {
-                    Process.Start(Properties.Resources.HomePageLink);
-                    Application.Current.Shutdown();
+                    if (Context.Get<IMessageBox>().OkCancelQuestion(Properties.Resources.CannotUpdateProgram) == MessageBoxResult.OK)
+                    {
+                        Process.Start(Properties.Resources.HomePageLink);
+                        Application.Current.Shutdown();
+                    }
                 }
             }
         }
@@ -99,6 +100,7 @@ namespace ProxySearch.Console
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            closeButtonPressed = true;
             Close();
         }
 
