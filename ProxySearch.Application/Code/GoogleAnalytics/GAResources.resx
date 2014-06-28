@@ -165,4 +165,7 @@
   <data name="ScreenResoultion" xml:space="preserve">
     <value>sr</value>
   </data>
+  <data name="UserLanguage" xml:space="preserve">
+    <value>ul</value>
+  </data>
 </root>

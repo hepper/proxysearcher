@@ -203,5 +203,14 @@ namespace ProxySearch.Console.Code.GoogleAnalytics {
                 return ResourceManager.GetString("ScreenResoultion", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ul.
+        /// </summary>
+        internal static string UserLanguage {
+            get {
+                return ResourceManager.GetString("UserLanguage", resourceCulture);
+            }
+        }
     }
 }
