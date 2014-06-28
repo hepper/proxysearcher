@@ -413,4 +413,10 @@ Response time: {0} s</value>
   <data name="AllSites" xml:space="preserve">
     <value>&lt;all sites&gt;</value>
   </data>
+  <data name="AdvertisingClosed" xml:space="preserve">
+    <value>Advertising closed</value>
+  </data>
+  <data name="AdvertisingOpenedInBrowser" xml:space="preserve">
+    <value>Advertising opened in browser</value>
+  </data>
 </root>

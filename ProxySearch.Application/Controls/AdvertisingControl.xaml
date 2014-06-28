@@ -15,20 +15,19 @@
             <DoubleAnimation From="140" To="0" Duration="0:0:1"/>
         </Storyboard>
     </UserControl.Resources>
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="1" Name="border">
-            <WindowsFormsHost Name="windowsFormsHost">
+    
+    <Border BorderBrush="Black" BorderThickness="1" Name="border">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <WindowsFormsHost Name="windowsFormsHost" Grid.Row="0">
                 <wf:WebBrowser x:Name="webBrowser" ScrollBarsEnabled="false" />
             </WindowsFormsHost>
-        </Border>
 
-        <ToggleButton Grid.Row="1" Content="{x:Static resources:AdvertisingControl.Advertising}" Margin="6" IsChecked="True"
-                      Click="Close_Click"/>
-    </Grid>
+            <ToggleButton Grid.Row="1" Content="{x:Static resources:AdvertisingControl.Advertising}" Margin="6" IsChecked="True"
+                      Click="Close_Click" ToolTip="{x:Static resources:AdvertisingControl.CloseAdvertising}"/>
+        </Grid>
+    </Border>
 </UserControl>

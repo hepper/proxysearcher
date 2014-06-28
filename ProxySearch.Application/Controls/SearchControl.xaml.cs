@@ -26,7 +26,7 @@ namespace ProxySearch.Console.Controls
 
         private void BeginSearch_Click(object sender, RoutedEventArgs e)
         {
-            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, BeginSearch.Content.ToString());
+            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, Buttons.BeginSearch.ToString());
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
             Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);

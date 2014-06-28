@@ -176,7 +176,7 @@ namespace ProxySearch.Console.Controls
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, Cancel.Content.ToString());
+            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, Buttons.CancelSearch.ToString());
 
             Cancel.Content = Properties.Resources.Cancelling;
             Cancel.IsEnabled = false;

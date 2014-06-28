@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using ProxySearch.Common;
+using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using SHDocVw;
 
@@ -17,6 +18,7 @@ namespace ProxySearch.Console.Controls
     {
         private static readonly Uri adsUri = new Uri("http://proxysearcher.sourceforge.net/Ads.php");
         private bool hasErrorHappened = false;
+        private bool isUserClickedOnAdvertising = false;
 
         public AdvertisingControl()
         {
@@ -54,6 +56,7 @@ namespace ProxySearch.Console.Controls
             psi.UseShellExecute = true;
 
             cancel = true;
+            isUserClickedOnAdvertising = true;
 
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
             {
@@ -70,6 +73,7 @@ namespace ProxySearch.Console.Controls
             try
             {
                 Process.Start(url);
+                Context.Get<IGA>().TrackEventAsync(EventType.General, ProxySearch.Console.Properties.Resources.AdvertisingOpenedInBrowser);
             }
             catch (Win32Exception exception)
             {
@@ -86,10 +90,13 @@ namespace ProxySearch.Console.Controls
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            if (Context.Get<IMessageBox>()
+            Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, Buttons.CloseAdvertising.ToString());
+
+            if (isUserClickedOnAdvertising || Context.Get<IMessageBox>()
                        .OkCancelQuestion(ProxySearch.Console.Controls.Resources.AdvertisingControl.CloseAdvertisingQuestion) == MessageBoxResult.OK)
             {
                 PlayAnimation("CollapseControl");
+                Context.Get<IGA>().TrackEventAsync(EventType.General, Properties.Resources.AdvertisingClosed);
             }
         }
     }

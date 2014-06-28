@@ -161,6 +161,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Filters\FilterData.cs" />
+    <Compile Include="Code\GoogleAnalytics\Buttons.cs" />
     <Compile Include="Code\GoogleAnalytics\EventType.cs" />
     <Compile Include="Code\GoogleAnalytics\GAResources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -70,6 +70,15 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close advertising.
+        /// </summary>
+        public static string CloseAdvertising {
+            get {
+                return ResourceManager.GetString("CloseAdvertising", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View the links and visit the ad units allows us to receive money to develop new opportunities in Proxy Searcher. You will lose the ability to implement support of the program if you close advertising. Continue?.
         /// </summary>
         public static string CloseAdvertisingQuestion {

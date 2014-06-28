@@ -61,6 +61,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advertising closed.
+        /// </summary>
+        internal static string AdvertisingClosed {
+            get {
+                return ResourceManager.GetString("AdvertisingClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advertising opened in browser.
+        /// </summary>
+        internal static string AdvertisingOpenedInBrowser {
+            get {
+                return ResourceManager.GetString("AdvertisingOpenedInBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All settings will be reverted to their defaults. Do you want to continue?.
         /// </summary>
         internal static string AllSettingsWillBeRevertedToTheirDefaults {
