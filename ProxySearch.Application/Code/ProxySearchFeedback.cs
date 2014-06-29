@@ -2,6 +2,7 @@
 using System.IO;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.GoogleAnalytics;
+using ProxySearch.Console.Code.GoogleAnalytics.Timing;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Properties;
@@ -29,6 +30,7 @@ namespace ProxySearch.Console.Code
         {
             ExportAllowed = true;
             Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchStarted);
+            Context.Get<IGA>().StartTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy);
         }
 
         public bool ExportAllowed
@@ -54,7 +56,11 @@ namespace ProxySearch.Console.Code
 
             Context.Get<ISearchResult>().Add(proxyInfo);
 
-            isProxyFound = true;
+            if (!isProxyFound)
+            {
+                isProxyFound = true;
+                Context.Get<IGA>().EndTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy, GAResources.FirstProxyFound);
+            }
         }
 
         public void OnSearchFinished()
@@ -62,6 +68,12 @@ namespace ProxySearch.Console.Code
             Context.Get<IActionInvoker>().Finished(!isProxyFound);
             CloseFile();
             Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchFinished);
+
+            if (!isProxyFound)
+            {
+                Context.Get<IGA>()
+                       .EndTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy, GAResources.SearchFinishedAndNoProxiesWereFound);
+            }
         }
 
         public void OnSearchCancelled()
@@ -69,6 +81,12 @@ namespace ProxySearch.Console.Code
             Context.Get<IActionInvoker>().Cancelled(!isProxyFound);
             CloseFile();
             Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchCancelled);
+
+            if (!isProxyFound)
+            {
+                Context.Get<IGA>()
+                       .EndTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy, GAResources.SearchCancelledAndNoProxiesWereFound);
+            }
         }
 
         private void CloseFile()

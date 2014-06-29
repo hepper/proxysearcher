@@ -142,6 +142,15 @@ namespace ProxySearch.Console.Code.GoogleAnalytics {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First proxy found.
+        /// </summary>
+        internal static string FirstProxyFound {
+            get {
+                return ResourceManager.GetString("FirstProxyFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to t.
         /// </summary>
         internal static string HitTypeKey {
@@ -198,18 +207,90 @@ namespace ProxySearch.Console.Code.GoogleAnalytics {
         /// <summary>
         ///   Looks up a localized string similar to sr.
         /// </summary>
-        internal static string ScreenResoultion {
+        internal static string ScreenResoultionKey {
             get {
-                return ResourceManager.GetString("ScreenResoultion", resourceCulture);
+                return ResourceManager.GetString("ScreenResoultionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search cancelled and no proxies were found.
+        /// </summary>
+        internal static string SearchCancelledAndNoProxiesWereFound {
+            get {
+                return ResourceManager.GetString("SearchCancelledAndNoProxiesWereFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search finished and no proxies were found.
+        /// </summary>
+        internal static string SearchFinishedAndNoProxiesWereFound {
+            get {
+                return ResourceManager.GetString("SearchFinishedAndNoProxiesWereFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timing tracking for ({0}, {1}) has been started already.
+        /// </summary>
+        internal static string TimingTrackingHasBeenStartedFormat {
+            get {
+                return ResourceManager.GetString("TimingTrackingHasBeenStartedFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timing tracking for ({0}, {1}) wasn&apos;t started yet.
+        /// </summary>
+        internal static string TimingTrackingWasNotStartedFormat {
+            get {
+                return ResourceManager.GetString("TimingTrackingWasNotStartedFormat", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ul.
         /// </summary>
-        internal static string UserLanguage {
+        internal static string UserLanguageKey {
             get {
-                return ResourceManager.GetString("UserLanguage", resourceCulture);
+                return ResourceManager.GetString("UserLanguageKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to utc.
+        /// </summary>
+        internal static string UserTimingCategoryKey {
+            get {
+                return ResourceManager.GetString("UserTimingCategoryKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to utl.
+        /// </summary>
+        internal static string UserTimingLabelKey {
+            get {
+                return ResourceManager.GetString("UserTimingLabelKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to utt.
+        /// </summary>
+        internal static string UserTimingTimeKey {
+            get {
+                return ResourceManager.GetString("UserTimingTimeKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to utv.
+        /// </summary>
+        internal static string UserTimingVariableKey {
+            get {
+                return ResourceManager.GetString("UserTimingVariableKey", resourceCulture);
             }
         }
     }

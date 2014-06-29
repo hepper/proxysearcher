@@ -144,6 +144,9 @@
   <data name="ExceptionKey" xml:space="preserve">
     <value>exd</value>
   </data>
+  <data name="FirstProxyFound" xml:space="preserve">
+    <value>First proxy found</value>
+  </data>
   <data name="HitTypeKey" xml:space="preserve">
     <value>t</value>
   </data>
@@ -162,10 +165,34 @@
   <data name="ProtocolVersionKey" xml:space="preserve">
     <value>v</value>
   </data>
-  <data name="ScreenResoultion" xml:space="preserve">
+  <data name="ScreenResoultionKey" xml:space="preserve">
     <value>sr</value>
   </data>
-  <data name="UserLanguage" xml:space="preserve">
+  <data name="SearchCancelledAndNoProxiesWereFound" xml:space="preserve">
+    <value>Search cancelled and no proxies were found</value>
+  </data>
+  <data name="SearchFinishedAndNoProxiesWereFound" xml:space="preserve">
+    <value>Search finished and no proxies were found</value>
+  </data>
+  <data name="TimingTrackingHasBeenStartedFormat" xml:space="preserve">
+    <value>Timing tracking for ({0}, {1}) has been started already</value>
+  </data>
+  <data name="TimingTrackingWasNotStartedFormat" xml:space="preserve">
+    <value>Timing tracking for ({0}, {1}) wasn't started yet</value>
+  </data>
+  <data name="UserLanguageKey" xml:space="preserve">
     <value>ul</value>
+  </data>
+  <data name="UserTimingCategoryKey" xml:space="preserve">
+    <value>utc</value>
+  </data>
+  <data name="UserTimingLabelKey" xml:space="preserve">
+    <value>utl</value>
+  </data>
+  <data name="UserTimingTimeKey" xml:space="preserve">
+    <value>utt</value>
+  </data>
+  <data name="UserTimingVariableKey" xml:space="preserve">
+    <value>utv</value>
   </data>
 </root>

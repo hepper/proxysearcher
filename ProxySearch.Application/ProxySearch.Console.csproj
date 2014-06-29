@@ -170,6 +170,9 @@
     </Compile>
     <Compile Include="Code\GoogleAnalytics\GoogleAnalyticsManager.cs" />
     <Compile Include="Code\GoogleAnalytics\HitTypes.cs" />
+    <Compile Include="Code\GoogleAnalytics\Timing\TimingCategory.cs" />
+    <Compile Include="Code\GoogleAnalytics\Timing\TimingDictionaryKey.cs" />
+    <Compile Include="Code\GoogleAnalytics\Timing\TimingVariable.cs" />
     <Compile Include="Code\Interfaces\IGA.cs" />
     <Compile Include="Code\Interfaces\ISettingsTabNavigator.cs" />
     <Compile Include="Code\Language\Language.cs" />

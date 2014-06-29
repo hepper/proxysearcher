@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using ProxySearch.Common;
+using ProxySearch.Console.Code.GoogleAnalytics.Timing;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 
@@ -14,6 +15,8 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
 {
     public class GoogleAnalyticsManager : IGA
     {
+        private Dictionary<TimingDictionaryKey, DateTime> timingDictionary = new Dictionary<TimingDictionaryKey, DateTime>();
+
         public async void TrackPageViewAsync(string pageName)
         {
             await Track(HitTypes.AppView, new KeyValuePair<string, string>(GAResources.PageNameKey, pageName));
@@ -41,6 +44,47 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
             await Track(HitTypes.Exception, new KeyValuePair<string, string>(GAResources.ExceptionKey, data));
         }
 
+        public void StartTrackTiming(TimingCategory category, TimingVariable variable)
+        {
+            TimingDictionaryKey key = ToTimingKey(category, variable);
+
+            if (timingDictionary.ContainsKey(key))
+            {
+                TrackException(new InvalidOperationException(string.Format(GAResources.TimingTrackingHasBeenStartedFormat, category, variable)));
+            }
+            else
+            {
+                timingDictionary.Add(key, DateTime.Now);
+            }
+        }
+
+        public async void EndTrackTiming(TimingCategory category, TimingVariable variable, string label = null)
+        {
+            DateTime start;
+            TimingDictionaryKey key = ToTimingKey(category, variable);
+
+            if (timingDictionary.TryGetValue(key, out start))
+            {
+                timingDictionary.Remove(key);
+
+                List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>(GAResources.UserTimingCategoryKey, category.ToString()),
+                    new KeyValuePair<string, string>(GAResources.UserTimingVariableKey, variable.ToString()),
+                    new KeyValuePair<string, string>(GAResources.UserTimingTimeKey, (DateTime.Now-start).Milliseconds.ToString()),
+                };
+
+                if (!string.IsNullOrWhiteSpace(label))
+                    parameters.Add(new KeyValuePair<string, string>(GAResources.UserTimingLabelKey, label));
+
+                await Track(HitTypes.Timing, parameters.ToArray());
+            }
+            else
+            {
+                TrackException(new InvalidOperationException(string.Format(GAResources.TimingTrackingWasNotStartedFormat, category, variable)));
+            }
+        }
+
         private Task Track(HitTypes hitType, params KeyValuePair<string, string>[] parameters)
         {
             return Task.Run(async () =>
@@ -57,13 +101,13 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
                             new KeyValuePair<string, string>(GAResources.ApplicationNameKey, GAResources.ApplicationName),
                             new KeyValuePair<string, string>(GAResources.HitTypeKey, hitType.ToString().ToLower()),
                             new KeyValuePair<string, string>(GAResources.ProgramVersionKey, Context.Get<IVersionProvider>().VersionString),
-                            new KeyValuePair<string, string>(GAResources.UserLanguage, Context.Get<AllSettings>().SelectedCulture)
+                            new KeyValuePair<string, string>(GAResources.UserLanguageKey, Context.Get<AllSettings>().SelectedCulture)
                         };
 
                         string screenResolution = ScreenResolutionOrNull;
 
                         if (screenResolution != null)
-                            allParameters.Add(new KeyValuePair<string, string>(GAResources.ScreenResoultion, ScreenResolutionOrNull));
+                            allParameters.Add(new KeyValuePair<string, string>(GAResources.ScreenResoultionKey, ScreenResolutionOrNull));
 
                         allParameters.AddRange(parameters);
 
@@ -109,6 +153,15 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
                     return null;
                 }
             }
+        }
+
+        private TimingDictionaryKey ToTimingKey(TimingCategory category, TimingVariable variable)
+        {
+            return new TimingDictionaryKey
+            {
+                Category = category,
+                Variable = variable
+            };
         }
     }
 }
