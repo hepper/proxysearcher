@@ -71,7 +71,7 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
                 {
                     new KeyValuePair<string, string>(GAResources.UserTimingCategoryKey, category.ToString()),
                     new KeyValuePair<string, string>(GAResources.UserTimingVariableKey, variable.ToString()),
-                    new KeyValuePair<string, string>(GAResources.UserTimingTimeKey, (DateTime.Now-start).Milliseconds.ToString()),
+                    new KeyValuePair<string, string>(GAResources.UserTimingTimeKey, ((int)(DateTime.Now-start).TotalMilliseconds).ToString()),
                 };
 
                 if (!string.IsNullOrWhiteSpace(label))
