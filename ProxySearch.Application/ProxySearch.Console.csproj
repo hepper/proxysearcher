@@ -414,6 +414,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SelectFolderControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\TabNameControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TabNameControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\TabSettingControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -740,6 +745,12 @@
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\TabNameControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TabNameControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\TabNameControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\TabNameControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\TabSettingControl.uk.resx">
       <SubType>Designer</SubType>

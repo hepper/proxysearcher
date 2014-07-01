@@ -58,19 +58,19 @@ namespace ProxySearch.Engine.Proxies
 
         public override bool Equals(object obj)
         {
-            if ((object)obj == null)
+            Proxy proxy = obj as Proxy;
+
+            if (proxy == null)
             {
                 return false;
             }
 
-            if (GetType() != obj.GetType())
+            if (Address == null || proxy.Address == null)
             {
-                return false;
+                return Address == proxy.Address && Port == proxy.Port;
             }
 
-            Proxy proxy = (Proxy)obj;
-
-            return this.Address.ToString() == proxy.Address.ToString() && this.Port == proxy.Port;
+            return  Address.ToString() == proxy.Address.ToString() && Port == proxy.Port;
         }
 
         public static bool operator ==(Proxy a, Proxy b)
@@ -95,6 +95,11 @@ namespace ProxySearch.Engine.Proxies
 
         public override int GetHashCode()
         {
+            if (Address == null)
+            {
+                return Port.GetHashCode();
+            }
+
             return Address.GetHashCode() + Port.GetHashCode();
         }
 
