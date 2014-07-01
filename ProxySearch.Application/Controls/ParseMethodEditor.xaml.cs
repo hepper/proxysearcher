@@ -115,12 +115,14 @@ namespace ProxySearch.Console.Controls
 
             Regex regex = new Regex(ParseDetails.RegularExpression);
 
-            IEnumerable<Proxy> proxies = new RegexCompilerMethod(ParseDetails).Parse(DownloadContent());
+            string content = DownloadContent();
+
+            IEnumerable<Proxy> proxies = new RegexCompilerMethod(ParseDetails).Parse(content);
 
             if (proxies.Any())
                 SetTestResult(string.Join(Environment.NewLine, proxies));
             else
-                SetTestResult(Properties.Resources.NoOneProxyHasBeenFound);
+                SetTestResult(string.Join(Environment.NewLine, Properties.Resources.NoOneProxyHasBeenFound, content));
         }
 
         private Uri TestUri

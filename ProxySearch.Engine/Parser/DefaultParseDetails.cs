@@ -14,7 +14,8 @@ namespace ProxySearch.Engine.Parser
                     IPPortDetails,
                     XproxyComDetails,
                     ProxyListYComDetails,
-                    PublicProxyBlogspotCom
+                    PublicProxyBlogspotCom,
+                    SpysRu
                 };
             }
         }
@@ -67,6 +68,19 @@ namespace ProxySearch.Engine.Parser
                     Url = "public-proxy.blogspot.com",
                     RawRegularExpression = GetRegex(@"<br>(?<ipport>.*?)<br>"),
                     Code = "return new Proxy(HttpUtility.HtmlDecode((string)(match.Groups[\"ipport\"]).Value));"
+                };
+            }
+        }
+
+        private ParseDetails SpysRu
+        {
+            get
+            {
+                return new ParseDetails
+                {
+                    Url = "spys.ru",
+                    RawRegularExpression = GetRegex(@"(?<ipgroup><ipregex>?)\<script\s+type\=.text/javascript.>document\.write\(.\<font\s+class\=spy\d+\>\:\<\\/font\>.(\+\((?<f1>\w+?)\^(?<f2>\w+?)\))+\)\</script\>"),
+                    Code = EmbeddedResource.ReadToEnd("ProxySearch.Engine.Resources.spysru._cs")
                 };
             }
         }

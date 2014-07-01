@@ -2,12 +2,15 @@
 using System.Text.RegularExpressions;
 using ProxySearch.Engine.Proxies;
 using System.Web;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace ProxySearch.Engine.Resources
 {{
     public class ProxyParserRuntime
     {{
-        public Proxy GetProxyOrNull(Match match)
+        public Proxy GetProxyOrNull(string document, Match match)
         {{
             try
             {{

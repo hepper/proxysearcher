@@ -13,8 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -38,10 +37,10 @@
                 <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding ElementName=ParseMethod, Path=ParseDetails.Url}" Name="UrlTextBox"></TextBox>
 
                 <Label Grid.Row="1" Grid.Column="0"  Margin="5" Content="{x:Static resources:ParseMethodEditor.RegularExpression}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding ElementName=ParseMethod, Path=ParseDetails.RawRegularExpression}"></TextBox>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding ElementName=ParseMethod, Path=ParseDetails.RawRegularExpression}" HorizontalScrollBarVisibility="Auto"></TextBox>
 
                 <Label Grid.Row="2" Grid.Column="0"  Margin="5" Content="{x:Static resources:ParseMethodEditor.Code}" />
-                <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="5"
+                <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                          Text="{Binding ElementName=ParseMethod, Path=ParseDetails.Code}"></TextBox>
             </Grid>
         </GroupBox>
@@ -50,9 +49,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -67,11 +65,11 @@
                                                      Converter={StaticResource stringToVisibilityConverter}}" 
                                                      Content="{x:Static resources:ParseMethodEditor.Test}" />
                 <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="{x:Static resources:ParseMethodEditor.TestResult}" />
-                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" Height="100" IsReadOnly="True" Name="TestResult" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+                <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" IsReadOnly="True" Name="TestResult" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
             </Grid>
         </GroupBox>
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="100" Margin="5" Click="ApplyChanges" Content="{x:Static resources:ParseMethodEditor.Apply}" />
             <Button Width="100"  Margin="5" Click="Cancel" Content="{x:Static resources:ParseMethodEditor.Cancel}" />
         </StackPanel>

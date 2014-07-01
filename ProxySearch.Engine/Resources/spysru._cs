@@ -1,0 +1,81 @@
+﻿Action<int> throwException = point =>
+{
+    throw new InvalidOperationException(string.Format("spys.ru: cannot decrypt data at point {0}", point));
+};
+
+Func<Dictionary<string, int>> getVariableDictionary = () =>
+{
+    Func<string[], string, Dictionary<string, int>> getVariableValues = (source, values) =>
+    {
+        var keys = Enumerable.Range('0', 10)
+                                .Union(Enumerable.Range('a', 26))
+                                .Union(Enumerable.Range('A', 24))
+                                .Select(element => (char)element)
+                                .ToArray();
+
+        if (source.Length != keys.Length)
+            throwException(1);
+
+        Dictionary<char, string> replacement = new Dictionary<char, string>();
+
+        for (int i = 0; i < source.Count(); i++)
+        {
+            replacement.Add(keys[i], source[i] == "" ? i.ToString() : source[i]);
+        }
+
+        Regex regex = new Regex(@"\b\w+\b");
+
+        string result = regex.Replace(values, new MatchEvaluator(match1 =>
+        {
+            if (match1.Value.Length > 1)
+                throwException(2);
+
+            return replacement[match1.Value[0]];
+        }));
+
+        Dictionary<string, string> splittedValues = result.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
+                                                            .ToDictionary(element => element.Split('=')[0], element => element.Split('=')[1]);
+
+        Func<string, int> toInteger = null;
+        toInteger = stringValue =>
+        {
+            int value;
+            if (int.TryParse(stringValue, out value))
+                return value;
+
+            string[] stringValues = stringValue.Split('^');
+
+            if (stringValues.Length > 2)
+                throwException(3);
+
+            if (stringValues.Length == 1)
+                return toInteger(splittedValues[stringValues[0]]);
+
+            return toInteger(stringValues[0]) ^ toInteger(stringValues[1]);
+        };
+
+        return splittedValues.ToDictionary(element => element.Key, element => toInteger(element.Value));
+    };
+
+    MatchCollection matches = new Regex(@"\}\s*\(\'(?<values>.*?)\'\,\d*\,\d*\,\'(?<source>.*?)\'.*\,0\,\{\}\)").Matches(document);
+
+    if (matches.Count != 1)
+        throwException(4 + matches.Count == 0 ? 0 : 1);
+
+    return getVariableValues(matches[0].Groups["source"].Value.Split('^'),
+                                matches[0].Groups["values"].Value);
+};
+
+Dictionary<string, int> parsedValues = getVariableDictionary();
+
+string strPort = string.Empty;
+
+for (int i = 0; i < match.Groups["f1"].Captures.Count; i++)
+{
+    strPort += (parsedValues[match.Groups["f1"].Captures[i].Value] ^ parsedValues[match.Groups["f2"].Captures[i].Value]).ToString();
+}
+            
+IPAddress address = IPAddress.Parse(match.Groups["ipgroup"].Value);
+ushort port = ushort.Parse(strPort);
+
+return new Proxy(address, port);
