@@ -40,7 +40,7 @@
                 <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding ElementName=ParseMethod, Path=ParseDetails.RawRegularExpression}" HorizontalScrollBarVisibility="Auto"></TextBox>
 
                 <Label Grid.Row="2" Grid.Column="0"  Margin="5" Content="{x:Static resources:ParseMethodEditor.Code}" />
-                <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Height="100" Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                <TextBox Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="5" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                          Text="{Binding ElementName=ParseMethod, Path=ParseDetails.Code}"></TextBox>
             </Grid>
         </GroupBox>
