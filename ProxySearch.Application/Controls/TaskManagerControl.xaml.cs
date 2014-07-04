@@ -94,12 +94,16 @@ namespace ProxySearch.Console.Controls
         {
             int workerThreads;
             int competitionPortThreads;
+            int maxWorkerThreads;
+            int maxCompetitionPortThreads;
+
             ThreadPool.GetAvailableThreads(out workerThreads, out competitionPortThreads);
+            ThreadPool.GetMaxThreads(out maxWorkerThreads, out maxCompetitionPortThreads);
 
             Dispatcher.Invoke(() =>
             {
-                ThreadsCount = Context.Get<AllSettings>().MaxThreadCount - workerThreads;
-                CompetitionPortThreadsCount = Context.Get<AllSettings>().MaxThreadCount - competitionPortThreads;
+                ThreadsCount = maxWorkerThreads - workerThreads;
+                CompetitionPortThreadsCount = maxCompetitionPortThreads - competitionPortThreads;
             });
         }
 
