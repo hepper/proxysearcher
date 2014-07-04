@@ -9,6 +9,14 @@ namespace ProxySearch.Engine.SearchEngines.UrlList
     {
         private List<Uri> urls;
 
+        public string Status
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public UrlListSearchEngine(string urlList)
         {
             this.urls = urlList.Split('\n')

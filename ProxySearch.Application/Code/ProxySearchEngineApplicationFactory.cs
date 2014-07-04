@@ -18,15 +18,18 @@ using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.SearchEngines.FolderSearch;
 using ProxySearch.Engine.Socks;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Code
 {
     public class ProxySearchEngineApplicationFactory
     {
-        public Application Create(ProxySearchFeedback feedback)
+        public Application Create(TaskItem task, ProxySearchFeedback feedback)
         {
             Context.Set(new CancellationTokenSource());
             Context.Set<IHttpDownloaderContainer>(HttpDownloaderContainer);
+
+            task.UpdateDetails(Resources.ReadingConfigurationOfSelectedSearch);
 
             IDetectable searchEngineDetectable = CreateDetectableInstance<ISearchEngine>(Settings.SelectedTabSettings.SearchEngineDetectableType);
             IDetectable proxyCheckerDetectable = CreateDetectableInstance<IProxyChecker>(Settings.SelectedTabSettings.ProxyCheckerDetectableType);
@@ -34,17 +37,27 @@ namespace ProxySearch.Console.Code
             ISearchEngine searchEngine = CreateImplementationInstance<ISearchEngine>(searchEngineDetectable,
                                                                                      Settings.SelectedTabSettings.SearchEngineSettings,
                                                                                      searchEngineDetectable.InterfaceSettings);
+
             feedback.ExportAllowed = !(searchEngine is FolderSearchEngine);
 
-            return new Application(searchEngine,
-                                   new ProxyProvider(Context.Get<IBlackList>(), new ParseMethodsProvider(Settings.ParseDetails)),
-                                   feedback,
-                                   CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable,
-                                                                               Settings.SelectedTabSettings.ProxyCheckerSettings,
-                                                                               proxyCheckerDetectable.InterfaceSettings),
-                                   CreateImplementationInstance<IGeoIP>(geoIPDetectable,
-                                                                        Settings.GeoIPSettings,
-                                                                        geoIPDetectable.InterfaceSettings));
+            task.UpdateDetails(Resources.PreparingProxyProvider);
+
+            IProxyProvider proxyProvider =  new ProxyProvider(Context.Get<IBlackList>(), new ParseMethodsProvider(Settings.ParseDetails));
+
+            task.UpdateDetails(Resources.PreparingProxyChecker);
+
+            IProxyChecker proxyChecker = CreateImplementationInstance<IProxyChecker>(proxyCheckerDetectable,
+                                                                                     Settings.SelectedTabSettings.ProxyCheckerSettings,
+                                                                                     proxyCheckerDetectable.InterfaceSettings);
+            task.UpdateDetails(Resources.PreparingGeoIpService);
+
+            IGeoIP geoIP = CreateImplementationInstance<IGeoIP>(geoIPDetectable,
+                                                                Settings.GeoIPSettings,
+                                                                geoIPDetectable.InterfaceSettings);
+
+            task.UpdateDetails(Resources.PreparingApplication);
+
+            return new Application(searchEngine, proxyProvider, feedback, proxyChecker, geoIP);
         }
 
         private IHttpDownloaderContainer HttpDownloaderContainer

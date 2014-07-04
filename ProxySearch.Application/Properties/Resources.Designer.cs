@@ -538,6 +538,42 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preparing search application.
+        /// </summary>
+        internal static string PreparingApplication {
+            get {
+                return ResourceManager.GetString("PreparingApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing geo ip service.
+        /// </summary>
+        internal static string PreparingGeoIpService {
+            get {
+                return ResourceManager.GetString("PreparingGeoIpService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing proxy checker.
+        /// </summary>
+        internal static string PreparingProxyChecker {
+            get {
+                return ResourceManager.GetString("PreparingProxyChecker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing proxy provider.
+        /// </summary>
+        internal static string PreparingProxyProvider {
+            get {
+                return ResourceManager.GetString("PreparingProxyProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By Url.
         /// </summary>
         internal static string ProxyCheckerByUrl {
@@ -601,6 +637,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reading configuration of selected search.
+        /// </summary>
+        internal static string ReadingConfigurationOfSelectedSearch {
+            get {
+                return ResourceManager.GetString("ReadingConfigurationOfSelectedSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ready.
         /// </summary>
         internal static string Ready {
@@ -642,6 +687,15 @@ namespace ProxySearch.Console.Properties {
         internal static string SearchFinished {
             get {
                 return ResourceManager.GetString("SearchFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search initialization.
+        /// </summary>
+        internal static string SearchInitialization {
+            get {
+                return ResourceManager.GetString("SearchInitialization", resourceCulture);
             }
         }
         

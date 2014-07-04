@@ -12,6 +12,8 @@ using System.Linq;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Tasks;
+using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
@@ -44,8 +46,9 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
                 if (!batch.Any())
                     return;
 
-                using (Context.Get<TaskCounter>().Listen(TaskType.Search, batch.Count))
+                using (TaskItem task = Context.Get<TaskManager>().Create(Resources.CheckingBatchOfProxies))
                 {
+                    task.UpdateDetails(string.Join(", ", proxies));
                     await CheckBatchAsync(batch, feedback);
                 }
             }
@@ -65,7 +68,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 
                 ProxyInfo proxy = new ProxyInfo(proxies.Single(item => item.AddressPort == info.ipport));
 
-                proxy.Details = new ProxyDetails(new HttpProxyDetails(GetProxyType(info)));  
+                proxy.Details = new ProxyDetails(new HttpProxyDetails(GetProxyType(info)));
                 proxy.CountryInfo = new CountryInfo
                 {
                     Code = info.country_id.ToString(),

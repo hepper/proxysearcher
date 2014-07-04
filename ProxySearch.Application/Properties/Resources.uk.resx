@@ -175,7 +175,7 @@
     <value>Використовує http://google.com сайт для пошуку проксі. Якщо Ви не можете відкрити http://google.com в браузері тоді використайте інший тип пошуку.</value>
   </data>
   <data name="JobCountFormat" xml:space="preserve">
-    <value>Кількість перевірок {0}</value>
+    <value>Кількість задач {0}</value>
   </data>
   <data name="ProxyCheckerByUrl" xml:space="preserve">
     <value>За адресою</value>
@@ -334,5 +334,23 @@
   </data>
   <data name="Resources_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SearchInitialization" xml:space="preserve">
+    <value>Ініціалізація пошуку</value>
+  </data>
+  <data name="PreparingApplication" xml:space="preserve">
+    <value>Налаштовується додаток пошуку</value>
+  </data>
+  <data name="PreparingGeoIpService" xml:space="preserve">
+    <value>Налаштовується сервіс визначення країни</value>
+  </data>
+  <data name="PreparingProxyChecker" xml:space="preserve">
+    <value>Налаштовується метод перевірки проксі</value>
+  </data>
+  <data name="PreparingProxyProvider" xml:space="preserve">
+    <value>Налаштовуєтьсяпоставщик проксі</value>
+  </data>
+  <data name="ReadingConfigurationOfSelectedSearch" xml:space="preserve">
+    <value>Читається конфігурація вибраного методу пошуку</value>
   </data>
 </root>

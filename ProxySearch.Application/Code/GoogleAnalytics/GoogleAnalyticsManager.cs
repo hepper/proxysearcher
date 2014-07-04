@@ -40,7 +40,12 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
 
         public async void TrackException(Exception exception)
         {
-            string data = exception.ToString().Substring(0, 150);
+            int maxLength = 150;
+            string data = exception.ToString();
+
+            if (data.Length > maxLength)
+                data = data.Substring(0, maxLength);
+
             await Track(HitTypes.Exception, new KeyValuePair<string, string>(GAResources.ExceptionKey, data));
         }
 

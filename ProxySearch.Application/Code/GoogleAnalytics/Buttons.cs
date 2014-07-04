@@ -4,6 +4,7 @@
     {
         CloseAdvertising,
         CancelSearch,
-        BeginSearch
+        BeginSearch,
+        TaskManager
     }
 }

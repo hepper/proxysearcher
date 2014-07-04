@@ -144,6 +144,18 @@
 Постарайтесь не использовать прокси этого типа.
 Никогда не передевайте личные данные через публичные прокси.</value>
   </data>
+  <data name="CheckingBatchOfProxies" xml:space="preserve">
+    <value>Проверяется группа прокси сервисом checkerproxy.net</value>
+  </data>
+  <data name="CheckingProxiesFormat" xml:space="preserve">
+    <value>Проверяемые прокси: {0}</value>
+  </data>
+  <data name="CheckingProxyIfItWorks" xml:space="preserve">
+    <value>Проверяется работоспособность прокси</value>
+  </data>
+  <data name="DownloadingFormat" xml:space="preserve">
+    <value>Скачивается '{0}'</value>
+  </data>
   <data name="HighAnonymous" xml:space="preserve">
     <value>Элитный</value>
   </data>
@@ -158,6 +170,12 @@
   </data>
   <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
     <value>Proxy свойство не может равняться null</value>
+  </data>
+  <data name="ProxySearching" xml:space="preserve">
+    <value>Ищутся прокси</value>
+  </data>
+  <data name="SearchingInFolderFormat" xml:space="preserve">
+    <value>Ищется в папке '{0}'</value>
   </data>
   <data name="Socks4Details" xml:space="preserve">
     <value>Этот тип прокси работает на транспортном уровне стека протоколов TCP/IP и поддерживает четвертую версию Socks прокси</value>

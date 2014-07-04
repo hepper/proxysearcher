@@ -14,6 +14,7 @@ using ProxySearch.Console.Code.Version;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Code
 {
@@ -45,6 +46,8 @@ namespace ProxySearch.Console.Code
 
             Context.Get<IGA>().TrackEventAsync(EventType.Program, Resources.Started);
             Context.Get<IGA>().TrackPageViewAsync(typeof(SearchControl).Name);
+
+            Context.Set(new TaskManager());
         }
 
         public void Deinitialize()

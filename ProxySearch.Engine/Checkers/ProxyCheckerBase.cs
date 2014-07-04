@@ -8,6 +8,7 @@ using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
 {
@@ -39,8 +40,9 @@ namespace ProxySearch.Engine.Checkers
                     if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                         return;
 
-                    using (Context.Get<TaskCounter>().Listen(TaskType.Search))
+                    using (TaskItem task = Context.Get<TaskManager>().Create(Properties.Resources.CheckingProxyIfItWorks))
                     {
+                        task.UpdateDetails(proxyCopy.ToString());
                         BanwidthInfo bandwidth = null;
 
                         if (await Alive(proxyCopy, () => bandwidth = new BanwidthInfo()

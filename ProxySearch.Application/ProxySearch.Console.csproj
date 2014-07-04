@@ -60,6 +60,7 @@
     <ApplicationIcon>Resources\world128x128.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -97,7 +98,6 @@
     <Compile Include="Code\ApplicationInitializer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Collections\ObservableList.cs" />
     <Compile Include="Code\Constants.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,21 +105,27 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Converters\AccuracyConverter.cs" />
+    <Compile Include="Code\Converters\AndMultiConverter.cs" />
     <Compile Include="Code\Converters\BandwidthResultColorConverter.cs" />
     <Compile Include="Code\Converters\BandwidthResultTooltipConverter.cs" />
     <Compile Include="Code\Converters\BandwidthStateVisibilityConverter.cs" />
     <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\CenterConverter.cs" />
+    <Compile Include="Code\Converters\ClassToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\DeleteButtonVisibilityConverter.cs" />
     <Compile Include="Code\Converters\FilteringButtonIsCheckedConverter.cs" />
     <Compile Include="Code\Converters\FilteringPopupIsCheckedMultiConverter.cs" />
+    <Compile Include="Code\Converters\GripAlignmentConverter.cs" />
+    <Compile Include="Code\Converters\GripCursorConverter.cs" />
+    <Compile Include="Code\Converters\GripRotationConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
     <Compile Include="Code\Converters\RowBackgroundColorConverter.cs" />
     <Compile Include="Code\Converters\SizeToAngleConverter.cs" />
     <Compile Include="Code\Converters\StringToIsEnableConverter.cs" />
+    <Compile Include="Code\Converters\TasksToDetailsStringConverter.cs" />
     <Compile Include="Code\Converters\UrlPathConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
     <Compile Include="Code\Detectable\DetectableBase.cs" />
@@ -160,6 +166,7 @@
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Extensions\ActionExtensions.cs" />
     <Compile Include="Code\Filters\FilterData.cs" />
     <Compile Include="Code\GoogleAnalytics\Buttons.cs" />
     <Compile Include="Code\GoogleAnalytics\EventType.cs" />
@@ -329,6 +336,10 @@
     <Compile Include="Controls\ProxyClientsControl.xaml.cs">
       <DependentUpon>ProxyClientsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\UI\ResizeDirection.cs" />
+    <Compile Include="Controls\ResizeControl.xaml.cs">
+      <DependentUpon>ResizeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\AboutControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -424,6 +435,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TabSettingControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\TaskManagerControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskManagerControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\ToolbarControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -443,6 +459,9 @@
     </Compile>
     <Compile Include="Controls\TabSettingControl.xaml.cs">
       <DependentUpon>TabSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TaskManagerControl.xaml.cs">
+      <DependentUpon>TaskManagerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ToolbarControl.xaml.cs">
       <DependentUpon>ToolbarControl.xaml</DependentUpon>
@@ -553,6 +572,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ResizeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SearchControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -574,6 +597,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\TabSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TaskManagerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -751,6 +778,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TabNameControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\TabNameControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\TaskManagerControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TaskManagerControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\TaskManagerControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\TaskManagerControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\TabSettingControl.uk.resx">
       <SubType>Designer</SubType>

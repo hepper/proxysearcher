@@ -9,9 +9,11 @@ using ProxySearch.Common;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Parser;
+using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.Socks;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine
 {
@@ -39,14 +41,18 @@ namespace ProxySearch.Engine
         {
             try
             {
-                using (Context.Get<TaskCounter>().Listen(TaskType.Search))
+                using (TaskItem task = Context.Get<TaskManager>().Create(Resources.ProxySearching))
                 {
                     while (true)
                     {
+                        task.UpdateDetails(searchEngine.Status);
+
                         Uri uri = await searchEngine.GetNext();
 
                         if (uri == null || Context.Get<CancellationTokenSource>().IsCancellationRequested)
                             return;
+
+                        task.UpdateDetails(string.Format(Resources.DownloadingFormat, uri.ToString()));
 
                         string document = await GetDocumentAsync(uri);
 

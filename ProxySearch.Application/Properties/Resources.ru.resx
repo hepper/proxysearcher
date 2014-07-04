@@ -175,7 +175,7 @@
     <value>Использует http://google.com сайт для поиска прокси. Если Вы не можете открыть http://google.com в браузере тогда используйте другой тип поиска.</value>
   </data>
   <data name="JobCountFormat" xml:space="preserve">
-    <value>Количество проверок {0}</value>
+    <value>Количество задач {0}</value>
   </data>
   <data name="ProxyCheckerByUrl" xml:space="preserve">
     <value>По адресу</value>
@@ -334,5 +334,23 @@
   </data>
   <data name="Resources_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="SearchInitialization" xml:space="preserve">
+    <value>Инициализация поиска</value>
+  </data>
+  <data name="PreparingApplication" xml:space="preserve">
+    <value>Настраивается приложение поиска</value>
+  </data>
+  <data name="PreparingGeoIpService" xml:space="preserve">
+    <value>Настраивается сервис определения страны</value>
+  </data>
+  <data name="PreparingProxyChecker" xml:space="preserve">
+    <value>Настраивается метод проверки прокси</value>
+  </data>
+  <data name="PreparingProxyProvider" xml:space="preserve">
+    <value>Настраивается поставщик прокси</value>
+  </data>
+  <data name="ReadingConfigurationOfSelectedSearch" xml:space="preserve">
+    <value>Читается конфигурация выбранного метода поиска</value>
   </data>
 </root>

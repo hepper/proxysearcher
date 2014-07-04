@@ -6,7 +6,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
-using ProxySearch.Console.Code.Collections;
 using ProxySearch.Console.Code.Filters;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
@@ -316,7 +315,7 @@ namespace ProxySearch.Console.Controls
         private void UpdateStatusString()
         {
             string formatString = Data.Count == FilteredData.Count ? Properties.Resources.FoundAndShownProxiesFormat : Properties.Resources.FoundProxiesFormat;
-            Context.Get<IActionInvoker>().UpdateStatus(string.Format(formatString, Data.Count, FilteredData.Count));
+            Context.Get<IActionInvoker>().StatusText = string.Format(formatString, Data.Count, FilteredData.Count);
         }
 
         private void AddToBlackList_Click(object sender, RoutedEventArgs e)

@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
-using ProxySearch.Common;
 
 namespace ProxySearch.Console.Code.Converters
 {
-    public class FilteringPopupIsCheckedMultiConverter : IMultiValueConverter
+    public class AndMultiConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            IComparable value = values[0] as IComparable;
-            ObservableList<IComparable> checkedList = values[1] as ObservableList<IComparable>;
- 
-            if (value == null || checkedList == null)
+            if (values.Any(value => !(value is bool)))
                 return false;
 
-            return checkedList.Contains(value);
+            return values.Cast<bool>().All(value => value);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

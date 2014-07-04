@@ -131,6 +131,42 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking batch of proxies on checkerproxy.net service.
+        /// </summary>
+        internal static string CheckingBatchOfProxies {
+            get {
+                return ResourceManager.GetString("CheckingBatchOfProxies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking proxies: {0}.
+        /// </summary>
+        internal static string CheckingProxiesFormat {
+            get {
+                return ResourceManager.GetString("CheckingProxiesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking proxy if it works.
+        /// </summary>
+        internal static string CheckingProxyIfItWorks {
+            get {
+                return ResourceManager.GetString("CheckingProxyIfItWorks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloading &apos;{0}&apos;..
+        /// </summary>
+        internal static string DownloadingFormat {
+            get {
+                return ResourceManager.GetString("DownloadingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High Anonymous.
         /// </summary>
         internal static string HighAnonymous {
@@ -197,6 +233,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Searching proxies.
+        /// </summary>
+        internal static string ProxySearching {
+            get {
+                return ResourceManager.GetString("ProxySearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 23154081-CFE8-4AC3-A530-142CB55C486D.
         /// </summary>
         internal static string ProxyTypeDetectorGuid {
@@ -206,11 +251,20 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}.
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyType.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}.
         /// </summary>
         internal static string ProxyTypeDetectorUrl {
             get {
                 return ResourceManager.GetString("ProxyTypeDetectorUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Searching in folder &apos;{0}&apos;..
+        /// </summary>
+        internal static string SearchingInFolderFormat {
+            get {
+                return ResourceManager.GetString("SearchingInFolderFormat", resourceCulture);
             }
         }
         

@@ -419,4 +419,22 @@ Response time: {0} s</value>
   <data name="AdvertisingOpenedInBrowser" xml:space="preserve">
     <value>Advertising opened in browser</value>
   </data>
+  <data name="SearchInitialization" xml:space="preserve">
+    <value>Search initialization</value>
+  </data>
+  <data name="PreparingApplication" xml:space="preserve">
+    <value>Preparing search application</value>
+  </data>
+  <data name="PreparingGeoIpService" xml:space="preserve">
+    <value>Preparing geo ip service</value>
+  </data>
+  <data name="PreparingProxyChecker" xml:space="preserve">
+    <value>Preparing proxy checker</value>
+  </data>
+  <data name="PreparingProxyProvider" xml:space="preserve">
+    <value>Preparing proxy provider</value>
+  </data>
+  <data name="ReadingConfigurationOfSelectedSearch" xml:space="preserve">
+    <value>Reading configuration of selected search</value>
+  </data>
 </root>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using ProxySearch.Console.Code.Collections;
+using ProxySearch.Common;
 using ProxySearch.Console.Code.Filters;
 
 namespace ProxySearch.Console.Controls

@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.ResizeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" MinWidth="17" MinHeight="17">
+    <ContentControl.Resources>
+        <converters:GripAlignmentConverter x:Key="GripAlignmentConverter"/>
+        <converters:GripCursorConverter x:Key="GripCursorConverter"/>
+        <converters:GripRotationConverter x:Key="GripRotationConverter"/>
+    </ContentControl.Resources>
+
+    <ContentControl.Template>
+        <ControlTemplate TargetType="{x:Type controls:ResizeControl}">
+            <Grid Background="{TemplateBinding Background}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                  ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                  RecognizesAccessKey="True"/>
+                <ResizeGrip IsEnabled="{TemplateBinding IsGripEnabled}" 
+                            HorizontalAlignment="{TemplateBinding ResizeDirection, Converter={StaticResource GripAlignmentConverter}, ConverterParameter={x:Static Orientation.Horizontal}}" 
+                            VerticalAlignment="{TemplateBinding ResizeDirection, Converter={StaticResource GripAlignmentConverter}, ConverterParameter={x:Static Orientation.Vertical}}" 
+                            Cursor="{TemplateBinding ResizeDirection, Converter={StaticResource GripCursorConverter}}"
+                            MouseLeftButtonDown="Grip_MouseLeftButtonDown"
+                            MouseLeftButtonUp="Grip_MouseLeftButtonUp" 
+                            MouseMove="Grip_MouseMove"
+                            MouseDoubleClick="Grip_MouseDoubleClick" 
+                            Focusable="False">
+                    <ResizeGrip.LayoutTransform>
+                        <RotateTransform Angle="{Binding ResizeDirection, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GripRotationConverter}}" CenterX="8" CenterY="8"/>
+                    </ResizeGrip.LayoutTransform>
+                    <ResizeGrip.Template>
+                        <ControlTemplate TargetType="{x:Type ResizeGrip}">
+                            <Polygon Margin="2" Points="0 15, 15 15, 15 0">
+                                <Polygon.Fill>
+                                    <DrawingBrush Viewport="0,0,4,4"
+                                                  ViewportUnits="Absolute"
+                                                  Viewbox="0,0,8,8"
+                                                  ViewboxUnits="Absolute"
+                                                  TileMode="Tile">
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <DrawingGroup.Children>
+                                                    <GeometryDrawing Brush="Blue" Geometry="M 4 4 L 4 8 L 8 8 L 8 4 z" />
+                                                </DrawingGroup.Children>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Polygon.Fill>
+                            </Polygon>
+                        </ControlTemplate>
+                    </ResizeGrip.Template>
+                </ResizeGrip>
+            </Grid>
+        </ControlTemplate>
+    </ContentControl.Template>
+</UserControl>

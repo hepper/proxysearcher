@@ -146,8 +146,9 @@
     <Compile Include="Socks\SocksProgressMessageHandler.cs" />
     <Compile Include="Socks\SocksProxyTypeHashtable.cs" />
     <Compile Include="Socks\SocksRequestFailedException.cs" />
-    <Compile Include="TaskCounter.cs" />
-    <Compile Include="TaskType.cs" />
+    <Compile Include="Tasks\TaskItem.cs" />
+    <Compile Include="Tasks\TaskManager.cs" />
+    <Compile Include="Tasks\TaskData.cs" />
     <Compile Include="ProxyDetailsProvider\HttpProxyDetailsProvider.cs" />
   </ItemGroup>
   <ItemGroup>

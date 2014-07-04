@@ -14,6 +14,14 @@ namespace ProxySearch.Engine.SearchEngines.Google
         private GoogleSearchOnPage searchOnPage;
         private ICaptchaWindow captchaWindow;
 
+        public string Status
+        {
+            get 
+            {
+                return string.Format(Properties.Resources.DownloadingFormat, string.Format(queryString, linkNumber));
+            }
+        }
+
         public GoogleSearchEngine(int allowedCount, string keywords, ICaptchaWindow captchaWindow)
         {
             string[] escapedKeywords = keywords.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(item => Uri.EscapeDataString(item)).ToArray();

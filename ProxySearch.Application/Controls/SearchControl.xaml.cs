@@ -6,9 +6,10 @@ using System.Windows.Controls;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.GoogleAnalytics;
+using ProxySearch.Console.Code.GoogleAnalytics.Timing;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
-using ProxySearch.Engine;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
 {
@@ -22,11 +23,19 @@ namespace ProxySearch.Console.Controls
             InitializeComponent();
 
             Context.Set<ISearchControl>(this);
+
+            Context.Get<TaskManager>().OnCompleted += () =>
+            {
+                Dispatcher.Invoke(() => BeginSearch.IsEnabled = true);
+            };
         }
 
         private void BeginSearch_Click(object sender, RoutedEventArgs e)
         {
             Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, Buttons.BeginSearch.ToString());
+            Context.Get<IGA>().TrackEventAsync(EventType.General, Properties.Resources.SearchStarted);
+            Context.Get<IGA>().StartTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy);
+
             BeginSearch.IsEnabled = false;
             Context.Get<ISearchResult>().Clear();
             Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);
@@ -34,29 +43,11 @@ namespace ProxySearch.Console.Controls
 
         private void DoBeginSearch()
         {
-            Context.Set(new TaskCounter());
-            Context.Get<TaskCounter>().JobCountChanged += (type, currentCount, totalCount) => Context.Get<IActionInvoker>().Update(totalCount);
-            Context.Get<TaskCounter>().OnStarted += Context.Get<IActionInvoker>().Begin;
-
             ProxySearchFeedback feedback = new ProxySearchFeedback();
 
-            Context.Get<TaskCounter>().OnCompleted += () =>
+            using (TaskItem task = Context.Get<TaskManager>().Create(Properties.Resources.SearchInitialization))
             {
-                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
-                {
-                    feedback.OnSearchCancelled();
-                }
-                else
-                {
-                    feedback.OnSearchFinished();
-                }
-
-                Dispatcher.Invoke(() => BeginSearch.IsEnabled = true);
-            };
-
-            using (Context.Get<TaskCounter>().Listen(TaskType.Init))
-            {
-                Engine.Application application = new ProxySearchEngineApplicationFactory().Create(feedback);
+                Engine.Application application = new ProxySearchEngineApplicationFactory().Create(task, feedback);
                 application.SearchAsync();
             }
         }

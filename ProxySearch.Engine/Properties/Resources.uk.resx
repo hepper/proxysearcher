@@ -142,6 +142,18 @@
 Постарайтеся не використовувати проксі цього типу.
 Ніколи не передевайте особисті дані через публічні проксі.</value>
   </data>
+  <data name="CheckingBatchOfProxies" xml:space="preserve">
+    <value>Перевіряється група проксі сервісом checkerproxy.net</value>
+  </data>
+  <data name="CheckingProxiesFormat" xml:space="preserve">
+    <value>Перевіряються проксі: {0}</value>
+  </data>
+  <data name="CheckingProxyIfItWorks" xml:space="preserve">
+    <value>Перевіряється чи проксі робочий</value>
+  </data>
+  <data name="DownloadingFormat" xml:space="preserve">
+    <value>Завантажується '{0}'</value>
+  </data>
   <data name="HighAnonymous" xml:space="preserve">
     <value>Елітний</value>
   </data>
@@ -155,6 +167,12 @@
   </data>
   <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
     <value>Proxy властивість не може дорівнювати null</value>
+  </data>
+  <data name="ProxySearching" xml:space="preserve">
+    <value>Шукаються проксі</value>
+  </data>
+  <data name="SearchingInFolderFormat" xml:space="preserve">
+    <value>Шукається в папці '{0}'</value>
   </data>
   <data name="Socks4Details" xml:space="preserve">
     <value>Цей тип проксі працює на транспортному рівні стека протоколів TCP/IP і підтримує четверту версію Socks проксі.

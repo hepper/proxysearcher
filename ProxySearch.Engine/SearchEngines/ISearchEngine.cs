@@ -6,5 +6,6 @@ namespace ProxySearch.Engine.SearchEngines
     public interface ISearchEngine
     {
         Task<Uri> GetNext();
+        string Status { get; }
     }
 }

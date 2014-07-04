@@ -9,8 +9,12 @@ namespace ProxySearch.Console.Code.Interfaces
         void Begin();
         void Finished(bool setReadyStatus);
         void Cancelled(bool setReadyStatus);
-        void Update(int count);
-        void UpdateStatus(string status);
         void SetException(Exception exception);
+
+        string StatusText
+        {
+            get;
+            set;
+        }
     }
 }

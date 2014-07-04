@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.TaskManagerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
+             mc:Ignorable="d" x:Name="taskManager" d:DesignWidth="300" d:DesignHeight="300" IsVisibleChanged="TaskManager_IsVisibleChanged">
+    <UserControl.Resources>
+        <converters:ClassToVisibilityConverter x:Key="classToVisibilityConverter" />
+        <converters:TasksToDetailsStringConverter x:Key="tasksToDetailsStringConverter" />
+        
+        <Style x:Key="smallText" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#555555" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.IsSharedSizeScope="True" Margin="5">
+        <Grid Margin="0 0 10 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="SecondColumn" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Foreground="Blue" Text="{x:Static resources:TaskManagerControl.Type}" />
+            <TextBlock HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Foreground="Blue" Text="{x:Static resources:TaskManagerControl.Count}" />
+
+            <Separator Grid.Row="1" Grid.ColumnSpan="2" />
+
+            <ItemsControl Grid.Row="2" Grid.ColumnSpan="2"  Name="items" ItemsSource="{Binding ElementName=taskManager, Path=Tasks}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" SharedSizeGroup="SecondColumn" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="{Binding Name}" />
+                            <TextBlock HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding Tasks.Count}" />
+
+                            <TextBlock Grid.Row="1" Style="{StaticResource smallText}" TextWrapping="Wrap" 
+                                       Text="{Binding Tasks, Converter={StaticResource tasksToDetailsStringConverter}}" 
+                                       Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Text, 
+                                                            Converter={StaticResource classToVisibilityConverter}}" />
+
+                            <Separator Grid.Row="2" Grid.ColumnSpan="2" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Separator Grid.Row="3" Grid.ColumnSpan="2" />
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource smallText}" Text="{x:Static resources:TaskManagerControl.Threads}" />
+            <TextBlock HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Text="{Binding ElementName=taskManager, Path=ThreadsCount}" Style="{StaticResource smallText}" />
+
+            <TextBlock Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Style="{StaticResource smallText}" Text="{x:Static resources:TaskManagerControl.CompetitionPortThreads}" />
+            <TextBlock HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" Text="{Binding ElementName=taskManager, Path=CompetitionPortThreadsCount}" Style="{StaticResource smallText}" />
+        </Grid>
+    </ScrollViewer>
+</UserControl>

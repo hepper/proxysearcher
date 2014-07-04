@@ -1,21 +1,15 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
+using System.Windows;
 using System.Windows.Data;
-using ProxySearch.Common;
 
 namespace ProxySearch.Console.Code.Converters
 {
-    public class FilteringButtonIsCheckedConverter : IValueConverter
+    public class ClassToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            ObservableList<IComparable> checkedList = value as ObservableList<IComparable>;
-
-            if (checkedList == null)
-                return false;
-
-            return checkedList.Any();
+            return string.IsNullOrWhiteSpace(value as string) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

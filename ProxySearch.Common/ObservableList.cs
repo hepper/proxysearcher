@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace ProxySearch.Console.Code.Collections
+namespace ProxySearch.Common
 {
     public class ObservableList<T> : List<T>, INotifyCollectionChanged, INotifyPropertyChanged
     {
@@ -34,7 +34,7 @@ namespace ProxySearch.Console.Code.Collections
             FireCountChanged();
         }
 
-        public void AddRange(IEnumerable<T> collection)
+        public new void AddRange(IEnumerable<T> collection)
         {
             base.AddRange(collection);
 

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using ProxySearch.Console.Code.Collections;
+using ProxySearch.Common;
 using ProxySearch.Console.Code.Filters;
 
 namespace ProxySearch.Console.Controls

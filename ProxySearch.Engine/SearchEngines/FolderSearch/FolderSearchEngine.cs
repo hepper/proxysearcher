@@ -4,14 +4,22 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ProxySearch.Common;
+using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.SearchEngines.FolderSearch
 {
     public class FolderSearchEngine : ISearchEngine
     {
         private string folderPath;
+        private List<string> files = null;
 
-        List<string> files = null;
+        public string Status
+        {
+            get
+            {
+                return string.Format(Resources.SearchingInFolderFormat, folderPath);
+            }
+        }
 
         public FolderSearchEngine(string folderPath)
         {

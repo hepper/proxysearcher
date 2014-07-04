@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.GoogleAnalytics.Timing;
@@ -10,12 +11,14 @@ using ProxySearch.Engine;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.Proxies.Socks;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Code
 {
     public class ProxySearchFeedback : IProxySearchFeedback
     {
         private StreamWriter stream = null;
+        private bool isTimingNotificationSent = false;
         private bool isProxyFound = false;
 
         private ExportSettings ExportSettings
@@ -29,8 +32,18 @@ namespace ProxySearch.Console.Code
         public ProxySearchFeedback()
         {
             ExportAllowed = true;
-            Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchStarted);
-            Context.Get<IGA>().StartTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy);
+
+            Context.Get<TaskManager>().OnCompleted += () =>
+            {
+                if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                {
+                    OnSearchCancelled();
+                }
+                else
+                {
+                    OnSearchFinished();
+                }
+            };
         }
 
         public bool ExportAllowed
@@ -55,35 +68,38 @@ namespace ProxySearch.Console.Code
             }
 
             Context.Get<ISearchResult>().Add(proxyInfo);
+            isProxyFound = true;
 
-            if (!isProxyFound)
+            if (!isTimingNotificationSent)
             {
-                isProxyFound = true;
+                isTimingNotificationSent = true;
                 Context.Get<IGA>().EndTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy, GAResources.FirstProxyFound);
             }
         }
 
-        public void OnSearchFinished()
+        private void OnSearchFinished()
         {
             Context.Get<IActionInvoker>().Finished(!isProxyFound);
             CloseFile();
             Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchFinished);
 
-            if (!isProxyFound)
+            if (!isTimingNotificationSent)
             {
+                isTimingNotificationSent = true;
                 Context.Get<IGA>()
                        .EndTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy, GAResources.SearchFinishedAndNoProxiesWereFound);
             }
         }
 
-        public void OnSearchCancelled()
+        private void OnSearchCancelled()
         {
             Context.Get<IActionInvoker>().Cancelled(!isProxyFound);
             CloseFile();
             Context.Get<IGA>().TrackEventAsync(EventType.General, Resources.SearchCancelled);
 
-            if (!isProxyFound)
+            if (!isTimingNotificationSent)
             {
+                isTimingNotificationSent = true;
                 Context.Get<IGA>()
                        .EndTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy, GAResources.SearchCancelledAndNoProxiesWereFound);
             }
