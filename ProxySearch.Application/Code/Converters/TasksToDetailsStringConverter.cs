@@ -16,7 +16,7 @@ namespace ProxySearch.Console.Code.Converters
             if (tasks == null)
                 return null;
 
-            string result = string.Join("; ", tasks.Where(task => task.Details != null)
+            string result = string.Join(Environment.NewLine, tasks.Where(task => task.Details != null)
                                                    .Select(task => task.Details));
 
             return string.IsNullOrWhiteSpace(result) ? null : result;

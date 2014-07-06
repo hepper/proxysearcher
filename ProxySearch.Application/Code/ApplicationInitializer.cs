@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using ProxySearch.Common;
-using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients;
@@ -22,7 +21,7 @@ namespace ProxySearch.Console.Code
     {
         public void Initialize(bool shutdown)
         {
-            Context.Set<IDetectableSearcher>(new DetectableSearcher());
+            Context.Set<IDetectableManager>(new DetectableManager());
             Context.Set(Settings);
 
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(Context.Get<AllSettings>().SelectedCulture);

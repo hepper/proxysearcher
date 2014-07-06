@@ -79,7 +79,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<ISearchEngine>(ProxyTypes[SelectedProxyTypeIndex]);
+                return Context.Get<IDetectableManager>().Find<ISearchEngine>(ProxyTypes[SelectedProxyTypeIndex]);
             }
         }
 
@@ -87,7 +87,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<IProxyChecker>(ProxyTypes[SelectedProxyTypeIndex]);
+                return Context.Get<IDetectableManager>().Find<IProxyChecker>(ProxyTypes[SelectedProxyTypeIndex]);
             }
         }
 
@@ -95,7 +95,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<IProxyType>();
+                return Context.Get<IDetectableManager>().Find<IProxyType>();
             }
         }
 
@@ -103,7 +103,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<IGeoIP>();
+                return Context.Get<IDetectableManager>().Find<IGeoIP>();
             }
         }
 
@@ -111,7 +111,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<IDetectableSearcher>().Get<IProxyDetailsProvider>();
+                return Context.Get<IDetectableManager>().Find<IProxyDetailsProvider>();
             }
         }
 

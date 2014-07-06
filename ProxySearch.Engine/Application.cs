@@ -39,6 +39,23 @@ namespace ProxySearch.Engine
 
         public async void SearchAsync()
         {
+            IEnumerable<ISearchEngine> searchEngines = searchEngine as IEnumerable<ISearchEngine>;
+
+            if (searchEngines == null)
+            {
+                await SearchAsyncInternal(searchEngine);
+            }
+            else
+            {
+                foreach (ISearchEngine engine in searchEngines)
+                {
+                    Task task = SearchAsyncInternal(engine);
+                }
+            }
+        }
+
+        private async Task SearchAsyncInternal(ISearchEngine searchEngine)
+        {
             try
             {
                 using (TaskItem task = Context.Get<TaskManager>().Create(Resources.ProxySearching))

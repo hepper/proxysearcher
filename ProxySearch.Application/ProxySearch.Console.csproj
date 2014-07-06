@@ -119,6 +119,7 @@
     <Compile Include="Code\Converters\GripAlignmentConverter.cs" />
     <Compile Include="Code\Converters\GripCursorConverter.cs" />
     <Compile Include="Code\Converters\GripRotationConverter.cs" />
+    <Compile Include="Code\Converters\IntToBoolConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
@@ -126,12 +127,11 @@
     <Compile Include="Code\Converters\SizeToAngleConverter.cs" />
     <Compile Include="Code\Converters\StringToIsEnableConverter.cs" />
     <Compile Include="Code\Converters\TasksToDetailsStringConverter.cs" />
+    <Compile Include="Code\Converters\TextIndexToStringConverter.cs" />
     <Compile Include="Code\Converters\UrlPathConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />
+    <Compile Include="Code\DetectableManager.cs" />
     <Compile Include="Code\Detectable\DetectableBase.cs" />
-    <Compile Include="Code\Detectable\DetectableSearcher.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Code\Detectable\GeoIPs\DummyGeoIPDetectable.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,6 +153,9 @@
     <Compile Include="Code\Detectable\ProxyCheckers\SocksTurnedOffProxyCheckerDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyType\HttpProxyTypeDetectable.cs" />
     <Compile Include="Code\Detectable\ProxyType\SocksProxyTypeDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\SocksParallelSearchEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\HttpParallelSearchEngineDetectable.cs" />
+    <Compile Include="Code\Detectable\SearchEngines\ParallelSearchEngineDetectableBase.cs" />
     <Compile Include="Code\Detectable\SearchEngines\SocksFolderSearchEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\SocksGoogleEngineDetectable.cs" />
     <Compile Include="Code\Detectable\SearchEngines\HttpFolderSearchEngineDetectable.cs" />
@@ -166,6 +169,7 @@
     <Compile Include="Code\Detectable\SimpleDetectableBase.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Detectable\SearchEngines\UrlListSearchEngineDetectableBase.cs" />
     <Compile Include="Code\Extensions\ActionExtensions.cs" />
     <Compile Include="Code\Filters\FilterData.cs" />
     <Compile Include="Code\GoogleAnalytics\Buttons.cs" />
@@ -180,13 +184,16 @@
     <Compile Include="Code\GoogleAnalytics\Timing\TimingCategory.cs" />
     <Compile Include="Code\GoogleAnalytics\Timing\TimingDictionaryKey.cs" />
     <Compile Include="Code\GoogleAnalytics\Timing\TimingVariable.cs" />
+    <Compile Include="Code\Interfaces\IDetectableManager.cs" />
     <Compile Include="Code\Interfaces\IGA.cs" />
     <Compile Include="Code\Interfaces\ISettingsTabNavigator.cs" />
     <Compile Include="Code\Language\Language.cs" />
     <Compile Include="Code\Language\LanguageManager.cs" />
+    <Compile Include="Code\SearchEngines\ParallelSearchEngine.cs" />
     <Compile Include="Code\SearchResult\FilterDataComparer.cs" />
     <Compile Include="Code\Settings\RegistrySettings.cs" />
     <Compile Include="Code\UI\AdvancedTabSettings.cs" />
+    <Compile Include="Code\UI\MixedSearchEngineDataView.cs" />
     <Compile Include="Code\Utils\Property.cs" />
     <Compile Include="Code\Extensions\RegexExtensions.cs" />
     <Compile Include="Code\GeoIPServiceAdapter.cs">
@@ -200,9 +207,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Interfaces\IDetectable.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Code\Interfaces\IDetectableSearcher.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Interfaces\IMessageBox.cs" />
@@ -317,6 +321,9 @@
     </Compile>
     <Compile Include="Controls\GoogleEnginePropertyControl.xaml.cs">
       <DependentUpon>GoogleEnginePropertyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ParallelSearchEnginePropertyControl.xaml.cs">
+      <DependentUpon>ParallelSearchEnginePropertyControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ParseMethodEditor.xaml.cs">
       <DependentUpon>ParseMethodEditor.xaml</DependentUpon>
@@ -548,6 +555,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\ParallelSearchEnginePropertyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ParseMethodEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -771,7 +782,9 @@
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.uk.resx" />
-    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TabNameControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TabNameControl.Designer.cs</LastGenOutput>
@@ -812,7 +825,9 @@
       <LastGenOutput>GoogleEnginePropertyControl.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ParseMethodEditor.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ParseMethodEditor.Designer.cs</LastGenOutput>
@@ -997,6 +1012,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

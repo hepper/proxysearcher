@@ -76,7 +76,7 @@ namespace ProxySearch.Console.Code.Settings
 
         private List<ParametersPair> GetSettings<T>()
         {
-            return Context.Get<IDetectableSearcher>().Get<T>().Select(item => new ParametersPair
+            return Context.Get<IDetectableManager>().Find<T>().Select(item => new ParametersPair
             {
                 TypeName = item.GetType().AssemblyQualifiedName,
                 Parameters = item.DefaultSettings

@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
-using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
-using ProxySearch.Engine.SearchEngines;
-using ProxySearch.Engine.SearchEngines.UrlList;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {
-    public class HttpUrlListSearchEngineDetectable : DetectableBase<ISearchEngine, UrlListSearchEngine, UrlListPropertyControl>
+    public class HttpUrlListSearchEngineDetectable : UrlListSearchEngineDetectableBase
     {
         public HttpUrlListSearchEngineDetectable()
-            : base(Resources.UrlListEngine, Resources.UrlListEngineDescription, 2, Resources.HttpProxyType, 
-            new List<object>
+            : base(Resources.HttpProxyType, new List<object>
             {
                 "http://proxysearcher.sourceforge.net/ProxyList.php?type=http\n" +
                 "http://www.aliveproxy.com/proxy-list-port-3128/\n" +

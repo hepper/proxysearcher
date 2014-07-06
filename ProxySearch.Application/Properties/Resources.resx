@@ -437,4 +437,10 @@ Response time: {0} s</value>
   <data name="ReadingConfigurationOfSelectedSearch" xml:space="preserve">
     <value>Reading configuration of selected search</value>
   </data>
+  <data name="Parallel" xml:space="preserve">
+    <value>Parallel</value>
+  </data>
+  <data name="ParallelDescription" xml:space="preserve">
+    <value>This search engine allows to combine two other engines in one search criteria and run them simultaneously. Use it if you want to get benefits from a few different search engines in one search criteria.</value>
+  </data>
 </root>

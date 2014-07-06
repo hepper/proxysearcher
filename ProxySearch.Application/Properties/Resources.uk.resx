@@ -353,4 +353,10 @@
   <data name="ReadingConfigurationOfSelectedSearch" xml:space="preserve">
     <value>Читається конфігурація вибраного методу пошуку</value>
   </data>
+  <data name="Parallel" xml:space="preserve">
+    <value>Паралельний</value>
+  </data>
+  <data name="ParallelDescription" xml:space="preserve">
+    <value>Цей метод пошуку дозволяє комбінувати кілька інших методів в одному критерію пошуку і виконувати їх одночасно. Використовуйте його якщо Ви хочете отримати переваги  декількох методів пошуку в одному пошуковому критерії.</value>
+  </data>
 </root>

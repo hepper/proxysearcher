@@ -160,6 +160,6 @@
     <value>Слати звіти про помилки</value>
   </data>
   <data name="ThreadCount" xml:space="preserve">
-    <value>Максимальна кіль. потоків</value>
+    <value>Максимальна к-ть потоків</value>
   </data>
 </root>

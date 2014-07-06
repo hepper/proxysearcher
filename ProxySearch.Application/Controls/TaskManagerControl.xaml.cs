@@ -79,7 +79,7 @@ namespace ProxySearch.Console.Controls
         {
             if (IsVisible)
             {
-                updatePortsTimer = new System.Timers.Timer(100);
+                updatePortsTimer = new System.Timers.Timer(500);
 
                 updatePortsTimer.Elapsed += (sender1, e1) => UpdateThreadUI();
                 updatePortsTimer.Start();

@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.ParallelSearchEnginePropertyControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             xmlns:uicode="clr-namespace:ProxySearch.Console.Code.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" DataContext="{Binding RelativeSource={RelativeSource Self}}" x:Name="ParallelSearchEngineProperty">
+    <UserControl.Resources>
+        <converters:TextIndexToStringConverter x:Key="textIndexToStringConverter" />
+        <converters:IntToBoolConverter x:Key="intToBoolConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ItemsControl Grid.Row="0" ItemsSource="{Binding Data}" Grid.IsSharedSizeScope="True" Name="dataControl">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Tag="{Binding OrderIndex}" Grid.Column="0" Height="20" Width="20" VerticalAlignment="Top" Margin="0 6 0 0" Click="Remove_Click"
+                                IsEnabled="{Binding ElementName=ParallelSearchEngineProperty, Path=Arguments.Count, Converter={StaticResource intToBoolConverter}, ConverterParameter=2}"
+                                ToolTip="Remove search engine">
+                            <Image Source="/Images/DeleteRed.png" />
+                        </Button>
+                        <controls:DetectableSelectorControl Margin="0,0,0,5" Grid.Column="1"
+                                                             SelectorName="{Binding OrderIndex, Converter={StaticResource textIndexToStringConverter}, 
+                                                                                                ConverterParameter={x:Static resources:TabSettingControl.SearchEngine}}"
+                                                             Arguments="{Binding Settings}"
+                                                             Detectables="{Binding SearchEngines}"
+                                                             SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button Grid.Row="1" Click="Add_Click" Margin="0 0 0 10" Width="200">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Images/Add.png" Width="20" Height="20" Margin="0 0 5 0"  />
+                <TextBlock>Add search engine</TextBlock>
+            </StackPanel>
+        </Button>
+    </Grid>
+</UserControl>
