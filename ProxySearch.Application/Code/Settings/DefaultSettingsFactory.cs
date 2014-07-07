@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ProxySearch.Common;
-using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.Detectable.GeoIPs;
 using ProxySearch.Console.Code.Detectable.ProxyCheckers;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Code.Language;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
@@ -30,10 +28,10 @@ namespace ProxySearch.Console.Code.Settings
                 MaxThreadCount = 500,
                 TabSettings = new ObservableCollection<TabSettings>()
                 {
-                    CreateTabSettings<HttpGoogleEngineDetectable, HttpCheckerByUrlDetectable>("0EBFAAA5-C241-4560-822C-0E2429F3F03C", Resources.Google, Resources.HttpProxyType),
+                    CreateTabSettings<HttpParallelSearchEngineDetectable, HttpCheckerByUrlDetectable>("0EBFAAA5-C241-4560-822C-0E2429F3F03C", Resources.Google, Resources.HttpProxyType),
                     CreateTabSettings<HttpUrlListSearchEngineDetectable, HttpCheckerByUrlDetectable>("7793FED8-36EC-4545-9D9F-8D70A12D311C", Resources.HttpPredefinedUrlList, Resources.HttpProxyType),
                     CreateTabSettings<HttpFolderSearchEngineDetectable, HttpTurnedOffProxyCheckerDetectable>("D187270B-A4B2-4B47-A7A7-26DF26FD2EF1", Resources.HttpOpen, Resources.HttpProxyType),
-                    CreateTabSettings<SocksGoogleEngineDetectable, SocksCheckerByUrlDetectable>("29D8044B-FFC1-4FF1-AC8A-150FFEC365CE", Resources.SocksGoogleSearchType, Resources.SocksProxyType),
+                    CreateTabSettings<SocksParallelSearchEngineDetectable, SocksCheckerByUrlDetectable>("29D8044B-FFC1-4FF1-AC8A-150FFEC365CE", Resources.SocksGoogleSearchType, Resources.SocksProxyType),
                     CreateTabSettings<SocksUrlListSearchEngineDetectable, SocksCheckerByUrlDetectable>("2EC5BA2B-3C11-488D-91E4-9D25D7240406", Resources.SocksPredefinedUrlList, Resources.SocksProxyType),
                     CreateTabSettings<SocksFolderSearchEngineDetectable, SocksTurnedOffProxyCheckerDetectable>("E15FA042-122A-4A88-8745-B146F4389FEF", Resources.SocksOpen, Resources.SocksProxyType),
                 }
