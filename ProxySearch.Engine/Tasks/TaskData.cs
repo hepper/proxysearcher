@@ -32,6 +32,20 @@ namespace ProxySearch.Engine.Tasks
             }
         }
 
+        private TaskStatus status;
+        public TaskStatus Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                FireChangedProperty("Status");
+            }
+        }
+
         private void FireChangedProperty(string propertyName)
         {
             if (PropertyChanged != null)

@@ -112,8 +112,13 @@
     <Compile Include="ProxyDetailsProvider\IProxyDetailsProvider.cs" />
     <Compile Include="ProxyDetailsProvider\ProxyDetailsProviderBase.cs" />
     <Compile Include="ProxyDetailsProvider\SocksProxyDetailsProvider.cs" />
-    <EmbeddedResource Include="Properties\Resources.uk.resx" />
-    <EmbeddedResource Include="Properties\Resources.ru.resx" />
+    <Compile Include="Tasks\TaskStatus.cs" />
+    <EmbeddedResource Include="Properties\Resources.uk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ProxyParserRuntime._cs" />
     <EmbeddedResource Include="Resources\DefaultProxyParseCode._cs" />
     <Compile Include="EmbeddedResource.cs" />

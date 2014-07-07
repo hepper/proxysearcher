@@ -7,8 +7,7 @@
              xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" x:Name="taskManager" d:DesignWidth="300" d:DesignHeight="300" IsVisibleChanged="TaskManager_IsVisibleChanged">
     <UserControl.Resources>
-        <converters:ClassToVisibilityConverter x:Key="classToVisibilityConverter" />
-        <converters:TasksToDetailsStringConverter x:Key="tasksToDetailsStringConverter" />
+        <converters:TaskStatusToColorConverter x:Key="taskStatusToColorConverter" />
         
         <Style x:Key="smallText" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="12" />
@@ -58,10 +57,18 @@
                             <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="{Binding Name}" />
                             <TextBlock HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding Tasks.Count}" />
 
-                            <TextBlock Grid.Row="1" Style="{StaticResource smallText}" TextWrapping="Wrap" 
-                                       Text="{Binding Tasks, Converter={StaticResource tasksToDetailsStringConverter}}" 
-                                       Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Text, 
-                                                            Converter={StaticResource classToVisibilityConverter}}" />
+                            <ItemsControl Grid.Row="1" ItemsSource="{Binding Tasks}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource smallText}" TextWrapping="Wrap" Text="{Binding Details}" Foreground="{Binding Status, Converter={StaticResource taskStatusToColorConverter}}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>                            
 
                             <Separator Grid.Row="2" Grid.ColumnSpan="2" />
                         </Grid>

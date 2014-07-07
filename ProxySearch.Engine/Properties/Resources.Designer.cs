@@ -224,6 +224,42 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - checking if alive.
+        /// </summary>
+        internal static string ProxyCheckingIfAliveFormat {
+            get {
+                return ResourceManager.GetString("ProxyCheckingIfAliveFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - determining proxy location.
+        /// </summary>
+        internal static string ProxyDeterminingLocationFormat {
+            get {
+                return ResourceManager.GetString("ProxyDeterminingLocationFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - determining proxy type.
+        /// </summary>
+        internal static string ProxyDeterminingProxyType {
+            get {
+                return ResourceManager.GetString("ProxyDeterminingProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - got first response.
+        /// </summary>
+        internal static string ProxyGotFirstResponseFormat {
+            get {
+                return ResourceManager.GetString("ProxyGotFirstResponseFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Proxy property cannot be null..
         /// </summary>
         internal static string ProxyPropertyCannotBeNull {

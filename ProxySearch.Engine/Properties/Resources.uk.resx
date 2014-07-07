@@ -165,6 +165,18 @@
   <data name="InvalidHttpResponseFromSocksProxy" xml:space="preserve">
     <value>Неправильна http відповідь від socks проксі</value>
   </data>
+  <data name="ProxyCheckingIfAliveFormat" xml:space="preserve">
+    <value>{0} - перевіряється роботоздатність</value>
+  </data>
+  <data name="ProxyDeterminingLocationFormat" xml:space="preserve">
+    <value>{0} - визначається місцерозташування</value>
+  </data>
+  <data name="ProxyDeterminingProxyType" xml:space="preserve">
+    <value>{0} - визначається тип проксі</value>
+  </data>
+  <data name="ProxyGotFirstResponseFormat" xml:space="preserve">
+    <value>{0} - отримана перша відповідь</value>
+  </data>
   <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
     <value>Proxy властивість не може дорівнювати null</value>
   </data>

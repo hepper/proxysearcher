@@ -112,7 +112,6 @@
     <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\CenterConverter.cs" />
-    <Compile Include="Code\Converters\ClassToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\DeleteButtonVisibilityConverter.cs" />
     <Compile Include="Code\Converters\FilteringButtonIsCheckedConverter.cs" />
     <Compile Include="Code\Converters\FilteringPopupIsCheckedMultiConverter.cs" />
@@ -126,7 +125,7 @@
     <Compile Include="Code\Converters\RowBackgroundColorConverter.cs" />
     <Compile Include="Code\Converters\SizeToAngleConverter.cs" />
     <Compile Include="Code\Converters\StringToIsEnableConverter.cs" />
-    <Compile Include="Code\Converters\TasksToDetailsStringConverter.cs" />
+    <Compile Include="Code\Converters\TaskStatusToColorConverter.cs" />
     <Compile Include="Code\Converters\TextIndexToStringConverter.cs" />
     <Compile Include="Code\Converters\UrlPathConverter.cs" />
     <Compile Include="Code\Converters\ValueToColorConverter.cs" />

@@ -236,4 +236,16 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   <data name="SearchingInFolderFormat" xml:space="preserve">
     <value>Searching in folder '{0}'.</value>
   </data>
+  <data name="ProxyCheckingIfAliveFormat" xml:space="preserve">
+    <value>{0} - checking if alive</value>
+  </data>
+  <data name="ProxyDeterminingLocationFormat" xml:space="preserve">
+    <value>{0} - determining proxy location</value>
+  </data>
+  <data name="ProxyDeterminingProxyType" xml:space="preserve">
+    <value>{0} - determining proxy type</value>
+  </data>
+  <data name="ProxyGotFirstResponseFormat" xml:space="preserve">
+    <value>{0} - got first response</value>
+  </data>
 </root>

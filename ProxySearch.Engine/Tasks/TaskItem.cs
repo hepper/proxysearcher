@@ -15,9 +15,10 @@ namespace ProxySearch.Engine.Tasks
             TaskData = taskData;
         }
 
-        public void UpdateDetails(string details)
+        public void UpdateDetails(string details, TaskStatus status = TaskStatus.Normal)
         {
             TaskData.Details = details;
+            TaskData.Status = status;
         }
 
         public abstract void Dispose();

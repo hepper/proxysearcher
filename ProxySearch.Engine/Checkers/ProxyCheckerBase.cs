@@ -6,6 +6,7 @@ using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
 using ProxySearch.Engine.Tasks;
@@ -42,7 +43,7 @@ namespace ProxySearch.Engine.Checkers
 
                     using (TaskItem task = Context.Get<TaskManager>().Create(Properties.Resources.CheckingProxyIfItWorks))
                     {
-                        task.UpdateDetails(proxyCopy.ToString());
+                        task.UpdateDetails(string.Format(Resources.ProxyCheckingIfAliveFormat, proxyCopy));
                         BanwidthInfo bandwidth = null;
 
                         if (await Alive(proxyCopy, () => bandwidth = new BanwidthInfo()
@@ -50,6 +51,7 @@ namespace ProxySearch.Engine.Checkers
                             BeginTime = DateTime.Now
                         }, lenght =>
                         {
+                            task.UpdateDetails(string.Format(Resources.ProxyGotFirstResponseFormat, proxyCopy), Tasks.TaskStatus.Important);
                             bandwidth.FirstTime = DateTime.Now;
                             bandwidth.FirstCount = lenght * 2;
                         }, lenght =>
@@ -61,10 +63,18 @@ namespace ProxySearch.Engine.Checkers
                             if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                                 return;
 
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.MostImportant);
+
+                            CountryInfo countryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString());
+
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy), Tasks.TaskStatus.MostImportant);
+
+                            ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
+
                             ProxyInfo proxyInfo = new ProxyInfo(proxyCopy)
                             {
-                                CountryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString()),
-                                Details = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails)
+                                CountryInfo = countryInfo,
+                                Details = proxyDetails
                             };
 
                             if (bandwidth != null)
