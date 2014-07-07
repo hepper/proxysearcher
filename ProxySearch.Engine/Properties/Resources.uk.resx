@@ -149,7 +149,7 @@
     <value>Перевіряються проксі: {0}</value>
   </data>
   <data name="CheckingProxyIfItWorks" xml:space="preserve">
-    <value>Перевіряється чи проксі робочий</value>
+    <value>Визначається працездатність проксі</value>
   </data>
   <data name="DownloadingFormat" xml:space="preserve">
     <value>Завантажується '{0}'</value>
@@ -166,7 +166,7 @@
     <value>Неправильна http відповідь від socks проксі</value>
   </data>
   <data name="ProxyCheckingIfAliveFormat" xml:space="preserve">
-    <value>{0} - перевіряється роботоздатність</value>
+    <value>{0} - визначається працездатність</value>
   </data>
   <data name="ProxyDeterminingLocationFormat" xml:space="preserve">
     <value>{0} - визначається місцерозташування</value>

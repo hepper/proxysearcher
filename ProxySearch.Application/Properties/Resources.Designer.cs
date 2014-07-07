@@ -547,7 +547,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This search engine allows to combine two other engines in one search criteria and run them simultaneously. Use it if you want to get benefits from a few different search engines in one search criteria..
+        ///   Looks up a localized string similar to This search engine allows to combine a few other engines in one search criteria and run them simultaneously. Use it if you want to get benefits from a few different search engines in one search criteria..
         /// </summary>
         internal static string ParallelDescription {
             get {

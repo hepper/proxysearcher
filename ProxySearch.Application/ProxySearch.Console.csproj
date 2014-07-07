@@ -118,7 +118,7 @@
     <Compile Include="Code\Converters\GripAlignmentConverter.cs" />
     <Compile Include="Code\Converters\GripCursorConverter.cs" />
     <Compile Include="Code\Converters\GripRotationConverter.cs" />
-    <Compile Include="Code\Converters\IntToBoolConverter.cs" />
+    <Compile Include="Code\Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
@@ -400,6 +400,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GoogleEnginePropertyControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\ParallelSearchEnginePropertyControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ParallelSearchEnginePropertyControl.resx</DependentUpon>
     </Compile>
     <Compile Include="Controls\Resources\ParseMethodEditor.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -780,6 +785,12 @@
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ParallelSearchEnginePropertyControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx">
       <SubType>Designer</SubType>
@@ -1011,9 +1022,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
