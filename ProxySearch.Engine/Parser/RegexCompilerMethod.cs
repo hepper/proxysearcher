@@ -21,7 +21,7 @@ namespace ProxySearch.Engine.Parser
 
             CompilerParameters parameters = new CompilerParameters
             {
-                GenerateInMemory = true,
+                GenerateInMemory = true
             };
 
             parameters.ReferencedAssemblies.Add("System.dll");

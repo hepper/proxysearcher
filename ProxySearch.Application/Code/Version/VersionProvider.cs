@@ -1,5 +1,4 @@
 ﻿using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Properties;
 
 namespace ProxySearch.Console.Code.Version
 {
@@ -9,7 +8,7 @@ namespace ProxySearch.Console.Code.Version
         {
             get
             {
-                return 24;
+                return 25;
             }
         }
 
