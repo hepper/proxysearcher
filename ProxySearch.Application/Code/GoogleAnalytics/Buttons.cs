@@ -5,6 +5,7 @@
         CloseAdvertising,
         CancelSearch,
         BeginSearch,
-        TaskManager
+        TaskManager,
+        ProxyClient
     }
 }
