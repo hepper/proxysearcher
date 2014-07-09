@@ -80,12 +80,15 @@ namespace ProxySearch.Console.Controls
             set
             {
                 Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, 
-                                                   string.Format("{0}_{1}", Buttons.ProxyClient, ProxyClient.GetType().Name), value != null); 
+                                                   string.Format("{0}_{1}", Buttons.ProxyClient, ProxyClient.GetType().Name), value); 
                 ProxyClient.Proxy = value ? ProxyInfo : null;
 
                 if (ProxyClient.Proxy != ProxyInfo)
                 {
-                    Context.Get<IGA>().TrackException(new InvalidOperationException(string.Format("Proxy was not set: {0}!={1}", ProxyClient.Proxy, ProxyInfo)));
+                    Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat, 
+                                                                    ProxyClient.Proxy.AddressPort, 
+                                                                    ProxyInfo.AddressPort, 
+                                                                    ProxyClient.GetType().Name));
                 }
 
                 RaiseEvent(new RoutedEventArgs(ProxyClientControl.ClickEvent));

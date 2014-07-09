@@ -38,15 +38,14 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
             await Track(HitTypes.Event, parameters.ToArray());
         }
 
-        public async void TrackException(Exception exception)
+        public void TrackException(Exception exception)
         {
-            int maxLength = 150;
-            string data = exception.ToString();
+            TrackException(exception.ToString());
+        }
 
-            if (data.Length > maxLength)
-                data = data.Substring(0, maxLength);
-
-            await Track(HitTypes.Exception, new KeyValuePair<string, string>(GAResources.ExceptionKey, data));
+        public async void TrackException(string exceptionText)
+        {
+            await Track(HitTypes.Exception, new KeyValuePair<string, string>(GAResources.ExceptionKey, exceptionText));
         }
 
         public void StartTrackTiming(TimingCategory category, TimingVariable variable)
@@ -55,7 +54,7 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
 
             if (timingDictionary.ContainsKey(key))
             {
-                TrackException(new InvalidOperationException(string.Format(GAResources.TimingTrackingHasBeenStartedFormat, category, variable)));
+                TrackException(string.Format(GAResources.TimingTrackingHasBeenStartedFormat, category, variable));
             }
             else
             {
@@ -86,7 +85,7 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
             }
             else
             {
-                TrackException(new InvalidOperationException(string.Format(GAResources.TimingTrackingWasNotStartedFormat, category, variable)));
+                TrackException(string.Format(GAResources.TimingTrackingWasNotStartedFormat, category, variable));
             }
         }
 

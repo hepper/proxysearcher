@@ -205,6 +205,15 @@ namespace ProxySearch.Console.Code.GoogleAnalytics {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proxy was not set: {0}!={1} for {2}.
+        /// </summary>
+        internal static string ProxyWasNotSetFormat {
+            get {
+                return ResourceManager.GetString("ProxyWasNotSetFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to sr.
         /// </summary>
         internal static string ScreenResoultionKey {
