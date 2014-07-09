@@ -124,6 +124,15 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignore selected types of HTTP proxies.
+        /// </summary>
+        public static string IgnoreSelectedProxyTypes {
+            get {
+                return ResourceManager.GetString("IgnoreSelectedProxyTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Interface language.
         /// </summary>
         public static string InterfaceLanguage {
@@ -183,15 +192,6 @@ namespace ProxySearch.Console.Controls.Resources {
         public static string ShareUsageStatisticData {
             get {
                 return ResourceManager.GetString("ShareUsageStatisticData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thread Count.
-        /// </summary>
-        public static string ThreadCount {
-            get {
-                return ResourceManager.GetString("ThreadCount", resourceCulture);
             }
         }
     }

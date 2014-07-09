@@ -12,6 +12,7 @@ using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.Proxies.Socks;
 using ProxySearch.Engine.Tasks;
+using System.Linq;
 
 namespace ProxySearch.Console.Code
 {
@@ -54,6 +55,10 @@ namespace ProxySearch.Console.Code
 
         public void OnAliveProxy(ProxyInfo proxyInfo)
         {
+            if (proxyInfo.Details != null && proxyInfo.Details.Details != null &&
+                Context.Get<AllSettings>().IgnoredHttpProxyTypes.Any(item => item.ToString() == proxyInfo.Details.Details.Type))
+                return;
+
             if (ExportAllowed && ExportSettings.ExportSearchResult)
             {
                 lock (this)

@@ -159,7 +159,7 @@
   <data name="ShareUsageStatisticData" xml:space="preserve">
     <value>Share usage statistic data</value>
   </data>
-  <data name="ThreadCount" xml:space="preserve">
-    <value>Thread Count</value>
+  <data name="IgnoreSelectedProxyTypes" xml:space="preserve">
+    <value>Ignore selected types of HTTP proxies</value>
   </data>
 </root>

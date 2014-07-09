@@ -159,7 +159,7 @@
   <data name="ShareUsageStatisticData" xml:space="preserve">
     <value>Слати звіти про помилки</value>
   </data>
-  <data name="ThreadCount" xml:space="preserve">
-    <value>Максимальна к-ть потоків</value>
+  <data name="IgnoreSelectedProxyTypes" xml:space="preserve">
+    <value>Ігнорувати обрані типи HTTP проксі</value>
   </data>
 </root>

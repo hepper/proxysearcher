@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml.Serialization;
 using ProxySearch.Console.Code.Language;
 using ProxySearch.Engine.Parser;
+using ProxySearch.Engine.Proxies.Http;
 
 namespace ProxySearch.Console.Code.Settings
 {
@@ -23,6 +24,11 @@ namespace ProxySearch.Console.Code.Settings
             ParseDetails = new List<ParseDetails>();
             SelectedCulture = new LanguageManager().DefaultLanguage.Culture;
             RegistrySettings = new RegistrySettings();
+            IgnoredHttpProxyTypes = new HttpProxyTypes[] 
+            {
+                HttpProxyTypes.ChangesContent,
+                HttpProxyTypes.Transparent
+            };
         }
 
         public bool CheckUpdates
@@ -86,6 +92,12 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public string SelectedCulture
+        {
+            get;
+            set;
+        }
+
+        public HttpProxyTypes[] IgnoredHttpProxyTypes
         {
             get;
             set;

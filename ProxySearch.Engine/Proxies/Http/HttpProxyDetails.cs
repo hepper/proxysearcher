@@ -10,7 +10,7 @@ namespace ProxySearch.Engine.Proxies.Http
         {
         }
 
-        private static string GetName(HttpProxyTypes type)
+        public static string GetName(HttpProxyTypes type)
         {
             switch (type)
             {

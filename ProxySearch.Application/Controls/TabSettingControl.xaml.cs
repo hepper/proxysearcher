@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
-using ProxySearch.Console.Code.Detectable;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Language;
@@ -14,9 +15,9 @@ using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.UI;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.ProxyDetailsProvider;
 using ProxySearch.Engine.SearchEngines;
-using System.Linq;
 
 namespace ProxySearch.Console.Controls
 {
@@ -132,6 +133,17 @@ namespace ProxySearch.Console.Controls
             set
             {
                 AllSettings.SelectedCulture = value.Culture;
+            }
+        }
+
+        public HttpProxyTypesView[] HttpProxyTypes
+        {
+            get
+            {
+                return Enum.GetValues(typeof(HttpProxyTypes))
+                           .Cast<HttpProxyTypes>()
+                           .Select(item => new HttpProxyTypesView { Type = item })
+                           .ToArray();
             }
         }
 

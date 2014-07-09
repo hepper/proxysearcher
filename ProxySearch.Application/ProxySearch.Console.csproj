@@ -118,6 +118,7 @@
     <Compile Include="Code\Converters\GripAlignmentConverter.cs" />
     <Compile Include="Code\Converters\GripCursorConverter.cs" />
     <Compile Include="Code\Converters\GripRotationConverter.cs" />
+    <Compile Include="Code\Converters\HttpProxyTypeToStringConverter.cs" />
     <Compile Include="Code\Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Code\SearchResult\FilterDataComparer.cs" />
     <Compile Include="Code\Settings\RegistrySettings.cs" />
     <Compile Include="Code\UI\AdvancedTabSettings.cs" />
+    <Compile Include="Code\UI\HttpProxyTypesView.cs" />
     <Compile Include="Code\UI\MixedSearchEngineDataView.cs" />
     <Compile Include="Code\Utils\Property.cs" />
     <Compile Include="Code\Extensions\RegexExtensions.cs" />
@@ -877,6 +879,7 @@
     <EmbeddedResource Include="Controls\Resources\TabSettingControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TabSettingControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TabSettingControl.ru.resx">
       <SubType>Designer</SubType>
