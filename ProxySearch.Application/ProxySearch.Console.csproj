@@ -456,6 +456,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolbarControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\UrlListPropertyControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UrlListPropertyControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
     </Compile>
@@ -881,6 +886,12 @@
       <LastGenOutput>ToolbarControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>UrlListPropertyControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.uk.resx" />
     <EmbeddedResource Include="Properties\Resources.uk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

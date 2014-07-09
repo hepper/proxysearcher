@@ -11,7 +11,6 @@
              mc:Ignorable="d" 
              x:Name="TabSettings" DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <Grid>
-        <controls:WatermarkControl />
         <TabControl ItemsSource="{Binding Path=ExtendedTabSettings}" Name="PropertyTabControl" SelectionChanged="PropertyTabControl_SelectionChanged">
             <TabControl.ItemTemplate>
                 <DataTemplate>
