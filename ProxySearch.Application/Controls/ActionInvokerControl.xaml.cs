@@ -137,7 +137,7 @@ namespace ProxySearch.Console.Controls
             {
                 SetProgress(true);
                 StatusText = Properties.Resources.WaitUntilCurrentOperationIsFinished;
-                ErrorButton.Visibility = Visibility.Hidden;
+                ErrorButton.Visibility = Visibility.Collapsed;
                 Context.Get<ISearchResult>().Started();
             }));
         }

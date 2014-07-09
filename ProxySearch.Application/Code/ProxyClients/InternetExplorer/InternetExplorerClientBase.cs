@@ -21,7 +21,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 
         protected override ProxyInfo GetProxy()
         {
-            if (!UseProxy)
+            if (!WinINet.IsProxyUsed)
                 return null;
 
             return new ProxyInfo(ProxyString);
@@ -31,7 +31,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         {
             get
             {
-                string[] arguments = GetValue<string>(Constants.Browsers.IE.ProxyServer).Split(';');
+                string[] arguments = WinINet.ProxyIpPort.Split(';');
 
                 string value = arguments.SingleOrDefault(item => item.StartsWith(string.Concat(Type, "="), StringComparison.CurrentCultureIgnoreCase));
 
@@ -53,33 +53,14 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         {
             return new SettingsData
             {
-                UseProxy = UseProxy,
-                AddressPort = GetValue<string>(Constants.Browsers.IE.ProxyServer)
+                UseProxy = WinINet.IsProxyUsed,
+                AddressPort = WinINet.ProxyIpPort
             };
         }
 
         protected override void RestoreSettings(SettingsData settings)
         {
             WinINet.SetProxy(settings.UseProxy, settings.AddressPort);
-        }
-
-        private bool UseProxy
-        {
-            get
-            {
-                int proxyEnabled = GetValue<int>(Constants.Browsers.IE.ProxyEnabled);
-                string proxyServer = GetValue<string>(Constants.Browsers.IE.ProxyServer);
-
-                return proxyEnabled != 0 && proxyServer != null;
-            }
-        }
-
-        private T GetValue<T>(string name)
-        {
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(Constants.Browsers.IE.Settings))
-            {
-                return (T)key.GetValue(name);
-            }
         }
 
         protected override bool ImportsInternetExplorerSettings

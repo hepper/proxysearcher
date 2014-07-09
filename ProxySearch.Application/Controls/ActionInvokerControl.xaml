@@ -16,13 +16,13 @@
     <Grid Margin="{StaticResource DefaultMargin}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="100px" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="200px" />
             <ColumnDefinition Width="100px" />
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="0" Content="{Binding ElementName=ActionInvoker, Path=StatusText}" />
-        <Button Grid.Column="1" Margin="0,0,5,0" Click="Error_Click" Visibility="Hidden" Name="ErrorButton" 
+        <Button Grid.Column="1" Margin="0,0,5,0" Click="Error_Click" Visibility="Collapsed" Name="ErrorButton" Width="100"
                 Content="{x:Static resources:ActionInvokerControl.Error}" />
 
         <ProgressBar Grid.Column="2" IsTabStop="False" IsEnabled="false"

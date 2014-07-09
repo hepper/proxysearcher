@@ -66,13 +66,6 @@ namespace ProxySearch.Console.Code
             public static readonly string BrowserPath64Bit = @"SOFTWARE\WOW6432Node\Clients\StartMenuInternet\{0}\shell\open\command";
             public static readonly string BrowserPath32Bit = @"SOFTWARE\Clients\StartMenuInternet\{0}\shell\open\command";
 
-            public static class IE
-            {
-                public static readonly string Settings = @"Software\Microsoft\Windows\CurrentVersion\Internet Settings";
-                public static readonly string ProxyEnabled = @"ProxyEnable";
-                public static readonly string ProxyServer = @"ProxyServer";
-            }
-
             public static class Opera
             {
                 public static readonly string Location = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Opera\Opera\operaprefs.ini";
