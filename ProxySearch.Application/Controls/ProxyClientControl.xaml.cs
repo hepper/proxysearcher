@@ -86,8 +86,8 @@ namespace ProxySearch.Console.Controls
                 if (ProxyClient.Proxy != ProxyInfo)
                 {
                     Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat, 
-                                                                    ProxyClient.Proxy.AddressPort, 
-                                                                    ProxyInfo.AddressPort, 
+                                                                    ProxyClient.Proxy, 
+                                                                    ProxyInfo, 
                                                                     ProxyClient.GetType().Name));
                 }
 
