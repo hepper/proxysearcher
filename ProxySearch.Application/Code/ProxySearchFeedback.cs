@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.GoogleAnalytics;
@@ -12,7 +13,6 @@ using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.Proxies.Socks;
 using ProxySearch.Engine.Tasks;
-using System.Linq;
 
 namespace ProxySearch.Console.Code
 {

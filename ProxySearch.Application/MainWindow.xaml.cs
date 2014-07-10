@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.SearchEngines.Google;
 
 namespace ProxySearch.Console
@@ -22,6 +23,7 @@ namespace ProxySearch.Console
 
             Context.Set<IControlNavigator>(new ControlNavigator(Placeholder));
             Context.Set<IActionInvoker>(ActionInvoker);
+            Context.Set<IErrorFeedback>(ActionInvoker);
             Context.Set<ICaptchaWindow>(this);
         }
 

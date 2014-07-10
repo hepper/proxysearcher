@@ -248,4 +248,16 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   <data name="ProxyGotFirstResponseFormat" xml:space="preserve">
     <value>{0} - got first response</value>
   </data>
+  <data name="ConfiguringProxyChecker" xml:space="preserve">
+    <value>Configuring proxy checker</value>
+  </data>
+  <data name="ProxyDownloadingFormat" xml:space="preserve">
+    <value>{0} - proxy downloading '{1}'</value>
+  </data>
+  <data name="OpeningConnectionFormat" xml:space="preserve">
+    <value>{0} - opening connection</value>
+  </data>
+  <data name="WaitUntilProxyCheckerIsConfiguredFormat" xml:space="preserve">
+    <value>{0} - wait until proxy checker is configured</value>
+  </data>
 </root>

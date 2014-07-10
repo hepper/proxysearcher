@@ -3,7 +3,8 @@
     public enum TaskStatus
     {
         Normal,
-        Important,
-        MostImportant
+        Progress,
+        GoodProgress,
+        Slow
     }
 }

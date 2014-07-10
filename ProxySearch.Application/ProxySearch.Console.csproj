@@ -783,7 +783,9 @@
       <LastGenOutput>CheckerProxyNetPropertyControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.ru.resx" />
-    <EmbeddedResource Include="Controls\Resources\AboutControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\AboutControl.uk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\AdvancedTabControl.uk.resx">
       <SubType>Designer</SubType>

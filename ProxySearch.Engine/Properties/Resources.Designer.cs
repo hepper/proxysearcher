@@ -158,6 +158,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuring proxy checker.
+        /// </summary>
+        internal static string ConfiguringProxyChecker {
+            get {
+                return ResourceManager.GetString("ConfiguringProxyChecker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downloading &apos;{0}&apos;..
         /// </summary>
         internal static string DownloadingFormat {
@@ -215,6 +224,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} - opening connection.
+        /// </summary>
+        internal static string OpeningConnectionFormat {
+            get {
+                return ResourceManager.GetString("OpeningConnectionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;portregex&gt;.
         /// </summary>
         internal static string PortRegexKey {
@@ -247,6 +265,15 @@ namespace ProxySearch.Engine.Properties {
         internal static string ProxyDeterminingProxyType {
             get {
                 return ResourceManager.GetString("ProxyDeterminingProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - proxy downloading &apos;{1}&apos;.
+        /// </summary>
+        internal static string ProxyDownloadingFormat {
+            get {
+                return ResourceManager.GetString("ProxyDownloadingFormat", resourceCulture);
             }
         }
         
@@ -428,6 +455,15 @@ namespace ProxySearch.Engine.Properties {
         internal static string UnsupportedSocksProxyType {
             get {
                 return ResourceManager.GetString("UnsupportedSocksProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - wait until proxy checker is configured.
+        /// </summary>
+        internal static string WaitUntilProxyCheckerIsConfiguredFormat {
+            get {
+                return ResourceManager.GetString("WaitUntilProxyCheckerIsConfiguredFormat", resourceCulture);
             }
         }
     }

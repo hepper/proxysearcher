@@ -14,10 +14,12 @@ namespace ProxySearch.Console.Code.Converters
 
             switch (status)
             {
-                case TaskStatus.Important:
+                case TaskStatus.Progress:
                     return new BrushConverter().ConvertFrom("#115511");
-                case TaskStatus.MostImportant:
+                case TaskStatus.GoodProgress:
                     return new BrushConverter().ConvertFrom("#00AA00");
+                case TaskStatus.Slow:
+                    return new BrushConverter().ConvertFrom("#AAAA00");
                 case TaskStatus.Normal:
                 default:
                     return new BrushConverter().ConvertFrom("#555555");

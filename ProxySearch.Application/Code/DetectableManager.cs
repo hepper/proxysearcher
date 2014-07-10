@@ -5,6 +5,7 @@ using System.Reflection;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Engine.Error;
 
 namespace ProxySearch.Console.Code
 {
@@ -26,25 +27,39 @@ namespace ProxySearch.Console.Code
         {
             try
             {
-                Type type = detectable.Implementation;
-                ParametersPair parameterPair = parametersList.SingleOrDefault(item => item.TypeName == detectable.GetType().AssemblyQualifiedName);
+                T result = CreateImplementationInstanceInternal<T>(detectable, parametersList, interfacesList);
 
-                if (parameterPair == null && !interfacesList.Any())
-                    return (T)Activator.CreateInstance(type);
-                else
+                IErrorFeedbackHolder errorFeedbackHolder = result as IErrorFeedbackHolder;
+
+                if (errorFeedbackHolder != null)
                 {
-                    List<object> parameters = new List<object>();
-                    if (parameterPair != null)
-                        parameters.AddRange(parameterPair.Parameters);
-
-                    parameters.AddRange(interfacesList);
-
-                    return (T)Activator.CreateInstance(type, parameters.ToArray());
+                    errorFeedbackHolder.ErrorFeedback = Context.Get<IErrorFeedback>();
                 }
+
+                return result;
             }
             catch (TargetInvocationException exception)
             {
                 throw exception.InnerException;
+            }
+        }
+
+        private static T CreateImplementationInstanceInternal<T>(IDetectable detectable, List<ParametersPair> parametersList, List<object> interfacesList)
+        {
+            Type type = detectable.Implementation;
+            ParametersPair parameterPair = parametersList.SingleOrDefault(item => item.TypeName == detectable.GetType().AssemblyQualifiedName);
+
+            if (parameterPair == null && !interfacesList.Any())
+                return (T)Activator.CreateInstance(type);
+            else
+            {
+                List<object> parameters = new List<object>();
+                if (parameterPair != null)
+                    parameters.AddRange(parameterPair.Parameters);
+
+                parameters.AddRange(interfacesList);
+
+                return (T)Activator.CreateInstance(type, parameters.ToArray());
             }
         }
 

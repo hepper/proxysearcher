@@ -5,9 +5,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.DownloaderContainers;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
 {
@@ -26,42 +28,76 @@ namespace ProxySearch.Engine.Checkers
             set;
         }
 
+        private Dictionary<char, int> analyzedText = null;
         private Dictionary<char, int> AnalyzedText
         {
-            get;
-            set;
+            get
+            {
+                manualResetEvent.WaitOne();
+
+                return analyzedText;
+            }
+            set
+            {
+                analyzedText = value;
+            }
         }
+
+        private ManualResetEvent manualResetEvent = new ManualResetEvent(false);
 
         public ProxyCheckerByUrl(string url, double accuracy)
         {
             Url = url;
             Accuracy = accuracy;
 
+            TaskItem taskItem = Context.Get<TaskManager>().Create(Resources.ConfiguringProxyChecker);
+
             try
             {
-                string content = Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(url, null, Context.Get<CancellationTokenSource>()).GetAwaiter().GetResult();
+                taskItem.UpdateDetails(string.Format(Resources.DownloadingFormat, Url));
 
-                if (content == null)
-                {
-                    throw new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url));
-                }
-
-                AnalyzedText = AnalyzeText(content);
+                Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(url, null, Context.Get<CancellationTokenSource>())
+                       .ContinueWith(task =>
+                       {
+                           try
+                           {
+                               if (task.Result == null)
+                               {
+                                   ErrorFeedback.SetException(new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url)));
+                               }
+                               else
+                               {
+                                   AnalyzedText = AnalyzeText(task.Result);
+                                   manualResetEvent.Set();
+                               }
+                           }
+                           finally
+                           {
+                               taskItem.Dispose();
+                           }
+                       });
             }
             catch (TaskCanceledException)
             {
             }
         }
 
-        protected override async Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end)
         {
             try
             {
+                task.UpdateDetails(string.Format(Resources.ProxyDownloadingFormat, proxy, Url));
+
                 string content = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(Url, proxy, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
 
                 if (content == null)
                 {
                     return false;
+                }
+
+                if (!manualResetEvent.WaitOne(0))
+                {
+                    task.UpdateDetails(string.Format(Resources.WaitUntilProxyCheckerIsConfiguredFormat, proxy), Tasks.TaskStatus.Slow);
                 }
 
                 return Compare(AnalyzedText, AnalyzeText(content)) <= Accuracy;

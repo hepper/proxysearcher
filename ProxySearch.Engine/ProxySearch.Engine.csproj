@@ -80,6 +80,9 @@
     <Compile Include="Checkers\TurnedOffProxyChecker.cs" />
     <Compile Include="DownloaderContainers\HttpDownloaderContainer.cs" />
     <Compile Include="EmptyBlackList.cs" />
+    <Compile Include="Error\DummyErrorFeedback.cs" />
+    <Compile Include="Error\IErrorFeedback.cs" />
+    <Compile Include="Error\IErrorFeedbackHolder.cs" />
     <Compile Include="Extended\AsyncManualResetEvent.cs" />
     <Compile Include="Extended\TcpClientExtended.cs" />
     <Compile Include="Extension\CancellationTokenExtension.cs" />

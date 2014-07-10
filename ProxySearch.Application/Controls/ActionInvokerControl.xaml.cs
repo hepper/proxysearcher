@@ -9,6 +9,7 @@ using ProxySearch.Common;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
@@ -16,7 +17,7 @@ namespace ProxySearch.Console.Controls
     /// <summary>
     /// Interaction logic for ActionInvoker.xaml
     /// </summary>
-    public partial class ActionInvokerControl : UserControl, IActionInvoker
+    public partial class ActionInvokerControl : UserControl, IActionInvoker, IErrorFeedback
     {
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -105,7 +106,16 @@ namespace ProxySearch.Console.Controls
                 }
             };
 
-            Context.Get<TaskManager>().OnStarted += Begin;
+            Context.Get<TaskManager>().OnStarted += () => 
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    SetProgress(true);
+                    StatusText = Properties.Resources.WaitUntilCurrentOperationIsFinished;
+                    ErrorButton.Visibility = Visibility.Collapsed;
+                    Context.Get<ISearchResult>().Started();
+                }));
+            };
         }
 
         public void StartAsync(Action action)
@@ -129,17 +139,6 @@ namespace ProxySearch.Console.Controls
             catch (TaskCanceledException)
             {
             }
-        }
-
-        public void Begin()
-        {
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                SetProgress(true);
-                StatusText = Properties.Resources.WaitUntilCurrentOperationIsFinished;
-                ErrorButton.Visibility = Visibility.Collapsed;
-                Context.Get<ISearchResult>().Started();
-            }));
         }
 
         public void Finished(bool setReadyStatus)

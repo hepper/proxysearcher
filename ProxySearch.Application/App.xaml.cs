@@ -8,6 +8,7 @@ using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.UI;
+using ProxySearch.Engine.Error;
 
 namespace ProxySearch.Console
 {
@@ -70,7 +71,7 @@ namespace ProxySearch.Console
         {
             if (Context.IsSet<IActionInvoker>() && Application.Current != null && Application.Current.MainWindow.IsVisible)
             {
-                Context.Get<IActionInvoker>().SetException(e.Exception);
+                Context.Get<IErrorFeedback>().SetException(e.Exception);
             }
             else
             {

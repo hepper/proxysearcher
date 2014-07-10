@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
 using ProxySearch.Engine.DownloaderContainers;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
@@ -13,9 +14,15 @@ using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker
+    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker, IErrorFeedbackHolder
         where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
+        public IErrorFeedback ErrorFeedback
+        {
+            get;
+            set;
+        }
+
         protected IProxyDetailsProvider DetailsProvider
         {
             get;
@@ -25,6 +32,7 @@ namespace ProxySearch.Engine.Checkers
         public ProxyCheckerBase()
         {
             DetailsProvider = new ProxyDetailsProviderType();
+            ErrorFeedback = new DummyErrorFeedback();
         }
 
         public void CheckAsync(List<Proxy> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
@@ -46,12 +54,12 @@ namespace ProxySearch.Engine.Checkers
                         task.UpdateDetails(string.Format(Resources.ProxyCheckingIfAliveFormat, proxyCopy));
                         BanwidthInfo bandwidth = null;
 
-                        if (await Alive(proxyCopy, () => bandwidth = new BanwidthInfo()
+                        if (await Alive(proxyCopy, task, () => bandwidth = new BanwidthInfo()
                         {
                             BeginTime = DateTime.Now
                         }, lenght =>
                         {
-                            task.UpdateDetails(string.Format(Resources.ProxyGotFirstResponseFormat, proxyCopy), Tasks.TaskStatus.Important);
+                            task.UpdateDetails(string.Format(Resources.ProxyGotFirstResponseFormat, proxyCopy), Tasks.TaskStatus.Progress);
                             bandwidth.FirstTime = DateTime.Now;
                             bandwidth.FirstCount = lenght * 2;
                         }, lenght =>
@@ -63,11 +71,11 @@ namespace ProxySearch.Engine.Checkers
                             if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                                 return;
 
-                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.MostImportant);
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.GoodProgress);
 
                             CountryInfo countryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString());
 
-                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy), Tasks.TaskStatus.MostImportant);
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy), Tasks.TaskStatus.GoodProgress);
 
                             ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
 
@@ -87,7 +95,7 @@ namespace ProxySearch.Engine.Checkers
             }
         }
 
-        protected abstract Task<bool> Alive(Proxy proxy, Action begin, Action<int> firstTime, Action<int> end);
+        protected abstract Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end);
 
         protected virtual Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {

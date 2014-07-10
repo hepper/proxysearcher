@@ -153,6 +153,9 @@
   <data name="CheckingProxyIfItWorks" xml:space="preserve">
     <value>Проверяется работоспособность прокси</value>
   </data>
+  <data name="ConfiguringProxyChecker" xml:space="preserve">
+    <value>Настраивается метод проверки прокси</value>
+  </data>
   <data name="DownloadingFormat" xml:space="preserve">
     <value>Скачивается '{0}'</value>
   </data>
@@ -168,6 +171,9 @@
   <data name="InvalidHttpResponseFromSocksProxy" xml:space="preserve">
     <value>Неправильный http ответ от socks прокси</value>
   </data>
+  <data name="OpeningConnectionFormat" xml:space="preserve">
+    <value>{0} - открывается соеденение</value>
+  </data>
   <data name="ProxyCheckingIfAliveFormat" xml:space="preserve">
     <value>{0} - проверяется работоспособность</value>
   </data>
@@ -176,6 +182,9 @@
   </data>
   <data name="ProxyDeterminingProxyType" xml:space="preserve">
     <value>{0} - определяется тип прокси</value>
+  </data>
+  <data name="ProxyDownloadingFormat" xml:space="preserve">
+    <value>{0} - прокси скачивает '{1}'</value>
   </data>
   <data name="ProxyGotFirstResponseFormat" xml:space="preserve">
     <value>{0} - получен первый ответ</value>
@@ -219,5 +228,8 @@
   </data>
   <data name="UnsupportedSocksProxyType" xml:space="preserve">
     <value>Неподдерживаемый тип socks прокси</value>
+  </data>
+  <data name="WaitUntilProxyCheckerIsConfiguredFormat" xml:space="preserve">
+    <value>{0} - ожидается настроенный метод проверки прокси</value>
   </data>
 </root>
