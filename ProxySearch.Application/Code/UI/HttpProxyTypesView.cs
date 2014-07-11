@@ -41,7 +41,7 @@ namespace ProxySearch.Console.Code.UI
                     IgnoredHttpProxyTypes = list.ToArray();
                 }
 
-                if (!value && !IsSelected)
+                if (!value && IsSelected)
                 {
                     List<HttpProxyTypes> list = new List<HttpProxyTypes>(IgnoredHttpProxyTypes);
                     list.Remove(Type);
