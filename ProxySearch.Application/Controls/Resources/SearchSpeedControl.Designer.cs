@@ -22,14 +22,14 @@ namespace ProxySearch.Console.Controls.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SearchControl {
+    public class SearchSpeedControl {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SearchControl() {
+        internal SearchSpeedControl() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProxySearch.Console.Controls.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.SearchControl", typeof(SearchControl).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.SearchSpeedControl", typeof(SearchSpeedControl).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,20 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fast Settings.
+        ///   Looks up a localized string similar to Higher quality.
         /// </summary>
-        public static string FastSettings {
+        public static string HigherQuality {
             get {
-                return ResourceManager.GetString("FastSettings", resourceCulture);
+                return ResourceManager.GetString("HigherQuality", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
+        ///   Looks up a localized string similar to Higher speed.
         /// </summary>
-        public static string Search {
+        public static string HigherSpeed {
             get {
-                return ResourceManager.GetString("Search", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Search Type.
-        /// </summary>
-        public static string SearchType {
-            get {
-                return ResourceManager.GetString("SearchType", resourceCulture);
+                return ResourceManager.GetString("HigherSpeed", resourceCulture);
             }
         }
     }

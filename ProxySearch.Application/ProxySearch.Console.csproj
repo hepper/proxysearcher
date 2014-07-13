@@ -119,6 +119,7 @@
     <Compile Include="Code\Converters\GripCursorConverter.cs" />
     <Compile Include="Code\Converters\GripRotationConverter.cs" />
     <Compile Include="Code\Converters\HttpProxyTypeToStringConverter.cs" />
+    <Compile Include="Code\Converters\IncrementConverter.cs" />
     <Compile Include="Code\Converters\IntToVisibilityConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
@@ -433,6 +434,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchResult.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\SearchSpeedControl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchSpeedControl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\SelectFolderControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -465,6 +471,9 @@
     </Compile>
     <Compile Include="Controls\SearchResult.xaml.cs">
       <DependentUpon>SearchResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SearchSpeedControl.xaml.cs">
+      <DependentUpon>SearchSpeedControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SelectFolderControl.xaml.cs">
       <DependentUpon>SelectFolderControl.xaml</DependentUpon>
@@ -603,6 +612,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SearchResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SearchSpeedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -804,6 +817,12 @@
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SearchSpeedControl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\TabNameControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TabNameControl.Designer.cs</LastGenOutput>
@@ -816,7 +835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TaskManagerControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\TaskManagerControl.uk.resx" />
-    <EmbeddedResource Include="Controls\Resources\ToolbarControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ToolbarControl.uk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TabSettingControl.uk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

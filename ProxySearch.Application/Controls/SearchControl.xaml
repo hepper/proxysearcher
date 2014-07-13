@@ -6,23 +6,31 @@
              xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
              xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
-             d:DesignHeight="146" d:DesignWidth="688" x:Name="MainFrameControl">
+             d:DesignHeight="300" d:DesignWidth="688" x:Name="MainFrameControl">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
+    </UserControl.Resources>
 
     <Grid Style="{StaticResource MarginGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
 
-        <controls:ToolbarControl Grid.Row="0" />
+        <controls:ToolbarControl Grid.Row="0" Grid.ColumnSpan="2" />
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="280" />
                 <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -30,9 +38,20 @@
             <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=MainFrameControl, Path=TabSettings}" 
                       SelectedValuePath="Id" SelectedValue="{Binding ElementName=MainFrameControl, Path=CurrentTabId}" 
                       DisplayMemberPath="Name" Name="CurrentTab" Margin="5, 0, 5, 0" MinWidth="150" Padding="10 5 10 5" />
-            <Button Grid.Column="2"  Name="BeginSearch" Click="BeginSearch_Click" Content="{x:Static resources:SearchControl.Search}" />            
+            <Button Grid.Column="2"  Name="beginSearchButton" Click="BeginSearch_Click" Content="{x:Static resources:SearchControl.Search}" />
+            <Expander Grid.Column="3" Margin="20 0 0 0" VerticalAlignment="Center" Header="{x:Static resources:SearchControl.FastSettings}" Name="fastSettingsButton" />
         </Grid>
 
-        <controls:SearchResult Grid.Row="2" Margin="0, 5, 0, 0" />
+        <GroupBox Grid.Row="2" Margin="7 10 0 0"
+                  Visibility="{Binding ElementName=fastSettingsButton, Path=IsExpanded, Converter={StaticResource booleanToVisibilityConverter}, Mode=OneWay}">
+
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <controls:SearchSpeedControl x:Name="searchSpeedControl" />
+            </StackPanel>
+        </GroupBox>
+
+        <controls:SearchResult Grid.Row="3" Margin="0, 5, 0, 0" />
+
+        <controls:AdvertisingControl Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Margin="5 0 0 0" />
     </Grid>
 </UserControl>

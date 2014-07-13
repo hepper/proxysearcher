@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
@@ -26,7 +25,7 @@ namespace ProxySearch.Console.Controls
 
             Context.Get<TaskManager>().OnCompleted += () =>
             {
-                Dispatcher.Invoke(() => BeginSearch.IsEnabled = true);
+                Dispatcher.Invoke(() => EnableButtons(true));
             };
         }
 
@@ -36,9 +35,19 @@ namespace ProxySearch.Console.Controls
             Context.Get<IGA>().TrackEventAsync(EventType.General, Properties.Resources.SearchStarted);
             Context.Get<IGA>().StartTrackTiming(TimingCategory.SearchSpeed, TimingVariable.TimeForGetFirstProxy);
 
-            BeginSearch.IsEnabled = false;
+            EnableButtons(false);
+
             Context.Get<ISearchResult>().Clear();
             Context.Get<IActionInvoker>().StartAsync(DoBeginSearch);
+        }
+
+        private void EnableButtons(bool isEnabled)
+        {
+            beginSearchButton.IsEnabled = isEnabled;
+            fastSettingsButton.IsEnabled = isEnabled;
+
+            if (!isEnabled)
+                fastSettingsButton.IsExpanded = false;
         }
 
         private void DoBeginSearch()
@@ -75,6 +84,7 @@ namespace ProxySearch.Console.Controls
             set
             {
                 Context.Get<AllSettings>().SelectedTabSettingsId = value;
+                searchSpeedControl.UpdateBindings();
             }
         }
     }

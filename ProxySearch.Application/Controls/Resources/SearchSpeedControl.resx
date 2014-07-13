@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FastSettings" xml:space="preserve">
-    <value>Быстрые настройки</value>
+  <data name="HigherQuality" xml:space="preserve">
+    <value>Higher quality</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Поиск</value>
-  </data>
-  <data name="SearchType" xml:space="preserve">
-    <value>Тип поиска</value>
+  <data name="HigherSpeed" xml:space="preserve">
+    <value>Higher speed</value>
   </data>
 </root>
