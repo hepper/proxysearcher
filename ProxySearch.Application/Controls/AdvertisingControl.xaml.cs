@@ -19,6 +19,7 @@ namespace ProxySearch.Console.Controls
         private static readonly Uri adsUri = new Uri("http://proxysearcher.sourceforge.net/Ads.php");
         private bool hasErrorHappened = false;
         private bool isUserClickedOnAdvertising = false;
+        private bool isAnimationPlayed = false;
 
         public AdvertisingControl()
         {
@@ -37,8 +38,9 @@ namespace ProxySearch.Console.Controls
 
         private void browser_NavigateComplete2(object pDisp, ref object URL)
         {
-            if (!hasErrorHappened)
+            if (!hasErrorHappened && !isAnimationPlayed)
             {
+                isAnimationPlayed = true;
                 PlayAnimation("ExpandControl");
             }
         }
