@@ -81,9 +81,10 @@ namespace ProxySearch.Console.Controls
             {
                 Context.Get<IGA>().TrackEventAsync(EventType.ButtonClick, 
                                                    string.Format("{0}_{1}", Buttons.ProxyClient, ProxyClient.GetType().Name), value); 
+
                 ProxyClient.Proxy = value ? ProxyInfo : null;
 
-                if (ProxyClient.Proxy != ProxyInfo)
+                if (IsChecked != value)
                 {
                     Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat, 
                                                                     ProxyClient.Proxy, 
