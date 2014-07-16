@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using ProxySearch.Common;
+using ProxySearch.Console.Code.Extensions;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using SHDocVw;
@@ -22,19 +23,39 @@ namespace ProxySearch.Console.Controls
         private bool isUserClickedOnAdvertising = false;
         private bool isAnimationPlayed = false;
 
+        private Action updateCursor = null;
+        private int delay = 1;
+
         public AdvertisingControl()
         {
             InitializeComponent();
 
             DWebBrowserEvents2_Event browser = webBrowser.ActiveXInstance as DWebBrowserEvents2_Event;
 
+            //Workaround which allows to minimize showing time of wait cursor when WebBrowser navigating.
+            updateCursor = () => Dispatcher.Invoke(Mouse.UpdateCursor); 
+
             if (browser != null)
             {
                 browser.NewWindow3 += webBrowser_NewWindow3;
                 browser.NavigateError += browser_NavigateError;
                 browser.NavigateComplete2 += browser_NavigateComplete2;
+
+                browser.StatusTextChange += browser_StatusTextChange;
+                browser.TitleChange += browser_TitleChange;
+
                 webBrowser.Navigate(adsUri);
             }
+        }
+
+        private void browser_TitleChange(string Text)
+        {
+            updateCursor.RunWithDelay(TimeSpan.FromMilliseconds(delay));
+        }
+
+        private void browser_StatusTextChange(string Text)
+        {
+            updateCursor.RunWithDelay(TimeSpan.FromMilliseconds(delay));
         }
 
         private void browser_NavigateComplete2(object pDisp, ref object url)

@@ -1,6 +1,8 @@
 ﻿using ProxySearch.Engine;
 using ProxySearch.Console.Properties;
 using System.Threading.Tasks;
+using ProxySearch.Common;
+using System.Threading;
 
 namespace ProxySearch.Console.Code
 {
@@ -27,7 +29,7 @@ namespace ProxySearch.Console.Code
                         Name = null
                     };
                 }
-            });
+            }, Context.Get<CancellationTokenSource>().Token);
         }
     }
 }

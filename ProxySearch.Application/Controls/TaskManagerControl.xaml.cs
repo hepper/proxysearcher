@@ -100,19 +100,19 @@ namespace ProxySearch.Console.Controls
             ThreadPool.GetAvailableThreads(out workerThreads, out competitionPortThreads);
             ThreadPool.GetMaxThreads(out maxWorkerThreads, out maxCompetitionPortThreads);
 
-            Dispatcher.Invoke(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 ThreadsCount = maxWorkerThreads - workerThreads;
                 CompetitionPortThreadsCount = maxCompetitionPortThreads - competitionPortThreads;
-            });
+            }));
         }
 
         private void UpdateTaskUI()
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 items.GetBindingExpression(ItemsControl.ItemsSourceProperty).UpdateTarget();
-            });
+            }));
         }
     }
 }
