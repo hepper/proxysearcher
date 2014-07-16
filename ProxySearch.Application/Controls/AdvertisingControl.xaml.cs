@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Animation;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.GoogleAnalytics;
@@ -36,9 +37,9 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        private void browser_NavigateComplete2(object pDisp, ref object URL)
+        private void browser_NavigateComplete2(object pDisp, ref object url)
         {
-            if (!hasErrorHappened && !isAnimationPlayed)
+            if (adsUri.OriginalString != (string)url && !hasErrorHappened && !isAnimationPlayed)
             {
                 isAnimationPlayed = true;
                 PlayAnimation("ExpandControl");

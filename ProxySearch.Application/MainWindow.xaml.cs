@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
@@ -64,7 +66,7 @@ namespace ProxySearch.Console
             //    handler = (sender1, e1) =>
             //    {
             //        IHTMLDocument2 document = webBrowser.Document as IHTMLDocument2;
-                    
+
             //        string content = document.body.outerHTML;
             //        string loweredContent = content.ToLower();
 

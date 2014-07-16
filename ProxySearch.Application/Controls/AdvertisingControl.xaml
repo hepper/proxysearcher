@@ -23,7 +23,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <WindowsFormsHost Name="windowsFormsHost" Grid.Row="0">
-                <wf:WebBrowser x:Name="webBrowser" ScrollBarsEnabled="false" />
+                <wf:WebBrowser x:Name="webBrowser" ScrollBarsEnabled="false" ScriptErrorsSuppressed="True" />
             </WindowsFormsHost>
 
             <ToggleButton Grid.Row="1" Content="{x:Static resources:AdvertisingControl.Advertising}" Margin="6" IsChecked="True"
