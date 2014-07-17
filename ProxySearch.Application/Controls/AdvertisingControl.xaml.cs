@@ -51,7 +51,7 @@ namespace ProxySearch.Console.Controls
 
         private void Advertising_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (IsVisible && hasErrorHappened)
+            if (hasErrorHappened)
             {
                 hasErrorHappened = false;
                 webBrowser.Navigate(adsUri);
