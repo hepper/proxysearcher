@@ -33,7 +33,7 @@ namespace ProxySearch.Console.Controls
             DWebBrowserEvents2_Event browser = webBrowser.ActiveXInstance as DWebBrowserEvents2_Event;
 
             //Workaround which allows to minimize showing time of wait cursor when WebBrowser navigating.
-            updateCursor = () => Dispatcher.Invoke(Mouse.UpdateCursor); 
+            updateCursor = () => Dispatcher.Invoke(Mouse.UpdateCursor);
 
             if (browser != null)
             {
@@ -43,19 +43,19 @@ namespace ProxySearch.Console.Controls
 
                 browser.StatusTextChange += browser_StatusTextChange;
                 browser.TitleChange += browser_TitleChange;
-
                 webBrowser.Navigate(adsUri);
+
+                IsVisibleChanged += Advertising_IsVisibleChanged;
             }
         }
 
-        private void browser_TitleChange(string Text)
+        private void Advertising_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            updateCursor.RunWithDelay(TimeSpan.FromMilliseconds(delay));
-        }
-
-        private void browser_StatusTextChange(string Text)
-        {
-            updateCursor.RunWithDelay(TimeSpan.FromMilliseconds(delay));
+            if (IsVisible && hasErrorHappened)
+            {
+                hasErrorHappened = false;
+                webBrowser.Navigate(adsUri);
+            }
         }
 
         private void browser_NavigateComplete2(object pDisp, ref object url)
@@ -67,8 +67,9 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        private void browser_NavigateError(object pDisp, ref object URL, ref object Frame, ref object StatusCode, ref bool Cancel)
+        private void browser_NavigateError(object pDisp, ref object url, ref object frame, ref object statusCode, ref bool cancel)
         {
+            Context.Get<IGA>().TrackException(string.Format("Cannot open advertising. Url: {0}, StatusCode: {1}", url, statusCode));
             hasErrorHappened = true;
         }
 
@@ -122,6 +123,16 @@ namespace ProxySearch.Console.Controls
                 PlayAnimation("CollapseControl");
                 Context.Get<IGA>().TrackEventAsync(EventType.General, Properties.Resources.AdvertisingClosed);
             }
+        }
+
+        private void browser_TitleChange(string Text)
+        {
+            updateCursor.RunWithDelay(TimeSpan.FromMilliseconds(delay));
+        }
+
+        private void browser_StatusTextChange(string Text)
+        {
+            updateCursor.RunWithDelay(TimeSpan.FromMilliseconds(delay));
         }
     }
 }
