@@ -529,6 +529,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It looks like configuration of Proxy Searcher is not up-to-date. In order to fix that error open Tools-&gt;Settings and press &apos;Restore defaults&apos; button on General tab..
+        /// </summary>
+        internal static string OldConfigurationException {
+            get {
+                return ResourceManager.GetString("OldConfigurationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opera.
         /// </summary>
         internal static string Opera {

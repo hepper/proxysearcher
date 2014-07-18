@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Error;
 
 namespace ProxySearch.Console.Code
@@ -41,6 +43,10 @@ namespace ProxySearch.Console.Code
             catch (TargetInvocationException exception)
             {
                 throw exception.InnerException;
+            }
+            catch (MissingMethodException)
+            {
+                throw new ConfigurationErrorsException(Resources.OldConfigurationException);
             }
         }
 
