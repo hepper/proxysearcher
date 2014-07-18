@@ -403,7 +403,7 @@ namespace ProxySearch.Console.Controls
             string[] values = FilteredData.Select(info=> info.ToString(ExportSettings.ExportCountry, ExportSettings.ExportProxyType))
                                   .ToArray();
 
-            Clipboard.SetText(string.Join(Environment.NewLine, values));
+            Clipboard.SetDataObject(string.Join(Environment.NewLine, values));
         }
     }
 }
