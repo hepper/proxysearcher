@@ -39,7 +39,7 @@ namespace ProxySearch.Console.Controls
             {
                 browser.NewWindow3 += webBrowser_NewWindow3;
                 browser.NavigateError += browser_NavigateError;
-                browser.NavigateComplete2 += browser_NavigateComplete2;
+                browser.BeforeScriptExecute += browser_BeforeScriptExecute;
 
                 browser.StatusTextChange += browser_StatusTextChange;
                 browser.TitleChange += browser_TitleChange;
@@ -58,9 +58,9 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        private void browser_NavigateComplete2(object pDisp, ref object url)
+        private void browser_BeforeScriptExecute(object pDispWindow)
         {
-            if (adsUri.OriginalString != (string)url && !hasErrorHappened && !isAnimationPlayed)
+            if (webBrowser.ReadyState == System.Windows.Forms.WebBrowserReadyState.Complete && !hasErrorHappened && !isAnimationPlayed)
             {
                 isAnimationPlayed = true;
                 PlayAnimation("ExpandControl");
