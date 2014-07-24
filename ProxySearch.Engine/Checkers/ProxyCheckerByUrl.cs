@@ -29,21 +29,8 @@ namespace ProxySearch.Engine.Checkers
         }
 
         private Dictionary<char, int> analyzedText = null;
-        private Dictionary<char, int> AnalyzedText
-        {
-            get
-            {
-                manualResetEvent.WaitOne();
 
-                return analyzedText;
-            }
-            set
-            {
-                analyzedText = value;
-            }
-        }
-
-        private ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+        private Task initializatinTask = null;
 
         public ProxyCheckerByUrl(string url, double accuracy)
         {
@@ -56,26 +43,28 @@ namespace ProxySearch.Engine.Checkers
             {
                 taskItem.UpdateDetails(string.Format(Resources.DownloadingFormat, Url));
 
-                Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(url, null, Context.Get<CancellationTokenSource>())
-                       .ContinueWith(task =>
-                       {
-                           try
-                           {
-                               if (task.Result == null)
-                               {
-                                   ErrorFeedback.SetException(new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url)));
-                               }
-                               else
-                               {
-                                   AnalyzedText = AnalyzeText(task.Result);
-                                   manualResetEvent.Set();
-                               }
-                           }
-                           finally
-                           {
-                               taskItem.Dispose();
-                           }
-                       });
+                initializatinTask = Context.Get<IHttpDownloaderContainer>()
+                                            .HttpDownloader.GetContentOrNull(url, null, Context.Get<CancellationTokenSource>())
+                                            .ContinueWith(task =>
+                                               {
+                                                   try
+                                                   {
+                                                       Thread.Sleep(60000);
+                                                       if (task.Result == null)
+                                                       {
+                                                           ErrorFeedback.SetException(new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url)));
+                                                           Context.Get<CancellationTokenSource>().Cancel();
+                                                       }
+                                                       else
+                                                       {
+                                                           analyzedText = AnalyzeText(task.Result);
+                                                       }
+                                                   }
+                                                   finally
+                                                   {
+                                                       taskItem.Dispose();
+                                                   }
+                                               });
             }
             catch (TaskCanceledException)
             {
@@ -95,12 +84,10 @@ namespace ProxySearch.Engine.Checkers
                     return false;
                 }
 
-                if (!manualResetEvent.WaitOne(0))
-                {
-                    task.UpdateDetails(string.Format(Resources.WaitUntilProxyCheckerIsConfiguredFormat, proxy), Tasks.TaskStatus.Slow);
-                }
+                task.UpdateDetails(string.Format(Resources.WaitUntilProxyCheckerIsConfiguredFormat, proxy), Tasks.TaskStatus.Slow);
+                await initializatinTask;
 
-                return Compare(AnalyzedText, AnalyzeText(content)) <= Accuracy;
+                return Compare(analyzedText, AnalyzeText(content)) <= Accuracy;
             }
             catch (Exception)
             {
