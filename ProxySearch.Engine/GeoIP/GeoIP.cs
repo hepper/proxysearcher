@@ -6,7 +6,7 @@ namespace ProxySearch.Engine.GeoIP
     {
         public async Task<CountryInfo> GetLocation(string ipAddress)
         {
-            return await Task.Run<CountryInfo>(() => new CountryInfo
+            return await Task.FromResult(new CountryInfo
             {
                 Code = null,
                 Name = string.Empty
