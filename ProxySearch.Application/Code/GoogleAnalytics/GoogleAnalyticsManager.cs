@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -105,7 +106,7 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
                             new KeyValuePair<string, string>(GAResources.ApplicationNameKey, GAResources.ApplicationName),
                             new KeyValuePair<string, string>(GAResources.HitTypeKey, hitType.ToString().ToLower()),
                             new KeyValuePair<string, string>(GAResources.ProgramVersionKey, Context.Get<IVersionProvider>().VersionString),
-                            new KeyValuePair<string, string>(GAResources.UserLanguageKey, Context.Get<AllSettings>().SelectedCulture)
+                            new KeyValuePair<string, string>(GAResources.UserLanguageKey, CultureInfo.InstalledUICulture.DisplayName)
                         };
 
                         string screenResolution = ScreenResolutionOrNull;
