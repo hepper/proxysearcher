@@ -366,4 +366,11 @@
     <value>Країна визначалася за вихідною адресої проксі '{0}',
 яка відрізняється від вхідної адреси '{1}'.</value>
   </data>
+  <data name="IPAddressDescriptionFormat" xml:space="preserve">
+    <value>Вхідна адреса: {0}
+Вихідна адреса: {1}</value>
+  </data>
+  <data name="Undetermined" xml:space="preserve">
+    <value>Невизначена</value>
+  </data>
 </root>

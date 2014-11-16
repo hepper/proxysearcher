@@ -12,6 +12,7 @@
         <converters:RowBackgroundColorConverter x:Key="rowBackgroundColorConverter" />
         <converters:CountryNameMultiConverter x:Key="countryNameMultiConverter" />
         <converters:CountryDescriptionMultiConverter x:Key="countryDescriptionMultiConverter" />
+        <converters:IPAdressDescriptionMultiConverter x:Key="ipAdressDescriptionMultiConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -106,7 +107,15 @@
                 <DataGridTemplateColumn Header="{x:Static resources:SearchResult.IPAddress}" Width="130" SortMemberPath="AddressString" CanUserSort="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBox Name="textBox" Text="{Binding Path=Address, Mode=OneWay}" />
+                            <TextBox Name="textBox" Text="{Binding Path=Address, Mode=OneWay}">
+                                <TextBox.ToolTip>
+                                    <MultiBinding Converter="{StaticResource ipAdressDescriptionMultiConverter}" Mode="OneWay">
+                                        <Binding Path="CountryInfo.Name" />
+                                        <Binding Path="Details.Details.OutgoingIPAddress" />
+                                        <Binding Path="Address" />
+                                    </MultiBinding>
+                                </TextBox.ToolTip>
+                            </TextBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -2,10 +2,11 @@
 using System.Globalization;
 using System.Net;
 using System.Windows.Data;
+using ProxySearch.Console.Properties;
 
 namespace ProxySearch.Console.Code.Converters
 {
-    public class CountryNameMultiConverter : IMultiValueConverter
+    public class IPAdressDescriptionMultiConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
@@ -13,15 +14,13 @@ namespace ProxySearch.Console.Code.Converters
             IPAddress outgoingIPAddress = values[1] as IPAddress;
             IPAddress ipAddress = values[2] as IPAddress;
 
-            if (string.IsNullOrEmpty(countryName) || ipAddress == null)
-                return string.Empty;
+            if (countryName == null || ipAddress == null)
+                return null;
 
-            if (outgoingIPAddress != null && outgoingIPAddress.ToString() != ipAddress.ToString())
-            {
-                return string.Format("{0} ({1})", countryName, outgoingIPAddress);
-            }
+            string outgoingAddressDescription = outgoingIPAddress == null ? Resources.Undetermined : outgoingIPAddress.ToString();
+            string incomingAddress = ipAddress.ToString();
 
-            return countryName;
+            return string.Format(Resources.IPAddressDescriptionFormat, incomingAddress, outgoingAddressDescription);
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

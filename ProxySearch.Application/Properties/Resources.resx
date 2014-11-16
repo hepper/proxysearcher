@@ -450,4 +450,11 @@ Response time: {0} s</value>
     <value>Name of country was determined based on outgoing IP adress '{0}'
 which is different from ingoing IP address '{1}'.</value>
   </data>
+  <data name="IPAddressDescriptionFormat" xml:space="preserve">
+    <value>Incoming IP address: {0}
+Outgoing IP address: {1}</value>
+  </data>
+  <data name="Undetermined" xml:space="preserve">
+    <value>Undetermined</value>
+  </data>
 </root>

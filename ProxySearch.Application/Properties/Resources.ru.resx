@@ -366,4 +366,11 @@
     <value>Страна определилась по исходящему адресу прокси '{0}',
 который отличается от входящего адреса '{1}'.</value>
   </data>
+  <data name="IPAddressDescriptionFormat" xml:space="preserve">
+    <value>Входящий адрес: {0}
+Исходящий адрес: {1}</value>
+  </data>
+  <data name="Undetermined" xml:space="preserve">
+    <value>Неопределён</value>
+  </data>
 </root>

@@ -502,6 +502,16 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incoming IP address: {0}
+        ///Outgoing IP address: {1}.
+        /// </summary>
+        internal static string IPAddressDescriptionFormat {
+            get {
+                return ResourceManager.GetString("IPAddressDescriptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Job Count {0}.
         /// </summary>
         internal static string JobCountFormat {
@@ -941,6 +951,15 @@ namespace ProxySearch.Console.Properties {
         internal static string TypeOfProxyIsNotDefinedDoYouWantToContinue {
             get {
                 return ResourceManager.GetString("TypeOfProxyIsNotDefinedDoYouWantToContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undetermined.
+        /// </summary>
+        internal static string Undetermined {
+            get {
+                return ResourceManager.GetString("Undetermined", resourceCulture);
             }
         }
         

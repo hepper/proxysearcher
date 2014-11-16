@@ -124,6 +124,7 @@
     <Compile Include="Code\Converters\HttpProxyTypeToStringConverter.cs" />
     <Compile Include="Code\Converters\IncrementConverter.cs" />
     <Compile Include="Code\Converters\IntToVisibilityConverter.cs" />
+    <Compile Include="Code\Converters\IPAdressDescriptionMultiConverter.cs" />
     <Compile Include="Code\Converters\PageCountConverter.cs" />
     <Compile Include="Code\Converters\PagingButtonEnabledMultiConverter.cs" />
     <Compile Include="Code\Converters\PagingEnabledConverter.cs" />
@@ -922,10 +923,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.uk.resx" />
+    <EmbeddedResource Include="Properties\Resources.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.uk.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.ru.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
