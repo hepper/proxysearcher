@@ -371,6 +371,6 @@
 Исходящий адрес: {1}</value>
   </data>
   <data name="Undetermined" xml:space="preserve">
-    <value>Неопределён</value>
+    <value>Не определён</value>
   </data>
 </root>

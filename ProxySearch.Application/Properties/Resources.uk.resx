@@ -371,6 +371,6 @@
 Вихідна адреса: {1}</value>
   </data>
   <data name="Undetermined" xml:space="preserve">
-    <value>Невизначена</value>
+    <value>Не визначена</value>
   </data>
 </root>
