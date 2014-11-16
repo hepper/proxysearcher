@@ -49,7 +49,6 @@ namespace ProxySearch.Engine.Checkers
                                                {
                                                    try
                                                    {
-                                                       Thread.Sleep(60000);
                                                        if (task.Result == null)
                                                        {
                                                            ErrorFeedback.SetException(new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url)));
