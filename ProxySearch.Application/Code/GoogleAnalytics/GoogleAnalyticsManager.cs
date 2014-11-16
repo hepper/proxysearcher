@@ -106,7 +106,8 @@ namespace ProxySearch.Console.Code.GoogleAnalytics
                             new KeyValuePair<string, string>(GAResources.ApplicationNameKey, GAResources.ApplicationName),
                             new KeyValuePair<string, string>(GAResources.HitTypeKey, hitType.ToString().ToLower()),
                             new KeyValuePair<string, string>(GAResources.ProgramVersionKey, Context.Get<IVersionProvider>().VersionString),
-                            new KeyValuePair<string, string>(GAResources.UserLanguageKey, CultureInfo.InstalledUICulture.DisplayName)
+                            new KeyValuePair<string, string>(GAResources.UserLanguageKey, string.Format("{0} (installed) -> {1} (used)", CultureInfo.InstalledUICulture, 
+                                                                                                                      Context.Get<AllSettings>().SelectedCulture))
                         };
 
                         string screenResolution = ScreenResolutionOrNull;
