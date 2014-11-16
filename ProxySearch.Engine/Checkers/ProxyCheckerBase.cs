@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
@@ -71,13 +72,15 @@ namespace ProxySearch.Engine.Checkers
                             if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                                 return;
 
-                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.GoodProgress);
-
-                            CountryInfo countryInfo = await geoIP.GetLocation(proxyCopy.Address.ToString());
-
                             task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy), Tasks.TaskStatus.GoodProgress);
 
                             ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
+
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.GoodProgress);
+
+                            IPAddress proxyAddress = proxyDetails.Details.OutgoingIPAddress ?? proxyCopy.Address;
+
+                            CountryInfo countryInfo = await geoIP.GetLocation(proxyAddress.ToString());
 
                             ProxyInfo proxyInfo = new ProxyInfo(proxyCopy)
                             {

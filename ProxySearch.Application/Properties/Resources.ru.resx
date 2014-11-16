@@ -362,4 +362,8 @@
   <data name="OldConfigurationException" xml:space="preserve">
     <value>Конфигурация Proxy Searcher выглядит устаревшей. Для того чтобы исправить эту проблему  откройте Инструменты-&gt;Настройки и нажмите кнопку 'Настройки по умолчанию' на закладке 'Основные'.</value>
   </data>
+  <data name="NameOfCountryWasDeterminedBasedOnOutgoingAddress" xml:space="preserve">
+    <value>Страна определилась по исходящему адресу прокси '{0}',
+который отличается от входящего адреса '{1}'.</value>
+  </data>
 </root>

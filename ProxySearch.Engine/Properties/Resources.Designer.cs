@@ -314,7 +314,7 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyType.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}.
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}.
         /// </summary>
         internal static string ProxyTypeDetectorUrl {
             get {

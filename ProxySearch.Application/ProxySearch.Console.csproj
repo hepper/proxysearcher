@@ -113,6 +113,8 @@
     <Compile Include="Code\Converters\BandwidthResultTextConverter.cs" />
     <Compile Include="Code\Converters\BoolInverterConverter.cs" />
     <Compile Include="Code\Converters\CenterConverter.cs" />
+    <Compile Include="Code\Converters\CountryDescriptionMultiConverter.cs" />
+    <Compile Include="Code\Converters\CountryNameMultiConverter.cs" />
     <Compile Include="Code\Converters\DeleteButtonVisibilityConverter.cs" />
     <Compile Include="Code\Converters\FilteringButtonIsCheckedConverter.cs" />
     <Compile Include="Code\Converters\FilteringPopupIsCheckedMultiConverter.cs" />

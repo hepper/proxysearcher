@@ -68,7 +68,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 
                 ProxyInfo proxy = new ProxyInfo(proxies.Single(item => item.AddressPort == info.ipport));
 
-                proxy.Details = new ProxyDetails(new HttpProxyDetails(GetProxyType(info)));
+                proxy.Details = new ProxyDetails(new HttpProxyDetails(GetProxyType(info), null));
                 proxy.CountryInfo = new CountryInfo
                 {
                     Code = info.country_id.ToString(),

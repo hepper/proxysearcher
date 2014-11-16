@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Common;
@@ -18,19 +19,22 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
                                                                                                           cancellationToken);
 
             if (result == null)
-                return new HttpProxyDetails(HttpProxyTypes.CannotVerify);
+                return new HttpProxyDetails(HttpProxyTypes.CannotVerify, null);
+
+            string[] values = result.Split(',');
 
             HttpProxyTypes proxyType;
+            IPAddress outgoingIPAddress;
 
-            if (!Enum.TryParse(result, out proxyType))
-                return new HttpProxyDetails(HttpProxyTypes.ChangesContent);
+            if (values.Length != 2 || !Enum.TryParse(values[0], out proxyType) || !IPAddress.TryParse(values[1], out outgoingIPAddress))
+                return new HttpProxyDetails(HttpProxyTypes.ChangesContent, null);
 
-            return new HttpProxyDetails(proxyType);
+            return new HttpProxyDetails(proxyType, outgoingIPAddress);
         }
 
         public override ProxyTypeDetails GetUncheckedProxyDetails()
         {
-            return new HttpProxyDetails(HttpProxyTypes.Unchecked);
+            return new HttpProxyDetails(HttpProxyTypes.Unchecked, null);
         }
     }
 }

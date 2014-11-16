@@ -446,4 +446,8 @@ Response time: {0} s</value>
   <data name="OldConfigurationException" xml:space="preserve">
     <value>It looks like configuration of Proxy Searcher is not up-to-date. In order to fix that error open Tools-&gt;Settings and press 'Restore defaults' button on General tab.</value>
   </data>
+  <data name="NameOfCountryWasDeterminedBasedOnOutgoingAddress" xml:space="preserve">
+    <value>Name of country was determined based on outgoing IP adress '{0}'
+which is different from ingoing IP address '{1}'.</value>
+  </data>
 </root>

@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Net;
 using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Proxies.Socks
 {
     public class SocksProxyDetails : ProxyTypeDetails
     {
-        public SocksProxyDetails(SocksProxyTypes type)
-            : base(type.ToString(), GetName(type), GetDetails(type))
+        public SocksProxyDetails(SocksProxyTypes type, IPAddress outgoingIPAddress)
+            : base(type.ToString(), GetName(type), GetDetails(type), outgoingIPAddress)
         {
         }
 

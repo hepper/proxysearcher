@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Net;
 using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.Proxies.Http
 {
     public class HttpProxyDetails : ProxyTypeDetails
     {
-        public HttpProxyDetails(HttpProxyTypes type)
-            : base(type.ToString(), GetName(type), GetDetails(type))
+        public HttpProxyDetails(HttpProxyTypes type, IPAddress outgoingIPAddress)
+            : base(type.ToString(), GetName(type), GetDetails(type), outgoingIPAddress)
         {
         }
 
