@@ -74,7 +74,7 @@ namespace ProxySearch.Engine.Checkers
 
                             task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy), Tasks.TaskStatus.GoodProgress);
 
-                            ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
+                            ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxyCopy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
 
                             task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.GoodProgress);
 
