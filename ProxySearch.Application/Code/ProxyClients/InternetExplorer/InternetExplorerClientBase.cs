@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.Win32;
+using ProxySearch.Common;
+using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Proxies;
@@ -24,21 +25,30 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
             if (!WinINet.IsProxyUsed)
                 return null;
 
-            return new ProxyInfo(ProxyString);
+            string proxyString = ProxyString;
+
+            if (proxyString == null)
+            {
+                Context.Get<IGA>().TrackException(new InvalidOperationException("Proxy is used but value of proxyString is null"));
+                return null;
+            }
+
+            return new ProxyInfo(proxyString);
         }
 
         private string ProxyString
         {
             get
             {
+                if (WinINet.ProxyIpPort == null)
+                    return null;
+
                 string[] arguments = WinINet.ProxyIpPort.Split(';');
 
                 string value = arguments.SingleOrDefault(item => item.StartsWith(string.Concat(Type, "="), StringComparison.CurrentCultureIgnoreCase));
 
                 if (value == null)
-                {
                     value = arguments.Single();
-                }
 
                 return value.Split('=').Last();
             }
@@ -65,7 +75,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 
         protected override bool ImportsInternetExplorerSettings
         {
-            get 
+            get
             {
                 return false; // Internet explorer do not import his settings, it just uses his own.
             }
