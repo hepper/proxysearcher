@@ -26,12 +26,14 @@ namespace ProxySearch.Engine.Socks
             HttpStatusCode.RedirectKeepVerb
         };
 
-        public Task<HttpResponseMessage> GetResponse(SocksHttpManagerParameters parameters)
+        public async Task<HttpResponseMessage> GetResponse(SocksHttpManagerParameters parameters)
         {
-            return HandleRedirects(parameters, async uri =>
+            return await HandleRedirects(parameters, async uri =>
             {
                 switch (parameters.ProxyType)
                 {
+                    case SocksProxyTypes.CannotVerify:
+                    case SocksProxyTypes.ChangesContent:
                     case SocksProxyTypes.Unchecked:
                         try
                         {
@@ -55,7 +57,7 @@ namespace ProxySearch.Engine.Socks
                     case SocksProxyTypes.Socks5:
                         return await ReadHttpResponseMessage(parameters, uri, new SocksRequest().V5);
                     default:
-                        throw new InvalidOperationException();
+                        throw new InvalidOperationException(string.Format("Value '{0}' is not expected at SocksHttpManager.GetResponse", parameters.ProxyType));
                 }
             });
         }

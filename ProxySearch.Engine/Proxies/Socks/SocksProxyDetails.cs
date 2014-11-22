@@ -21,6 +21,8 @@ namespace ProxySearch.Engine.Proxies.Socks
                     return Resources.Socks5;
                 case SocksProxyTypes.Unchecked:
                     return Resources.Unchecked;
+                case SocksProxyTypes.ChangesContent:
+                    return Resources.ChangesContent;
                 case SocksProxyTypes.CannotVerify:
                     return Resources.CannotVerify;
                 default:
@@ -38,6 +40,8 @@ namespace ProxySearch.Engine.Proxies.Socks
                     return Resources.Socks5Details;
                 case SocksProxyTypes.Unchecked:
                     return Resources.UncheckedDetails;
+                case SocksProxyTypes.ChangesContent:
+                    return Resources.ChangesContentDetails;
                 case SocksProxyTypes.CannotVerify:
                     return Resources.CannotVerifyDetails;
                 default:

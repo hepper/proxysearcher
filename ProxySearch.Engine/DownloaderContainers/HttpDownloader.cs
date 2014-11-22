@@ -9,9 +9,9 @@ namespace ProxySearch.Engine.DownloaderContainers
 {
     public class HttpDownloader<HttpClientHandlerType> : IHttpDownloader where HttpClientHandlerType : HttpClientHandler, new()
     {
-        public Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken)
+        public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken)
         {
-            return GetContentOrNull(url, proxy, cancellationToken, () => { }, length => { }, length => { });
+            return await GetContentOrNull(url, proxy, cancellationToken, () => { }, length => { }, length => { });
         }
 
         public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken, Action begin, Action<int> firstTime, Action<int> end)

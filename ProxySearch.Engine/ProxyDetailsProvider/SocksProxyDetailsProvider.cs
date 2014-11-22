@@ -14,18 +14,11 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
 {
     public class SocksProxyDetailsProvider : ProxyDetailsProviderBase
     {
-        private Dictionary<string, IPAddress> outgoingIPAddressCache = new Dictionary<string, IPAddress>();
-
         public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
         {
             string proxyUriString = GetProxyUriString(proxy);
 
             ISocksProxyTypeHashtable hashtable = Context.Get<ISocksProxyTypeHashtable>();
-
-            if (hashtable.Exists(proxyUriString))
-            {
-                return new SocksProxyDetails( hashtable[proxyUriString], outgoingIPAddressCache[proxyUriString]);
-            }
 
             var httpDownloaderContainer = new HttpDownloaderContainer<SocksHttpClientHandler, SocksProgressMessageHandler>();
 
@@ -34,18 +27,15 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
                                                                                            proxy,
                                                                                            cancellationToken);
             if (content == null)
-                return new SocksProxyDetails(SocksProxyTypes.CannotVerify, null);
+                return new SocksProxyDetails(hashtable[proxyUriString], null);
 
             string[] values = content.Split(',');
-            IPAddress outgoingIPAdress;
+            IPAddress outgoingIPAddress;
 
-            if (values.Length != 2 || !IPAddress.TryParse(values[1], out outgoingIPAdress))
-                return new SocksProxyDetails(SocksProxyTypes.CannotVerify, null);
+            if (values.Length != 2 || !IPAddress.TryParse(values[1], out outgoingIPAddress))
+                return new SocksProxyDetails(SocksProxyTypes.ChangesContent, null);
 
-            if (!outgoingIPAddressCache.ContainsKey(proxyUriString))
-                outgoingIPAddressCache.Add(proxyUriString, outgoingIPAdress);
-
-            return new SocksProxyDetails(hashtable[proxyUriString], outgoingIPAddressCache[proxyUriString]);
+            return new SocksProxyDetails(hashtable[proxyUriString], outgoingIPAddress);
         }
 
         public override ProxyTypeDetails GetUncheckedProxyDetails()
@@ -57,7 +47,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
         {
             UriBuilder uriBuilder = new UriBuilder();
             uriBuilder.Host = proxy.Address.ToString();
-            uriBuilder.Port = proxy.Port;
+            uriBuilder.Port = proxy.Port == 80 ? -1 : proxy.Port;
 
             return uriBuilder.ToString();
         }
