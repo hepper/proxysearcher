@@ -7,14 +7,47 @@ using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.ProxyDetailsProvider
 {
     public class HttpProxyDetailsProvider : ProxyDetailsProviderBase
     {
-        public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        private Task initializatinTask = null;
+        private IPAddress myIPAddress = null;
+
+        public HttpProxyDetailsProvider()
         {
-            string result = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(GetProxyTypeDetectorUrl(proxy, Resources.HttpProxyType),
+            TaskItem taskItem = Context.Get<TaskManager>().Create(Resources.ConfigureProviderOfProxyDetails);
+
+            taskItem.UpdateDetails(Resources.DetermineCurrentIPAddress);
+
+            initializatinTask = Context.Get<IHttpDownloaderContainer>()
+                                       .HttpDownloader.GetContentOrNull(MyIPUrl, null, Context.Get<CancellationTokenSource>())
+                                       .ContinueWith(task =>
+                                       {
+                                           try
+                                           {
+                                               if (task.Result != null)
+                                               {
+                                                   IPAddress.TryParse(task.Result.Trim(), out myIPAddress);
+                                               }
+                                           }
+                                           finally
+                                           {
+                                               taskItem.Dispose();
+                                           }
+                                       });
+        }
+
+        public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)
+        {
+            task.UpdateDetails(string.Format(Resources.WaitUntilProxyDetailsProviderConfiguredFormat, proxy.AddressPort), Tasks.TaskStatus.Slow);
+            await initializatinTask;
+
+            task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxy.AddressPort), Tasks.TaskStatus.Normal);
+
+            string result = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(GetProxyTypeDetectorUrl(proxy, myIPAddress, Resources.HttpProxyType),
                                                                                                           proxy,
                                                                                                           cancellationToken);
 

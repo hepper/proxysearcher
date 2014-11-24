@@ -521,6 +521,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manual update proxy type.
+        /// </summary>
+        internal static string ManualUpdateProxyType {
+            get {
+                return ResourceManager.GetString("ManualUpdateProxyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name of country was determined based on outgoing IP adress &apos;{0}&apos;
         ///which is different from ingoing IP address &apos;{1}&apos;..
         /// </summary>

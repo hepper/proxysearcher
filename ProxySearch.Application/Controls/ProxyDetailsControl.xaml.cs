@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using ProxySearch.Common;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
 {
@@ -35,7 +37,10 @@ namespace ProxySearch.Console.Controls
 
             try
             {
-                Proxy.Details.Details = await Proxy.Details.UpdateMethod(Proxy, Proxy.Details.CancellationToken);
+                using (TaskItem task = Context.Get<TaskManager>().Create(Properties.Resources.ManualUpdateProxyType))
+                {
+                    Proxy.Details.Details = await Proxy.Details.UpdateMethod(Proxy, task, Proxy.Details.CancellationToken);
+                }
             }
             catch (TaskCanceledException)
             {

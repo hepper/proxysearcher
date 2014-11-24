@@ -373,4 +373,7 @@
   <data name="Undetermined" xml:space="preserve">
     <value>Не визначена</value>
   </data>
+  <data name="ManualUpdateProxyType" xml:space="preserve">
+    <value>Визначення типу проксі вручну</value>
+  </data>
 </root>

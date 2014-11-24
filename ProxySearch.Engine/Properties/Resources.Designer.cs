@@ -158,11 +158,38 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configure provider of proxy details.
+        /// </summary>
+        internal static string ConfigureProviderOfProxyDetails {
+            get {
+                return ResourceManager.GetString("ConfigureProviderOfProxyDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Configuring proxy checker.
         /// </summary>
         internal static string ConfiguringProxyChecker {
             get {
                 return ResourceManager.GetString("ConfiguringProxyChecker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/MyIP.php.
+        /// </summary>
+        internal static string DetectMyIPUrl {
+            get {
+                return ResourceManager.GetString("DetectMyIPUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Determine current IP address.
+        /// </summary>
+        internal static string DetermineCurrentIPAddress {
+            get {
+                return ResourceManager.GetString("DetermineCurrentIPAddress", resourceCulture);
             }
         }
         
@@ -316,9 +343,18 @@ namespace ProxySearch.Engine.Properties {
         /// <summary>
         ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}.
         /// </summary>
-        internal static string ProxyTypeDetectorUrl {
+        internal static string ProxyTypeDetectorUrlFormat {
             get {
-                return ResourceManager.GetString("ProxyTypeDetectorUrl", resourceCulture);
+                return ResourceManager.GetString("ProxyTypeDetectorUrlFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;myip={3}&amp;param={4}.
+        /// </summary>
+        internal static string ProxyTypeDetectorUrlFormat2 {
+            get {
+                return ResourceManager.GetString("ProxyTypeDetectorUrlFormat2", resourceCulture);
             }
         }
         
@@ -464,6 +500,15 @@ namespace ProxySearch.Engine.Properties {
         internal static string WaitUntilProxyCheckerIsConfiguredFormat {
             get {
                 return ResourceManager.GetString("WaitUntilProxyCheckerIsConfiguredFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} - Wait until proxy details provider configured.
+        /// </summary>
+        internal static string WaitUntilProxyDetailsProviderConfiguredFormat {
+            get {
+                return ResourceManager.GetString("WaitUntilProxyDetailsProviderConfiguredFormat", resourceCulture);
             }
         }
     }

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Proxies
 {
@@ -13,7 +14,7 @@ namespace ProxySearch.Engine.Proxies
             IsUpdating = false;
         }
 
-        public ProxyDetails(ProxyTypeDetails details, Func<ProxyInfo, CancellationTokenSource, Task<ProxyTypeDetails>> updateMethod)
+        public ProxyDetails(ProxyTypeDetails details, Func<ProxyInfo, TaskItem, CancellationTokenSource, Task<ProxyTypeDetails>> updateMethod)
             : this(details)
         {
             UpdateMethod = updateMethod;
@@ -58,7 +59,7 @@ namespace ProxySearch.Engine.Proxies
             set;
         }
 
-        public Func<ProxyInfo, CancellationTokenSource, Task<ProxyTypeDetails>> UpdateMethod
+        public Func<ProxyInfo, TaskItem, CancellationTokenSource, Task<ProxyTypeDetails>> UpdateMethod
         {
             get;
             private set;

@@ -151,8 +151,14 @@
   <data name="CheckingProxyIfItWorks" xml:space="preserve">
     <value>Визначається працездатність проксі</value>
   </data>
+  <data name="ConfigureProviderOfProxyDetails" xml:space="preserve">
+    <value>Налаштовується постачальник деталей проксі</value>
+  </data>
   <data name="ConfiguringProxyChecker" xml:space="preserve">
     <value>Налаштовується метод перевірки проксі</value>
+  </data>
+  <data name="DetermineCurrentIPAddress" xml:space="preserve">
+    <value>Визначається поточна IP адреса</value>
   </data>
   <data name="DownloadingFormat" xml:space="preserve">
     <value>Завантажується '{0}'</value>
@@ -230,5 +236,8 @@
   </data>
   <data name="WaitUntilProxyCheckerIsConfiguredFormat" xml:space="preserve">
     <value>{0} - очікується налаштований метод перевірки проксі</value>
+  </data>
+  <data name="WaitUntilProxyDetailsProviderConfiguredFormat" xml:space="preserve">
+    <value>{0} - Очікується постачальник деталей проксі</value>
   </data>
 </root>

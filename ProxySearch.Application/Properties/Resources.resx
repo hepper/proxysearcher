@@ -457,4 +457,7 @@ Outgoing IP address: {1}</value>
   <data name="Undetermined" xml:space="preserve">
     <value>Undetermined</value>
   </data>
+  <data name="ManualUpdateProxyType" xml:space="preserve">
+    <value>Manual update proxy type</value>
+  </data>
 </root>

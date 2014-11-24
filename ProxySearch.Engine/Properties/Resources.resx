@@ -169,7 +169,7 @@ Never transfer secure data with public proxy.</value>
   <data name="ProxyTypeDetectorGuid" xml:space="preserve">
     <value>23154081-CFE8-4AC3-A530-142CB55C486D</value>
   </data>
-  <data name="ProxyTypeDetectorUrl" xml:space="preserve">
+  <data name="ProxyTypeDetectorUrlFormat" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;param={3}</value>
   </data>
   <data name="Socks4" xml:space="preserve">
@@ -259,5 +259,20 @@ It is worst proxy type. Never transfer secure data with public proxy.</value>
   </data>
   <data name="WaitUntilProxyCheckerIsConfiguredFormat" xml:space="preserve">
     <value>{0} - wait until proxy checker is configured</value>
+  </data>
+  <data name="ConfigureProviderOfProxyDetails" xml:space="preserve">
+    <value>Configure provider of proxy details</value>
+  </data>
+  <data name="DetermineCurrentIPAddress" xml:space="preserve">
+    <value>Determine current IP address</value>
+  </data>
+  <data name="WaitUntilProxyDetailsProviderConfiguredFormat" xml:space="preserve">
+    <value>{0} - Wait until proxy details provider configured</value>
+  </data>
+  <data name="DetectMyIPUrl" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/MyIP.php</value>
+  </data>
+  <data name="ProxyTypeDetectorUrlFormat2" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;myip={3}&amp;param={4}</value>
   </data>
 </root>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,12 +8,13 @@ using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Socks;
 using ProxySearch.Engine.Socks;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.ProxyDetailsProvider
 {
     public class SocksProxyDetailsProvider : ProxyDetailsProviderBase
     {
-        public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        public override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)
         {
             string proxyUriString = GetProxyUriString(proxy);
 

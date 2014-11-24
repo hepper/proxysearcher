@@ -15,14 +15,14 @@ namespace ProxySearch.Engine.Checkers
             return Task.FromResult(true);
         }
 
-        protected override Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)
         {
-            return Task.FromResult<ProxyTypeDetails>(base.DetailsProvider.GetUncheckedProxyDetails());
+            return await Task.FromResult<ProxyTypeDetails>(base.DetailsProvider.GetUncheckedProxyDetails());
         }
 
-        protected override Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected override async Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)
         {
-            return base.GetProxyDetails(proxy, cancellationToken);
+            return await base.GetProxyDetails(proxy, task, cancellationToken);
         }
     }
 }

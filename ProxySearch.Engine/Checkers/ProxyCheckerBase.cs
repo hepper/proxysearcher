@@ -60,7 +60,7 @@ namespace ProxySearch.Engine.Checkers
                             BeginTime = DateTime.Now
                         }, lenght =>
                         {
-                            task.UpdateDetails(string.Format(Resources.ProxyGotFirstResponseFormat, proxyCopy), Tasks.TaskStatus.Progress);
+                            task.UpdateDetails(string.Format(Resources.ProxyGotFirstResponseFormat, proxyCopy.AddressPort), Tasks.TaskStatus.Progress);
                             bandwidth.FirstTime = DateTime.Now;
                             bandwidth.FirstCount = lenght * 2;
                         }, lenght =>
@@ -72,11 +72,11 @@ namespace ProxySearch.Engine.Checkers
                             if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                                 return;
 
-                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy), Tasks.TaskStatus.GoodProgress);
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingProxyType, proxyCopy.AddressPort), Tasks.TaskStatus.GoodProgress);
 
-                            ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxyCopy, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
+                            ProxyDetails proxyDetails = new ProxyDetails(await GetProxyDetails(proxyCopy, task, Context.Get<CancellationTokenSource>()), UpdateProxyDetails);
 
-                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy), Tasks.TaskStatus.GoodProgress);
+                            task.UpdateDetails(string.Format(Resources.ProxyDeterminingLocationFormat, proxyCopy.AddressPort), Tasks.TaskStatus.GoodProgress);
 
                             IPAddress proxyAddress = proxyDetails.Details.OutgoingIPAddress ?? proxyCopy.Address;
 
@@ -100,14 +100,14 @@ namespace ProxySearch.Engine.Checkers
 
         protected abstract Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end);
 
-        protected virtual Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected virtual async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)
         {
-            return DetailsProvider.GetProxyDetails(proxy, cancellationToken);
+            return await DetailsProvider.GetProxyDetails(proxy, task, cancellationToken);
         }
 
-        protected virtual Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, CancellationTokenSource cancellationToken)
+        protected virtual Task<ProxyTypeDetails> UpdateProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)
         {
-            return GetProxyDetails(proxy, cancellationToken);
+            return GetProxyDetails(proxy, task, cancellationToken);
         }
     }
 }
