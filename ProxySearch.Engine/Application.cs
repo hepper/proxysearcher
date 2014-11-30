@@ -18,12 +18,11 @@ using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine
 {
-    public class Application
+    public class Application : IProxySearchFeedback
     {
         ISearchEngine searchEngine;
         IProxyChecker checker;
         IHttpDownloaderContainer httpDownloaderContainer;
-        IProxySearchFeedback feedback;
         IGeoIP geoIP;
         IProxyProvider proxyProvider;
         ITaskManager taskManager;
@@ -43,7 +42,6 @@ namespace ProxySearch.Engine
         public Application(ISearchEngine searchEngine,
                            IProxyChecker checker,
                            IHttpDownloaderContainer httpDownloaderContainer,
-                           IProxySearchFeedback feedback,
                            IGeoIP geoIP = null,
                            IProxyProvider proxyProvider = null,
                            ITaskManager taskManager = null,
@@ -52,7 +50,6 @@ namespace ProxySearch.Engine
             this.searchEngine = searchEngine;
             this.checker = checker;
             this.httpDownloaderContainer = httpDownloaderContainer;
-            this.feedback = feedback;
 
             this.proxyProvider = proxyProvider ?? new ProxyProvider();
             this.geoIP = geoIP ?? new TurnOffGeoIP();
@@ -60,10 +57,18 @@ namespace ProxySearch.Engine
             this.errorFeedback = errorFeedback ?? new DummyErrorFeedback();
         }
 
+        public void OnAliveProxy(ProxyInfo proxyInfo)
+        {
+            if (ProxyAlive != null)
+                ProxyAlive(proxyInfo);
+        }
+
         public async Task SearchAsync()
         {
             await SearchAsync(new CancellationTokenSource());
         }
+
+        public event Action<ProxyInfo> ProxyAlive;
 
         public async Task SearchAsync(CancellationTokenSource cancellationTokenSource)
         {
@@ -119,7 +124,7 @@ namespace ProxySearch.Engine
                         List<Proxy> proxies = await proxyProvider.ParseProxiesAsync(uri, document);
 
                         if (proxies.Any())
-                            checker.CheckAsync(proxies, feedback, geoIP, cancellationTokenSource);
+                            checker.CheckAsync(proxies, this, geoIP, cancellationTokenSource);
                     }
                 }
             }

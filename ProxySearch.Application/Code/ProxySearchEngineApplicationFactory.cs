@@ -52,10 +52,12 @@ namespace ProxySearch.Console.Code
 
             task.UpdateDetails(Resources.PreparingApplication);
 
-            return new Application(searchEngine, proxyChecker, HttpDownloaderContainer, 
-                                   feedback, geoIP, proxyProvider, 
-                                   Context.Get<ITaskManager>(),
-                                   Context.Get<IErrorFeedback>());
+            Application application = new Application(searchEngine, proxyChecker, HttpDownloaderContainer, geoIP, proxyProvider, 
+                                                      Context.Get<ITaskManager>(), Context.Get<IErrorFeedback>());
+
+            application.ProxyAlive += feedback.OnAliveProxy;
+
+            return application;
         }
 
         private IHttpDownloaderContainer HttpDownloaderContainer
