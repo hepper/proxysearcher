@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace ProxySearch.Common
+namespace ProxySearch.Engine.Tasks
 {
     public class ObservableList<T> : List<T>, INotifyCollectionChanged, INotifyPropertyChanged
     {

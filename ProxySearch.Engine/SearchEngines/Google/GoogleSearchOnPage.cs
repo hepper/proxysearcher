@@ -5,7 +5,6 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 
 namespace ProxySearch.Engine.SearchEngines.Google
 {
@@ -16,12 +15,12 @@ namespace ProxySearch.Engine.SearchEngines.Google
         private string pageContent;
         private List<Uri> urls = new List<Uri>();
 
-        public async Task Initialize(Uri googlePage, ICaptchaWindow captchaWindow, int pageNumber)
+        public async Task Initialize(Uri googlePage, ICaptchaWindow captchaWindow, int pageNumber, CancellationTokenSource cancellationToken)
         {
             using (HttpClient client = new HttpClient())
-            using (HttpResponseMessage response = await client.GetAsync(googlePage, Context.Get<CancellationTokenSource>().Token))
+            using (HttpResponseMessage response = await client.GetAsync(googlePage, cancellationToken.Token))
             {
-                pageContent = await GetContent(response, captchaWindow, pageNumber);
+                pageContent = await GetContent(response, captchaWindow, pageNumber, cancellationToken);
             }
 
             Regex regex = new Regex("<a[^>]*?href\\s*=\\s*(?<url>[\"']?([^\"'>]+?)['\"])?[^>]*?>");
@@ -54,7 +53,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
             }
         }
 
-        private async Task<string> GetContent(HttpResponseMessage response, ICaptchaWindow captchaWindow, int pageNumber)
+        private async Task<string> GetContent(HttpResponseMessage response, ICaptchaWindow captchaWindow, int pageNumber, CancellationTokenSource cancellationToken)
         {
             if (!response.IsSuccessStatusCode)
             {
@@ -63,7 +62,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
                     throw new InvalidOperationException(string.Format("Cannot continue search because engine retrieve error '{0}'", response.StatusCode.ToString()));
                 }
 
-                return await captchaWindow.GetSolvedContentAsync(response.RequestMessage.RequestUri.ToString(), pageNumber, Context.Get<CancellationTokenSource>().Token);
+                return await captchaWindow.GetSolvedContentAsync(response.RequestMessage.RequestUri.ToString(), pageNumber, cancellationToken.Token);
             }
 
             return await response.Content.ReadAsStringAsync();

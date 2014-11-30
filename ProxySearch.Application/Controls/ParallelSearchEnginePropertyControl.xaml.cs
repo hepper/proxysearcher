@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using ProxySearch.Common;
+using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;

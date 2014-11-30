@@ -25,6 +25,7 @@ namespace ProxySearch.Console
 
         public App()
         {
+            Context.Set<IExceptionLogging>(new ExceptionLogging());
             Context.Set<IMessageBox>(new MessageBoxWrapper());
             Context.Set<IGA>(new GoogleAnalyticsManager());
 

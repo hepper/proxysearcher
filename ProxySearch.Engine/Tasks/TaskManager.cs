@@ -1,9 +1,8 @@
 ﻿using System;
-using ProxySearch.Common;
 
 namespace ProxySearch.Engine.Tasks
 {
-    public class TaskManager
+    public class TaskManager : ITaskManager
     {
         private class TaskItemInternal : TaskItem
         {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
@@ -7,17 +8,17 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using ProxySearch.Common;
-using System.Linq;
+using ProxySearch.Engine.DownloaderContainers;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.GeoIP;
-using ProxySearch.Engine.Proxies.Http;
-using ProxySearch.Engine.Proxies;
-using ProxySearch.Engine.Tasks;
 using ProxySearch.Engine.Properties;
+using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Proxies.Http;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
 {
-    public class CheckerProxyNet : IProxyChecker
+    public class CheckerProxyNet : IProxyChecker, IAsyncInitialization
     {
         private int Timeout
         {
@@ -31,13 +32,24 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             set;
         }
 
+        private ITaskManager TaskManager
+        {
+            get;
+            set;
+        }
+
         public CheckerProxyNet(int timeout, int batchSize)
         {
             Timeout = timeout;
             BatchSize = batchSize;
         }
 
-        public async void CheckAsync(List<Proxy> proxies, IProxySearchFeedback feedback, IGeoIP geoIP)
+        public void InitializeAsync(CancellationTokenSource cancellationTokenSource, ITaskManager taskManager, IHttpDownloaderContainer httpDownloaderContainer, IErrorFeedback errorFeedback)
+        {
+            TaskManager = taskManager;
+        }
+
+        public async void CheckAsync(List<Proxy> proxies, IProxySearchFeedback feedback, IGeoIP geoIP, CancellationTokenSource cancellationTokenSource)
         {
             for (int i = 0; true; i++)
             {
@@ -46,17 +58,17 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
                 if (!batch.Any())
                     return;
 
-                using (TaskItem task = Context.Get<TaskManager>().Create(Resources.CheckingBatchOfProxies))
+                using (TaskItem task = TaskManager.Create(Resources.CheckingBatchOfProxies))
                 {
                     task.UpdateDetails(string.Join(", ", proxies));
-                    await CheckBatchAsync(batch, feedback);
+                    await CheckBatchAsync(batch, feedback, cancellationTokenSource);
                 }
             }
         }
 
-        private async Task CheckBatchAsync(List<Proxy> proxies, IProxySearchFeedback feedback)
+        private async Task CheckBatchAsync(List<Proxy> proxies, IProxySearchFeedback feedback, CancellationTokenSource cancellationTokenSource)
         {
-            CheckerProxyNet_ProxiesInfo result = await GetInfoOrNull(proxies);
+            CheckerProxyNet_ProxiesInfo result = await GetInfoOrNull(proxies, cancellationTokenSource);
 
             if (result == null)
                 return;
@@ -79,7 +91,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
             }
         }
 
-        private async Task<CheckerProxyNet_ProxiesInfo> GetInfoOrNull(List<Proxy> proxies)
+        private async Task<CheckerProxyNet_ProxiesInfo> GetInfoOrNull(List<Proxy> proxies, CancellationTokenSource cancellationTokenSource)
         {
             try
             {
@@ -87,7 +99,7 @@ namespace ProxySearch.Engine.Checkers.CheckerProxy.Net
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
                 using (HttpClient client = new HttpClient())
-                using (HttpResponseMessage response = await client.PostAsync("http://checkerproxy.net/checker2.php", content, Context.Get<CancellationTokenSource>().Token))
+                using (HttpResponseMessage response = await client.PostAsync("http://checkerproxy.net/checker2.php", content, cancellationTokenSource.Token))
                 {
                     if (!response.IsSuccessStatusCode)
                     {

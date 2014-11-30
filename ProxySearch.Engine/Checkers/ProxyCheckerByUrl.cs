@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 using ProxySearch.Engine.DownloaderContainers;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
@@ -14,6 +14,7 @@ namespace ProxySearch.Engine.Checkers
 {
     public class ProxyCheckerByUrl<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
                                                                where ProxyDetailsProviderType : IProxyDetailsProvider, new()
+                                                               
     {
         private string Url
         {
@@ -35,47 +36,51 @@ namespace ProxySearch.Engine.Checkers
         {
             Url = url;
             Accuracy = accuracy;
+        }
 
-            TaskItem taskItem = Context.Get<TaskManager>().Create(Resources.ConfiguringProxyChecker);
+        public override void InitializeAsync(CancellationTokenSource cancellationTokenSource, ITaskManager taskManager, IHttpDownloaderContainer httpDownloaderContainer, IErrorFeedback errorFeedback)
+        {
+            base.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback);
+
+            TaskItem taskItem = taskManager.Create(Resources.ConfiguringProxyChecker);
 
             try
             {
                 taskItem.UpdateDetails(string.Format(Resources.DownloadingFormat, Url));
 
-                initializatinTask = Context.Get<IHttpDownloaderContainer>()
-                                            .HttpDownloader.GetContentOrNull(url, null, Context.Get<CancellationTokenSource>())
-                                            .ContinueWith(task =>
-                                               {
-                                                   try
-                                                   {
-                                                       if (task.Result == null)
-                                                       {
-                                                           ErrorFeedback.SetException(new InvalidOperationException(string.Format(Resources.CannotDownloadContent, url)));
-                                                           Context.Get<CancellationTokenSource>().Cancel();
-                                                       }
-                                                       else
-                                                       {
-                                                           analyzedText = AnalyzeText(task.Result);
-                                                       }
-                                                   }
-                                                   finally
-                                                   {
-                                                       taskItem.Dispose();
-                                                   }
-                                               });
+                initializatinTask = httpDownloaderContainer.HttpDownloader.GetContentOrNull(Url, null, cancellationTokenSource)
+                                                           .ContinueWith(task =>
+                                                           {
+                                                               try
+                                                               {
+                                                                   if (task.Result == null)
+                                                                   {
+                                                                       errorFeedback.SetException(new InvalidOperationException(string.Format(Resources.CannotDownloadContent, Url)));
+                                                                       cancellationTokenSource.Cancel();
+                                                                   }
+                                                                   else
+                                                                   {
+                                                                       analyzedText = AnalyzeText(task.Result);
+                                                                   }
+                                                               }
+                                                               finally
+                                                               {
+                                                                   taskItem.Dispose();
+                                                               }
+                                                           });
             }
             catch (TaskCanceledException)
             {
             }
         }
 
-        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end, CancellationTokenSource cancellationToken)
         {
             try
             {
                 task.UpdateDetails(string.Format(Resources.ProxyDownloadingFormat, proxy, Url));
 
-                string content = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(Url, proxy, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
+                string content = await HttpDownloaderContainer.HttpDownloader.GetContentOrNull(Url, proxy, cancellationToken, begin, firstTime, end);
 
                 if (content == null)
                 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProxySearch.Common;
@@ -9,18 +8,19 @@ using ProxySearch.Engine.SearchEngines;
 
 namespace ProxySearch.Console.Code.SearchEngines
 {
-    public class ParallelSearchEngine : List<ISearchEngine>, ISearchEngine
+    public class ParallelSearchEngine : ProxySearch.Engine.SearchEngines.ParallelSearchEngine
     {
         public ParallelSearchEngine(params ParametersPair[] arguments)
-        {
-            AddRange(arguments.Select(item=>
+            : base(arguments.Select(item =>
             {
                 IDetectable detectable = Context.Get<IDetectableManager>().CreateDetectableInstance<ISearchEngine>(item.TypeName);
 
-                return Context.Get<IDetectableManager>().CreateImplementationInstance<ISearchEngine>(detectable, 
+                return Context.Get<IDetectableManager>().CreateImplementationInstance<ISearchEngine>(detectable,
                                                                                                      item.Parameters.Cast<ParametersPair>().ToList(),
-                                                                                                     detectable.InterfaceSettings);
-             }).ToArray());
+
+                                                                                                    detectable.InterfaceSettings);
+            }).ToArray())
+        {
         }
 
         public Task<Uri> GetNext()
@@ -30,7 +30,7 @@ namespace ProxySearch.Console.Code.SearchEngines
 
         public string Status
         {
-            get 
+            get
             {
                 throw new NotSupportedException();
             }

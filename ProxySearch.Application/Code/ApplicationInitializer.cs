@@ -46,7 +46,7 @@ namespace ProxySearch.Console.Code
             Context.Get<IGA>().TrackEventAsync(EventType.Program, Resources.Started);
             Context.Get<IGA>().TrackPageViewAsync(typeof(SearchControl).Name);
 
-            Context.Set(new TaskManager());
+            Context.Set<ITaskManager>(new TaskManager());
         }
 
         public void Deinitialize()

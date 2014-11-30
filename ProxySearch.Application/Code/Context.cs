@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ProxySearch.Common.Properties;
+using ProxySearch.Console.Properties;
 
-namespace ProxySearch.Common
+namespace ProxySearch.Console.Code
 {
     public static class Context
     {
@@ -15,7 +15,6 @@ namespace ProxySearch.Common
         static Context()
         {
             Objects = new Dictionary<Type, object>();
-            Set<IExceptionLogging>(new ExceptionLogging());
         }
 
         public static void Set<T>(T obj)

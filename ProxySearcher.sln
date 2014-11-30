@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.Common", "Proxy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.Console", "ProxySearch.Application\ProxySearch.Console.csproj", "{0B381461-DB63-4273-8F00-370A53089871}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.CommandLine", "ProxySearch.CommandLine\ProxySearch.CommandLine.csproj", "{857BFA5C-9E65-4D52-9377-F033DE92A7E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -101,6 +103,31 @@ Global
 		{0B381461-DB63-4273-8F00-370A53089871}.SingleImage|Mixed Platforms.Build.0 = Release|x86
 		{0B381461-DB63-4273-8F00-370A53089871}.SingleImage|x86.ActiveCfg = Release|x86
 		{0B381461-DB63-4273-8F00-370A53089871}.SingleImage|x86.Build.0 = Release|x86
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{857BFA5C-9E65-4D52-9377-F033DE92A7E9}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

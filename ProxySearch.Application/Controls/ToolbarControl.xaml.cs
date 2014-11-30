@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using ProxySearch.Common;
+using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
 
 namespace ProxySearch.Console.Controls

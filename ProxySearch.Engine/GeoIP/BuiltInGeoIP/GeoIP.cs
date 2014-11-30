@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Xml;
-using ProxySearch.Common;
-using ProxySearch.Engine.Properties;
 
 namespace ProxySearch.Engine.GeoIP.BuiltInGeoIP
 {

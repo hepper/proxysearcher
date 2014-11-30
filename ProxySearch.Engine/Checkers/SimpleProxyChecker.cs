@@ -2,7 +2,6 @@ using System;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 using ProxySearch.Engine.Extended;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
@@ -14,7 +13,7 @@ namespace ProxySearch.Engine.Checkers
     public class SimpleProxyChecker<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
                                                                  where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
-        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end, CancellationTokenSource cancellationToken)
         {
             task.UpdateDetails(string.Format(Resources.OpeningConnectionFormat, proxy));
 
@@ -22,7 +21,7 @@ namespace ProxySearch.Engine.Checkers
             {
                 try
                 {
-                    await tcpClient.ConnectAsync(proxy.Address, proxy.Port, Context.Get<CancellationTokenSource>().Token);
+                    await tcpClient.ConnectAsync(proxy.Address, proxy.Port, cancellationToken.Token);
                 }
                 catch (SocketException)
                 {

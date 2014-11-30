@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 using ProxySearch.Engine.Properties;
 
-namespace ProxySearch.Engine.SearchEngines.FolderSearch
+namespace ProxySearch.Engine.SearchEngines
 {
     public class FolderSearchEngine : ISearchEngine
     {
@@ -26,7 +26,7 @@ namespace ProxySearch.Engine.SearchEngines.FolderSearch
             this.folderPath = folderPath;
         }
 
-        public async Task<Uri> GetNext()
+        public async Task<Uri> GetNext(CancellationTokenSource cancellationTokenSource)
         {
             if (files == null)
                 files = await GetFilesAsync();
@@ -42,18 +42,7 @@ namespace ProxySearch.Engine.SearchEngines.FolderSearch
 
         private async Task<List<string>> GetFilesAsync()
         {
-            return await Task.Run(() => 
-            {
-                try
-                {
-                    return new List<string>(Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories));
-                }
-                catch(Exception exception)
-                {
-                    Context.Get<IExceptionLogging>().Write(exception);
-                    return new List<string>();
-                }
-            });
+            return await Task.FromResult<List<string>>(Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).ToList());
         }
     }
 }

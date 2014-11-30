@@ -34,7 +34,7 @@ namespace ProxySearch.Console.Code
         {
             ExportAllowed = true;
 
-            Context.Get<TaskManager>().OnCompleted += () =>
+            Context.Get<ITaskManager>().OnCompleted += () =>
             {
                 if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
                 {

@@ -5,9 +5,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
-using ProxySearch.Common;
+using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Extensions;
-using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
@@ -27,7 +26,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return Context.Get<TaskManager>()
+                return Context.Get<ITaskManager>()
                               .Tasks
                               .GroupBy(task => task.Name)
                               .Select(group => new
@@ -69,7 +68,7 @@ namespace ProxySearch.Console.Controls
         {
             InitializeComponent();
 
-            Context.Get<TaskManager>().Tasks.CollectionChanged += (sender, e) =>
+            Context.Get<ITaskManager>().Tasks.CollectionChanged += (sender, e) =>
             {
                 ((Action)UpdateTaskUI).RunWithDelay(TimeSpan.FromMilliseconds(100));
             };

@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using ProxySearch.Engine.SearchEngines.Google;
 
-namespace ProxySearch.Engine.SearchEngines.Google
+namespace ProxySearch.Engine.SearchEngines
 {
     public class GoogleSearchEngine : ISearchEngine
     {
@@ -41,7 +43,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
             searchOnPage = null;
         }
 
-        public async Task<Uri> GetNext()
+        public async Task<Uri> GetNext(CancellationTokenSource cancellationTokenSource)
         {
             try
             {
@@ -53,7 +55,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
                     allowedCount--;
                     searchOnPage = new GoogleSearchOnPage();
 
-                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)), captchaWindow, linkNumber);
+                    await searchOnPage.Initialize(new Uri(string.Format(queryString, linkNumber)), captchaWindow, linkNumber, cancellationTokenSource);
                 }
 
                 Uri res = searchOnPage.GetNext();
@@ -63,7 +65,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
                 else
                 {
                     searchOnPage = null;
-                    return await GetNext();
+                    return await GetNext(cancellationTokenSource);
                 }
 
                 return res;

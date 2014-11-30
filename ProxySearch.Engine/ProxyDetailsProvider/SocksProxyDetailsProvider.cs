@@ -2,7 +2,6 @@
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
@@ -18,8 +17,6 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
         {
             string proxyUriString = GetProxyUriString(proxy);
 
-            ISocksProxyTypeHashtable hashtable = Context.Get<ISocksProxyTypeHashtable>();
-
             var httpDownloaderContainer = new HttpDownloaderContainer<SocksHttpClientHandler, SocksProgressMessageHandler>();
 
             string content = await httpDownloaderContainer.HttpDownloader.GetContentOrNull(GetProxyTypeDetectorUrl(proxy,
@@ -27,7 +24,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
                                                                                            proxy,
                                                                                            cancellationToken);
             if (content == null)
-                return new SocksProxyDetails(hashtable[proxyUriString], null);
+                return new SocksProxyDetails(Application.SocksProxyHashTable[proxyUriString], null);
 
             string[] values = content.Split(',');
             IPAddress outgoingIPAddress;
@@ -35,7 +32,7 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
             if (values.Length != 2 || !IPAddress.TryParse(values[1], out outgoingIPAddress))
                 return new SocksProxyDetails(SocksProxyTypes.ChangesContent, null);
 
-            return new SocksProxyDetails(hashtable[proxyUriString], outgoingIPAddress);
+            return new SocksProxyDetails(Application.SocksProxyHashTable[proxyUriString], outgoingIPAddress);
         }
 
         public override ProxyTypeDetails GetUncheckedProxyDetails()

@@ -2,7 +2,6 @@
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.SearchEngines;
-using ProxySearch.Engine.SearchEngines.UrlList;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {

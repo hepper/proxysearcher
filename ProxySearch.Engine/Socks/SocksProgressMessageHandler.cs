@@ -2,7 +2,6 @@
 using System.Net.Http.Handlers;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 
 namespace ProxySearch.Engine.Socks
 {
@@ -32,7 +31,7 @@ namespace ProxySearch.Engine.Socks
                 Handler = handler,
                 ReportRequestProgress = (transeffed, total) => OnHttpRequestProgress(request, CreateEventArgs(transeffed, total)),
                 ReportResponseProgress = (transeffed, total) => OnHttpResponseProgress(request, CreateEventArgs(transeffed, total)),
-                ProxyType = Context.Get<ISocksProxyTypeHashtable>()[handler.Proxy.GetProxy(request.RequestUri).ToString()]
+                ProxyType = Application.SocksProxyHashTable[handler.Proxy.GetProxy(request.RequestUri).ToString()]
             });
         }
 

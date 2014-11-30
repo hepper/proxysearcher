@@ -76,6 +76,7 @@
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
     <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
+    <Compile Include="Checkers\IAsyncInitialization.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrl.cs" />
     <Compile Include="Checkers\TurnedOffProxyChecker.cs" />
     <Compile Include="DownloaderContainers\HttpDownloaderContainer.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIPComparer.cs" />
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIPData.cs" />
     <Compile Include="GeoIP\BuiltInGeoIP\GeoIPDatabase.cs" />
-    <Compile Include="GeoIP\GeoIP.cs" />
+    <Compile Include="GeoIP\TurnOffGeoIP.cs" />
     <Compile Include="CountryInfo.cs" />
     <Compile Include="Proxies\Http\HttpProxyTypes.cs" />
     <Compile Include="Proxies\Proxy.cs" />
@@ -115,6 +116,9 @@
     <Compile Include="ProxyDetailsProvider\IProxyDetailsProvider.cs" />
     <Compile Include="ProxyDetailsProvider\ProxyDetailsProviderBase.cs" />
     <Compile Include="ProxyDetailsProvider\SocksProxyDetailsProvider.cs" />
+    <Compile Include="SearchEngines\ParallelSearchEngine.cs" />
+    <Compile Include="Tasks\ITaskManager.cs" />
+    <Compile Include="Tasks\ObservableList.cs" />
     <Compile Include="Tasks\TaskStatus.cs" />
     <EmbeddedResource Include="Properties\Resources.uk.resx">
       <SubType>Designer</SubType>
@@ -125,8 +129,8 @@
     <EmbeddedResource Include="Resources\ProxyParserRuntime._cs" />
     <EmbeddedResource Include="Resources\DefaultProxyParseCode._cs" />
     <Compile Include="EmbeddedResource.cs" />
-    <Compile Include="SearchEngines\FolderSearch\FolderSearchEngine.cs" />
-    <Compile Include="SearchEngines\Google\GoogleSearchEngine.cs" />
+    <Compile Include="SearchEngines\FolderSearchEngine.cs" />
+    <Compile Include="SearchEngines\GoogleSearchEngine.cs" />
     <Compile Include="SearchEngines\Google\GoogleSearchOnPage.cs" />
     <Compile Include="GeoIP\IGeoIP.cs" />
     <Compile Include="Checkers\IProxyChecker.cs" />
@@ -144,7 +148,7 @@
     <Compile Include="Checkers\SimpleProxyChecker.cs" />
     <Compile Include="Proxies\ProxyInfo.cs" />
     <Compile Include="Parser\ProxyProvider.cs" />
-    <Compile Include="SearchEngines\UrlList\UrlListSearchEngine.cs" />
+    <Compile Include="SearchEngines\UrlListSearchEngine.cs" />
     <Compile Include="Socks\ISocksProxyTypeHashtable.cs" />
     <Compile Include="Proxies\Socks\SocksProxyTypes.cs" />
     <Compile Include="Socks\SocksHttpClientHandler.cs" />
@@ -184,12 +188,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProxySearch.Common\ProxySearch.Common.csproj">
-      <Project>{77118BFE-C86C-4BC2-940A-AF59785528D4}</Project>
-      <Name>ProxySearch.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Resources\GeoIPDatabase.csv" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +196,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\spysru._cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

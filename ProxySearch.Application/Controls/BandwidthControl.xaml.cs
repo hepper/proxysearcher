@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using ProxySearch.Common;
+using ProxySearch.Console.Code;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Proxies;
 

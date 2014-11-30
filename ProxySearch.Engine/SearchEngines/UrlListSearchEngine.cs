@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace ProxySearch.Engine.SearchEngines.UrlList
+namespace ProxySearch.Engine.SearchEngines
 {
     public class UrlListSearchEngine : ISearchEngine
     {
@@ -24,7 +25,7 @@ namespace ProxySearch.Engine.SearchEngines.UrlList
                                .Select(url => new Uri(url)).ToList();
         }
 
-        public Task<Uri> GetNext()
+        public Task<Uri> GetNext(CancellationTokenSource cancellationTokenSource)
         {
             if (!urls.Any())
             {

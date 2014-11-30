@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProxySearch.Common")]
+[assembly: AssemblyTitle("ProxySearch.CommandLine")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Proxy Searcher")]
-[assembly: AssemblyProduct("ProxySearch.Common")]
-[assembly: AssemblyCopyright("Copyright © Proxy Searcher 2013")]
+[assembly: AssemblyCompany("MICROSOFT")]
+[assembly: AssemblyProduct("ProxySearch.CommandLine")]
+[assembly: AssemblyCopyright("Copyright © MICROSOFT 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9d181949-08ba-419b-a921-5837ef5f3b6b")]
+[assembly: Guid("f0b33049-0499-499f-b0cb-576a0c81b1b2")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.1.0.0")]
-[assembly: AssemblyFileVersion("4.1.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

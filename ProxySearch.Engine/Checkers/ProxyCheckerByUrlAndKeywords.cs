@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
-using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
@@ -32,11 +30,11 @@ namespace ProxySearch.Engine.Checkers
             Keywords = keywords.Split(' ');
         }
 
-        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end)
+        protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end, CancellationTokenSource cancellationToken)
         {
             task.UpdateDetails(string.Format(Resources.ProxyDownloadingFormat, proxy, Url));
 
-            string content = await Context.Get<IHttpDownloaderContainer>().HttpDownloader.GetContentOrNull(Url, proxy, Context.Get<CancellationTokenSource>(), begin, firstTime, end);
+            string content = await HttpDownloaderContainer.HttpDownloader.GetContentOrNull(Url, proxy, cancellationToken, begin, firstTime, end);
 
             if (content == null)
             {

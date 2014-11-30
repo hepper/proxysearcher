@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
+using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
@@ -90,13 +91,13 @@ namespace ProxySearch.Console.Controls
 
             StatusText = Controls.Resources.ActionInvokerControl.Ready;
 
-            Context.Get<TaskManager>().Tasks.CollectionChanged += (sender, e) =>
+            Context.Get<ITaskManager>().Tasks.CollectionChanged += (sender, e) =>
             {
                 if (e.Action == NotifyCollectionChangedAction.Add ||
                     e.Action == NotifyCollectionChangedAction.Remove ||
                     e.Action == NotifyCollectionChangedAction.Reset)
                 {
-                    string text = string.Format(Properties.Resources.JobCountFormat, Context.Get<TaskManager>().Tasks.Count);
+                    string text = string.Format(Properties.Resources.JobCountFormat, Context.Get<ITaskManager>().Tasks.Count);
 
                     Dispatcher.BeginInvoke(new Action(() =>
                     {
@@ -106,7 +107,7 @@ namespace ProxySearch.Console.Controls
                 }
             };
 
-            Context.Get<TaskManager>().OnStarted += () => 
+            Context.Get<ITaskManager>().OnStarted += () => 
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {

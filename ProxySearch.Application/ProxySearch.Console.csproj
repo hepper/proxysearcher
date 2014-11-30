@@ -102,6 +102,7 @@
     <Compile Include="Code\Constants.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Context.cs" />
     <Compile Include="Code\ControlNavigator.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -175,6 +176,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\Detectable\SearchEngines\UrlListSearchEngineDetectableBase.cs" />
+    <Compile Include="Code\EventLog\ExceptionLogging.cs" />
+    <Compile Include="Code\EventLog\IExceptionLogging.cs" />
     <Compile Include="Code\Extensions\ActionExtensions.cs" />
     <Compile Include="Code\Filters\FilterData.cs" />
     <Compile Include="Code\GoogleAnalytics\Buttons.cs" />
@@ -962,10 +965,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProxySearch.Common\ProxySearch.Common.csproj">
-      <Project>{77118BFE-C86C-4BC2-940A-AF59785528D4}</Project>
-      <Name>ProxySearch.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProxySearch.Engine\ProxySearch.Engine.csproj">
       <Project>{eb06f887-3a1f-4473-a69f-1bfd6a1f361b}</Project>
       <Name>ProxySearch.Engine</Name>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using ProxySearch.Common.Properties;
+using ProxySearch.Console.Properties;
 
 namespace ProxySearch.Common
 {

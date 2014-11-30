@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls;
-using ProxySearch.Common;
+using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine.Checkers;

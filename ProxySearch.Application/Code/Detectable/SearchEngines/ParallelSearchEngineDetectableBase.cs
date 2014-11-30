@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Console.Code.SearchEngines;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.SearchEngines;
+using ParallelSearchEngine = ProxySearch.Console.Code.SearchEngines.ParallelSearchEngine;
 
 namespace ProxySearch.Console.Code.Detectable.SearchEngines
 {

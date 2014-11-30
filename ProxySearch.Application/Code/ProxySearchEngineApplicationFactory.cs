@@ -8,10 +8,10 @@ using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.DownloaderContainers;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.SearchEngines;
-using ProxySearch.Engine.SearchEngines.FolderSearch;
 using ProxySearch.Engine.Socks;
 using ProxySearch.Engine.Tasks;
 
@@ -52,7 +52,10 @@ namespace ProxySearch.Console.Code
 
             task.UpdateDetails(Resources.PreparingApplication);
 
-            return new Application(searchEngine, proxyProvider, feedback, proxyChecker, geoIP);
+            return new Application(searchEngine, proxyChecker, HttpDownloaderContainer, 
+                                   feedback, geoIP, proxyProvider, 
+                                   Context.Get<ITaskManager>(),
+                                   Context.Get<IErrorFeedback>());
         }
 
         private IHttpDownloaderContainer HttpDownloaderContainer

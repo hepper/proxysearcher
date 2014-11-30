@@ -5,8 +5,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 using ProxySearch.Engine.Checkers;
+using ProxySearch.Engine.DownloaderContainers;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.Properties;
@@ -20,60 +21,96 @@ namespace ProxySearch.Engine
     public class Application
     {
         ISearchEngine searchEngine;
-        IProxyProvider proxyProvider;
-        IProxySearchFeedback feedback;
         IProxyChecker checker;
+        IHttpDownloaderContainer httpDownloaderContainer;
+        IProxySearchFeedback feedback;
         IGeoIP geoIP;
-
-        public Application(ISearchEngine searchEngine, IProxyProvider proxyProvider, IProxySearchFeedback feedback, IProxyChecker checker, IGeoIP geoIP)
+        IProxyProvider proxyProvider;
+        ITaskManager taskManager;
+        IErrorFeedback errorFeedback;
+        
+        internal static ISocksProxyTypeHashtable SocksProxyHashTable
         {
-            this.searchEngine = searchEngine;
-            this.proxyProvider = proxyProvider;
-
-            this.feedback = feedback;
-            this.checker = checker;
-            this.geoIP = geoIP ?? new TurnOffGeoIP();
-
-            Context.Set<ISocksProxyTypeHashtable>(new SocksProxyTypeHashtable());
+            get;
+            private set;
         }
 
-        public async void SearchAsync()
+        static Application()
         {
+            SocksProxyHashTable = new SocksProxyTypeHashtable();
+        }
+
+        public Application(ISearchEngine searchEngine,
+                           IProxyChecker checker,
+                           IHttpDownloaderContainer httpDownloaderContainer,
+                           IProxySearchFeedback feedback,
+                           IGeoIP geoIP = null,
+                           IProxyProvider proxyProvider = null,
+                           ITaskManager taskManager = null,
+                           IErrorFeedback errorFeedback = null)
+        {
+            this.searchEngine = searchEngine;
+            this.checker = checker;
+            this.httpDownloaderContainer = httpDownloaderContainer;
+            this.feedback = feedback;
+
+            this.proxyProvider = proxyProvider ?? new ProxyProvider();
+            this.geoIP = geoIP ?? new TurnOffGeoIP();
+            this.taskManager = taskManager ?? new TaskManager();
+            this.errorFeedback = errorFeedback ?? new DummyErrorFeedback();
+        }
+
+        public async Task SearchAsync()
+        {
+            await SearchAsync(new CancellationTokenSource());
+        }
+
+        public async Task SearchAsync(CancellationTokenSource cancellationTokenSource)
+        {
+            IAsyncInitialization asyncInitialization = checker as IAsyncInitialization;
+
+            if (asyncInitialization != null)
+                asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback);
+
             IEnumerable<ISearchEngine> searchEngines = searchEngine as IEnumerable<ISearchEngine>;
 
             if (searchEngines == null)
             {
-                await SearchAsyncInternal(searchEngine);
+                await SearchAsyncInternal(searchEngine, cancellationTokenSource);
             }
             else
             {
+                List<Task> tasks = new List<Task>();
+
                 foreach (ISearchEngine engine in searchEngines)
                 {
-                    Task task = SearchAsyncInternal(engine);
+                    tasks.Add(SearchAsyncInternal(engine, cancellationTokenSource));
                 }
+
+                await Task.WhenAll(tasks);
             }
         }
 
-        private async Task SearchAsyncInternal(ISearchEngine searchEngine)
+        private async Task SearchAsyncInternal(ISearchEngine searchEngine, CancellationTokenSource cancellationTokenSource)
         {
             try
             {
-                using (TaskItem task = Context.Get<TaskManager>().Create(Resources.ProxySearching))
+                using (TaskItem task = taskManager.Create(Resources.ProxySearching))
                 {
                     while (true)
                     {
                         task.UpdateDetails(searchEngine.Status);
 
-                        Uri uri = await searchEngine.GetNext();
+                        Uri uri = await searchEngine.GetNext(cancellationTokenSource);
 
-                        if (uri == null || Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                        if (uri == null || cancellationTokenSource.IsCancellationRequested)
                             return;
 
                         task.UpdateDetails(string.Format(Resources.DownloadingFormat, uri.ToString()));
 
-                        string document = await GetDocumentAsync(uri);
+                        string document = await GetDocumentAsyncOrNull(uri, cancellationTokenSource);
 
-                        if (Context.Get<CancellationTokenSource>().IsCancellationRequested)
+                        if (cancellationTokenSource.IsCancellationRequested)
                             return;
 
                         if (document == null)
@@ -82,57 +119,43 @@ namespace ProxySearch.Engine
                         List<Proxy> proxies = await proxyProvider.ParseProxiesAsync(uri, document);
 
                         if (proxies.Any())
-                            checker.CheckAsync(proxies, feedback, geoIP);
+                            checker.CheckAsync(proxies, feedback, geoIP, cancellationTokenSource);
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                errorFeedback.SetException(e);
             }
         }
 
-        private async Task<string> GetDocumentAsync(Uri uri)
-        {
-            if (uri.IsFile)
-            {
-                return await GetFileContentAsync(uri);
-            }
-
-            return await GetInternetDocumentAsync(uri);
-        }
-
-        private static async Task<string> GetFileContentAsync(Uri uri)
+        private async Task<string> GetDocumentAsyncOrNull(Uri uri, CancellationTokenSource cancellationTokenSource)
         {
             try
             {
-                string result = File.ReadAllText(uri.LocalPath);
-                return await Task.FromResult<string>(result);
+                if (uri.IsFile)
+                {
+                    return await Task.FromResult<string>(File.ReadAllText(uri.LocalPath));
+                }
+
+                return await GetInternetDocumentAsyncOrNull(uri, cancellationTokenSource);
             }
-            catch (Exception exception)
+            catch
             {
-                Context.Get<IExceptionLogging>().Write(exception);
                 return null;
             }
         }
 
-        private static async Task<string> GetInternetDocumentAsync(Uri uri)
+        private static async Task<string> GetInternetDocumentAsyncOrNull(Uri uri, CancellationTokenSource cancellationTokenSource)
         {
-            try
+            using (HttpClient client = new HttpClient())
+            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationTokenSource.Token))
             {
-                using (HttpClient client = new HttpClient())
-                using (HttpResponseMessage response = await client.GetAsync(uri, Context.Get<CancellationTokenSource>().Token))
-                {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        return await response.Content.ReadAsStringAsync();
-                    }
-                }
-            }
-            catch
-            {
-            }
+                if (response.IsSuccessStatusCode)
+                    return await response.Content.ReadAsStringAsync();
 
-            return null;
+                return null;
+            }
         }
     }
 }

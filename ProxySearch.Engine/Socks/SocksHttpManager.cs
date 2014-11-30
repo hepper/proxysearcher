@@ -8,7 +8,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ProxySearch.Common;
 using ProxySearch.Engine.Extended;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies.Socks;
@@ -40,7 +39,7 @@ namespace ProxySearch.Engine.Socks
                             return await ReadHttpResponseMessage(parameters, uri, async (stream, remoteEP, cancellationToken) =>
                             {
                                 await new SocksRequest().V4(stream, remoteEP, cancellationToken);
-                                Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters, uri).ToString(), SocksProxyTypes.Socks4);
+                                Application.SocksProxyHashTable.Add(GetProxyUri(parameters, uri).ToString(), SocksProxyTypes.Socks4);
                             });
                         }
                         catch (SocksRequestFailedException)
@@ -50,7 +49,7 @@ namespace ProxySearch.Engine.Socks
                         return await ReadHttpResponseMessage(parameters, uri, async (stream, remoteEP, cancellationToken) =>
                         {
                             await new SocksRequest().V5(stream, remoteEP, cancellationToken);
-                            Context.Get<ISocksProxyTypeHashtable>().Add(GetProxyUri(parameters, uri).ToString(), SocksProxyTypes.Socks5);
+                            Application.SocksProxyHashTable.Add(GetProxyUri(parameters, uri).ToString(), SocksProxyTypes.Socks5);
                         });
                     case SocksProxyTypes.Socks4:
                         return await ReadHttpResponseMessage(parameters, uri, new SocksRequest().V4);

@@ -1,8 +1,6 @@
-using System;
 using System.ComponentModel;
 using System.Net;
 using System.Text;
-using ProxySearch.Common;
 using ProxySearch.Engine.Bandwidth;
 
 namespace ProxySearch.Engine.Proxies

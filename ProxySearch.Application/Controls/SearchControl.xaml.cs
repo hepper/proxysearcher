@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Common;
@@ -8,6 +9,7 @@ using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.GoogleAnalytics.Timing;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
@@ -23,7 +25,7 @@ namespace ProxySearch.Console.Controls
 
             Context.Set<ISearchControl>(this);
 
-            Context.Get<TaskManager>().OnCompleted += () =>
+            Context.Get<ITaskManager>().OnCompleted += () =>
             {
                 Dispatcher.Invoke(() => EnableButtons(true));
             };
@@ -50,14 +52,14 @@ namespace ProxySearch.Console.Controls
                 fastSettingsButton.IsExpanded = false;
         }
 
-        private void DoBeginSearch()
+        private async void DoBeginSearch()
         {
             ProxySearchFeedback feedback = new ProxySearchFeedback();
 
-            using (TaskItem task = Context.Get<TaskManager>().Create(Properties.Resources.SearchInitialization))
+            using (TaskItem task = Context.Get<ITaskManager>().Create(Properties.Resources.SearchInitialization))
             {
                 Engine.Application application = new ProxySearchEngineApplicationFactory().Create(task, feedback);
-                application.SearchAsync();
+                await application.SearchAsync(Context.Get<CancellationTokenSource>());
             }
         }
 

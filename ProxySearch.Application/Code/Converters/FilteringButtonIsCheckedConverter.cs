@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
-using ProxySearch.Common;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Code.Converters
 {

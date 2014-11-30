@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Filters;
+using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
 {

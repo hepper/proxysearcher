@@ -460,4 +460,13 @@ Outgoing IP address: {1}</value>
   <data name="ManualUpdateProxyType" xml:space="preserve">
     <value>Manual update proxy type</value>
   </data>
+  <data name="EventLogSource" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="ObjectOfTypeIsNotSetYet" xml:space="preserve">
+    <value>Object of type '{0}' is not set yet</value>
+  </data>
+  <data name="ProxySearcherSource" xml:space="preserve">
+    <value>Proxy Searcher</value>
+  </data>
 </root>
