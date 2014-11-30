@@ -54,10 +54,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProxySearch.Common\ProxySearch.Common.csproj">
-      <Project>{77118bfe-c86c-4bc2-940a-af59785528d4}</Project>
-      <Name>ProxySearch.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProxySearch.Engine\ProxySearch.Engine.csproj">
       <Project>{eb06f887-3a1f-4473-a69f-1bfd6a1f361b}</Project>
       <Name>ProxySearch.Engine</Name>

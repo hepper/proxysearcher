@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.Engine", "ProxySearch.Engine\ProxySearch.Engine.csproj", "{EB06F887-3A1F-4473-A69F-1BFD6A1F361B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.Common", "ProxySearch.Common\ProxySearch.Common.csproj", "{77118BFE-C86C-4BC2-940A-AF59785528D4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.Console", "ProxySearch.Application\ProxySearch.Console.csproj", "{0B381461-DB63-4273-8F00-370A53089871}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxySearch.CommandLine", "ProxySearch.CommandLine\ProxySearch.CommandLine.csproj", "{857BFA5C-9E65-4D52-9377-F033DE92A7E9}"
@@ -53,31 +51,6 @@ Global
 		{EB06F887-3A1F-4473-A69F-1BFD6A1F361B}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EB06F887-3A1F-4473-A69F-1BFD6A1F361B}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{EB06F887-3A1F-4473-A69F-1BFD6A1F361B}.SingleImage|x86.ActiveCfg = Release|Any CPU
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.CD_ROM|Any CPU.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.CD_ROM|Mixed Platforms.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.CD_ROM|Mixed Platforms.Build.0 = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.CD_ROM|x86.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.CD_ROM|x86.Build.0 = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Debug|x86.ActiveCfg = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Debug|x86.Build.0 = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.DVD-5|Any CPU.ActiveCfg = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.DVD-5|Mixed Platforms.ActiveCfg = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.DVD-5|Mixed Platforms.Build.0 = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.DVD-5|x86.ActiveCfg = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.DVD-5|x86.Build.0 = Debug|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Release|Any CPU.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Release|Mixed Platforms.Build.0 = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Release|x86.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.Release|x86.Build.0 = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.SingleImage|Any CPU.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.SingleImage|Mixed Platforms.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.SingleImage|Mixed Platforms.Build.0 = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.SingleImage|x86.ActiveCfg = Release|x86
-		{77118BFE-C86C-4BC2-940A-AF59785528D4}.SingleImage|x86.Build.0 = Release|x86
 		{0B381461-DB63-4273-8F00-370A53089871}.CD_ROM|Any CPU.ActiveCfg = Release|x86
 		{0B381461-DB63-4273-8F00-370A53089871}.CD_ROM|Mixed Platforms.ActiveCfg = Release|x86
 		{0B381461-DB63-4273-8F00-370A53089871}.CD_ROM|Mixed Platforms.Build.0 = Release|x86
