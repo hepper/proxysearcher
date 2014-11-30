@@ -33,9 +33,9 @@ namespace ProxySearch.Engine.Parser
 
                 foreach (Proxy proxy in parseMethod.Parse(document))
                 {
-                    if (!foundProxies.ContainsKey(proxy.AddressPort) && !blackList.Contains(proxy))
+                    if (!foundProxies.ContainsKey(proxy.Address) && !blackList.Contains(proxy))
                     {
-                        foundProxies.Add(proxy.AddressPort, proxy);
+                        foundProxies.Add(proxy.Address, proxy);
                         result.Add(proxy);
                     }
                 }

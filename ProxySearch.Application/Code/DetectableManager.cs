@@ -29,16 +29,7 @@ namespace ProxySearch.Console.Code
         {
             try
             {
-                T result = CreateImplementationInstanceInternal<T>(detectable, parametersList, interfacesList);
-
-                IErrorFeedbackHolder errorFeedbackHolder = result as IErrorFeedbackHolder;
-
-                if (errorFeedbackHolder != null)
-                {
-                    errorFeedbackHolder.ErrorFeedback = Context.Get<IErrorFeedback>();
-                }
-
-                return result;
+                return CreateImplementationInstanceInternal<T>(detectable, parametersList, interfacesList);
             }
             catch (TargetInvocationException exception)
             {

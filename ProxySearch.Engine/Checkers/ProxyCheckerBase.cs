@@ -14,7 +14,7 @@ using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
 {
-    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker, IErrorFeedbackHolder, IAsyncInitialization
+    public abstract class ProxyCheckerBase<ProxyDetailsProviderType> : IProxyChecker, IAsyncInitialization
         where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
         public IErrorFeedback ErrorFeedback
