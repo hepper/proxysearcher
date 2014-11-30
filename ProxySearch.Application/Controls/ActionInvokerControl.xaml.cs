@@ -226,6 +226,8 @@ namespace ProxySearch.Console.Controls
             try
             {
                 Context.Get<CancellationTokenSource>().Cancel(false);
+
+                
             }
             catch (AggregateException)
             {
