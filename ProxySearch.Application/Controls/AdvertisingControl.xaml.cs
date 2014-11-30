@@ -18,7 +18,7 @@ namespace ProxySearch.Console.Controls
     /// </summary>
     public partial class AdvertisingControl : UserControl
     {
-        private static readonly Uri adsUri = new Uri("http://proxysearcher.sourceforge.net/Ads.php");
+        private static readonly Uri adsUri = new Uri("http://proxysearcher.sourceforge.net/Ads.php?interactive=true");
         private bool hasErrorHappened = false;
         private bool isUserClickedOnAdvertising = false;
         private bool isAnimationPlayed = false;
@@ -60,7 +60,8 @@ namespace ProxySearch.Console.Controls
 
         private void browser_BeforeScriptExecute(object pDispWindow)
         {
-            if (webBrowser.ReadyState == System.Windows.Forms.WebBrowserReadyState.Complete && !hasErrorHappened && !isAnimationPlayed)
+            if ((webBrowser.ReadyState == System.Windows.Forms.WebBrowserReadyState.Complete || 
+                 webBrowser.ReadyState == System.Windows.Forms.WebBrowserReadyState.Interactive) && !hasErrorHappened && !isAnimationPlayed)
             {
                 isAnimationPlayed = true;
                 PlayAnimation("ExpandControl");
