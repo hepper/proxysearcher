@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Filters;
 using ProxySearch.Console.Code.Interfaces;
@@ -167,6 +166,17 @@ namespace ProxySearch.Console.Controls
             }));
         }
 
+        public void UpdatePageData()
+        {
+            PageData.Clear();
+
+            if (Paging.Page.HasValue)
+            {
+                PageData.AddRange(FilteredData.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).
+                                               Take(Context.Get<AllSettings>().PageSize));
+            }
+        }
+
         private void PageChanged(object sender, RoutedEventArgs e)
         {
             UpdatePageData();
@@ -281,17 +291,6 @@ namespace ProxySearch.Console.Controls
             {
                 return new ProxyInfoComparer(sortMemberPath, sortDirection).Compare(proxyInfo1, proxyInfo2);
             });
-        }
-
-        private void UpdatePageData()
-        {
-            PageData.Clear();
-
-            if (Paging.Page.HasValue)
-            {
-                PageData.AddRange(FilteredData.Skip((Paging.Page.Value - 1) * Context.Get<AllSettings>().PageSize).
-                                               Take(Context.Get<AllSettings>().PageSize));
-            }
         }
 
         private void UpdateFilteredData()

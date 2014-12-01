@@ -1,6 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,6 +8,7 @@ using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Extensions;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Engine.Proxies;
 using SHDocVw;
 
 namespace ProxySearch.Console.Controls
@@ -19,12 +19,11 @@ namespace ProxySearch.Console.Controls
     public partial class AdvertisingControl : UserControl
     {
         private static readonly Uri adsUri = new Uri("http://proxysearcher.sourceforge.net/Ads.php?interactive=true");
-        private bool hasErrorHappened = false;
         private bool isUserClickedOnAdvertising = false;
-        private bool isAnimationPlayed = false;
-
         private Action updateCursor = null;
         private int delay = 1;
+        Timer timer = new Timer((4 * 60 + new Random(Environment.TickCount).Next(120)) * 1000); // 4-6 minutes 
+        TimeSpan loadAdvertisingTimeout = TimeSpan.FromSeconds(3);
 
         public AdvertisingControl()
         {
@@ -39,71 +38,72 @@ namespace ProxySearch.Console.Controls
             {
                 browser.NewWindow3 += webBrowser_NewWindow3;
                 browser.NavigateError += browser_NavigateError;
-                browser.BeforeScriptExecute += browser_BeforeScriptExecute;
 
                 browser.StatusTextChange += browser_StatusTextChange;
                 browser.TitleChange += browser_TitleChange;
-                webBrowser.Navigate(adsUri);
+                NavigateWithoutProxy();
 
-                IsVisibleChanged += Advertising_IsVisibleChanged;
+                Action action = () => Dispatcher.BeginInvoke(new Action(() =>
+                                                             {
+                                                                 PlayAnimation("ExpandControl");
+                                                             }));
+                action.RunWithDelay(loadAdvertisingTimeout);
+
+                timer.Elapsed += (sender, e) =>
+                {
+                    NavigateWithoutProxy();
+                };
+
+                timer.Start();
             }
         }
 
-        private void Advertising_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void NavigateWithoutProxy()
         {
-            if (hasErrorHappened)
+            IProxyClient proxyClient = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull();
+            ProxyInfo proxy = proxyClient != null ? proxyClient.Proxy : null;
+
+            if (proxy != null)
             {
-                hasErrorHappened = false;
+                proxyClient.Proxy = null;
+                Dispatcher.Invoke(() => Context.Get<ISearchResult>().UpdatePageData());
+            }
+
+            try
+            {
                 webBrowser.Navigate(adsUri);
             }
-        }
-
-        private void browser_BeforeScriptExecute(object pDispWindow)
-        {
-            if ((webBrowser.ReadyState == System.Windows.Forms.WebBrowserReadyState.Complete || 
-                 webBrowser.ReadyState == System.Windows.Forms.WebBrowserReadyState.Interactive) && !hasErrorHappened && !isAnimationPlayed)
+            finally
             {
-                isAnimationPlayed = true;
-                PlayAnimation("ExpandControl");
+                if (proxy != null)
+                {
+                    Action action = () =>
+                    {
+                        if (proxy != null)
+                        {
+                            proxyClient.Proxy = proxy;
+                            Dispatcher.Invoke(() => Context.Get<ISearchResult>().UpdatePageData());
+                        }
+                    };
+                    action.RunWithDelay(loadAdvertisingTimeout);
+                }
             }
         }
 
         private void browser_NavigateError(object pDisp, ref object url, ref object frame, ref object statusCode, ref bool cancel)
         {
             Context.Get<IGA>().TrackException(string.Format("Cannot open advertising. Url: {0}, StatusCode: {1}", url, statusCode));
-            hasErrorHappened = true;
         }
 
         private void webBrowser_NewWindow3(ref object ppDisp, ref bool cancel, uint flags, string urlContext, string url)
         {
-            ProcessStartInfo psi = new ProcessStartInfo();
+            IProxyClient proxyClient = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull();
+            ProxyInfo proxy = proxyClient != null ? proxyClient.Proxy : null;
 
-            psi.FileName = url;
-            psi.UseShellExecute = true;
-
-            cancel = true;
-            isUserClickedOnAdvertising = true;
-
-            if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            if (proxy != null)
             {
-                return;
-            }
-
-            Uri uri = new Uri(url);
-
-            if (uri.Scheme != "http" && uri.Scheme != "https")
-            {
-                return;
-            }
-
-            try
-            {
-                Process.Start(url);
-                Context.Get<IGA>().TrackEventAsync(EventType.General, ProxySearch.Console.Properties.Resources.AdvertisingOpenedInBrowser);
-            }
-            catch (Win32Exception exception)
-            {
-                Context.Get<IGA>().TrackException(exception);
+                proxyClient.Proxy = null;
+                Dispatcher.Invoke(() => Context.Get<ISearchResult>().UpdatePageData());
             }
         }
 

@@ -9,6 +9,8 @@ namespace ProxySearch.Console.Code.Interfaces
         void Cancelled();
 
         void Clear();
-        void Add(ProxyInfo proxy);        
+        void Add(ProxyInfo proxy);
+
+        void UpdatePageData();
     }
 }
