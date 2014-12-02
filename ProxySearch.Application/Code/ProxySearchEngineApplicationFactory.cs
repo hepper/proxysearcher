@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
 using System.Net.Http.Handlers;
 using System.Threading;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Properties;

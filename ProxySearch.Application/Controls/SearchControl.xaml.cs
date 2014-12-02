@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.GoogleAnalytics.Timing;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
-using ProxySearch.Engine.Error;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
@@ -52,14 +51,14 @@ namespace ProxySearch.Console.Controls
                 fastSettingsButton.IsExpanded = false;
         }
 
-        private async void DoBeginSearch()
+        private void DoBeginSearch()
         {
             ProxySearchFeedback feedback = new ProxySearchFeedback();
 
-            using (TaskItem task = Context.Get<ITaskManager>().Create(Properties.Resources.SearchInitialization))
+            using (TaskItem taskItem = Context.Get<ITaskManager>().Create(Properties.Resources.SearchInitialization))
             {
-                Engine.Application application = new ProxySearchEngineApplicationFactory().Create(task, feedback);
-                await application.SearchAsync(Context.Get<CancellationTokenSource>());
+                Engine.Application application = new ProxySearchEngineApplicationFactory().Create(taskItem, feedback);
+                Task task = application.SearchAsync(Context.Get<CancellationTokenSource>());
             }
         }
 

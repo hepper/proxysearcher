@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Error;
+using ProxySearch.Engine.Extension;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.Properties;
@@ -27,7 +28,7 @@ namespace ProxySearch.Engine
         IProxyProvider proxyProvider;
         ITaskManager taskManager;
         IErrorFeedback errorFeedback;
-        
+
         internal static ISocksProxyTypeHashtable SocksProxyHashTable
         {
             get;
@@ -72,6 +73,8 @@ namespace ProxySearch.Engine
 
         public async Task SearchAsync(CancellationTokenSource cancellationTokenSource)
         {
+            ManualResetEvent waitEvent = new ManualResetEvent(false);
+
             IAsyncInitialization asyncInitialization = checker as IAsyncInitialization;
 
             if (asyncInitialization != null)
@@ -94,6 +97,13 @@ namespace ProxySearch.Engine
 
                 await Task.WhenAll(tasks);
             }
+
+            taskManager.OnCompleted += () =>
+            {
+                waitEvent.Set();
+            };
+
+            await waitEvent.AsTask();
         }
 
         private async Task SearchAsyncInternal(ISearchEngine searchEngine, CancellationTokenSource cancellationTokenSource)

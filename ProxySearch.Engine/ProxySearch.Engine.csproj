@@ -86,6 +86,7 @@
     <Compile Include="Extended\AsyncManualResetEvent.cs" />
     <Compile Include="Extended\TcpClientExtended.cs" />
     <Compile Include="Extension\CancellationTokenExtension.cs" />
+    <Compile Include="Extension\WaitHandlerExtensions.cs" />
     <Compile Include="IBlackList.cs" />
     <Compile Include="DownloaderContainers\IHttpDownloader.cs" />
     <Compile Include="DownloaderContainers\IHttpDownloaderContainer.cs" />
