@@ -7,7 +7,6 @@ using ProxySearch.Console.Code.GoogleAnalytics.Timing;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Properties;
-using ProxySearch.Engine;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
 using ProxySearch.Engine.Proxies.Socks;
@@ -15,7 +14,7 @@ using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Code
 {
-    public class ProxySearchFeedback : IProxySearchFeedback
+    public class ProxySearchFeedback
     {
         private StreamWriter stream = null;
         private bool isTimingNotificationSent = false;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -47,7 +46,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
                 Uri uri = new Uri(url);
 
                 if (!InException(uri))
-                {                    
+                {
                     urls.Add(uri);
                 }
             }
@@ -56,14 +55,7 @@ namespace ProxySearch.Engine.SearchEngines.Google
         private async Task<string> GetContent(HttpResponseMessage response, ICaptchaWindow captchaWindow, int pageNumber, CancellationTokenSource cancellationToken)
         {
             if (!response.IsSuccessStatusCode)
-            {
-                if (response.StatusCode != HttpStatusCode.ServiceUnavailable)
-                {
-                    throw new InvalidOperationException(string.Format("Cannot continue search because engine retrieve error '{0}'", response.StatusCode.ToString()));
-                }
-
-                return await captchaWindow.GetSolvedContentAsync(response.RequestMessage.RequestUri.ToString(), pageNumber, cancellationToken.Token);
-            }
+                throw new InvalidOperationException(string.Format("Cannot continue google search because it retrieved error '{0}'", response.StatusCode.ToString()));
 
             return await response.Content.ReadAsStringAsync();
         }

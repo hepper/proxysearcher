@@ -36,7 +36,7 @@ namespace ProxySearch.Console.Code
 
             task.UpdateDetails(Resources.PreparingProxyProvider);
 
-            IProxyProvider proxyProvider =  new ProxyProvider(Context.Get<IBlackList>(), new ParseMethodsProvider(Settings.ParseDetails));
+            IProxyProvider proxyProvider = new ProxyProvider(Context.Get<IBlackList>(), new ParseMethodsProvider(Settings.ParseDetails));
 
             task.UpdateDetails(Resources.PreparingProxyChecker);
 
@@ -51,10 +51,10 @@ namespace ProxySearch.Console.Code
 
             task.UpdateDetails(Resources.PreparingApplication);
 
-            Application application = new Application(searchEngine, proxyChecker, HttpDownloaderContainer, geoIP, proxyProvider, 
-                                                      Context.Get<ITaskManager>(), Context.Get<IErrorFeedback>());
+            Application application = new Application(searchEngine, proxyChecker, HttpDownloaderContainer, geoIP, proxyProvider, Context.Get<ITaskManager>());
 
             application.ProxyAlive += feedback.OnAliveProxy;
+            application.OnError += Context.Get<IErrorFeedback>().SetException;
 
             return application;
         }
@@ -82,9 +82,9 @@ namespace ProxySearch.Console.Code
 
         private IDetectableManager DetectableManager
         {
-            get 
+            get
             {
-                return Context.Get<IDetectableManager>(); 
+                return Context.Get<IDetectableManager>();
             }
         }
     }

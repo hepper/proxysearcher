@@ -19,7 +19,7 @@ using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine
 {
-    public class Application : IProxySearchFeedback
+    public class Application : IProxySearchFeedback, IErrorFeedback
     {
         ISearchEngine searchEngine;
         IProxyChecker checker;
@@ -27,12 +27,19 @@ namespace ProxySearch.Engine
         IGeoIP geoIP;
         IProxyProvider proxyProvider;
         ITaskManager taskManager;
-        IErrorFeedback errorFeedback;
 
         internal static ISocksProxyTypeHashtable SocksProxyHashTable
         {
             get;
             private set;
+        }
+
+        public ObservableList<TaskData> Tasks 
+        {
+            get
+            {
+                return taskManager.Tasks;
+            }
         }
 
         static Application()
@@ -45,8 +52,7 @@ namespace ProxySearch.Engine
                            IHttpDownloaderContainer httpDownloaderContainer,
                            IGeoIP geoIP = null,
                            IProxyProvider proxyProvider = null,
-                           ITaskManager taskManager = null,
-                           IErrorFeedback errorFeedback = null)
+                           ITaskManager taskManager = null)
         {
             this.searchEngine = searchEngine;
             this.checker = checker;
@@ -55,7 +61,6 @@ namespace ProxySearch.Engine
             this.proxyProvider = proxyProvider ?? new ProxyProvider();
             this.geoIP = geoIP ?? new TurnOffGeoIP();
             this.taskManager = taskManager ?? new TaskManager();
-            this.errorFeedback = errorFeedback ?? new DummyErrorFeedback();
         }
 
         public void OnAliveProxy(ProxyInfo proxyInfo)
@@ -64,12 +69,19 @@ namespace ProxySearch.Engine
                 ProxyAlive(proxyInfo);
         }
 
+        public void SetException(Exception exception)
+        {
+            if (OnError != null)
+                OnError(exception);
+        }
+
         public async Task SearchAsync()
         {
             await SearchAsync(new CancellationTokenSource());
         }
 
         public event Action<ProxyInfo> ProxyAlive;
+        public event Action<Exception> OnError;
 
         public async Task SearchAsync(CancellationTokenSource cancellationTokenSource)
         {
@@ -78,7 +90,7 @@ namespace ProxySearch.Engine
             IAsyncInitialization asyncInitialization = checker as IAsyncInitialization;
 
             if (asyncInitialization != null)
-                asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback);
+                asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, this);
 
             IEnumerable<ISearchEngine> searchEngines = searchEngine as IEnumerable<ISearchEngine>;
 
@@ -140,7 +152,7 @@ namespace ProxySearch.Engine
             }
             catch (Exception e)
             {
-                errorFeedback.SetException(e);
+                SetException(e);
             }
         }
 
