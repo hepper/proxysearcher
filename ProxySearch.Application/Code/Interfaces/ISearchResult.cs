@@ -10,7 +10,5 @@ namespace ProxySearch.Console.Code.Interfaces
 
         void Clear();
         void Add(ProxyInfo proxy);
-
-        void UpdatePageData();
     }
 }

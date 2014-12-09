@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using ProxySearch.Common;
-using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients.InternetExplorer.WinInet;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Proxies;
@@ -10,6 +8,14 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 {
     public abstract class InternetExplorerClientBase : BrowserClient
     {
+        private string ProtocolName
+        {
+            get
+            {
+                return GetProtocolName("http", "socks");
+            }
+        }
+
         public InternetExplorerClientBase(string proxyType)
             : this(proxyType, Resources.InternetExplorer, "/Images/InternerExplorer.gif", 0, "IEXPLORE.EXE")
         {
@@ -22,55 +28,82 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
 
         protected override ProxyInfo GetProxy()
         {
-            if (!WinINet.IsProxyUsed)
+            if (!WinINet.IsProxyUsed || WinINet.ProxyIpPort == null)
                 return null;
 
-            string proxyString = ProxyString;
+            List<string> arguments = WinINet.ProxyIpPort
+                                            .Split(';')
+                                            .ToList();
 
-            if (proxyString == null)
-            {
-                Context.Get<IGA>().TrackException(new InvalidOperationException("Proxy is used but value of proxyString is null"));
+            //Single host is used for all types of proxy
+            if (arguments.Count == 1 && arguments.Single().Split('=').Length == 1)
+                return new ProxyInfo(WinINet.ProxyIpPort);
+
+            //Single protocol specific proxy is set or array of them
+            int index = GetIndexOfCurrentProtocol(arguments);
+
+            if (index == -1)
                 return null;
-            }
 
-            return new ProxyInfo(proxyString);
-        }
-
-        private string ProxyString
-        {
-            get
-            {
-                if (WinINet.ProxyIpPort == null)
-                    return null;
-
-                string[] arguments = WinINet.ProxyIpPort.Split(';');
-
-                string value = arguments.SingleOrDefault(item => item.StartsWith(string.Concat(Type, "="), StringComparison.CurrentCultureIgnoreCase));
-
-                if (value == null)
-                    value = arguments.Single();
-
-                return value.Split('=').Last();
-            }
+            return new ProxyInfo(arguments[index].Split('=').Last());
         }
 
         protected override void SetProxy(ProxyInfo proxyInfo)
         {
-            WinINet.SetProxy(true, string.Format("{0}={1}:{2}", GetProtocolName("http", "socks"), proxyInfo.Address, proxyInfo.Port));
-        }
-
-        protected override SettingsData BackupSettings()
-        {
-            return new SettingsData
+            //Proxy was not specified
+            if (WinINet.ProxyIpPort == null)
             {
-                UseProxy = WinINet.IsProxyUsed,
-                AddressPort = WinINet.ProxyIpPort
-            };
+                WinINet.SetProxy(proxyInfo != null, proxyInfo != null ? GetProtocolString(proxyInfo) : null);
+                return;
+            }
+
+            List<string> arguments = WinINet.ProxyIpPort
+                                            .Split(';')
+                                            .ToList();
+
+            //Single host is used for all types of proxy
+            if (arguments.Count == 1 && arguments.Single().Split('=').Length == 1)
+            {
+                WinINet.SetProxy(proxyInfo != null, proxyInfo != null ? proxyInfo.AddressPort : null);
+                return;
+            }
+
+            //Single protocol specific proxy is set or array of them
+            int index = GetIndexOfCurrentProtocol(arguments);
+
+            if (proxyInfo == null)
+            {
+                if (index != -1)
+                    arguments.RemoveAt(index);
+
+                WinINet.SetProxy(arguments.Any(), arguments.Any() ? string.Join(",", arguments) : null);
+                return;
+            }
+
+            if (index == -1)
+                arguments.Add(GetProtocolString(proxyInfo));
+            else
+                arguments[index] = GetProtocolString(proxyInfo);
+
+            WinINet.SetProxy(true, string.Join(",", arguments));
         }
 
-        protected override void RestoreSettings(SettingsData settings)
+        private int GetIndexOfCurrentProtocol(List<string> arguments)
         {
-            WinINet.SetProxy(settings.UseProxy, settings.AddressPort);
+            return arguments.FindIndex(item =>
+            {
+                string[] keyValue = item.Split('=');
+
+                if (keyValue.Length != 2)
+                    return false;
+
+                return string.Equals(keyValue[0], ProtocolName);
+            });
+        }
+
+        private string GetProtocolString(ProxyInfo proxyInfo)
+        {
+            return string.Format("{0}={1}", GetProtocolName("http", "socks"), proxyInfo.AddressPort);
         }
 
         protected override bool ImportsInternetExplorerSettings

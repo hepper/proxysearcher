@@ -23,7 +23,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <controls:ToolbarControl Grid.Row="0" Grid.ColumnSpan="2" />
+        <controls:ToolbarControl Grid.Row="0" Grid.ColumnSpan="2" Margin="0 0 0 5" />
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

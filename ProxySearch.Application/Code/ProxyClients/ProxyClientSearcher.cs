@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Properties;
@@ -39,9 +38,13 @@ namespace ProxySearch.Console.Code.ProxyClients
             }
         }
 
-        public IProxyClient GetInternetExplorerClientOrNull()
+        public List<IProxyClient> IEClients
         {
-            return SelectedClients.SingleOrDefault(client => client.Name == Resources.InternetExplorer);
+            get
+            {
+                return AllClients.Where(client => client.Name == Resources.InternetExplorer)
+                               .ToList();
+            }
         }
 
         public List<IProxyClient> AllClients
@@ -50,6 +53,12 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 return allClients.SelectMany(pair => pair.Value).ToList();
             }
+        }
+
+        public IProxyClient GetInternetExplorerClientOrNull(string type)
+        {
+            return AllClients.Where(client => client.Type == type)
+                             .SingleOrDefault(client => client.Name == Resources.InternetExplorer);
         }
     }
 }

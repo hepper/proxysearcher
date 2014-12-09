@@ -120,6 +120,12 @@
   <data name="About" xml:space="preserve">
     <value>О программе</value>
   </data>
+  <data name="AllCurrentlyUsedProxiesWillBeAddedHere" xml:space="preserve">
+    <value>Все используемые прокси будут отображены здесь</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>

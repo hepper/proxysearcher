@@ -101,6 +101,11 @@ namespace ProxySearch.Console.Controls
                 };
             }
 
+            Context.Get<IProxyClientSearcher>().AllClients.ForEach(client => client.ProxyChanged += () =>
+            {
+                UpdatePageData();
+            });
+
             SearchState = SearchProgress.NotStartedOrCancelled;
         }
 

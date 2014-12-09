@@ -4,21 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="35" d:DesignWidth="300">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Expander Grid.Column="2" Name="Tools" Expanded="Tools_Click" Header="{x:Static resources:ToolbarControl.Tools}" Margin="0, 5, 5, 0">
-            <Expander.ContextMenu>
-                <ContextMenu Closed="ContextMenu_Closed">
-                    <MenuItem Header="{x:Static resources:ToolbarControl.Settings}" Name="Settings" Click="Settings_Click" />
-                    <MenuItem Header="{x:Static resources:ToolbarControl.About}" Name="About" Click="About_Click" />
-                </ContextMenu>
-            </Expander.ContextMenu>
-        </Expander>
-     </Grid>
+             d:DesignHeight="35" d:DesignWidth="600" x:Name="toolbarControl">
+    <UserControl.Resources>
+        <converters:ListToEmptyPanelVisibilityConverter x:Key="listToEmptyPanelVisibilityConverter" />
+    </UserControl.Resources>
+    <DockPanel Grid.Row="0" LastChildFill="False" 
+               HorizontalAlignment="Stretch" Width="Auto" 
+               Background="#FFF2F2F2">
+        <ToolBar DockPanel.Dock="Left" Background="{x:Null}" ToolBarTray.IsLocked="True" >
+            <ItemsControl ItemsSource="{Binding ElementName=toolbarControl, Path=UsedProxyClients}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ActiveProxyClientControl ActiveProxyClient="{Binding}" Margin="2,2,2,2" />
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Visibility="{Binding ElementName=toolbarControl, Path=UsedProxyClients, Converter={StaticResource listToEmptyPanelVisibilityConverter}}"
+                       VerticalAlignment="Center"
+                       Margin="0 0 5 0"
+                       Text="{x:Static resources:ToolbarControl.AllCurrentlyUsedProxiesWillBeAddedHere}" />
+            <Button Click="OnRefresh" ToolTip="{x:Static resources:ToolbarControl.Refresh}">
+                <Image Source="/Images/Refresh.png" Height="20" Width="20" />
+            </Button>
+        </ToolBar>
+        <ToolBar DockPanel.Dock="Right" Background="{x:Null}" ToolBarTray.IsLocked="True" >
+            <Expander Grid.Column="2" Name="Tools" Expanded="Tools_Click" Header="{x:Static resources:ToolbarControl.Tools}" Margin="0, 5, 5, 0">
+                <Expander.ContextMenu>
+                    <ContextMenu Closed="ContextMenu_Closed">
+                        <MenuItem Header="{x:Static resources:ToolbarControl.Settings}" Name="Settings" Click="Settings_Click" />
+                        <MenuItem Header="{x:Static resources:ToolbarControl.About}" Name="About" Click="About_Click" />
+                    </ContextMenu>
+                </Expander.ContextMenu>
+            </Expander>
+        </ToolBar>
+    </DockPanel>
 </UserControl>

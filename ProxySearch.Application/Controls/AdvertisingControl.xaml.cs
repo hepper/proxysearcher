@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,7 +10,6 @@ using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Extensions;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
-using ProxySearch.Engine.Proxies;
 using SHDocVw;
 
 namespace ProxySearch.Console.Controls
@@ -22,8 +23,33 @@ namespace ProxySearch.Console.Controls
         private bool isUserClickedOnAdvertising = false;
         private Action updateCursor = null;
         private int delay = 1;
-        Timer timer = new Timer((4 * 60 + new Random(Environment.TickCount).Next(120)) * 1000); // 4-6 minutes 
         TimeSpan loadAdvertisingTimeout = TimeSpan.FromSeconds(3);
+        Timer timer = new Timer();
+        bool isAnimationPlayed = false;
+
+        public TimeSpan RefreshInterval
+        {
+            get
+            {
+                return TimeSpan.FromSeconds((4 * 60 + new Random(Environment.TickCount).Next(120)));
+            }
+        }
+
+        private List<IProxyClient> IEClients
+        {
+            get
+            {
+                return Context.Get<IProxyClientSearcher>().IEClients;
+            }
+        }
+
+        private bool IsIEUsingProxy
+        {
+            get
+            {
+                return IEClients.Any(client => client.Proxy != null);
+            }
+        }
 
         public AdvertisingControl()
         {
@@ -41,52 +67,34 @@ namespace ProxySearch.Console.Controls
 
                 browser.StatusTextChange += browser_StatusTextChange;
                 browser.TitleChange += browser_TitleChange;
-                NavigateWithoutProxy();
 
-                Action action = () => Dispatcher.BeginInvoke(new Action(() =>
-                                                             {
-                                                                 PlayAnimation("ExpandControl");
-                                                             }));
-                action.RunWithDelay(loadAdvertisingTimeout);
+                IEClients.ForEach(client => client.ProxyChanged += () =>
+                {
+                    if (!isAnimationPlayed)
+                    {
+                        timer.Interval = 1;
+                        timer.Stop();
+                        timer.Start();
+                    }
+                });
 
                 timer.Elapsed += (sender, e) =>
                 {
-                    NavigateWithoutProxy();
+                    timer.Interval = RefreshInterval.TotalMilliseconds;
+                    if (!IsIEUsingProxy)
+                    {
+                        webBrowser.Navigate(adsUri);
+
+                        if (!isAnimationPlayed)
+                        {
+                            isAnimationPlayed = true;
+                            Action action = () => Dispatcher.BeginInvoke(new Action(() => PlayAnimation("ExpandControl")));
+                            action.RunWithDelay(loadAdvertisingTimeout);
+                        }
+                    }
                 };
 
                 timer.Start();
-            }
-        }
-
-        private void NavigateWithoutProxy()
-        {
-            IProxyClient proxyClient = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull();
-            ProxyInfo proxy = proxyClient != null ? proxyClient.Proxy : null;
-
-            if (proxy != null)
-            {
-                proxyClient.Proxy = null;
-                Dispatcher.Invoke(() => Context.Get<ISearchResult>().UpdatePageData());
-            }
-
-            try
-            {
-                webBrowser.Navigate(adsUri);
-            }
-            finally
-            {
-                if (proxy != null)
-                {
-                    Action action = () =>
-                    {
-                        if (proxy != null)
-                        {
-                            proxyClient.Proxy = proxy;
-                            Dispatcher.Invoke(() => Context.Get<ISearchResult>().UpdatePageData());
-                        }
-                    };
-                    action.RunWithDelay(loadAdvertisingTimeout);
-                }
             }
         }
 
@@ -97,14 +105,7 @@ namespace ProxySearch.Console.Controls
 
         private void webBrowser_NewWindow3(ref object ppDisp, ref bool cancel, uint flags, string urlContext, string url)
         {
-            IProxyClient proxyClient = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull();
-            ProxyInfo proxy = proxyClient != null ? proxyClient.Proxy : null;
-
-            if (proxy != null)
-            {
-                proxyClient.Proxy = null;
-                Dispatcher.Invoke(() => Context.Get<ISearchResult>().UpdatePageData());
-            }
+            IEClients.ForEach(client => client.Proxy = null);            
         }
 
         private void PlayAnimation(string name)

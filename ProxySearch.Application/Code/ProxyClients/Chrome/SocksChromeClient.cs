@@ -9,5 +9,13 @@ namespace ProxySearch.Console.Code.ProxyClients.Chrome
             : base(Resources.Chrome, "/Images/Chrome.png", 3, "Google Chrome")
         {
         }
+
+        protected override bool ImportsInternetExplorerSettings
+        {
+            get
+            {
+                return true;
+            }
+        }
     }
 }

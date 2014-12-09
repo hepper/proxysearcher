@@ -93,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Code\Converters\ListToEmptyPanelVisibilityConverter.cs" />
+    <Compile Include="Controls\ActiveProxyClientControl.xaml.cs">
+      <DependentUpon>ActiveProxyClientControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CaptchaWindow.xaml.cs">
       <DependentUpon>CaptchaWindow.xaml</DependentUpon>
     </Compile>
@@ -230,7 +234,6 @@
     <Compile Include="Code\ProxyClients\BrowserClient.cs" />
     <Compile Include="Code\ProxyClients\Chrome\HttpChromeClient.cs" />
     <Compile Include="Code\ProxyClients\Chrome\SocksChromeClient.cs" />
-    <Compile Include="Code\ProxyClients\ConfigurableRestartableBrowserClient.cs" />
     <Compile Include="Code\ProxyClients\Firefox\SocksFirefoxClient.cs" />
     <Compile Include="Code\ProxyClients\Firefox\FirefoxClientBase.cs" />
     <Compile Include="Code\ProxyClients\Firefox\HttpFirefoxClient.cs" />
@@ -247,8 +250,6 @@
     <Compile Include="Code\ProxyClients\Opera\SocksOperaClient.cs" />
     <Compile Include="Code\ProxyClients\ProxyClientBase.cs" />
     <Compile Include="Code\ProxyClients\ProxyClientSearcher.cs" />
-    <Compile Include="Code\ProxyClients\ProxyClientSettings.cs" />
-    <Compile Include="Code\ProxyClients\ProxyClientsSettings.cs" />
     <Compile Include="Code\ProxyClients\RestartableBrowserClient.cs" />
     <Compile Include="Code\ProxySearchEngineApplicationFactory.cs">
       <SubType>Code</SubType>
@@ -514,6 +515,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Page Include="Controls\ActiveProxyClientControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CaptchaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -919,7 +924,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ToolbarControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Resources\ToolbarControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ToolbarControl.ru.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UrlListPropertyControl.Designer.cs</LastGenOutput>

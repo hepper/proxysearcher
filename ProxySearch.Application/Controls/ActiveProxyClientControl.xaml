@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.ActiveProxyClientControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="300" x:Name="activeProxyClientControl">
+    <StackPanel Orientation="Horizontal" DataContext="{Binding ElementName=activeProxyClientControl, Path=ActiveProxyClient }">
+        <Image Source="{Binding Image }" Width="16" Height="16" ToolTip="{Binding Type}" />
+        <TextBlock Text="{Binding Proxy.AddressPort}" Margin="10 0 10 0" />
+        <Button Click="ClearProxy">
+            <Image Source="/Images/DeleteRed.png" Width="16" Height="16" />
+        </Button>
+    </StackPanel>
+</UserControl>

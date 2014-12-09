@@ -34,8 +34,6 @@ namespace ProxySearch.Console.Code
             ProxyStorage blacklist = new ProxyStorage(ReadProxyList(Constants.BlackListStorage.Location));
             Context.Set<IBlackList>(blacklist);
             Context.Set<IBlackListManager>(blacklist);
-
-            Context.Set(new ProxyClientsSettings());
             Context.Set<IVersionProvider>(new VersionProvider());
 
             if (!shutdown)

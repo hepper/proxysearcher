@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System;
 using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.Interfaces
@@ -10,5 +10,7 @@ namespace ProxySearch.Console.Code.Interfaces
         bool IsInstalled { get; }
         ProxyInfo Proxy { get; set; }
         int Order { get; }
+
+        event Action ProxyChanged;
     }
 }

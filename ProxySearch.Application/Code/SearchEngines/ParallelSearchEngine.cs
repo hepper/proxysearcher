@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using ProxySearch.Common;
+﻿using System.Linq;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine.SearchEngines;
@@ -21,19 +18,6 @@ namespace ProxySearch.Console.Code.SearchEngines
                                                                                                     detectable.InterfaceSettings);
             }).ToArray())
         {
-        }
-
-        public Task<Uri> GetNext()
-        {
-            throw new NotSupportedException();
-        }
-
-        public string Status
-        {
-            get
-            {
-                throw new NotSupportedException();
-            }
         }
     }
 }

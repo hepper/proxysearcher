@@ -14,6 +14,11 @@ namespace ProxySearch.Console.Code.Interfaces
             get;
         }
 
-        IProxyClient GetInternetExplorerClientOrNull();
+        List<IProxyClient> IEClients
+        {
+            get;
+        }
+
+        IProxyClient GetInternetExplorerClientOrNull(string type);
     }
 }

@@ -70,6 +70,24 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All currently used proxies will be added here.
+        /// </summary>
+        public static string AllCurrentlyUsedProxiesWillBeAddedHere {
+            get {
+                return ResourceManager.GetString("AllCurrentlyUsedProxiesWillBeAddedHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {

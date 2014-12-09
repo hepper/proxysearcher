@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,7 +10,7 @@ using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients.Firefox
 {
-    public abstract class FirefoxClientBase : ConfigurableRestartableBrowserClient
+    public abstract class FirefoxClientBase : RestartableBrowserClient
     {
         private static readonly string proxyTypePref = "network.proxy.type";
 
@@ -28,7 +27,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         }
 
         public FirefoxClientBase(string proxyType)
-            : base(proxyType, Resources.Firefox, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox", Constants.BackupsLocation.FirefoxSettings)
+            : base(proxyType, Resources.Firefox, Resources.Firefox, "/Images/Firefox.png", 1, "FIREFOX.EXE", "firefox")
         {
             string protocolName = GetProtocolName("http", "socks");
 
@@ -44,9 +43,9 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
 
         protected virtual string SetProxy(ProxyInfo proxyInfo, string content)
         {
-            content = WritePref(content, proxyTypePref, "1");
-            content = WritePref(content, ProxyPref, string.Format("\"{0}\"", proxyInfo.Address));
-            return WritePref(content, ProxyPortPref, proxyInfo.Port.ToString());
+            content = WritePref(content, proxyTypePref, proxyInfo != null ? "1" : "0");
+            content = WritePref(content, ProxyPref, proxyInfo != null ? string.Format("\"{0}\"", proxyInfo.Address) : null);
+            return WritePref(content, ProxyPortPref, proxyInfo != null ? proxyInfo.Port.ToString() : null);
         }
 
         protected sealed override ProxyInfo GetProxy()
@@ -62,6 +61,19 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                                  ushort.Parse(ReadPref(content, ProxyPortPref)));
         }
 
+        public override bool IsInstalled
+        {
+            get
+            {
+                if (!base.IsInstalled)
+                {
+                    return false;
+                }
+
+                return ProfileFolderPath != null;
+            }
+        }
+
         private string GetContentOrNull()
         {
             if (!File.Exists(SettingsPath))
@@ -72,7 +84,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
             return File.ReadAllText(SettingsPath);
         }
 
-        protected override string SettingsPath
+        private string SettingsPath
         {
             get
             {
@@ -85,19 +97,6 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 }
 
                 return string.Concat(settingFolder, @"\prefs.js");
-            }
-        }
-
-        public override bool IsInstalled
-        {
-            get
-            {
-                if (!base.IsInstalled)
-                {
-                    return false;
-                }
-
-                return ProfileFolderPath != null;
             }
         }
 
@@ -149,6 +148,9 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
         {
             string oldValue = ReadPref(content, name);
 
+            if (oldValue == newValue)
+                return content;
+
             if (oldValue == null)
             {
                 StringBuilder builder = new StringBuilder();
@@ -164,8 +166,10 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
                 return builder.ToString();
             }
 
-            if (oldValue == newValue)
-                return content;
+            if (newValue == null)
+            {
+                return new Regex(GetRegularExpression(name)).ReplaceGroup(content, "value", string.Empty);
+            }
 
             return new Regex(GetRegularExpression(name)).ReplaceGroup(content, "value", newValue);
         }

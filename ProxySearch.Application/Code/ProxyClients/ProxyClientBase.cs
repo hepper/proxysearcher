@@ -1,5 +1,4 @@
 ﻿using System;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.Proxies;
@@ -8,6 +7,8 @@ namespace ProxySearch.Console.Code.ProxyClients
 {
     public abstract class ProxyClientBase : IProxyClient
     {
+        public event Action ProxyChanged;
+
         public class SettingsData
         {
             public bool UseProxy
@@ -86,13 +87,13 @@ namespace ProxySearch.Console.Code.ProxyClients
             {
                 if ((DateTime.UtcNow - Timestamp).TotalMilliseconds > 100)
                 {
-                    if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull() != null)
+                    if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type) != null)
                     {
-                        ProxyCache = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull().Proxy;
+                        ProxyCache = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type).Proxy;
                     }
                     else
                     {
-                        ProxyCache = Settings != null ? GetProxy() : null;
+                        ProxyCache = GetProxy();
                     }
                 }
 
@@ -102,26 +103,17 @@ namespace ProxySearch.Console.Code.ProxyClients
             }
             set
             {
-                if (value == null)
+                if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type) != null)
                 {
-                    if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull() != null)
-                    {
-                        Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull().Proxy = value;
-                        return;
-                    }
-
-                    if (Settings != null)
-                    {
-                        RestoreSettings(Serializer.Deserialize<SettingsData>(Settings));
-                        Settings = null;
-                    }
+                    Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type).Proxy = value;
+                    return;
                 }
-                else
-                {
-                    if (Settings == null)
-                        Settings = Serializer.Serialize(BackupSettings());
 
-                    SetProxy(value);
+                SetProxy(value);
+
+                if (ProxyChanged != null)
+                {
+                    ProxyChanged();
                 }
             }
         }
@@ -142,21 +134,6 @@ namespace ProxySearch.Console.Code.ProxyClients
         protected abstract bool ImportsInternetExplorerSettings
         {
             get;
-        }
-
-        protected abstract SettingsData BackupSettings();
-        protected abstract void RestoreSettings(SettingsData settings);
-
-        private string Settings
-        {
-            get
-            {
-                return Context.Get<ProxyClientsSettings>()[SettingsKey];
-            }
-            set
-            {
-                Context.Get<ProxyClientsSettings>()[SettingsKey] = value;
-            }
         }
     }
 }
