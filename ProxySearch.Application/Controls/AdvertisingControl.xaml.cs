@@ -31,7 +31,7 @@ namespace ProxySearch.Console.Controls
         {
             get
             {
-                return TimeSpan.FromSeconds((4 * 60 + new Random(Environment.TickCount).Next(120)));
+                return TimeSpan.FromSeconds((3 * 60 + new Random(Environment.TickCount).Next(2 * 60)));
             }
         }
 

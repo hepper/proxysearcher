@@ -4523,9 +4523,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]ProxySearch.Console.Primary output</td><td/></row>
-		<row><td>ProductCode</td><td>{485DF4A0-A4C7-47B2-9E68-D626AC9FD9A8}</td><td/></row>
+		<row><td>ProductCode</td><td>{B649E831-8F2D-401A-9C81-0318219EAAC6}</td><td/></row>
 		<row><td>ProductName</td><td>Proxy Searcher</td><td/></row>
-		<row><td>ProductVersion</td><td>4.40.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>4.50.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
