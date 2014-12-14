@@ -97,7 +97,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time.
+        ///   Looks up a localized string similar to Built in Geo IP, This option is good choice, but GeoIP data could be not latest and searching take some processor time.
         /// </summary>
         internal static string BuiltInGeoIPDescription {
             get {
@@ -340,7 +340,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature..
+        ///   Looks up a localized string similar to If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunately it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature..
         /// </summary>
         internal static string FolderSearchEngineDescription {
             get {
@@ -539,7 +539,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name of country was determined based on outgoing IP adress &apos;{0}&apos;
+        ///   Looks up a localized string similar to Name of country was determined based on outgoing IP address &apos;{0}&apos;
         ///which is different from ingoing IP address &apos;{1}&apos;..
         /// </summary>
         internal static string NameOfCountryWasDeterminedBasedOnOutgoingAddress {
@@ -558,7 +558,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No one proxy has been found.
+        ///   Looks up a localized string similar to No proxy has been found.
         /// </summary>
         internal static string NoOneProxyHasBeenFound {
             get {
@@ -675,7 +675,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don&apos;t return any results try to change accuracy, probably page&apos;s content is too dynamic. Because of downloading page content this checker takes internet traffic..
+        ///   Looks up a localized string similar to This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower comparing with checker by IP:Port, but it filters better. If this checker doesn&apos;t return any results, try to change accuracy, probably page&apos;s content is too dynamic. Because of downloading page, content this checker takes internet traffic..
         /// </summary>
         internal static string ProxyCheckerByUrlDescription {
             get {
@@ -846,7 +846,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don&apos;t require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies..
+        ///   Looks up a localized string similar to This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don&apos;t require any external services. It cannot check if candidate is workable proxy, therefore it would return unworkable proxies..
         /// </summary>
         internal static string SimpleProxyCheckerDescription {
             get {
@@ -1027,7 +1027,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page..
+        ///   Looks up a localized string similar to If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunately it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page..
         /// </summary>
         internal static string UrlListEngineDescription {
             get {
@@ -1054,7 +1054,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser then use other type of Geo IP.
+        ///   Looks up a localized string similar to Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser, use other type of Geo IP.
         /// </summary>
         internal static string WebServiceNetGeoIPServiceDescription {
             get {

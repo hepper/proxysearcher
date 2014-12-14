@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Settings;
 
 namespace ProxySearch.Console.Code.Language
@@ -28,7 +27,13 @@ namespace ProxySearch.Console.Code.Language
                     {
                         Name = "Українська",
                         Culture = "uk-UA"
-                    },
+                    }
+                    //,
+                    //new Language
+                    //{
+                    //    Name = "Deutsch",
+                    //    Culture = "de-DE"
+                    //},
                 };
             }
         }

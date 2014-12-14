@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,61 +118,61 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllSettingsWillBeRevertedToTheirDefaults" xml:space="preserve">
-    <value>All settings will be reverted to their defaults. Do you want to continue?</value>
+    <value>Alle Einstellungen werden auf die Standardwerte zurückgesetzt. Wollen Sie weitermachen?</value>
   </data>
   <data name="BuiltInGeoIPDescription" xml:space="preserve">
-    <value>Built in Geo IP, This option is good choice, but GeoIP data could be not latest and searching take some processor time</value>
+    <value>In GeoIP erbaut, ist diese Option eine gute Wahl, aber GeoIP Daten konnten nicht neusten und Such nehmen Sie sich etwas Prozessorzeit</value>
   </data>
   <data name="BuiltInGeoIPName" xml:space="preserve">
-    <value>Built in</value>
+    <value>Eingebaut</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Stornieren</value>
   </data>
   <data name="Cancelling" xml:space="preserve">
-    <value>Cancelling</value>
+    <value>Stornierung</value>
   </data>
   <data name="CannotFindInstallationUrl" xml:space="preserve">
-    <value>Cannot find installation url of Proxy Searcher</value>
+    <value>Kann die Installation url von Proxy Searcher nicht gefunden</value>
   </data>
   <data name="CannotUpdateProgram" xml:space="preserve">
-    <value>Cannot update program. Do you want to do it manually?</value>
+    <value>Kann Programm nicht aktualisiert werden. Wollen Sie es manuell zu tun?</value>
   </data>
   <data name="CheckerProxyDotNet" xml:space="preserve">
     <value>http://checkerproxy.net</value>
   </data>
   <data name="CheckerProxyDotNetDescription" xml:space="preserve">
-    <value>This checker uses online service http://checkerproxy.net. Additionally usage of this service will give you proxy type. Could check HTTP\HTTPS and SOCKS4\SOCKS5 proxies.</value>
+    <value>Diese Prüfung verwendet Online-Service http://checkerproxy.net. Zusätzlich Nutzung dieses Dienstes erhalten Sie Proxy-Typ. Könnte überprüfen HTTP \ HTTPS und SOCKS4 \ SOCKS5 Proxies.</value>
   </data>
   <data name="Chrome" xml:space="preserve">
     <value>Chrome</value>
   </data>
   <data name="DefaultTabName" xml:space="preserve">
-    <value>Custom search</value>
+    <value>Eigene Suche</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Einzelheiten</value>
   </data>
   <data name="DonateLink" xml:space="preserve">
     <value>http://sourceforge.net/donate/?user_id=1813459</value>
   </data>
   <data name="DoYouReallyWantToClearProxyUsageHistory" xml:space="preserve">
-    <value>Do you really want to clear proxy usage history?</value>
+    <value>Wollen Sie wirklich, um Nutzungsverlauf der Proxy löschen?</value>
   </data>
   <data name="DoYouWantToRestartBrowser" xml:space="preserve">
-    <value>Browser '{0}' should be restarted in order to set or clear proxy. Do you want to do it now?</value>
+    <value>Browser '{0}' sollte, um einzustellen oder zu löschen Proxy neu gestartet werden. Möchten Sie es jetzt tun?</value>
   </data>
   <data name="DummyGeoIP" xml:space="preserve">
-    <value>Turn off</value>
+    <value>Ausschalten</value>
   </data>
   <data name="DummyGeoIPDescription" xml:space="preserve">
-    <value>Turns off Geo IP. It is faster if compare with other options, but it will not give you proxy location</value>
+    <value>Schaltet Geo IP. Es ist schneller, wenn mit anderen Optionen zu vergleichen, aber es wird nicht geben Ihnen Proxy Standort</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
   </data>
   <data name="ErrorHasHappenedDuringTest" xml:space="preserve">
-    <value>Error has happened during test</value>
+    <value>Fehler bei der Prüfung passiert</value>
   </data>
   <data name="FeedbackLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/discussion/yourfeedback/</value>
@@ -184,7 +184,7 @@
     <value>/firstrun</value>
   </data>
   <data name="FoundProxiesFormat" xml:space="preserve">
-    <value>Found {0} and shown {1} proxies.</value>
+    <value>Gefunden {0} und {1} dargestellt Proxies.</value>
   </data>
   <data name="GoogleDotCom" xml:space="preserve">
     <value>http://google.com</value>
@@ -193,10 +193,10 @@
     <value>&lt;title&gt;Google&lt;/title&gt;</value>
   </data>
   <data name="GoogleEngineDescription" xml:space="preserve">
-    <value>Uses http://google.com site for proxy searching. If you cannot open http://google.com from browser then use other type of search engine</value>
+    <value>Verwendet http://google.com Website für Proxy-Suche. Wenn Sie sich nicht http://google.com von Browser zu öffnen Sie dann mit andere Art von Suchmaschine</value>
   </data>
   <data name="GridHasNoSorting" xml:space="preserve">
-    <value>Grid has no sorting</value>
+    <value>Gitter hat keine Sortierung</value>
   </data>
   <data name="HomePageDeveloperLink" xml:space="preserve">
     <value>http://sourceforge.net/projects/proxysearcher/</value>
@@ -205,10 +205,10 @@
     <value>http://proxysearcher.sourceforge.net/</value>
   </data>
   <data name="InternetExplorer" xml:space="preserve">
-    <value>Internet explorer</value>
+    <value>Internet Explorer</value>
   </data>
   <data name="JobCountFormat" xml:space="preserve">
-    <value>Job Count {0}</value>
+    <value>Job Anzahl {0}</value>
   </data>
   <data name="NewsLink" xml:space="preserve">
     <value>http://sourceforge.net/p/proxysearcher/blog/</value>
@@ -217,40 +217,40 @@
     <value>Opera</value>
   </data>
   <data name="ProxyCheckerByUrl" xml:space="preserve">
-    <value>By Url</value>
+    <value>Mit URL</value>
   </data>
   <data name="ProxyCheckerByUrlAndKeywords" xml:space="preserve">
-    <value>By Url And Keywords</value>
+    <value>Durch die URL und Schlüsselwörter</value>
   </data>
   <data name="ProxyCheckerByUrlAndKeywordsDescription" xml:space="preserve">
-    <value>This proxy checker could be useful if you don't have access to http page, but know his url and list of keywords what should be on page. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change keywords, probably page doesn't contains them. All specified keywords separates with space, all of them should be on the page, as keyword could be specified piece of http code without space(s). Because of content downloading this checker takes internet traffic.</value>
+    <value>Diese Proxy-checker könnte nützlich sein, wenn Sie nicht über Zugriff auf http-Seite, aber wissen, seine URL und Keyword-Liste, was auf Seite sein. Diese Methode ist langsamer, wenn mit Prüfung von IP zu vergleichen: Port, aber es filtert besser. Wenn dies checker nicht zurück irgendwelche Ergebnisse versuchen, Schlüsselwörter zu ändern, vielleicht Seite ist enthält sie nicht. Alle bestimmte Schlüsselwörter durch Leerzeichen getrennt ein, alle von ihnen sollten auf der Seite sein, wie Keyword könnte angegebenen Stück http Code werden ohne Leerzeichen (e). Durch das Herunterladen von Inhalten dieser Überprüfung dauert Internet-Verkehr.</value>
   </data>
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
-    <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower comparing with checker by IP:Port, but it filters better. If this checker doesn't return any results, try to change accuracy, probably page's content is too dynamic. Because of downloading page, content this checker takes internet traffic.</value>
+    <value>Dies Proxy checker-Downloads Inhalt der angegebenen URL mit und ohne Proxy. Wenn Inhalte ähneln dann Proxy ist gültig und wird von checker zurückgegeben werden. Diese Methode ist langsamer verglichen mit checker von IP: Port, aber es filtert besser. Wenn dies checker hat kein Ergebnis, versuchen Sie, um die Genauigkeit zu ändern, vielleicht auf einer Seite Gehalt zu dynamischen. Aufgrund der Download-Seite, nimmt diese Inhalte checker Internet-Verkehr.</value>
   </data>
   <data name="ProxySearcherVersionFormat" xml:space="preserve">
     <value>Proxy Searcher {0}.{1}</value>
   </data>
   <data name="Question" xml:space="preserve">
-    <value>Question</value>
+    <value>Frage</value>
   </data>
   <data name="QuestionMark" xml:space="preserve">
     <value>?</value>
   </data>
   <data name="Ready" xml:space="preserve">
-    <value>Ready</value>
+    <value>Bereit</value>
   </data>
   <data name="RoundFormat" xml:space="preserve">
     <value>{0:0.##}</value>
   </data>
   <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
-    <value>Search is cancelled on user request</value>
+    <value>Suche auf Benutzeranforderung annulliert ist</value>
   </data>
   <data name="SearchIsFinishedProxiesWasFound" xml:space="preserve">
-    <value>Search is finished. {0} proxies was found</value>
+    <value>Suche beendet ist. {0} Proxies wurde festgestellt,</value>
   </data>
   <data name="SearchIsFinishedProxiesWasNotFound" xml:space="preserve">
-    <value>Search is finished. No proxy was found. Change search query and try again</value>
+    <value>Suche beendet ist. Kein Proxy gefunden wurde. Ändern Sie Suchkriterien und versuchen es noch einmal</value>
   </data>
   <data name="ShutdownArgument" xml:space="preserve">
     <value>/shutdown</value>
@@ -259,77 +259,77 @@
     <value>By IP:Port</value>
   </data>
   <data name="SimpleProxyCheckerDescription" xml:space="preserve">
-    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy, therefore it would return unworkable proxies.</value>
+    <value>Diese einfache Checker sieht, wenn IP-Adresse des Kandidaten ist lebendig und Port geöffnet. Es kann für jeden Proxy-Typ Suche verwendet werden. Es ist schnell, weil es keine externe Dienste benötigen. Es kann nicht überprüfen, ob Kandidaten praktikabel Proxy, daher wäre es nicht praktikabel Proxies zurück.</value>
   </data>
   <data name="GoogleDotComUrl" xml:space="preserve">
     <value>http://google.com</value>
   </data>
   <data name="SortTypeIsNotSupported" xml:space="preserve">
-    <value>Sort type by '{0}' is not supported</value>
+    <value>Sortieren nach Typ '{0}' wird nicht unterstützt</value>
   </data>
   <data name="SpeedRespondTextFormat" xml:space="preserve">
     <value>{0:0.##} ({1})</value>
   </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
-    <value>Speed: {1:0.##} Mb/s
-Response time: {0} s</value>
+    <value>Geschwindigkeit: {1:0.##} Mb/s
+Reaktionszeit: {0} s</value>
   </data>
   <data name="TicketsLink" xml:space="preserve">
     <value>https://sourceforge.net/p/proxysearcher/tickets/</value>
   </data>
   <data name="Uninstalling" xml:space="preserve">
-    <value>Uninstalling</value>
+    <value>Deinstallieren</value>
   </data>
   <data name="UpdateIsReadyToInstall" xml:space="preserve">
-    <value>New version of Proxy Searcher is available. Do you want to get it now?</value>
+    <value>Neue Version von Proxy Searcher verfügbar ist. Möchten Sie es jetzt zu bekommen?</value>
   </data>
   <data name="WaitUntilCurrentOperationIsFinished" xml:space="preserve">
-    <value>Wait until current operation is finished</value>
+    <value>Warten Sie, bis laufende Vorgang abgeschlossen ist</value>
   </data>
   <data name="WebServiceNetGeoIPService" xml:space="preserve">
     <value>http://www.webservicex.net/geoipservice.asmx</value>
   </data>
   <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
-    <value>Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser, use other type of Geo IP</value>
+    <value>Verwendet http://www.webservicex.net/geoipservice.asmx Service als Geo-IP. Wenn Sie sich nicht http://www.webservicex.net/geoipservice.asmx von Browser zu öffnen, verwenden Sie eine andere Art von Geo-IP</value>
   </data>
   <data name="YouShouldClearValueBeforeSetNewOne" xml:space="preserve">
-    <value>You should clear value before set new one</value>
+    <value>Sie sollten Wert zu löschen, bevor setzen Sie die neue</value>
   </data>
   <data name="FolderSearchEngine" xml:space="preserve">
-    <value>Search in folder</value>
+    <value>Suche im Verzeichnis</value>
   </data>
   <data name="FolderSearchEngineDescription" xml:space="preserve">
-    <value>If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunately it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature.</value>
+    <value>Wenn Sie den Ordner, was enthält Dateien mit Proxies innen im Format [IP]: [Anschluss] Sie diese Suchmaschine zu wählen konnte. Leider kann sie nicht entdecken Sie neue Vollmachten, aber sie wird überprüfen, ob Stimmrechtsvollmachten von Dateien im ausgewählten Ordner sind bearbeitbar. Diese Suchmaschine wird gut zusammen mit Export-Funktion arbeiten.</value>
   </data>
   <data name="UrlListEngine" xml:space="preserve">
-    <value>By Url List</value>
+    <value>Mit URL-Liste</value>
   </data>
   <data name="UrlListEngineDescription" xml:space="preserve">
-    <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunately it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
+    <value>Wenn Sie eine Liste von URL, die Text mit Proxies im Format [IP]: [Anschluss] enthält haben: konnte Sie diese Suchmaschine zu wählen. Leider kann es neue Quellen von Proxies nicht entdecken, aber es ist in der Lage, neue Proxies zu finden, wenn sie auf Seite erscheinen.</value>
   </data>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
-    <value>Do you really want to clear blacklist?</value>
+    <value>Wollen Sie wirklich, um schwarze Liste zu löschen?</value>
   </data>
   <data name="Google" xml:space="preserve">
     <value>HTTP (Google)</value>
   </data>
   <data name="HttpOpen" xml:space="preserve">
-    <value>Open findings as HTTP</value>
+    <value>Öffnen Ergebnisse wie HTTP</value>
   </data>
   <data name="TurnedOffProxyChecker" xml:space="preserve">
-    <value>Check manually after search</value>
+    <value>Überprüfen Sie manuell, nachdem Suche</value>
   </data>
   <data name="TurnedOffProxyCheckerDetails" xml:space="preserve">
-    <value>This proxy checker type retrieves all proxies without filtering. It could be useful of opening results from previous searches.</value>
+    <value>Diese Proxy-checker Typ ruft alle Proxies ohne Filterung. Es könnte nützlich öffnen Ergebnisse von früheren Suchanfragen sein.</value>
   </data>
   <data name="HttpPredefinedUrlList" xml:space="preserve">
-    <value>HTTP (list of urls)</value>
+    <value>HTTP (Liste von URLs)</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
   <data name="YouCannotDeleteLastSearchSettings" xml:space="preserve">
-    <value>You cannot delete last search settings.</value>
+    <value>Sie können die letzten Sucheinstellungen nicht gelöscht werden.</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="world128x128" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -339,7 +339,7 @@ Response time: {0} s</value>
     <value>HTTP</value>
   </data>
   <data name="HttpProxyTypeDescription" xml:space="preserve">
-    <value>This type allows to find http proxies</value>
+    <value>Diese Art erlaubt HTTP Proxies zu finden</value>
   </data>
   <data name="SocksGoogleSearchType" xml:space="preserve">
     <value>SOCKS (Google)</value>
@@ -348,125 +348,116 @@ Response time: {0} s</value>
     <value>SOCKS</value>
   </data>
   <data name="SocksProxyTypeDesciption" xml:space="preserve">
-    <value>This type allows to find socks proxies</value>
+    <value>Diese Art erlaub Socks Proxies zu finden</value>
   </data>
   <data name="CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined" xml:space="preserve">
-    <value>Cannot set sock proxy for Firefox when socks version is not defined</value>
+    <value>Kann SOCKS-Proxy für Firefox nicht einstellen, wenn Socken-Version ist nicht definiert</value>
   </data>
   <data name="WikipediaDotOrgUrl" xml:space="preserve">
     <value>http://www.wikipedia.org/</value>
   </data>
   <data name="ThisClientDoesntSupportSocks5Proxies" xml:space="preserve">
-    <value>This client doesn't support socks v5 proxies</value>
+    <value>Dieser Client unterstützt keine Socks v5 Proxies</value>
   </data>
   <data name="TypeOfProxyIsNotDefinedDoYouWantToContinue" xml:space="preserve">
-    <value>Type of proxy is not defined and this client doesn't support socks v5 proxies, so socks v5 will not work if you set proxy. Do you want to continue?</value>
+    <value>Art der Proxy nicht definiert ist und dieser Client unterstützt keine Socks v5 Proxies, so Socks v5 wird nicht funktionieren, wenn Sie Proxy gesetzt. Wollen Sie weitermachen?</value>
   </data>
   <data name="SocksOpen" xml:space="preserve">
-    <value>Open findings as Socks</value>
+    <value>Öffnen Ergebnisse wie Socks</value>
   </data>
   <data name="SocksPredefinedUrlList" xml:space="preserve">
-    <value>Socks (list of urls)</value>
+    <value>Socks (Liste von URLs)</value>
   </data>
   <data name="WikipediaContent" xml:space="preserve">
     <value>&lt;title&gt;Wikipedia&lt;/title&gt;</value>
   </data>
   <data name="GoogleDetectsSendingOfAutomaticQueries" xml:space="preserve">
-    <value>Google detects that your network sends automatic queries therefore this search type won't work at this moment. You could use search by list of urls which is not using google engine or try again later.</value>
+    <value>Google erkennt, dass Ihr Netzwerk sendet automatische Anfragen daher diese Suchart nicht in diesem Moment arbeiten. Sie können Suche nach Liste von URLs, die nicht mit ist google Motor oder versuchen Sie es später erneut zu verwenden.</value>
   </data>
   <data name="Closed" xml:space="preserve">
-    <value>Closed</value>
+    <value>Geschlossen</value>
   </data>
   <data name="Started" xml:space="preserve">
-    <value>Started</value>
+    <value>Schritte</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Suche</value>
   </data>
   <data name="SearchCancelled" xml:space="preserve">
-    <value>Search cancelled</value>
+    <value>Suche abgesagt</value>
   </data>
   <data name="SearchFinished" xml:space="preserve">
-    <value>Search finished</value>
+    <value>Suche beendet</value>
   </data>
   <data name="SearchStarted" xml:space="preserve">
-    <value>Search started</value>
+    <value>Suche gestartet</value>
   </data>
   <data name="Installed" xml:space="preserve">
-    <value>Installed</value>
+    <value>Installierte</value>
   </data>
   <data name="ShareCheckBox" xml:space="preserve">
-    <value>ShareStatistic</value>
+    <value>Teilen Statistik</value>
   </data>
   <data name="FoundAndShownProxiesFormat" xml:space="preserve">
-    <value>Found and shown {0} proxies.</value>
+    <value>Gefunden und angezeigt {0} Proxies.</value>
   </data>
   <data name="DoYouReallyWantToDeleteThisParseMethod" xml:space="preserve">
-    <value>Do you really want to delete this parse method?</value>
+    <value>Wollen Sie wirklich, diese Parse-Methode löschen?</value>
   </data>
   <data name="TestUrlDoesntMatchDefinedUrl" xml:space="preserve">
-    <value>Test url doesn't match defined url</value>
+    <value>Test-URL nicht definiert url entsprechen</value>
   </data>
   <data name="NoOneProxyHasBeenFound" xml:space="preserve">
-    <value>No proxy has been found</value>
+    <value>Kein Proxy wurde festgestellt</value>
   </data>
   <data name="AllSites" xml:space="preserve">
     <value>&lt;all sites&gt;</value>
   </data>
   <data name="AdvertisingClosed" xml:space="preserve">
-    <value>Advertising closed</value>
+    <value>Werbung geschlossen</value>
   </data>
   <data name="AdvertisingOpenedInBrowser" xml:space="preserve">
-    <value>Advertising opened in browser</value>
+    <value>Werbung eröffnete im Browser</value>
   </data>
   <data name="SearchInitialization" xml:space="preserve">
-    <value>Search initialization</value>
+    <value>Suche nach der Initialisierung</value>
   </data>
   <data name="PreparingApplication" xml:space="preserve">
-    <value>Preparing search application</value>
+    <value>Vorbereiten Suchanwendung</value>
   </data>
   <data name="PreparingGeoIpService" xml:space="preserve">
-    <value>Preparing geo ip service</value>
+    <value>Vorbereitung geo ip Service</value>
   </data>
   <data name="PreparingProxyChecker" xml:space="preserve">
-    <value>Preparing proxy checker</value>
+    <value>Vorbereitung Proxy checker</value>
   </data>
   <data name="PreparingProxyProvider" xml:space="preserve">
-    <value>Preparing proxy provider</value>
+    <value>Vorbereitung Proxy-Provider</value>
   </data>
   <data name="ReadingConfigurationOfSelectedSearch" xml:space="preserve">
-    <value>Reading configuration of selected search</value>
+    <value>Lesen Konfiguration der ausgewählten Such</value>
   </data>
   <data name="Parallel" xml:space="preserve">
     <value>Parallel</value>
   </data>
   <data name="ParallelDescription" xml:space="preserve">
-    <value>This search engine allows to combine a few other engines in one search criteria and run them simultaneously. Use it if you want to get benefits from a few different search engines in one search criteria.</value>
+    <value>Diese Suchmaschine erlaubt es, ein paar andere Maschinen in einer Suchkriterien kombinieren und gleichzeitig laufen sie. Verwenden Sie es, wenn Sie profitiert von ein paar verschiedenen Suchmaschinen in einer Suchkriterien wollen.</value>
   </data>
   <data name="OldConfigurationException" xml:space="preserve">
-    <value>It looks like configuration of Proxy Searcher is not up-to-date. In order to fix that error open Tools-&gt;Settings and press 'Restore defaults' button on General tab.</value>
+    <value>Es sieht aus wie Konfiguration des Proxy Searcher ist nicht auf dem neuesten Stand. Um diesen Fehler zu beheben, öffnen Sie Werkzeuge-&gt;Einstellungen, und drücken Sie die Taste "Standardeinstellungen wiederherstellen" auf der Registerkarte Allgemein.</value>
   </data>
   <data name="NameOfCountryWasDeterminedBasedOnOutgoingAddress" xml:space="preserve">
-    <value>Name of country was determined based on outgoing IP address '{0}'
-which is different from ingoing IP address '{1}'.</value>
+    <value>Name des Landes wurde ermittelt auf Basis ausgehende IP-Adresse '{0}'
+die sich von eingehenden IP-Adresse ist '{1}'.</value>
   </data>
   <data name="IPAddressDescriptionFormat" xml:space="preserve">
-    <value>Incoming IP address: {0}
-Outgoing IP address: {1}</value>
+    <value>Eingehende IP-Adresse {0}
+Ausgehende IP-Adresse: {1}</value>
   </data>
   <data name="Undetermined" xml:space="preserve">
-    <value>Undetermined</value>
+    <value>Unbestimmt</value>
   </data>
   <data name="ManualUpdateProxyType" xml:space="preserve">
-    <value>Manual update proxy type</value>
-  </data>
-  <data name="EventLogSource" xml:space="preserve">
-    <value>Application</value>
-  </data>
-  <data name="ObjectOfTypeIsNotSetYet" xml:space="preserve">
-    <value>Object of type '{0}' is not set yet</value>
-  </data>
-  <data name="ProxySearcherSource" xml:space="preserve">
-    <value>Proxy Searcher</value>
+    <value>Manuelles Update Proxytyp</value>
   </data>
 </root>

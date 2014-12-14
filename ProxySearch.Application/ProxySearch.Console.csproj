@@ -933,6 +933,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.uk.resx" />
+    <EmbeddedResource Include="Properties\Resources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.ru.resx" />
     <EmbeddedResource Include="Properties\Resources.uk.resx">
       <SubType>Designer</SubType>
