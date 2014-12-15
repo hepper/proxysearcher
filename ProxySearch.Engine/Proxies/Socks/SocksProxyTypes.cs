@@ -6,7 +6,6 @@
         CannotVerify = 1,
         ChangesContent = 2,
         Socks4 = 4,
-        Socks5 = 5,
-        
+        Socks5 = 5
     }
 }

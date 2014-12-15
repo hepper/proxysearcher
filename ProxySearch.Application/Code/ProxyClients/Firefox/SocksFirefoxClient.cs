@@ -14,16 +14,26 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
 
         protected override string SetProxy(ProxyInfo proxyInfo, string content)
         {
-            SocksProxyTypes type = ((SocksProxyDetails)proxyInfo.Details.Details).StrongType;
+            SocksProxyTypes? type = proxyInfo != null? (SocksProxyTypes?) ((SocksProxyDetails)proxyInfo.Details.Details).StrongType : null;
 
-            if (type != SocksProxyTypes.Socks4 && type != SocksProxyTypes.Socks5)
+            if (type.HasValue)
             {
-                Context.Get<IMessageBox>().Information(Resources.CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined);
-                IsProxyChangeCancelled = true;
-                return content;
+                if (type != SocksProxyTypes.Socks4 && type != SocksProxyTypes.Socks5)
+                {
+                    Context.Get<IMessageBox>().Information(Resources.CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined);
+                    IsProxyChangeCancelled = true;
+                    return content;
+                }
             }
 
-            return WritePref(base.SetProxy(proxyInfo, content), "network.proxy.socks_version", ((int)type).ToString());
+            content = base.SetProxy(proxyInfo, content);
+
+            if (type.HasValue)
+            {
+                return WritePref(content, "network.proxy.socks_version", ((int)type).ToString());
+            }
+
+            return content;
         }
     }
 }
