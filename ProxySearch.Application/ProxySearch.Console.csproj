@@ -396,6 +396,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckerProxyNetPropertyControl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Resources\DownloadNewVersion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DownloadNewVersion.resx</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Resources\ExportSearchResultControl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -819,6 +824,12 @@
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DownloadNewVersion.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ParallelSearchEnginePropertyControl.Designer.cs</LastGenOutput>

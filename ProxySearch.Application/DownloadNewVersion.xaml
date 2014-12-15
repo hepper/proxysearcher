@@ -1,7 +1,8 @@
 ﻿<Window x:Class="ProxySearch.Console.DownloadNewVersion"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Downloading" Height="75" Width="400" 
+        xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
+        Title="{x:Static resources:DownloadNewVersion.Downloading}" Height="75" Width="400"        
         WindowStartupLocation="CenterScreen" 
         ResizeMode="NoResize" Closed="Window_Closed">
     <Grid Margin="5,5,5,5">
@@ -11,6 +12,6 @@
         </Grid.ColumnDefinitions>
 
         <ProgressBar Name="progressBar" Grid.Column="0" Minimum="0" Maximum="100" />
-        <Button Width="70" Grid.Column="1" Margin="5,0,0,0" Click="Button_Click">Cancel</Button>
+        <Button Width="70" Grid.Column="1" Margin="5,0,0,0" Click="Button_Click" Content="{x:Static resources:DownloadNewVersion.Cancel}" />
     </Grid>
 </Window>
