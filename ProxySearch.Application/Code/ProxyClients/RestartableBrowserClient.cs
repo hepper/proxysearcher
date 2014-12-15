@@ -2,14 +2,12 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
-using Microsoft.Win32;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Engine.Proxies;
 
 namespace ProxySearch.Console.Code.ProxyClients
 {
-    public abstract class RestartableBrowserClient : BrowserClient, IProxyClientRestartable
+    public abstract class RestartableBrowserClient : BrowserClient
     {
         private string ProcessName
         {
@@ -17,13 +15,17 @@ namespace ProxySearch.Console.Code.ProxyClients
             set;
         }
 
-        public RestartableBrowserClient(string proxyType, string name, string settingsKey, string image, int order, string clientName, string processName)
-            : base(proxyType, name, settingsKey, image, order, clientName)
+        private Process[] Processes
         {
-            ProcessName = processName;
+            get
+            {
+                return Process.GetProcesses()
+                              .Where(process => string.Equals(process.ProcessName, ProcessName, StringComparison.CurrentCultureIgnoreCase))
+                              .ToArray();
+            }
         }
 
-        public bool IsRunning
+        private bool IsRunning
         {
             get
             {
@@ -31,13 +33,24 @@ namespace ProxySearch.Console.Code.ProxyClients
             }
         }
 
-        public void Close()
+        private void Open()
+        {
+            Process.Start(BrowserPath);
+        }
+
+        private void Close()
         {
             foreach (Process process in Processes)
             {
                 process.CloseMainWindow();
                 process.WaitForExit();
             }
+        }
+
+        public RestartableBrowserClient(string proxyType, string name, string settingsKey, string image, int order, string clientName, string processName)
+            : base(proxyType, name, settingsKey, image, order, clientName)
+        {
+            ProcessName = processName;
         }
 
         public override ProxyInfo Proxy
@@ -55,6 +68,7 @@ namespace ProxySearch.Console.Code.ProxyClients
                     if (Context.Get<IMessageBox>().OkCancelQuestion(
                         string.Format(Properties.Resources.DoYouWantToRestartBrowser, Name)) == MessageBoxResult.Cancel)
                     {
+                        IsProxyChangeCancelled = true;
                         return;
                     }
 
@@ -72,19 +86,6 @@ namespace ProxySearch.Console.Code.ProxyClients
                 {
                     Open();
                 }
-            }
-        }
-
-        public void Open()
-        {
-            Process.Start(BrowserPath);
-        }
-
-        private Process[] Processes
-        {
-            get
-            {
-                return Process.GetProcesses().Where(process => string.Equals(process.ProcessName, ProcessName, StringComparison.CurrentCultureIgnoreCase)).ToArray();
             }
         }
     }

@@ -84,16 +84,19 @@ namespace ProxySearch.Console.Controls
 
                 ProxyClient.Proxy = value ? ProxyInfo : null;
 
-                if (IsChecked != value)
+                if (!ProxyClient.IsProxyChangeCancelled)
                 {
-                    Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat, 
-                                                                    ProxyClient.Proxy, 
-                                                                    ProxyInfo, 
-                                                                    ProxyClient.GetType().Name));
-                }
+                    if (IsChecked != value)
+                    {
+                        Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat,
+                                                                        ProxyClient.Proxy,
+                                                                        ProxyInfo,
+                                                                        ProxyClient.GetType().Name));
+                    }
 
-                RaiseEvent(new RoutedEventArgs(ProxyClientControl.ClickEvent));
-                notifyAllInstances();
+                    RaiseEvent(new RoutedEventArgs(ProxyClientControl.ClickEvent));
+                    notifyAllInstances();
+                }
             }
         }
 

@@ -224,7 +224,6 @@
     </Compile>
     <Compile Include="Code\Interfaces\IMessageBox.cs" />
     <Compile Include="Code\Interfaces\IProxyClient.cs" />
-    <Compile Include="Code\Interfaces\IProxyClientRestartable.cs" />
     <Compile Include="Code\Interfaces\IProxyClientSearcher.cs" />
     <Compile Include="Code\Interfaces\IProxyType.cs" />
     <Compile Include="Code\Interfaces\ISearchControl.cs" />

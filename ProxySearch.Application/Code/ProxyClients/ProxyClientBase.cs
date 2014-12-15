@@ -63,6 +63,12 @@ namespace ProxySearch.Console.Code.ProxyClients
             get;
         }
 
+        public bool IsProxyChangeCancelled
+        {
+            get;
+            set;
+        }
+
         private ProxyInfo ProxyCache
         {
             get;
@@ -103,11 +109,16 @@ namespace ProxySearch.Console.Code.ProxyClients
             }
             set
             {
-                if (ImportsInternetExplorerSettings && Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type) != null)
+                IProxyClient IEClient = Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type);
+
+                if (ImportsInternetExplorerSettings && IEClient != null)
                 {
-                    Context.Get<IProxyClientSearcher>().GetInternetExplorerClientOrNull(Type).Proxy = value;
+                    IEClient.Proxy = value;
+                    IsProxyChangeCancelled = IEClient.IsProxyChangeCancelled;
                     return;
                 }
+
+                IsProxyChangeCancelled = false;
 
                 SetProxy(value);
 

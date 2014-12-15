@@ -8,8 +8,10 @@ namespace ProxySearch.Console.Code.Interfaces
         string Name { get; }
         string Image { get; }
         bool IsInstalled { get; }
-        ProxyInfo Proxy { get; set; }
+        bool IsProxyChangeCancelled { get; }
         int Order { get; }
+
+        ProxyInfo Proxy { get; set; }
 
         event Action ProxyChanged;
     }
