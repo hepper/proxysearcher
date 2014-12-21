@@ -253,7 +253,7 @@ namespace ProxySearch.Console.Controls
             }
         }
 
-        private int GetInsertIndex(List<ProxyInfo> data, ProxyInfo proxy, PreventChangeSortingDirection preventor)
+        private int GetInsertIndex(ObservableList<ProxyInfo> data, ProxyInfo proxy, PreventChangeSortingDirection preventor)
         {
             if (preventor.HasSorting)
             {

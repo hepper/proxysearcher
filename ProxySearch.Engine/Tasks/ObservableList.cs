@@ -10,6 +10,25 @@ namespace ProxySearch.Engine.Tasks
         public event NotifyCollectionChangedEventHandler CollectionChanged;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public new int Count
+        {
+            get
+            {
+                lock (this)
+                {
+                    return base.Count;
+                }
+            }
+        }
+
+        public new int BinarySearch(T item, IComparer<T> comparer)
+        {
+            lock (this)
+            {
+                return base.BinarySearch(item, comparer);
+            }
+        }
+
         public new void Add(T item)
         {
             lock (this)
