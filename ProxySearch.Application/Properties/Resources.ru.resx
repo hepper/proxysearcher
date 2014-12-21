@@ -376,4 +376,7 @@
   <data name="ManualUpdateProxyType" xml:space="preserve">
     <value>Ручное определение типа прокси</value>
   </data>
+  <data name="AndMoreFormat" xml:space="preserve">
+    <value>... и еще на {0} больше</value>
+  </data>
 </root>

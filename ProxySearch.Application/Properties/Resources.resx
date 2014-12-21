@@ -469,4 +469,7 @@ Outgoing IP address: {1}</value>
   <data name="ProxySearcherSource" xml:space="preserve">
     <value>Proxy Searcher</value>
   </data>
+  <data name="AndMoreFormat" xml:space="preserve">
+    <value>... and on {0} more</value>
+  </data>
 </root>

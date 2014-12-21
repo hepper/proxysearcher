@@ -12,7 +12,10 @@ namespace ProxySearch.Engine.Tasks
 
         public new void Add(T item)
         {
-            base.Add(item);
+            lock (this)
+            {
+                base.Add(item);
+            }
 
             FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
             FireCountChanged();
@@ -20,7 +23,10 @@ namespace ProxySearch.Engine.Tasks
 
         public new void Insert(int index, T item)
         {
-            base.Insert(index, item);
+            lock (this)
+            {
+                base.Insert(index, item);
+            }
 
             FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, index));
             FireCountChanged();
@@ -28,7 +34,10 @@ namespace ProxySearch.Engine.Tasks
 
         public new void Clear()
         {
-            base.Clear();
+            lock (this)
+            {
+                base.Clear();
+            }
 
             FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             FireCountChanged();
@@ -36,7 +45,10 @@ namespace ProxySearch.Engine.Tasks
 
         public new void AddRange(IEnumerable<T> collection)
         {
-            base.AddRange(collection);
+            lock (this)
+            {
+                base.AddRange(collection);
+            }
 
             foreach (T item in collection)
             {
@@ -48,7 +60,12 @@ namespace ProxySearch.Engine.Tasks
 
         public new bool Remove(T item)
         {
-            bool result = base.Remove(item);
+            bool result;
+
+            lock (this)
+            {
+                result = base.Remove(item);
+            }
 
             FireCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item));
             FireCountChanged();
@@ -58,9 +75,14 @@ namespace ProxySearch.Engine.Tasks
 
         public new int RemoveAll(Predicate<T> match)
         {
-            List<T> toDelete = this.FindAll(match);
+            List<T> toDelete;
+            int result;
 
-            int result = base.RemoveAll(match);
+            lock (this)
+            {
+                toDelete = this.FindAll(match);
+                result = base.RemoveAll(match);
+            }
 
             if (result != 0)
             {

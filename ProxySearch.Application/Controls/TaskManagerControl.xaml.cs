@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -32,10 +33,28 @@ namespace ProxySearch.Console.Controls
                               .Select(group => new
                               {
                                   Name = group.Key,
-                                  Tasks = group.ToArray()
+                                  Tasks = NormalizeTaskCount(group).ToArray(),
+                                  TotalCount = group.Count()
                               })
                               .ToArray();
             }
+        }
+
+        private static IEnumerable<TaskData> NormalizeTaskCount(IEnumerable<TaskData> tasks)
+        {
+            int maxCount = 30;
+
+            if (tasks.Count() <= maxCount)
+                return tasks;
+
+            List<TaskData> result = tasks.Take(maxCount).ToList();
+
+            result.Add(new TaskData 
+            {
+                Details = string.Format(Properties.Resources.AndMoreFormat, tasks.Count() - maxCount)
+            });
+
+            return result;
         }
 
         private int ThreadsCount

@@ -55,7 +55,7 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Text="{Binding Name}" />
-                            <TextBlock HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding Tasks.Count}" />
+                            <TextBlock HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="{Binding TotalCount}" />
 
                             <ItemsControl Grid.Row="1" ItemsSource="{Binding Tasks}">
                                 <ItemsControl.ItemsPanel>

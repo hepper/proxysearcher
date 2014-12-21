@@ -460,4 +460,7 @@ Ausgehende IP-Adresse: {1}</value>
   <data name="ManualUpdateProxyType" xml:space="preserve">
     <value>Manuelles Update Proxytyp</value>
   </data>
+  <data name="AndMoreFormat" xml:space="preserve">
+    <value>... and on {0} more</value>
+  </data>
 </root>

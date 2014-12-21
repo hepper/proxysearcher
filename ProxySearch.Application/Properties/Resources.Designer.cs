@@ -97,6 +97,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ... and on {0} more.
+        /// </summary>
+        internal static string AndMoreFormat {
+            get {
+                return ResourceManager.GetString("AndMoreFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Built in Geo IP, This option is good choice, but GeoIP data could be not latest and searching take some processor time.
         /// </summary>
         internal static string BuiltInGeoIPDescription {
