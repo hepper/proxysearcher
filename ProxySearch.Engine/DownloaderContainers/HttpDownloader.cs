@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -9,6 +11,11 @@ namespace ProxySearch.Engine.DownloaderContainers
 {
     public class HttpDownloader<HttpClientHandlerType> : IHttpDownloader where HttpClientHandlerType : HttpClientHandler, new()
     {
+        public async Task<string> GetContentOrNull(string url, Proxy proxy)
+        {
+            return await GetContentOrNull(url, proxy, null);
+        }
+
         public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken)
         {
             return await GetContentOrNull(url, proxy, cancellationToken, () => { }, length => { }, length => { });
@@ -16,6 +23,8 @@ namespace ProxySearch.Engine.DownloaderContainers
 
         public async Task<string> GetContentOrNull(string url, Proxy proxy, CancellationTokenSource cancellationToken, Action begin, Action<int> firstTime, Action<int> end)
         {
+            cancellationToken = cancellationToken ?? new CancellationTokenSource();
+
             try
             {
                 using (HttpClientHandlerType handler = new HttpClientHandlerType())
@@ -37,10 +46,10 @@ namespace ProxySearch.Engine.DownloaderContainers
                         firstTime(content.Length);
                         end(content.Length);
 
-                        return content;
+                            return content;
+                        }
                     }
                 }
-            }
             catch (TaskCanceledException)
             {
                 throw;
