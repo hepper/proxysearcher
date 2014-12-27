@@ -48,13 +48,5 @@ namespace ProxySearch.Engine.Proxies.Socks
                     throw new InvalidOperationException(Resources.UnsupportedSocksProxyType);
             }
         }
-
-        public SocksProxyTypes StrongType
-        {
-            get
-            {
-                return (SocksProxyTypes)Enum.Parse(typeof(SocksProxyTypes), Type);
-            }
-        }
     }
 }

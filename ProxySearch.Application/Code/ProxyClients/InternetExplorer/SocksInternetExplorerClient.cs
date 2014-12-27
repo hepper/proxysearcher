@@ -22,7 +22,7 @@ namespace ProxySearch.Console.Code.ProxyClients.InternetExplorer
         {
             if (proxyInfo != null)
             {
-                SocksProxyTypes type = ((SocksProxyDetails)proxyInfo.Details.Details).StrongType;
+                SocksProxyTypes type = proxyInfo.Details.Details.GetStrongType<SocksProxyTypes>();
 
                 if (type == SocksProxyTypes.Socks5)
                 {

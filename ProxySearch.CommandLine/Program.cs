@@ -34,7 +34,7 @@ namespace ProxySearch.CommandLine
 
         static void application_ProxyAlive(ProxyInfo proxyInfo)
         {
-            switch ((HttpProxyTypes)Enum.Parse(typeof(HttpProxyTypes), proxyInfo.Details.Details.Type))
+            switch (proxyInfo.Details.Details.GetStrongType<HttpProxyTypes>())
             {
                 case HttpProxyTypes.Anonymous:
                 case HttpProxyTypes.HighAnonymous:

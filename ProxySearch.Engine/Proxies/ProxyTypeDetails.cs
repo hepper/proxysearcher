@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace ProxySearch.Engine.Proxies
 {
@@ -34,6 +35,16 @@ namespace ProxySearch.Engine.Proxies
         {
             get;
             private set;
+        }
+
+        public DetailsType GetStrongType<DetailsType>() where DetailsType : struct
+        {
+            if (!Enum.IsDefined(typeof(DetailsType), Type))
+            {
+                throw new ArgumentException(string.Format("Type '{0}' doesn't contain enum value '{1}'", typeof(DetailsType).FullName, Type));
+            }
+
+            return (DetailsType)Enum.Parse(typeof(DetailsType), Type);
         }
 
         public override string ToString()

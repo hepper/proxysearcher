@@ -14,7 +14,7 @@ namespace ProxySearch.Console.Code.ProxyClients.Firefox
 
         protected override string SetProxy(ProxyInfo proxyInfo, string content)
         {
-            SocksProxyTypes? type = proxyInfo != null? (SocksProxyTypes?) ((SocksProxyDetails)proxyInfo.Details.Details).StrongType : null;
+            SocksProxyTypes? type = proxyInfo != null ? (SocksProxyTypes?)proxyInfo.Details.Details.GetStrongType<SocksProxyTypes>() : null;
 
             if (type.HasValue)
             {
