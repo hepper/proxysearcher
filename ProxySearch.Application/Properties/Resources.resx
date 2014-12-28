@@ -121,7 +121,7 @@
     <value>All settings will be reverted to their defaults. Do you want to continue?</value>
   </data>
   <data name="BuiltInGeoIPDescription" xml:space="preserve">
-    <value>Built in Geo IP, This option is good choice, but GeoIP data could be not latest and searching take some processor time</value>
+    <value>Built in Geo IP, This option is good choise, but GeoIP data could be not latest and searching take some processor time</value>
   </data>
   <data name="BuiltInGeoIPName" xml:space="preserve">
     <value>Built in</value>
@@ -226,7 +226,7 @@
     <value>This proxy checker could be useful if you don't have access to http page, but know his url and list of keywords what should be on page. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change keywords, probably page doesn't contains them. All specified keywords separates with space, all of them should be on the page, as keyword could be specified piece of http code without space(s). Because of content downloading this checker takes internet traffic.</value>
   </data>
   <data name="ProxyCheckerByUrlDescription" xml:space="preserve">
-    <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower comparing with checker by IP:Port, but it filters better. If this checker doesn't return any results, try to change accuracy, probably page's content is too dynamic. Because of downloading page, content this checker takes internet traffic.</value>
+    <value>This proxy checker downloads content of specified url with and without proxy. If contents are similar then proxy is valid and will be returned by checker. This method is slower if compare with checker by IP:Port, but it filters better. If this checker don't return any results try to change accuracy, probably page's content is too dynamic. Because of downloading page content this checker takes internet traffic.</value>
   </data>
   <data name="ProxySearcherVersionFormat" xml:space="preserve">
     <value>Proxy Searcher {0}.{1}</value>
@@ -259,7 +259,7 @@
     <value>By IP:Port</value>
   </data>
   <data name="SimpleProxyCheckerDescription" xml:space="preserve">
-    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy, therefore it would return unworkable proxies.</value>
+    <value>This simple checker sees if ip address of candidate is alive and port is opened. Can be used for any proxy type searching. It is fast because it don't require any external services. It cannot check if candidate is workable proxy therefore it could return non-workable proxies.</value>
   </data>
   <data name="GoogleDotComUrl" xml:space="preserve">
     <value>http://google.com</value>
@@ -290,7 +290,7 @@ Response time: {0} s</value>
     <value>http://www.webservicex.net/geoipservice.asmx</value>
   </data>
   <data name="WebServiceNetGeoIPServiceDescription" xml:space="preserve">
-    <value>Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser, use other type of Geo IP</value>
+    <value>Uses http://www.webservicex.net/geoipservice.asmx service as Geo IP. If you cannot open http://www.webservicex.net/geoipservice.asmx from browser then use other type of Geo IP</value>
   </data>
   <data name="YouShouldClearValueBeforeSetNewOne" xml:space="preserve">
     <value>You should clear value before set new one</value>
@@ -299,13 +299,13 @@ Response time: {0} s</value>
     <value>Search in folder</value>
   </data>
   <data name="FolderSearchEngineDescription" xml:space="preserve">
-    <value>If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunately it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature.</value>
+    <value>If you have folder what contains files with proxies inside in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new proxies, but it will check if proxies from files in selected folder are workable. This search engine will work fine together with export feature.</value>
   </data>
   <data name="UrlListEngine" xml:space="preserve">
     <value>By Url List</value>
   </data>
   <data name="UrlListEngineDescription" xml:space="preserve">
-    <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunately it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
+    <value>If you have list of urls what contains text with proxies in the format [ip]:[port] you could select this search engine. Unfortunatelly it cannot discover new sources of proxies, but it will be able to find new proxies if they appear on page.</value>
   </data>
   <data name="DoYouReallyWantToClearBlacklist" xml:space="preserve">
     <value>Do you really want to clear blacklist?</value>
@@ -408,7 +408,7 @@ Response time: {0} s</value>
     <value>Test url doesn't match defined url</value>
   </data>
   <data name="NoOneProxyHasBeenFound" xml:space="preserve">
-    <value>No proxy has been found</value>
+    <value>No one proxy has been found</value>
   </data>
   <data name="AllSites" xml:space="preserve">
     <value>&lt;all sites&gt;</value>
@@ -447,7 +447,7 @@ Response time: {0} s</value>
     <value>It looks like configuration of Proxy Searcher is not up-to-date. In order to fix that error open Tools-&gt;Settings and press 'Restore defaults' button on General tab.</value>
   </data>
   <data name="NameOfCountryWasDeterminedBasedOnOutgoingAddress" xml:space="preserve">
-    <value>Name of country was determined based on outgoing IP address '{0}'
+    <value>Name of country was determined based on outgoing IP adress '{0}'
 which is different from ingoing IP address '{1}'.</value>
   </data>
   <data name="IPAddressDescriptionFormat" xml:space="preserve">
