@@ -769,17 +769,20 @@
       <LastGenOutput>GAResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\AboutControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\AboutControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AboutControl.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\AboutControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ActionInvokerControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ActionInvokerControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\AdvancedTabControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\AdvancedTabControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvancedTabControl.Designer.cs</LastGenOutput>
@@ -787,27 +790,32 @@
     <EmbeddedResource Include="Controls\Resources\AdvancedTabControl.ru.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\AdvertisingControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\AdvertisingControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvertisingControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\AdvertisingControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\AdvertisingControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\BackControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\BackControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BackControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\BackControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\BandwidthControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>BandwidthControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CheckerByUrlAndKeywordsControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CheckerProxyNetPropertyControl.Designer.cs</LastGenOutput>
@@ -824,40 +832,56 @@
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerProxyNetPropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.de.resx" />
     <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DownloadNewVersion.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ExportSearchResultControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\FolderSearchEngineControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ParallelSearchEnginePropertyControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\ParallelSearchEnginePropertyControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ParseMethodEditor.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\ProxyCheckerByUrlControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\GoogleEnginePropertyControl.uk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\ProxyDetailsControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\SearchControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\SearchResult.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SearchSpeedControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\SearchSpeedControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\SelectFolderControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\TabNameControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\TabNameControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TabNameControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TabNameControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\TabNameControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\TabSettingControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\TaskManagerControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\TaskManagerControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskManagerControl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\TaskManagerControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\TaskManagerControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\ToolbarControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.uk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -937,6 +961,7 @@
     <EmbeddedResource Include="Controls\Resources\ToolbarControl.ru.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.de.resx" />
     <EmbeddedResource Include="Controls\Resources\UrlListPropertyControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UrlListPropertyControl.Designer.cs</LastGenOutput>
@@ -1036,6 +1061,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Controls\Resources\ActionInvokerControl.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

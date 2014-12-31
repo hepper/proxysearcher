@@ -27,13 +27,12 @@ namespace ProxySearch.Console.Code.Language
                     {
                         Name = "Українська",
                         Culture = "uk-UA"
-                    }
-                    //,
-                    //new Language
-                    //{
-                    //    Name = "Deutsch",
-                    //    Culture = "de-DE"
-                    //},
+                    },
+                    new Language
+                    {
+                        Name = "Deutsch",
+                        Culture = "de-DE"
+                    },
                 };
             }
         }

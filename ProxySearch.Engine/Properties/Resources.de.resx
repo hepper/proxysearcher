@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -121,41 +121,41 @@
     <value>Anonymous</value>
   </data>
   <data name="AnonymousDetails" xml:space="preserve">
-    <value>This proxy type hides your ip, but proxy usage could be detected easily. 
-Never transfer secure data with public proxy.</value>
+    <value>Diese Proxy-Typ verbirgt Ihre IP, aber Proxynutzung könnte leicht erkannt werden. 
+Nie transfer sichere Daten mit öffentlichen Proxy.</value>
   </data>
   <data name="CannotDownloadContent" xml:space="preserve">
-    <value>Cannot download content of '{0}'. Probably you don't have internet connection or '{0}' is blocked for your network. If it's blocked then go to Tools-&gt;Properties and change proxy checker 'By Url' to 'By Url and Keywords' (this checked type is especially for blocked sites).</value>
+    <value>Kann nicht heruntergeladen Inhalt '{0}'. Wahrscheinlich haben Sie nicht über Internet-Verbindung oder '{0}' ist für das Netzwerk blockiert. Wenn es blockiert dann Tools-&gt;Properties gehen und ändern Proxy checker 'Durch die URL' auf 'Durch URL und Keywords' (diese überprüft Typ ist besonders für blockierte Seiten).</value>
   </data>
   <data name="CannotVerify" xml:space="preserve">
-    <value>Cannot verify</value>
+    <value>Kann nicht überprüft</value>
   </data>
   <data name="CannotVerifyDetails" xml:space="preserve">
-    <value>Unfortunately we cannot detect type of this proxy. 
-Probably it is offline or blocks our test service.
-You still able to use this proxy on your own risk.
-Never transfer secure data with public proxy.</value>
+    <value>Wir können leider Typ dieser Proxy nicht erkennt. 
+Wahrscheinlich ist es offline oder Blöcke unserem Test-Service.
+Sie sind noch in der Lage, diese Vollmacht auf eigene Gefahr.
+Nie transfer sichere Daten mit öffentlichen Proxy.</value>
   </data>
   <data name="ChangesContent" xml:space="preserve">
-    <value>Changes content</value>
+    <value>Änderungen Inhalt</value>
   </data>
   <data name="ChangesContentDetails" xml:space="preserve">
-    <value>During detection type of this proxy downloaded content was changed. 
-Most of all this proxy cannot be used free, it could infect your PC with viruses 
-or provide some commercial. Try to avoid usage proxy of this type.
-Never transfer secure data with public proxy.</value>
+    <value>Während der Erkennung Typ dieser Proxy heruntergeladen Inhalt wurde geändert.
+Vor allem dieser Proxy kann nicht frei verwendet werden, es könnte Ihr PC mit Viren zu infizieren
+oder einen gewissen Handels. Versuchen Sie, die Nutzung Proxy dieser Art zu vermeiden.
+Nie transfer sichere Daten mit öffentlichen Proxy.</value>
   </data>
   <data name="HighAnonymous" xml:space="preserve">
-    <value>High Anonymous</value>
+    <value>Hohe Anonymous</value>
   </data>
   <data name="HighAnonymousDetails" xml:space="preserve">
-    <value>This proxy type hides your ip and proxy usage cannot be detected easily. 
-Some methods could detect proxy usage, but they dont give 100% guarantee 
-that proxy usage will be detected. It is safest type of public proxy.
-Never transfer secure data with public proxy.</value>
+    <value>Diese Proxy-Typ verbirgt Ihre IP und Proxy-Nutzung nicht leicht erkannt werden. 
+Some methods could detect proxy usage, Einige Methoden konnte Proxy Nutzung erkennen, aber sie geben nicht 100% Garantie
+dass Proxy-Nutzung werden erkannt. Es ist am sichersten Art von öffentlichen Proxy.
+Nie transfer sichere Daten mit öffentlichen Proxy.</value>
   </data>
   <data name="InvalidHttpResponseFromSocksProxy" xml:space="preserve">
-    <value>Invalid http response from socks proxy</value>
+    <value>Ungültige http Antwort von SOCKS-Proxy</value>
   </data>
   <data name="IPRegexKey" xml:space="preserve">
     <value>&lt;ipregex&gt;</value>
@@ -164,7 +164,7 @@ Never transfer secure data with public proxy.</value>
     <value>&lt;portregex&gt;</value>
   </data>
   <data name="ProxyPropertyCannotBeNull" xml:space="preserve">
-    <value>Proxy property cannot be null.</value>
+    <value>Proxy-Eigenschaft kann nicht null sein.</value>
   </data>
   <data name="ProxyTypeDetectorGuid" xml:space="preserve">
     <value>23154081-CFE8-4AC3-A530-142CB55C486D</value>
@@ -176,41 +176,41 @@ Never transfer secure data with public proxy.</value>
     <value>Socks v4</value>
   </data>
   <data name="Socks4Details" xml:space="preserve">
-    <value>This proxy type is working on transport layer of TCP/IP protocol and supports v4 of Socks proxy</value>
+    <value>Diese Proxy-Typ ist auf Transportschicht TCP / IP-Protokoll arbeitet und unterstützt v4 von Socks-Proxy</value>
   </data>
   <data name="Socks5" xml:space="preserve">
     <value>Socks v5</value>
   </data>
   <data name="Socks5Details" xml:space="preserve">
-    <value>This proxy type is working on transport layer of TCP/IP protocol and supports v5 of Socks proxy without authentication</value>
+    <value>Diese Proxy-Typ ist auf Transportschicht TCP / IP-Protokoll arbeitet und unterstützt v5 von Socks-Proxy ohne Authentifizierung</value>
   </data>
   <data name="SpeedTestUrl" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/Bandwidth</value>
   </data>
   <data name="TooManyRedirectsWasRequestedByServer" xml:space="preserve">
-    <value>Too many redirects was requested by server</value>
+    <value>Zu viele Weiterleitungen wurde vom Server angefordert</value>
   </data>
   <data name="Transparent" xml:space="preserve">
     <value>Transparent</value>
   </data>
   <data name="TransparentDetails" xml:space="preserve">
-    <value>This proxy type doesn't hide your ip and proxy usage could be detected easily. 
-It is the worst proxy type. Never transfer secure data with public proxy.</value>
+    <value>Diese Proxy-Typ nicht Ihre IP verstecken und Proxy-Nutzung könnte leicht erkannt werden. 
+Es ist das Schlimmste Proxytyp. Nie transfer sichere Daten mit öffentlichen Proxy.</value>
   </data>
   <data name="UnableToResolveProxyHostnameFormat" xml:space="preserve">
-    <value>Unable to resolve proxy hostname '{0}' to a valid IP address.</value>
+    <value>Kann Proxy Hostname '{0}' in eine gültige IP-Adresse aufzulösen.</value>
   </data>
   <data name="Unchecked" xml:space="preserve">
-    <value>Unchecked</value>
+    <value>Ungeprüft</value>
   </data>
   <data name="UncheckedDetails" xml:space="preserve">
-    <value>Ready for test</value>
+    <value>Bereit für Test</value>
   </data>
   <data name="UnsupportedHttpProxyType" xml:space="preserve">
-    <value>Unsupported http proxy type</value>
+    <value>Nicht unterstützte HTTP-Proxy-Typ</value>
   </data>
   <data name="UnsupportedSocksProxyType" xml:space="preserve">
-    <value>Unsupported socks proxy type</value>
+    <value>Nicht unterstützte SOCKS-Proxy-Typ</value>
   </data>
   <data name="HttpProxyType" xml:space="preserve">
     <value>HTTP</value>
@@ -219,55 +219,55 @@ It is the worst proxy type. Never transfer secure data with public proxy.</value
     <value>SOCKS</value>
   </data>
   <data name="CheckingBatchOfProxies" xml:space="preserve">
-    <value>Checking batch of proxies on checkerproxy.net service</value>
+    <value>Überprüfen Charge von Proxies auf checkerproxy.net Service</value>
   </data>
   <data name="CheckingProxiesFormat" xml:space="preserve">
-    <value>Checking proxies: {0}</value>
+    <value>Überprüfen Proxies: {0}</value>
   </data>
   <data name="CheckingProxyIfItWorks" xml:space="preserve">
-    <value>Checking proxy if it works</value>
+    <value>Überprüfen ob Proxy funktioniert</value>
   </data>
   <data name="ProxySearching" xml:space="preserve">
-    <value>Searching proxies</value>
+    <value>Suchen Proxies</value>
   </data>
   <data name="DownloadingFormat" xml:space="preserve">
-    <value>Downloading '{0}'.</value>
+    <value>Herunterladen von '{0}'.</value>
   </data>
   <data name="SearchingInFolderFormat" xml:space="preserve">
-    <value>Searching in folder '{0}'.</value>
+    <value>Suche im Verzeichnis '{0}'.</value>
   </data>
   <data name="ProxyCheckingIfAliveFormat" xml:space="preserve">
-    <value>{0} - checking if alive</value>
+    <value>{0} - Überprüfung, ob lebendig</value>
   </data>
   <data name="ProxyDeterminingLocationFormat" xml:space="preserve">
-    <value>{0} - determining proxy location</value>
+    <value>{0} - Bestimmung Proxy-Standort</value>
   </data>
   <data name="ProxyDeterminingProxyType" xml:space="preserve">
-    <value>{0} - determining proxy type</value>
+    <value>{0} - Bestimmung Proxytyp</value>
   </data>
   <data name="ProxyGotFirstResponseFormat" xml:space="preserve">
-    <value>{0} - got first response</value>
+    <value>{0} - bekam erste Antwort</value>
   </data>
   <data name="ConfiguringProxyChecker" xml:space="preserve">
-    <value>Configuring proxy checker</value>
+    <value>Konfigurieren der Proxy-checker</value>
   </data>
   <data name="ProxyDownloadingFormat" xml:space="preserve">
-    <value>{0} - proxy downloading '{1}'</value>
+    <value>{0} - Proxy Download '{1}'</value>
   </data>
   <data name="OpeningConnectionFormat" xml:space="preserve">
-    <value>{0} - opening connection</value>
+    <value>{0} - Öffnung Verbindung</value>
   </data>
   <data name="WaitUntilProxyCheckerIsConfiguredFormat" xml:space="preserve">
-    <value>{0} - wait until proxy checker is configured</value>
+    <value>{0} - warten Sie, bis Proxy-checker ist so konfiguriert</value>
   </data>
   <data name="ConfigureProviderOfProxyDetails" xml:space="preserve">
-    <value>Configure provider of proxy details</value>
+    <value>Konfigurieren Anbieter von Proxy-Details</value>
   </data>
   <data name="DetermineCurrentIPAddress" xml:space="preserve">
-    <value>Determine current IP address</value>
+    <value>Ermitteln Sie die aktuelle IP-Adresse</value>
   </data>
   <data name="WaitUntilProxyDetailsProviderConfiguredFormat" xml:space="preserve">
-    <value>{0} - Wait until proxy details provider configured</value>
+    <value>{0} - Warten Sie, bis Proxyanbieter konfiguriert</value>
   </data>
   <data name="DetectMyIPUrl" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/MyIP.php</value>
