@@ -17,7 +17,7 @@
                 </Grid.RowDefinitions>
 
                 <ContentPresenter Grid.Row="1" />
-                <Button Grid.Row="0" Width="100" HorizontalAlignment="Right" Click="Button_Click" Margin="{StaticResource DefaultMargin}" Content="{x:Static resources:BackControl.BackToSearch}" />
+                <Button Grid.Row="0" HorizontalAlignment="Right" Click="Button_Click" Margin="{StaticResource DefaultMargin}" Content="{x:Static resources:BackControl.BackToSearch}" />
             </Grid>
         </ControlTemplate>
     </UserControl.Template>
