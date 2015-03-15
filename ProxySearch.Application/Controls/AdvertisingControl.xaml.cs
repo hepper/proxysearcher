@@ -19,7 +19,7 @@ namespace ProxySearch.Console.Controls
     /// </summary>
     public partial class AdvertisingControl : UserControl
     {
-        private static readonly Uri adsUri = new Uri("http://proxysearcher.sourceforge.net/Ads.php?interactive=true");
+        private static readonly string adsUri = "http://proxysearcher.sourceforge.net/Ads.php?interactive=true&v={0}";
         private bool isUserClickedOnAdvertising = false;
         private Action updateCursor = null;
         private int delay = 1;
@@ -83,7 +83,7 @@ namespace ProxySearch.Console.Controls
                     timer.Interval = RefreshInterval.TotalMilliseconds;
                     if (!IsIEUsingProxy)
                     {
-                        webBrowser.Navigate(adsUri);
+                        webBrowser.Navigate(string.Format(adsUri, Context.Get<IVersionProvider>().Version.ToString()));
 
                         if (!isAnimationPlayed)
                         {
