@@ -166,7 +166,7 @@
     <value>v</value>
   </data>
   <data name="ProxyWasNotSetFormat" xml:space="preserve">
-    <value>Proxy was not set: {0}!={1} for {2}</value>
+    <value>Proxy was not set for {0}</value>
   </data>
   <data name="ScreenResoultionKey" xml:space="preserve">
     <value>sr</value>

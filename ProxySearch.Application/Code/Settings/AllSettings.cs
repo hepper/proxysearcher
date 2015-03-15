@@ -17,7 +17,7 @@ namespace ProxySearch.Console.Code.Settings
             TabSettings = new ObservableCollection<TabSettings>();
             GeoIPSettings = new List<ParametersPair>();
             ExportSettings = new ExportSettings();
-            PageSize = 20;
+            PageSize = DefaultPageSize;
             MaxBandwidth = 1;
             RevertUsedProxiesOnExit = true;
             ShareUsageStatistic = true;
@@ -31,16 +31,34 @@ namespace ProxySearch.Console.Code.Settings
             };
         }
 
+        private static int DefaultPageSize
+        {
+            get
+            {
+                return 20;
+            }
+        }
+
         public bool CheckUpdates
         {
             get;
             set;
         }
 
+        private int pageSize;
         public int PageSize
         {
-            get;
-            set;
+            get
+            {
+                if (pageSize <= 0)
+                    return DefaultPageSize;
+
+                return pageSize;
+            }
+            set
+            {
+                pageSize = value;
+            }
         }
 
         public string GeoIPDetectableType

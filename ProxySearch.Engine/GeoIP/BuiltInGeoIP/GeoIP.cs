@@ -1,12 +1,16 @@
-﻿using System;
-using System.Net;
+﻿using System.Globalization;
+using System.IO;
+using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
+using MaxMind.Db;
+using Newtonsoft.Json.Linq;
 
 namespace ProxySearch.Engine.GeoIP.BuiltInGeoIP
 {
     public class GeoIP : IGeoIP
     {
-        private static GeoIPData[] OrderedData
+        private static Reader Reader
         {
             get;
             set;
@@ -14,37 +18,37 @@ namespace ProxySearch.Engine.GeoIP.BuiltInGeoIP
 
         static GeoIP()
         {
-            OrderedData = new GeoIPDatabase().Read().ToArray();
-
-            Array.Sort<GeoIPData>(OrderedData, (item1, item2) =>
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ProxySearch.Engine.Resources.GeoLite2-Country.mmdb"))
             {
-                return (int)(item1.StartAddress - item2.StartAddress);
-            });
+                Reader = new Reader(stream);
+            }
         }
 
-        public async Task<CountryInfo> GetLocation(string ipAddress)
+        public Task<CountryInfo> GetLocation(string ipAddress)
         {
-            return await Task.Run(() =>
+            CultureInfo culture = Thread.CurrentThread.CurrentCulture;
+
+            JToken response = Reader.Find(ipAddress);
+
+            JToken countries = response["country"]["names"];
+
+            JToken result = countries[culture.Name] ?? (culture.Parent == null
+                                                      ? countries["en"]
+                                                      : (countries[culture.Parent.Name] ?? countries["en"]));
+
+            if (result == null)
             {
-                IPAddress address = IPAddress.Parse(ipAddress);
-                byte[] bytes = address.GetAddressBytes();
-
-                long group = (long)16777216 * bytes[0] + (long)65536 * bytes[1] + (long)256 * bytes[2] + (long)bytes[3];
-
-                int index = Array.BinarySearch(OrderedData, group, new GeoIPComparer());
-
-                if (index < 0)
-                    return new CountryInfo
-                    {
-                        Code = string.Empty,
-                        Name = string.Empty
-                    };
-
-                return new CountryInfo
+                return Task.FromResult(new CountryInfo
                 {
-                    Code = OrderedData[index].Code,
-                    Name = OrderedData[index].Name
-                };
+                    Code = string.Empty,
+                    Name = string.Empty
+                });
+            }
+
+            return Task.FromResult(new CountryInfo 
+            {
+                Code = result.ToString(),
+                Name = result.ToString()
             });
         }
     }

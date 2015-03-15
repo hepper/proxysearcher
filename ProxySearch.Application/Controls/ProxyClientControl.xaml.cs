@@ -88,10 +88,7 @@ namespace ProxySearch.Console.Controls
                 {
                     if (IsChecked != value)
                     {
-                        Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat,
-                                                                        ProxyClient.Proxy,
-                                                                        ProxyInfo,
-                                                                        ProxyClient.GetType().Name));
+                        Context.Get<IGA>().TrackException(string.Format(GAResources.ProxyWasNotSetFormat, ProxyClient.GetType().Name));
                     }
 
                     RaiseEvent(new RoutedEventArgs(ProxyClientControl.ClickEvent));

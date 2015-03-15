@@ -205,7 +205,7 @@ namespace ProxySearch.Console.Code.GoogleAnalytics {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proxy was not set: {0}!={1} for {2}.
+        ///   Looks up a localized string similar to Proxy was not set for {0}.
         /// </summary>
         internal static string ProxyWasNotSetFormat {
             get {
