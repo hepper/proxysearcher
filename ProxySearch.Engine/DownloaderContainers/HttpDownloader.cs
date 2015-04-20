@@ -46,13 +46,9 @@ namespace ProxySearch.Engine.DownloaderContainers
                         firstTime(content.Length);
                         end(content.Length);
 
-                            return content;
-                        }
+                        return content;
                     }
                 }
-            catch (TaskCanceledException)
-            {
-                throw;
             }
             catch
             {

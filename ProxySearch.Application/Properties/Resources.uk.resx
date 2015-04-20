@@ -138,9 +138,6 @@
   <data name="CannotUpdateProgram" xml:space="preserve">
     <value>Неможливо обновити програму. Ви хочете зробити це самостійно?</value>
   </data>
-  <data name="CheckerProxyDotNetDescription" xml:space="preserve">
-    <value>Цей метод перевірки використовує онлайн сервіс http://checkerproxy.net. Він може перевіряти HTTP\HTTPS і SOCKS4\SOCKS5 проксі. Мінусом цього механізму є неможливість перевірки  невозможность проверки працездатності знайденого проксі у Вашому сегменті мережі.</value>
-  </data>
   <data name="Chrome" xml:space="preserve">
     <value>Хром</value>
   </data>
@@ -214,7 +211,7 @@
     <value>Сортування по '{0}' не піддтримується</value>
   </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
-    <value>Швидкість: {1:0.##} Мб/с
+    <value>Швидкість: {1} Мб/с
 Час відгуку: {0} с</value>
   </data>
   <data name="UpdateIsReadyToInstall" xml:space="preserve">

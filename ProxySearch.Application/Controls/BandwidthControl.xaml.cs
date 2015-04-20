@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Console.Code;
 using ProxySearch.Engine.DownloaderContainers;

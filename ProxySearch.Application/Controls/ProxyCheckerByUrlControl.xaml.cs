@@ -43,6 +43,7 @@ namespace ProxySearch.Console.Controls
                 Arguments[0] = value;
             }
         }
+
         public double Accuracy
         {
             get
@@ -52,6 +53,18 @@ namespace ProxySearch.Console.Controls
             set
             {
                 Arguments[1] = 1 - value;
+            }
+        }
+
+        public int MaxAsyncChecks
+        {
+            get
+            {
+                return (int)Arguments[2];
+            }
+            set
+            {
+                Arguments[2] = value;
             }
         }
     }

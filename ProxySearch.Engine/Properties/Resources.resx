@@ -218,9 +218,6 @@ It is the worst proxy type. Never transfer secure data with public proxy.</value
   <data name="SocksProxyType" xml:space="preserve">
     <value>SOCKS</value>
   </data>
-  <data name="CheckingBatchOfProxies" xml:space="preserve">
-    <value>Checking batch of proxies on checkerproxy.net service</value>
-  </data>
   <data name="CheckingProxiesFormat" xml:space="preserve">
     <value>Checking proxies: {0}</value>
   </data>
@@ -274,5 +271,8 @@ It is the worst proxy type. Never transfer secure data with public proxy.</value
   </data>
   <data name="ProxyTypeDetectorUrlFormat2" xml:space="preserve">
     <value>http://proxysearcher.sourceforge.net/DetectProxyTypeV2.php?ip={0}&amp;port={1}&amp;type={2}&amp;myip={3}&amp;param={4}</value>
+  </data>
+  <data name="SynchronizationTask" xml:space="preserve">
+    <value>Synchronization task</value>
   </data>
 </root>

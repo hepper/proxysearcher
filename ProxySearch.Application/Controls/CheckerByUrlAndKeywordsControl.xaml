@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" Name="CheckerByUrlAndKeywords" >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -14,12 +15,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="{x:Static resources:CheckerByUrlAndKeywordsControl.Url}" />
         <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=Url, Mode=TwoWay}"  />
 
         <Label Grid.Row="1" Grid.Column="0" Content="{x:Static resources:CheckerByUrlAndKeywordsControl.Keywords}" />
-        <TextBox Grid.Row="1" Name="slider" Grid.Column="1" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=Keywords, Mode=TwoWay}" />        
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=Keywords, Mode=TwoWay}" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Max async checks" />
+        <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=MaxAsyncChecks, Mode=TwoWay}" Minimum="1" TextAlignment="Left" />
     </Grid>
 </UserControl>

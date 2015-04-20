@@ -8,7 +8,7 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
         public SocksUrlListSearchEngineDetectable()
             : base(Resources.SocksProxyType, new List<object>
             {
-                "http://proxysearcher.sourceforge.net/ProxyList.php?type=socks\n" +
+                "http://proxysearcher.sourceforge.net/Proxy%20List.php?type=socks&filtered=true&limit=100\n" +
                 "http://socksproxy-list.blogspot.com/\n" +
                 "http://www.vipsocks24.com/\n" +
                 "http://proxy.ucoz.com/\n" +

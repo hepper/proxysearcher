@@ -42,7 +42,15 @@ namespace ProxySearch.Engine.SearchEngines
 
         private async Task<List<string>> GetFilesAsync()
         {
-            return await Task.FromResult<List<string>>(Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).ToList());
+            try
+            {
+                return await Task.FromResult(Directory.GetFiles(folderPath, "*", SearchOption.AllDirectories).ToList());
+            }
+            catch(DirectoryNotFoundException)
+            {
+            }
+
+            return await Task.FromResult(new List<string>() { });
         }
     }
 }

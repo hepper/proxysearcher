@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using ProxySearch.Common;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine.SearchEngines;

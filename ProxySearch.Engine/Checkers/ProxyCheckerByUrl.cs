@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Error;
+using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
@@ -14,7 +15,6 @@ namespace ProxySearch.Engine.Checkers
 {
     public class ProxyCheckerByUrl<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
                                                                where ProxyDetailsProviderType : IProxyDetailsProvider, new()
-                                                               
     {
         private string Url
         {
@@ -29,18 +29,23 @@ namespace ProxySearch.Engine.Checkers
         }
 
         private Dictionary<char, int> analyzedText = null;
-
         private Task initializatinTask = null;
 
-        public ProxyCheckerByUrl(string url, double accuracy)
+        public ProxyCheckerByUrl(string url, double accuracy, int maxTasksCount)
+            : base(maxTasksCount)
         {
             Url = url;
             Accuracy = accuracy;
         }
 
-        public override void InitializeAsync(CancellationTokenSource cancellationTokenSource, ITaskManager taskManager, IHttpDownloaderContainer httpDownloaderContainer, IErrorFeedback errorFeedback)
+        public override void InitializeAsync(CancellationTokenSource cancellationTokenSource,
+                                             ITaskManager taskManager,
+                                             IHttpDownloaderContainer httpDownloaderContainer,
+                                             IErrorFeedback errorFeedback,
+                                             IProxySearchFeedback proxySearchFeedback,
+                                             IGeoIP geoIP)
         {
-            base.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback);
+            base.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback, proxySearchFeedback, geoIP);
 
             TaskItem taskItem = taskManager.Create(Resources.ConfiguringProxyChecker);
 
@@ -87,8 +92,11 @@ namespace ProxySearch.Engine.Checkers
                     return false;
                 }
 
-                task.UpdateDetails(string.Format(Resources.WaitUntilProxyCheckerIsConfiguredFormat, proxy), Tasks.TaskStatus.Slow);
-                await initializatinTask;
+                if (!initializatinTask.IsCanceled && !initializatinTask.IsCompleted)
+                {
+                    task.UpdateDetails(string.Format(Resources.WaitUntilProxyCheckerIsConfiguredFormat, proxy), Tasks.TaskStatus.Slow);
+                    await initializatinTask;
+                }
 
                 return Compare(analyzedText, AnalyzeText(content)) <= Accuracy;
             }

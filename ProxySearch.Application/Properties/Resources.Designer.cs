@@ -169,24 +169,6 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://checkerproxy.net.
-        /// </summary>
-        internal static string CheckerProxyDotNet {
-            get {
-                return ResourceManager.GetString("CheckerProxyDotNet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This checker uses online service http://checkerproxy.net. Additionally usage of this service will give you proxy type. Could check HTTP\HTTPS and SOCKS4\SOCKS5 proxies..
-        /// </summary>
-        internal static string CheckerProxyDotNetDescription {
-            get {
-                return ResourceManager.GetString("CheckerProxyDotNetDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Chrome.
         /// </summary>
         internal static string Chrome {
@@ -702,6 +684,24 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/static.html.
+        /// </summary>
+        internal static string ProxySearcherStaticHtml {
+            get {
+                return ResourceManager.GetString("ProxySearcherStaticHtml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A41B9664-9DF7-4EB5-8761-D56762497A44.
+        /// </summary>
+        internal static string ProxySearcherStaticHtmlContent {
+            get {
+                return ResourceManager.GetString("ProxySearcherStaticHtmlContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Proxy Searcher {0}.{1}.
         /// </summary>
         internal static string ProxySearcherVersionFormat {
@@ -918,7 +918,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0:0.##} ({1}).
+        ///   Looks up a localized string similar to {0} ({1}).
         /// </summary>
         internal static string SpeedRespondTextFormat {
             get {
@@ -927,7 +927,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speed: {1:0.##} Mb/s
+        ///   Looks up a localized string similar to Speed: {1} Mb/s
         ///Response time: {0} s.
         /// </summary>
         internal static string SpeedRespondTooltipFormat {

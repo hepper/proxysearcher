@@ -80,7 +80,7 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot download content of &apos;{0}&apos;. Probably you don&apos;t have internet connection or &apos;{0}&apos; is blocked for your network. If it&apos;s blocked then go to Tools-&gt;Properties and change proxy checker &apos;By Url&apos; to &apos;By Url and Keywords&apos; (this checked type is espessially for blocked sites)..
+        ///   Looks up a localized string similar to Cannot download content of &apos;{0}&apos;. Probably you don&apos;t have internet connection or &apos;{0}&apos; is blocked for your network. If it&apos;s blocked then go to Tools-&gt;Properties and change proxy checker &apos;By Url&apos; to &apos;By Url and Keywords&apos; (this checked type is especially for blocked sites)..
         /// </summary>
         internal static string CannotDownloadContent {
             get {
@@ -119,23 +119,14 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to During detection type of this proxy downloaded content was changed . 
-        ///Most for all this proxy cannot be used free, it could infect your viruses 
+        ///   Looks up a localized string similar to During detection type of this proxy downloaded content was changed. 
+        ///Most of all this proxy cannot be used free, it could infect your PC with viruses 
         ///or provide some commercial. Try to avoid usage proxy of this type.
         ///Never transfer secure data with public proxy..
         /// </summary>
         internal static string ChangesContentDetails {
             get {
                 return ResourceManager.GetString("ChangesContentDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Checking batch of proxies on checkerproxy.net service.
-        /// </summary>
-        internal static string CheckingBatchOfProxies {
-            get {
-                return ResourceManager.GetString("CheckingBatchOfProxies", resourceCulture);
             }
         }
         
@@ -213,7 +204,7 @@ namespace ProxySearch.Engine.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to This proxy type hides your ip and proxy usage cannot be detected easily. 
-        ///Some methods could detect proxy usage , but they dont give 100% guarantee 
+        ///Some methods could detect proxy usage, but they dont give 100% guarantee 
         ///that proxy usage will be detected. It is safest type of public proxy.
         ///Never transfer secure data with public proxy..
         /// </summary>
@@ -422,6 +413,15 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Synchronization task.
+        /// </summary>
+        internal static string SynchronizationTask {
+            get {
+                return ResourceManager.GetString("SynchronizationTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Too many redirects was requested by server.
         /// </summary>
         internal static string TooManyRedirectsWasRequestedByServer {
@@ -440,8 +440,8 @@ namespace ProxySearch.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This proxy type don&apos;t hide your ip and proxy usage could be detected easily. 
-        ///It is worst proxy type. Never transfer secure data with public proxy..
+        ///   Looks up a localized string similar to This proxy type doesn&apos;t hide your ip and proxy usage could be detected easily. 
+        ///It is the worst proxy type. Never transfer secure data with public proxy..
         /// </summary>
         internal static string TransparentDetails {
             get {

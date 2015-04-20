@@ -13,23 +13,33 @@ namespace ProxySearch.Engine.Checkers
     public class SimpleProxyChecker<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
                                                                  where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
+        public SimpleProxyChecker(int maxTasksCount)
+            : base(maxTasksCount)
+        {
+        }
+
         protected override async Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end, CancellationTokenSource cancellationToken)
         {
             task.UpdateDetails(string.Format(Resources.OpeningConnectionFormat, proxy));
 
-            using (TcpClientExtended tcpClient = new TcpClientExtended())
+            try
             {
-                try
+                using (TcpClientExtended tcpClient = new TcpClientExtended())
                 {
+
                     await tcpClient.ConnectAsync(proxy.Address, proxy.Port, cancellationToken.Token);
                 }
-                catch (SocketException)
-                {
-                    return false;
-                }
-
-                return true;
             }
+            catch (TaskCanceledException)
+            {
+                return false;
+            }
+            catch (SocketException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         protected override async Task<ProxyTypeDetails> GetProxyDetails(Proxy proxy, TaskItem task, CancellationTokenSource cancellationToken)

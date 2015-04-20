@@ -42,7 +42,7 @@ namespace ProxySearch.Console.Code.Detectable.SearchEngines
                                                                 TypeName = item.GetType().AssemblyQualifiedName,
                                                                 Parameters = new List<object>
                                                                 {
-                                                                    string.Format("http://proxysearcher.sourceforge.net/ProxyList.php?type={0}&filtered=true&limit=100", 
+                                                                    string.Format("http://proxysearcher.sourceforge.net/Proxy%20List.php?type={0}&filtered=true&limit=100",
                                                                                   proxyType.ToLower())
                                                                 }
                                                             };

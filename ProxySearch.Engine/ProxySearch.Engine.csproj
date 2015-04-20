@@ -79,9 +79,6 @@
     <Compile Include="Bandwidth\BandwidthManager.cs" />
     <Compile Include="Bandwidth\BanwidthInfo.cs" />
     <Compile Include="Bandwidth\IBandwidthManager.cs" />
-    <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet.cs" />
-    <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxiesInfo.cs" />
-    <Compile Include="Checkers\CheckerProxy.Net\CheckerProxyNet_ProxyInfo.cs" />
     <Compile Include="Checkers\IAsyncInitialization.cs" />
     <Compile Include="Checkers\ProxyCheckerByUrl.cs" />
     <Compile Include="Checkers\TurnedOffProxyChecker.cs" />
@@ -121,8 +118,11 @@
     <Compile Include="SearchEngines\ParallelSearchEngine.cs" />
     <Compile Include="Tasks\ITaskManager.cs" />
     <Compile Include="Tasks\ObservableList.cs" />
+    <Compile Include="Tasks\ObservableListExtensions.cs" />
     <Compile Include="Tasks\TaskStatus.cs" />
-    <EmbeddedResource Include="Properties\Resources.de.resx" />
+    <EmbeddedResource Include="Properties\Resources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.uk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -34,7 +34,7 @@ namespace ProxySearch.Engine
             private set;
         }
 
-        public ObservableList<TaskData> Tasks 
+        public ObservableList<TaskData> Tasks
         {
             get
             {
@@ -87,10 +87,15 @@ namespace ProxySearch.Engine
         {
             ManualResetEvent waitEvent = new ManualResetEvent(false);
 
-            IAsyncInitialization asyncInitialization = checker as IAsyncInitialization;
+            object[] objects = new object[] { checker, proxyProvider };
 
-            if (asyncInitialization != null)
-                asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, this);
+            foreach (object @object in objects)
+            {
+                IAsyncInitialization asyncInitialization = @object as IAsyncInitialization;
+
+                if (asyncInitialization != null)
+                    asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, this, this, geoIP);
+            }
 
             IEnumerable<ISearchEngine> searchEngines = searchEngine as IEnumerable<ISearchEngine>;
 
@@ -146,7 +151,7 @@ namespace ProxySearch.Engine
                         List<Proxy> proxies = await proxyProvider.ParseProxiesAsync(uri, document);
 
                         if (proxies.Any())
-                            checker.CheckAsync(proxies, this, geoIP, cancellationTokenSource);
+                            checker.CheckAsync(proxies);
                     }
                 }
             }

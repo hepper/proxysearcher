@@ -43,5 +43,17 @@ namespace ProxySearch.Console.Controls
                 Arguments[1] = value;
             }
         }
+
+        public int MaxAsyncChecks
+        {
+            get
+            {
+                return (int)Arguments[2];
+            }
+            set
+            {
+                Arguments[2] = value;
+            }
+        }
     }
 }

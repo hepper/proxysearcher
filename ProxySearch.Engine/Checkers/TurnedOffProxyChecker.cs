@@ -10,6 +10,10 @@ namespace ProxySearch.Engine.Checkers
     public class TurnedOffProxyChecker<ProxyDetailsProviderType> : ProxyCheckerBase<ProxyDetailsProviderType>
         where ProxyDetailsProviderType : IProxyDetailsProvider, new()
     {
+        public TurnedOffProxyChecker():base(int.MaxValue)
+        {
+        }
+
         protected override Task<bool> Alive(Proxy proxy, TaskItem task, Action begin, Action<int> firstTime, Action<int> end, CancellationTokenSource cancellationToken)
         {
             return Task.FromResult(true);

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ProxySearch.Engine.Checkers;
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Error;
+using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
@@ -18,7 +19,12 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
         private IPAddress myIPAddress = null;
         private IHttpDownloaderContainer httpDownloaderContainer;
 
-        public void InitializeAsync(CancellationTokenSource cancellationTokenSource, ITaskManager taskManager, IHttpDownloaderContainer httpDownloaderContainer, IErrorFeedback errorFeedback)
+        public void InitializeAsync(CancellationTokenSource cancellationTokenSource,
+                                    ITaskManager taskManager,
+                                    IHttpDownloaderContainer httpDownloaderContainer,
+                                    IErrorFeedback errorFeedback,
+                                    IProxySearchFeedback proxySearchFeedback,
+                                    IGeoIP geoIP)
         {
             this.httpDownloaderContainer = httpDownloaderContainer;
             TaskItem taskItem = taskManager.Create(Resources.ConfigureProviderOfProxyDetails);

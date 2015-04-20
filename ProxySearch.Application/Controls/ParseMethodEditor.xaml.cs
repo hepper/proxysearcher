@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.Settings;
+using ProxySearch.Engine.Error;
 using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.Proxies;
 
@@ -50,6 +51,14 @@ namespace ProxySearch.Console.Controls
         {
             get;
             set;
+        }
+
+        private Uri TestUri
+        {
+            get
+            {
+                return new Uri(TestUrlTextBox.Text);
+            }
         }
 
         private static void GoBack()
@@ -123,14 +132,6 @@ namespace ProxySearch.Console.Controls
                 SetTestResult(string.Join(Environment.NewLine, proxies));
             else
                 SetTestResult(string.Join(Environment.NewLine, Properties.Resources.NoOneProxyHasBeenFound, content));
-        }
-
-        private Uri TestUri
-        {
-            get
-            {
-                return new Uri(TestUrlTextBox.Text);
-            }
         }
     }
 }

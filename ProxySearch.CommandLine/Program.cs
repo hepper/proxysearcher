@@ -15,12 +15,12 @@ namespace ProxySearch.CommandLine
     {
         static void Main(string[] args)
         {
-            var url = "http://proxysearcher.sourceforge.net/ProxyList.php?type=http&filtered=true&limit=1000";
+            var url = "http://proxysearcher.sourceforge.net/Proxy%20List.php?type=http&filtered=true&limit=1000";
             ISearchEngine searchEngine = new ParallelSearchEngine(new UrlListSearchEngine(url),
                                                                   new GoogleSearchEngine(40, "http proxy list", null));
 
             IProxyChecker checker =
-                new ProxyCheckerByUrl<HttpProxyDetailsProvider>("http://wikipedia.org/", 0.9);
+                new ProxyCheckerByUrl<HttpProxyDetailsProvider>("http://wikipedia.org/", 0.9, 100);
             IHttpDownloaderContainer httpDownloaderContainer =
                 new HttpDownloaderContainer<HttpClientHandler, ProgressMessageHandler>();
 

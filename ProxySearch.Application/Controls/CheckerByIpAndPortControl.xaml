@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.CheckerByIpAndPortControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="30" d:DesignWidth="300"
+             x:Name="CheckerByIpAndPort">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Content="Max async checks" />
+        <toolkit:IntegerUpDown Grid.Column="1" Text="{Binding ElementName=CheckerByIpAndPort, Path=MaxAsyncChecks, Mode=TwoWay}" Minimum="1" TextAlignment="Left" />
+    </Grid>
+</UserControl>

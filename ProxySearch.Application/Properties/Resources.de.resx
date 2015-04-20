@@ -138,12 +138,6 @@
   <data name="CannotUpdateProgram" xml:space="preserve">
     <value>Kann Programm nicht aktualisiert werden. Wollen Sie es manuell zu tun?</value>
   </data>
-  <data name="CheckerProxyDotNet" xml:space="preserve">
-    <value>http://checkerproxy.net</value>
-  </data>
-  <data name="CheckerProxyDotNetDescription" xml:space="preserve">
-    <value>Diese Prüfung verwendet Online-Service http://checkerproxy.net. Zusätzlich Nutzung dieses Dienstes erhalten Sie Proxy-Typ. Könnte überprüfen HTTP \ HTTPS und SOCKS4 \ SOCKS5 Proxies.</value>
-  </data>
   <data name="Chrome" xml:space="preserve">
     <value>Chrome</value>
   </data>
@@ -240,9 +234,6 @@
   <data name="Ready" xml:space="preserve">
     <value>Bereit</value>
   </data>
-  <data name="RoundFormat" xml:space="preserve">
-    <value>{0:0.##}</value>
-  </data>
   <data name="SearchIsCancelledOnUserRequest" xml:space="preserve">
     <value>Suche auf Benutzeranforderung annulliert ist</value>
   </data>
@@ -267,11 +258,8 @@
   <data name="SortTypeIsNotSupported" xml:space="preserve">
     <value>Sortieren nach Typ '{0}' wird nicht unterstützt</value>
   </data>
-  <data name="SpeedRespondTextFormat" xml:space="preserve">
-    <value>{0:0.##} ({1})</value>
-  </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
-    <value>Geschwindigkeit: {1:0.##} Mb/s
+    <value>Geschwindigkeit: {1} Mb/s
 Reaktionszeit: {0} s</value>
   </data>
   <data name="TicketsLink" xml:space="preserve">

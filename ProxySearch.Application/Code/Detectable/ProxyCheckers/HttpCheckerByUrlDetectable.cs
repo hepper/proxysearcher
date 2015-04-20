@@ -7,7 +7,7 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
     public class HttpCheckerByUrlDetectable : CheckerByUrlDetectableBase<ProxyCheckerByUrl<HttpProxyDetailsProvider>>
     {
         public HttpCheckerByUrlDetectable()
-            : base(Resources.HttpProxyType, Resources.GoogleDotComUrl)
+            : base(Resources.HttpProxyType, Resources.ProxySearcherStaticHtml)
         {
         }
     }

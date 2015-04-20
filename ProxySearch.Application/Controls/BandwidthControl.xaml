@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="150" Name="Bandwidth">
     <UserControl.Resources>
-        <converters:BandwidthStateVisibilityConverter x:Key="bandwdthStateVisibilityConverter" />
+        <converters:BandwidthStateVisibilityConverter x:Key="bandwidthStateVisibilityConverter" />
         <converters:BandwidthResultTextConverter  x:Key="bandwidthResultTextConverter" />
         <converters:BandwidthResultTooltipConverter x:Key="bandwidthResultTooltipConverter" />
         <converters:BandwidthResultColorConverter x:Key="bandwidthResultColorConverter" />
@@ -24,7 +24,7 @@
                 </Style.Resources>
             </Style>
         </Grid.Style>
-        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=1}">
+        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwidthStateVisibilityConverter}, ConverterParameter=1}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -35,7 +35,7 @@
                 <Image Grid.Column="0" Source="/Images/Measure.png" />
             </Button>
         </Grid>
-        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=2}">
+        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwidthStateVisibilityConverter}, ConverterParameter=2}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -48,7 +48,7 @@
             </Button>
         </Grid>
 
-        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwdthStateVisibilityConverter}, ConverterParameter=3}">
+        <Grid Visibility="{Binding ElementName=Bandwidth, Path=ProxyInfo.BandwidthData.State, Converter={StaticResource bandwidthStateVisibilityConverter}, ConverterParameter=3}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />

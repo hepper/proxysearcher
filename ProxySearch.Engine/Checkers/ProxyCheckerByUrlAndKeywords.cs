@@ -24,7 +24,8 @@ namespace ProxySearch.Engine.Checkers
             set;
         }
 
-        public ProxyCheckerByUrlAndKeywords(string url, string keywords)
+        public ProxyCheckerByUrlAndKeywords(string url, string keywords, int maxTasksCount)
+            : base(maxTasksCount)
         {
             Url = url;
             Keywords = keywords.Split(' ');

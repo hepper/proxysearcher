@@ -14,7 +14,8 @@ namespace ProxySearch.Console.Code.Detectable.ProxyCheckers
             : base(Resources.ProxyCheckerByUrlAndKeywords, Resources.ProxyCheckerByUrlAndKeywordsDescription, 1, proxyType, new List<object>
                 {
                     url,
-                    keywords
+                    keywords,
+                    Constants.DefaultSettings.MaxTasksCount.Value
                 })
         {
         }

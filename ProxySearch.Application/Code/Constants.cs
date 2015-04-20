@@ -72,5 +72,13 @@ namespace ProxySearch.Console.Code
             public static readonly string Location = @"Software\Proxy Searcher";
             public static readonly string ClientId = @"ClientId";
         }
+
+        public static class DefaultSettings
+        {
+            public static class MaxTasksCount
+            {
+                public static readonly int Value = 100;
+            }
+        }
     }
 }

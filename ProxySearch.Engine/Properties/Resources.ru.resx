@@ -144,9 +144,6 @@
 Постарайтесь не использовать прокси этого типа.
 Никогда не передевайте личные данные через публичные прокси.</value>
   </data>
-  <data name="CheckingBatchOfProxies" xml:space="preserve">
-    <value>Проверяется группа прокси сервисом checkerproxy.net</value>
-  </data>
   <data name="CheckingProxiesFormat" xml:space="preserve">
     <value>Проверяемые прокси: {0}</value>
   </data>
@@ -209,6 +206,9 @@
   </data>
   <data name="Socks5Details" xml:space="preserve">
     <value>Этот тип прокси работает на транспортном уровне стека протоколов TCP/IP и поддерживает пятую версию Socks прокси</value>
+  </data>
+  <data name="SynchronizationTask" xml:space="preserve">
+    <value>Синхронизационная задача</value>
   </data>
   <data name="TooManyRedirectsWasRequestedByServer" xml:space="preserve">
     <value>Слишком много перенаправлений запрошено сервером</value>

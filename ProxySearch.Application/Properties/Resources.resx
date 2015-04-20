@@ -138,12 +138,6 @@
   <data name="CannotUpdateProgram" xml:space="preserve">
     <value>Cannot update program. Do you want to do it manually?</value>
   </data>
-  <data name="CheckerProxyDotNet" xml:space="preserve">
-    <value>http://checkerproxy.net</value>
-  </data>
-  <data name="CheckerProxyDotNetDescription" xml:space="preserve">
-    <value>This checker uses online service http://checkerproxy.net. Additionally usage of this service will give you proxy type. Could check HTTP\HTTPS and SOCKS4\SOCKS5 proxies.</value>
-  </data>
   <data name="Chrome" xml:space="preserve">
     <value>Chrome</value>
   </data>
@@ -268,10 +262,10 @@
     <value>Sort type by '{0}' is not supported</value>
   </data>
   <data name="SpeedRespondTextFormat" xml:space="preserve">
-    <value>{0:0.##} ({1})</value>
+    <value>{0} ({1})</value>
   </data>
   <data name="SpeedRespondTooltipFormat" xml:space="preserve">
-    <value>Speed: {1:0.##} Mb/s
+    <value>Speed: {1} Mb/s
 Response time: {0} s</value>
   </data>
   <data name="TicketsLink" xml:space="preserve">
@@ -471,5 +465,11 @@ Outgoing IP address: {1}</value>
   </data>
   <data name="AndMoreFormat" xml:space="preserve">
     <value>... and on {0} more</value>
+  </data>
+  <data name="ProxySearcherStaticHtml" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/static.html</value>
+  </data>
+  <data name="ProxySearcherStaticHtmlContent" xml:space="preserve">
+    <value>A41B9664-9DF7-4EB5-8761-D56762497A44</value>
   </data>
 </root>
