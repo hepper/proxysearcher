@@ -54,7 +54,7 @@ namespace ProxySearch.Engine.GeoIP.BuiltInGeoIP
                 });
             }
 
-            return Task.FromResult(new CountryInfo 
+            return Task.FromResult(new CountryInfo
             {
                 Code = result.ToString(),
                 Name = result.ToString()
