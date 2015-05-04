@@ -29,6 +29,9 @@ namespace ProxySearch.Console.Code.Settings
                 HttpProxyTypes.ChangesContent,
                 HttpProxyTypes.Transparent
             };
+
+            MainWindowState = new MainWindowState();
+            ResultGridColumnWidth = new List<double>();
         }
 
         private static int DefaultPageSize
@@ -135,6 +138,18 @@ namespace ProxySearch.Console.Code.Settings
         }
 
         public List<ParseDetails> ParseDetails
+        {
+            get;
+            set;
+        }
+
+        public MainWindowState MainWindowState
+        {
+            get;
+            set;
+        }
+
+        public List<double> ResultGridColumnWidth
         {
             get;
             set;

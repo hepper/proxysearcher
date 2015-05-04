@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.Detectable.GeoIPs;
 using ProxySearch.Console.Code.Detectable.ProxyCheckers;
 using ProxySearch.Console.Code.Detectable.SearchEngines;
@@ -40,6 +39,14 @@ namespace ProxySearch.Console.Code.Settings
             settings.ExportSettings.ExportSearchResult = true;
             settings.SelectedTabSettingsId = settings.TabSettings[0].Id;
             settings.ParseDetails = new DefaultParseDetails().ParseDetailsList;
+
+            settings.ResultGridColumnWidth.Add(8);
+            settings.ResultGridColumnWidth.Add(16);
+            settings.ResultGridColumnWidth.Add(10);
+            settings.ResultGridColumnWidth.Add(18);
+            settings.ResultGridColumnWidth.Add(18);
+            settings.ResultGridColumnWidth.Add(18);
+            settings.ResultGridColumnWidth.Add(14);
  
             return settings;
         }

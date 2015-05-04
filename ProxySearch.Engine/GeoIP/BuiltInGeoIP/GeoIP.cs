@@ -30,6 +30,15 @@ namespace ProxySearch.Engine.GeoIP.BuiltInGeoIP
 
             JToken response = Reader.Find(ipAddress);
 
+            if (response == null)
+            {
+                return Task.FromResult(new CountryInfo
+                {
+                    Code = string.Empty,
+                    Name = string.Empty
+                });
+            }
+
             JToken countries = response["country"]["names"];
 
             JToken result = countries[culture.Name] ?? (culture.Parent == null

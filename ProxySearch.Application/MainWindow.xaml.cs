@@ -9,6 +9,7 @@ using System.Windows.Navigation;
 using ProxySearch.Common;
 using ProxySearch.Console.Code;
 using ProxySearch.Console.Code.Interfaces;
+using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine.Error;
 using ProxySearch.Engine.SearchEngines.Google;
 
@@ -27,6 +28,33 @@ namespace ProxySearch.Console
             Context.Set<IActionInvoker>(ActionInvoker);
             Context.Set<IErrorFeedback>(ActionInvoker);
             Context.Set<ICaptchaWindow>(this);
+
+            WindowState = MainWindowState.IsMaximized ? WindowState.Maximized : WindowState.Normal;
+
+            if (!MainWindowState.IsMaximized)
+            {
+                Left = MainWindowState.Location.X;
+                Top = MainWindowState.Location.Y;
+                Width = MainWindowState.Size.Width;
+                Height = MainWindowState.Size.Height;
+            }
+        }
+
+        private MainWindowState MainWindowState
+        {
+            get
+            {
+                return Context.Get<AllSettings>().MainWindowState;
+            }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            MainWindowState.IsMaximized = WindowState == WindowState.Maximized;
+            MainWindowState.Location = new Point(Left, Top);
+            MainWindowState.Size = new Size(Width, Height);
+
+            base.OnClosing(e);
         }
 
         public void ShowControl(UserControl control)

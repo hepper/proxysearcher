@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using ProxySearch.Console.Code;
+using ProxySearch.Console.Code.Converters;
 using ProxySearch.Console.Code.Filters;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
@@ -69,6 +71,50 @@ namespace ProxySearch.Console.Controls
             {
                 return Context.Get<AllSettings>().ExportSettings;
             }
+        }
+
+        public List<double> ResultGridColumnWidth
+        {
+            get
+            {
+                return Context.Get<AllSettings>().ResultGridColumnWidth;
+            }
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            for (int i = 0; i < DataGridControl.Columns.Count; i++)
+            {
+                DataGridControl.Columns[i].Width = new DataGridLength(ResultGridColumnWidth[i], DataGridLengthUnitType.Star);
+            }
+
+            EventHandler widthPropertyChangedHandler = (sender, x) =>
+            {
+                for (int i = 0; i < DataGridControl.Columns.Count; i++)
+                {
+                    ResultGridColumnWidth[i] = DataGridControl.Columns[i].Width.Value;
+                }
+            };
+
+            var widthPropertyDescriptor = DependencyPropertyDescriptor.FromProperty(DataGridColumn.WidthProperty, typeof(DataGridColumn));
+
+            Loaded += (sender, x) =>
+            {
+                for (int i = 0; i < DataGridControl.Columns.Count; i++)
+                {
+                    widthPropertyDescriptor.AddValueChanged(DataGridControl.Columns[i], widthPropertyChangedHandler);
+                }
+            };
+
+            Unloaded += (sender, x) =>
+            {
+                foreach (var column in DataGridControl.Columns)
+                {
+                    widthPropertyDescriptor.RemoveValueChanged(column, widthPropertyChangedHandler);
+                }
+            };
+
+            base.OnInitialized(e);
         }
 
         public SearchResult()
@@ -405,7 +451,7 @@ namespace ProxySearch.Console.Controls
 
         private void CopyDataIntoBuffer(object sender, RoutedEventArgs e)
         {
-            string[] values = FilteredData.Select(info=> info.ToString(ExportSettings.ExportCountry, ExportSettings.ExportProxyType))
+            string[] values = FilteredData.Select(info => info.ToString(ExportSettings.ExportCountry, ExportSettings.ExportProxyType))
                                   .ToArray();
 
             Clipboard.SetDataObject(string.Join(Environment.NewLine, values));
