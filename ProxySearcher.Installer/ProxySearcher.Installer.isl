@@ -347,7 +347,7 @@
 		<row><td>ProxySearch.Application.resources.dll</td><td>{6B32CD6B-D423-4311-AD5E-C60A5E1EDC7E}</td><td>RU</td><td>2</td><td/><td>proxysearch.application.reso</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Application.resources.dll1</td><td>{DBA10079-7730-4498-B9DE-57258609CD84}</td><td>UK</td><td>2</td><td/><td>proxysearch.application.reso1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Application.resources.dll2</td><td>{A8364539-CAAD-4174-BF6D-C966BFF0332A}</td><td>DE</td><td>2</td><td/><td>proxysearch.application.reso2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>ProxySearch.Console.Primary_output</td><td>{F07BF063-D47A-4263-9E69-0CFE53449979}</td><td>INSTALLDIR</td><td>2</td><td/><td>proxysearch.console.primary_</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ProxySearch.Console.Primary_output</td><td>{1E374B5F-5EAB-4307-AAB0-F9B067D2789B}</td><td>INSTALLDIR</td><td>2</td><td/><td>proxysearch.console.primary_</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Engine.resources.dll</td><td>{48EBD10A-9203-440A-9C82-F15526BDA28B}</td><td>RU</td><td>2</td><td/><td>proxysearch.engine.resources</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Engine.resources.dll1</td><td>{61C713CE-AAD7-4340-BF31-2A35D7D42A05}</td><td>UK</td><td>2</td><td/><td>proxysearch.engine.resources1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ProxySearch.Engine.resources.dll2</td><td>{63800DF5-9AD7-48A0-A888-2B0A28491753}</td><td>DE</td><td>2</td><td/><td>proxysearch.engine.resources2</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -4536,9 +4536,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]ProxySearch.Console.Primary output</td><td/></row>
-		<row><td>ProductCode</td><td>{0A588B3D-AAF3-46C2-8901-174035EFA9F6}</td><td/></row>
+		<row><td>ProductCode</td><td>{1BCC4639-C892-4D5B-8850-3B4CAEC42DAD}</td><td/></row>
 		<row><td>ProductName</td><td>Proxy Searcher</td><td/></row>
-		<row><td>ProductVersion</td><td>4.80.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>4.90.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>

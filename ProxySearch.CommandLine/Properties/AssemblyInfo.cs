@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ProxySearch.CommandLine")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MICROSOFT")]
+[assembly: AssemblyCompany("Burd")]
 [assembly: AssemblyProduct("ProxySearch.CommandLine")]
-[assembly: AssemblyCopyright("Copyright © MICROSOFT 2014")]
+[assembly: AssemblyCopyright("Copyright © Burd 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
