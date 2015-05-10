@@ -26,39 +26,39 @@ namespace ProxySearch.Engine.GeoIP.BuiltInGeoIP
 
         public Task<CountryInfo> GetLocation(string ipAddress)
         {
-            CultureInfo culture = Thread.CurrentThread.CurrentCulture;
-
-            JToken response = Reader.Find(ipAddress);
-
-            if (response == null)
+            try
             {
+                CultureInfo culture = Thread.CurrentThread.CurrentCulture;
+
+                JToken response = Reader.Find(ipAddress);
+
+                if (response == null)
+                    return Task.FromResult(CountryInfo.Empty);
+
+                JToken country = response["country"];
+
+                if (country == null)
+                    return Task.FromResult(CountryInfo.Empty);
+
+                JToken names = country["names"];
+
+                JToken result = names[culture.Name] ?? (culture.Parent == null
+                                                        ? names["en"]
+                                                        : (names[culture.Parent.Name] ?? names["en"]));
+
+                if (result == null)
+                    return Task.FromResult(CountryInfo.Empty);
+
                 return Task.FromResult(new CountryInfo
                 {
-                    Code = string.Empty,
-                    Name = string.Empty
+                    Code = result.ToString(),
+                    Name = result.ToString()
                 });
             }
-
-            JToken countries = response["country"]["names"];
-
-            JToken result = countries[culture.Name] ?? (culture.Parent == null
-                                                      ? countries["en"]
-                                                      : (countries[culture.Parent.Name] ?? countries["en"]));
-
-            if (result == null)
+            catch
             {
-                return Task.FromResult(new CountryInfo
-                {
-                    Code = string.Empty,
-                    Name = string.Empty
-                });
+                return Task.FromResult(CountryInfo.Empty);
             }
-
-            return Task.FromResult(new CountryInfo
-            {
-                Code = result.ToString(),
-                Name = result.ToString()
-            });
         }
     }
 }
