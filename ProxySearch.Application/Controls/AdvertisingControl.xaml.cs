@@ -125,6 +125,7 @@ namespace ProxySearch.Console.Controls
             if (isUserClickedOnAdvertising || Context.Get<IMessageBox>()
                        .OkCancelQuestion(ProxySearch.Console.Controls.Resources.AdvertisingControl.CloseAdvertisingQuestion) == MessageBoxResult.OK)
             {
+                timer.Stop();
                 PlayAnimation("CollapseControl");
                 Context.Get<IGA>().TrackEventAsync(EventType.General, Properties.Resources.AdvertisingClosed);
             }
