@@ -205,7 +205,7 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://sourceforge.net/donate/?user_id=1813459.
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/donate.html.
         /// </summary>
         internal static string DonateLink {
             get {

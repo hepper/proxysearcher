@@ -148,7 +148,7 @@
     <value>Details</value>
   </data>
   <data name="DonateLink" xml:space="preserve">
-    <value>http://sourceforge.net/donate/?user_id=1813459</value>
+    <value>http://proxysearcher.sourceforge.net/donate.html</value>
   </data>
   <data name="DoYouReallyWantToClearProxyUsageHistory" xml:space="preserve">
     <value>Do you really want to clear proxy usage history?</value>
