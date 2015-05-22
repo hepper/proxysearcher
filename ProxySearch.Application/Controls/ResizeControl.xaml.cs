@@ -110,8 +110,8 @@ namespace ProxySearch.Console.Controls
                         throw new InvalidOperationException(string.Concat("Unexpected ResizeDirection: ", ResizeDirection));
                 }
 
-                Width = Math.Max(0, originalWidth + widthDelta);
-                Height = Math.Max(0, originalHeight + heightDelta);
+                Width = Math.Max(MinWidth, originalWidth + widthDelta);
+                Height = Math.Max(MinHeight, originalHeight + heightDelta);
 
                 RaiseEvent(new RoutedEventArgs(SizeUpdatedEvent));
             }

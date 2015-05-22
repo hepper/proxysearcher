@@ -84,7 +84,7 @@
                 </MultiBinding>
             </Popup.IsOpen>
 
-            <controls:ResizeControl ResizeDirection="TopRight" x:Name="resizeControl">
+            <controls:ResizeControl ResizeDirection="TopRight" x:Name="resizeControl" MinWidth="200" MinHeight="100">
                 <Border Background="#EEC1D4FB" BorderBrush="Gray" BorderThickness="1" >
                     <controls:TaskManagerControl />
                 </Border>
