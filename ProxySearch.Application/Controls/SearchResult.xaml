@@ -62,7 +62,7 @@
             <DataGrid.Style>
                 <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource {x:Type DataGrid}}">
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding ElementName=Result,  Path=Data.Count}"  Value="0">
+                        <DataTrigger Binding="{Binding ElementName=Result,  Path=Data.Count}" Value="0">
                             <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -203,7 +203,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <controls:PagingControl Grid.Column="1" x:Name="Paging" PageChanged="PageChanged"  Count="{Binding ElementName=Result, Path=FilteredData.Count}" Margin="0,5,0,5" />
+            <controls:PagingControl Grid.Column="1" x:Name="Paging" PageChanged="PageChanged" Count="{Binding ElementName=Result, Path=FilteredData.Count}" Margin="0,5,0,5" />
 
             <Button Grid.Column="2" Width="30" HorizontalAlignment="Right" Margin="0 5 10 5" ToolTip="{x:Static resources:SearchResult.CopySearchResultsIntoClipboard}" Click="CopyDataIntoBuffer">
                 <Image Source="/Images/copy.png" />

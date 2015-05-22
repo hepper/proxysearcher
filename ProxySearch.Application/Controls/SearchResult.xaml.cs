@@ -152,6 +152,14 @@ namespace ProxySearch.Console.Controls
                 UpdatePageData();
             });
 
+            Context.Get<AllSettings>().PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == "PageSize")
+                {
+                    UpdatePageData();
+                }
+            };
+
             SearchState = SearchProgress.NotStartedOrCancelled;
         }
 

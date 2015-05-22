@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Xml.Serialization;
 using ProxySearch.Console.Code.Language;
@@ -10,8 +11,10 @@ using ProxySearch.Engine.Proxies.Http;
 namespace ProxySearch.Console.Code.Settings
 {
     [Serializable]
-    public class AllSettings
+    public class AllSettings : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public AllSettings()
         {
             TabSettings = new ObservableCollection<TabSettings>();
@@ -61,6 +64,7 @@ namespace ProxySearch.Console.Code.Settings
             set
             {
                 pageSize = value;
+                FireNotifyPropertyChanged("PageSize");
             }
         }
 
@@ -173,6 +177,14 @@ namespace ProxySearch.Console.Code.Settings
         {
             get;
             set;
+        }
+
+        private void FireNotifyPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

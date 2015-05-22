@@ -15,6 +15,7 @@ namespace ProxySearch.Console.Controls
     {
         public static readonly DependencyProperty CountProperty = DependencyProperty.Register("Count", typeof(int), typeof(PagingControl));
         public static readonly DependencyProperty PageProperty = DependencyProperty.Register("Page", typeof(int?), typeof(PagingControl));
+        public static readonly DependencyProperty PageSizeProperty = DependencyProperty.Register("PageSize", typeof(int), typeof(PagingControl));
         public static readonly RoutedEvent PageChangedEvent = EventManager.RegisterRoutedEvent("PageChanged", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(PagingControl));
 
         public PagingControl()
@@ -23,38 +24,8 @@ namespace ProxySearch.Console.Controls
 
             DependencyPropertyDescriptor.FromProperty(CountProperty, typeof(PagingControl)).AddValueChanged(this, CountChangedHandler);
             DependencyPropertyDescriptor.FromProperty(PageProperty, typeof(PagingControl)).AddValueChanged(this, PageChangedHandler);
-        }
-
-        private void CountChangedHandler(object sender, EventArgs e)
-        {
-            if (Count == 0)
-            {
-                Page = null;
-            }
-            else if (!Page.HasValue)
-            {
-                Page = 1;
-            }
-        }
-
-        private void PageChangedHandler(object sender, EventArgs e)
-        {
-            if (Page.HasValue)
-            {
-                if (Page < 1)
-                {
-                    Page = 1;
-                    return;
-                }
-
-                if (Page.Value > PageCount)
-                {
-                    Page = PageCount;
-                    return;
-                }
-            }
-
-            RaiseEvent(new RoutedEventArgs(PageChangedEvent));
+            Context.Get<AllSettings>().PropertyChanged += AllSettingsPropertyChanged;
+            PageSizeChanged();
         }
 
         public event RoutedEventHandler PageChanged
@@ -101,6 +72,18 @@ namespace ProxySearch.Console.Controls
             }
         }
 
+        public int PageSize
+        {
+            get
+            {
+                return (int)this.GetValue(PageSizeProperty);
+            }
+            set
+            {
+                this.SetValue(PageSizeProperty, value);
+            }
+        }
+
         private void GoTop(object sender, RoutedEventArgs e)
         {
             Page = 1;
@@ -127,6 +110,57 @@ namespace ProxySearch.Console.Controls
             {
                 CurrentPageTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             }
+        }
+
+        private void CountChangedHandler(object sender, EventArgs e)
+        {
+            if (Count == 0)
+            {
+                Page = null;
+            }
+            else if (!Page.HasValue)
+            {
+                Page = 1;
+            }
+        }
+
+        private void PageChangedHandler(object sender, EventArgs e)
+        {
+            UpdatePage();
+        }
+
+        private void UpdatePage()
+        {
+            if (Page.HasValue)
+            {
+                if (Page < 1)
+                {
+                    Page = 1;
+                    return;
+                }
+
+                if (Page.Value > PageCount)
+                {
+                    Page = PageCount;
+                    return;
+                }
+            }
+
+            RaiseEvent(new RoutedEventArgs(PageChangedEvent));
+        }
+
+        private void AllSettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "PageSize")
+            {
+                PageSizeChanged();
+            }
+        }
+
+        private void PageSizeChanged()
+        {
+            PageSize = Context.Get<AllSettings>().PageSize;
+            UpdatePage();
         }
     }
 }

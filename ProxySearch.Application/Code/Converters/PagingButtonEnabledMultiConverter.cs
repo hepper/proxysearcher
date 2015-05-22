@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using ProxySearch.Common;
-using ProxySearch.Console.Code.Settings;
 
 namespace ProxySearch.Console.Code.Converters
 {
@@ -10,7 +8,7 @@ namespace ProxySearch.Console.Code.Converters
     {
         private enum ButtonType
         {
-            Top,            
+            Top,
             Left,
             Right,
             Bottom
@@ -20,11 +18,12 @@ namespace ProxySearch.Console.Code.Converters
         {
             int? count = values[0] as int?;
             int? page = values[1] as int?;
+            int? pageSize = values[2] as int?;
 
-            if (!count.HasValue || !page.HasValue || count == 0)
+            if (!count.HasValue || !page.HasValue || !pageSize.HasValue || count == 0)
                 return false;
 
-            int pageCount = (int)Math.Ceiling((double)count / Context.Get<AllSettings>().PageSize);
+            int pageCount = (int)Math.Ceiling((double)count / pageSize.Value);
             ButtonType type = (ButtonType) Enum.Parse(typeof(ButtonType), (string)parameter);
 
             switch (type)

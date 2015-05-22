@@ -9,7 +9,7 @@
              d:DesignHeight="30" d:DesignWidth="285" Name="Paging">
     <UserControl.Resources>
         <converters:PagingEnabledConverter x:Key="pagingEnabledConverter" />
-        <converters:PageCountConverter x:Key="pageCountConverter" />
+        <converters:PageCountMultiConverter x:Key="pageCountMultiConverter" />
         <converters:PagingButtonEnabledMultiConverter x:Key="pagingButtonEnabledMultiConverter" />
     </UserControl.Resources>
     <Grid DataContext="{Binding ElementName=Paging, Path=Count}">
@@ -40,19 +40,21 @@
             </Style>
         </Grid.Resources>
 
-        <Button Grid.Column="1" Content="&lt;&lt;" Width="40" Margin="0,0,5,0" Click="GoTop">
+        <Button Name="GoBeginButton" Grid.Column="1" Content="&lt;&lt;" Width="40" Margin="0,0,5,0" Click="GoTop">
             <Button.IsEnabled>
                 <MultiBinding Converter="{StaticResource pagingButtonEnabledMultiConverter}" ConverterParameter="Top">
                     <Binding ElementName="Paging" Path="Count" />
                     <Binding ElementName="Paging" Path="Page" />
+                    <Binding ElementName="Paging" Path="PageSize" />
                 </MultiBinding>
             </Button.IsEnabled>
         </Button>
-        <Button Grid.Column="2" Content="&lt;" Width="40" Margin="0,0,5,0" Click="GoLeft">
+        <Button Name="GoLeftButton" Grid.Column="2" Content="&lt;" Width="40" Margin="0,0,5,0" Click="GoLeft">
             <Button.IsEnabled>
                 <MultiBinding Converter="{StaticResource pagingButtonEnabledMultiConverter}" ConverterParameter="Left">
                     <Binding ElementName="Paging" Path="Count" />
                     <Binding ElementName="Paging" Path="Page" />
+                    <Binding ElementName="Paging" Path="PageSize" />
                 </MultiBinding>
             </Button.IsEnabled>
         </Button>
@@ -67,23 +69,32 @@
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </TextBox.Style>            
+            </TextBox.Style>
         </TextBox>
         <Label Grid.Column="4">/</Label>
-        <TextBox Grid.Column="5" Width="40" Margin="0,0,5,0" IsReadOnly="True" Text="{Binding Converter={StaticResource pageCountConverter}, Mode=OneWay}" />
-        <Button Grid.Column="6" Content="&gt;" Width="40" Margin="0,0,5,0" Click="GoRight">
+        <TextBox Name="PageCountTextBox" Grid.Column="5" Width="40" Margin="0,0,5,0" IsReadOnly="True">
+            <TextBox.Text>
+                <MultiBinding Converter="{StaticResource pageCountMultiConverter}" Mode="OneWay">
+                    <Binding ElementName="Paging" Path="Count" />
+                    <Binding ElementName="Paging" Path="PageSize" />
+                </MultiBinding>
+            </TextBox.Text>
+        </TextBox>
+        <Button Name="GoRightButton" Grid.Column="6" Content="&gt;" Width="40" Margin="0,0,5,0" Click="GoRight">
             <Button.IsEnabled>
                 <MultiBinding Converter="{StaticResource pagingButtonEnabledMultiConverter}" ConverterParameter="Right">
                     <Binding ElementName="Paging" Path="Count" />
                     <Binding ElementName="Paging" Path="Page" />
+                    <Binding ElementName="Paging" Path="PageSize" />
                 </MultiBinding>
             </Button.IsEnabled>
         </Button>
-        <Button Grid.Column="7" Content="&gt;&gt;" Width="40" Click="GoBottom">
+        <Button Name="GoEndButton" Grid.Column="7" Content="&gt;&gt;" Width="40" Click="GoBottom">
             <Button.IsEnabled>
                 <MultiBinding Converter="{StaticResource pagingButtonEnabledMultiConverter}" ConverterParameter="Bottom">
                     <Binding ElementName="Paging" Path="Count" />
                     <Binding ElementName="Paging" Path="Page" />
+                    <Binding ElementName="Paging" Path="PageSize" />
                 </MultiBinding>
             </Button.IsEnabled>
         </Button>
