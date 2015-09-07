@@ -472,4 +472,19 @@ Outgoing IP address: {1}</value>
   <data name="ProxySearcherStaticHtmlContent" xml:space="preserve">
     <value>A41B9664-9DF7-4EB5-8761-D56762497A44</value>
   </data>
+  <data name="GetProxyRatingUrlFormat" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/Rating.php?action=Get&amp;proxyIp={0}&amp;proxyPort={1}</value>
+  </data>
+  <data name="UpdateProxyRatingUrlFormat" xml:space="preserve">
+    <value>http://proxysearcher.sourceforge.net/Rating.php?action=Update&amp;proxyIp={0}&amp;proxyPort={1}&amp;rating={2}</value>
+  </data>
+  <data name="CannotRateThisProxy" xml:space="preserve">
+    <value>Cannot save your vote</value>
+  </data>
+  <data name="RatingVotesFormat" xml:space="preserve">
+    <value>Rating {0:0.##} ({1} vote(s))</value>
+  </data>
+  <data name="UpdatingRating" xml:space="preserve">
+    <value>Updating rating</value>
+  </data>
 </root>

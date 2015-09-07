@@ -186,10 +186,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="{x:Static resources:SearchResult.Rating}" Width="60" SortMemberPath="RatingData">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <controls:RatingDataControl ProxyInfo="{Binding}" MaxWidth="100" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="{x:Static resources:SearchResult.Usage}" Width="180">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <controls:ProxyClientsControl ProxyInfo="{Binding}" controls:ProxyClientControl.Click="ProxyUsageChanged"  Name="ProxyClient" HorizontalContentAlignment="Center" />
+                            <controls:ProxyClientsControl ProxyInfo="{Binding}" controls:ProxyClientControl.Click="ProxyUsageChanged" Name="ProxyClient" HorizontalContentAlignment="Center" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

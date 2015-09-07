@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="ProxySearch.Console.Controls.RatingDataControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls"
+             xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
+             mc:Ignorable="d" Name="Rating">
+    <UserControl.Resources>
+        <converters:RatingValueConverter x:Key="ratingValueConverter" />
+        <converters:RatingTooltipConverter x:Key="ratingTooltipConverter" />
+    </UserControl.Resources>
+    <Grid DataContext="{Binding ElementName=Rating}" >
+        <ProgressBar Name="progressBar" BorderThickness="1" />
+        <controls:RatingControl x:Name="ratingControl" 
+                                RatingValue="{Binding Path=ProxyInfo.RatingData, Converter={StaticResource ratingValueConverter}, Mode=OneWay}" 
+                                RatingValueChanged="RatingValueChangedHandler" Padding="5 1 5 1" 
+                                ToolTip="{Binding Path=ProxyInfo.RatingData, Converter={StaticResource ratingTooltipConverter}, Mode=OneWay}" />
+    </Grid>
+</UserControl>

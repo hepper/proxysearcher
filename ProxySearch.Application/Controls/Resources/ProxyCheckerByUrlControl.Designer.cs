@@ -70,6 +70,15 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max async checks.
+        /// </summary>
+        public static string MaxAsyncChecks {
+            get {
+                return ResourceManager.GetString("MaxAsyncChecks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Url.
         /// </summary>
         public static string Url {

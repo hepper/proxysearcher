@@ -115,6 +115,11 @@
     <Compile Include="ProxyDetailsProvider\IProxyDetailsProvider.cs" />
     <Compile Include="ProxyDetailsProvider\ProxyDetailsProviderBase.cs" />
     <Compile Include="ProxyDetailsProvider\SocksProxyDetailsProvider.cs" />
+    <Compile Include="Ratings\IRatingManager.cs" />
+    <Compile Include="Ratings\DisabledRatingManager.cs" />
+    <Compile Include="Ratings\Rating.cs" />
+    <Compile Include="Ratings\RatingData.cs" />
+    <Compile Include="Ratings\RatingState.cs" />
     <Compile Include="SearchEngines\ParallelSearchEngine.cs" />
     <Compile Include="Tasks\ITaskManager.cs" />
     <Compile Include="Tasks\ObservableList.cs" />

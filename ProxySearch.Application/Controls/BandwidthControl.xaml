@@ -6,7 +6,8 @@
              xmlns:converters="clr-namespace:ProxySearch.Console.Code.Converters"
              xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="150" Name="Bandwidth">
+             d:DesignHeight="30" d:DesignWidth="150" Name="Bandwidth"
+             xmlns:controls="clr-namespace:ProxySearch.Console.Controls">
     <UserControl.Resources>
         <converters:BandwidthStateVisibilityConverter x:Key="bandwidthStateVisibilityConverter" />
         <converters:BandwidthResultTextConverter  x:Key="bandwidthResultTextConverter" />
@@ -72,7 +73,7 @@
                 <TextBox.Background>
                     <MultiBinding  Converter="{StaticResource bandwidthResultColorConverter}">
                         <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.State"  />
-                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.Bandwidth" />                        
+                        <Binding ElementName="Bandwidth" Path="ProxyInfo.BandwidthData.Bandwidth" />
                     </MultiBinding>
                 </TextBox.Background>
             </TextBox>

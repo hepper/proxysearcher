@@ -31,7 +31,7 @@
         <Slider Grid.Row="1" Name="slider" Grid.Column="1" Minimum="0" Maximum="1" Value="{Binding ElementName=ProxyCheckerByUrl, Path=Accuracy, Mode=TwoWay}" TickFrequency="0.05" IsSnapToTickEnabled="True" />
         <Label Grid.Row="1" Grid.Column="2" Content="{Binding ElementName=slider, Path=Value, Converter={StaticResource accuracyConverter}}" />
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Max async checks" />
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static resources:ProxyCheckerByUrlControl.MaxAsyncChecks}" />
         <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding ElementName=ProxyCheckerByUrl, Path=MaxAsyncChecks, Mode=TwoWay}" Minimum="1" TextAlignment="Left" />
     </Grid>
 </UserControl>

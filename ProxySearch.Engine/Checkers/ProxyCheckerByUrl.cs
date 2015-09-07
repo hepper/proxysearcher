@@ -9,6 +9,7 @@ using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
@@ -43,9 +44,10 @@ namespace ProxySearch.Engine.Checkers
                                              IHttpDownloaderContainer httpDownloaderContainer,
                                              IErrorFeedback errorFeedback,
                                              IProxySearchFeedback proxySearchFeedback,
-                                             IGeoIP geoIP)
+                                             IGeoIP geoIP,
+                                             IRatingManager ratingManager)
         {
-            base.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback, proxySearchFeedback, geoIP);
+            base.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback, proxySearchFeedback, geoIP, ratingManager);
 
             TaskItem taskItem = taskManager.Create(Resources.ConfiguringProxyChecker);
 

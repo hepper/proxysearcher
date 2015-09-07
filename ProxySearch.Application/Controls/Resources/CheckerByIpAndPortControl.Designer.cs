@@ -22,14 +22,14 @@ namespace ProxySearch.Console.Controls.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class CheckerByUrlAndKeywordsControl {
+    public class CheckerByIpAndPortControl {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CheckerByUrlAndKeywordsControl() {
+        internal CheckerByIpAndPortControl() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ProxySearch.Console.Controls.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.CheckerByUrlAndKeywordsControl", typeof(CheckerByUrlAndKeywordsControl).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProxySearch.Console.Controls.Resources.CheckerByIpAndPortControl", typeof(CheckerByIpAndPortControl).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keywords.
-        /// </summary>
-        public static string Keywords {
-            get {
-                return ResourceManager.GetString("Keywords", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Max async checks.
         /// </summary>
         public static string MaxAsyncChecks {
             get {
                 return ResourceManager.GetString("MaxAsyncChecks", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Url.
-        /// </summary>
-        public static string Url {
-            get {
-                return ResourceManager.GetString("Url", resourceCulture);
             }
         }
     }

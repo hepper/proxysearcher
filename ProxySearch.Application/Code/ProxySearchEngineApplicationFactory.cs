@@ -10,6 +10,7 @@ using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Error;
 using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Parser;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.Socks;
 using ProxySearch.Engine.Tasks;
@@ -51,7 +52,7 @@ namespace ProxySearch.Console.Code
 
             task.UpdateDetails(Resources.PreparingApplication);
 
-            Application application = new Application(searchEngine, proxyChecker, HttpDownloaderContainer, geoIP, proxyProvider, Context.Get<ITaskManager>());
+            Application application = new Application(searchEngine, proxyChecker, HttpDownloaderContainer, geoIP, Context.Get<IRatingManager>(), proxyProvider, Context.Get<ITaskManager>());
 
             application.ProxyAlive += feedback.OnAliveProxy;
             application.OnError += Context.Get<IErrorFeedback>().SetException;

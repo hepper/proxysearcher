@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Accuracy" xml:space="preserve">
-    <value>Точність</value>
-  </data>
   <data name="MaxAsyncChecks" xml:space="preserve">
-    <value>К-ть перевірок</value>
-  </data>
-  <data name="Url" xml:space="preserve">
-    <value>Адреса</value>
+    <value>К-ть  перевірок</value>
   </data>
 </root>

@@ -120,6 +120,9 @@
   <data name="Keywords" xml:space="preserve">
     <value>Ключові слова</value>
   </data>
+  <data name="MaxAsyncChecks" xml:space="preserve">
+    <value>К-ть перевірок</value>
+  </data>
   <data name="Url" xml:space="preserve">
     <value>Адреса</value>
   </data>

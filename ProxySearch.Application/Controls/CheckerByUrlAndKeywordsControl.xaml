@@ -24,7 +24,7 @@
         <Label Grid.Row="1" Grid.Column="0" Content="{x:Static resources:CheckerByUrlAndKeywordsControl.Keywords}" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=Keywords, Mode=TwoWay}" />
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Max async checks" />
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static resources:CheckerByUrlAndKeywordsControl.MaxAsyncChecks}" />
         <toolkit:IntegerUpDown Grid.Row="2" Grid.Column="1" Text="{Binding ElementName=CheckerByUrlAndKeywords, Path=MaxAsyncChecks, Mode=TwoWay}" Minimum="1" TextAlignment="Left" />
     </Grid>
 </UserControl>

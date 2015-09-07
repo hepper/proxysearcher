@@ -9,6 +9,7 @@ using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.Proxies.Http;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.ProxyDetailsProvider
@@ -24,7 +25,8 @@ namespace ProxySearch.Engine.ProxyDetailsProvider
                                     IHttpDownloaderContainer httpDownloaderContainer,
                                     IErrorFeedback errorFeedback,
                                     IProxySearchFeedback proxySearchFeedback,
-                                    IGeoIP geoIP)
+                                    IGeoIP geoIP,
+                                    IRatingManager ratingManager)
         {
             this.httpDownloaderContainer = httpDownloaderContainer;
             TaskItem taskItem = taskManager.Create(Resources.ConfigureProviderOfProxyDetails);

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:resources="clr-namespace:ProxySearch.Console.Controls.Resources"
              mc:Ignorable="d"
              d:DesignHeight="30" d:DesignWidth="300"
              x:Name="CheckerByIpAndPort">
@@ -13,7 +14,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="0" Content="Max async checks" />
+        <Label Grid.Column="0" Content="{x:Static resources:CheckerByIpAndPortControl.MaxAsyncChecks}" />
         <toolkit:IntegerUpDown Grid.Column="1" Text="{Binding ElementName=CheckerByIpAndPort, Path=MaxAsyncChecks, Mode=TwoWay}" Minimum="1" TextAlignment="Left" />
     </Grid>
 </UserControl>

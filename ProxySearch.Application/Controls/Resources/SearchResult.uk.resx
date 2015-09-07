@@ -138,6 +138,9 @@
   <data name="Port" xml:space="preserve">
     <value>Порт</value>
   </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
   <data name="SpeedResponce" xml:space="preserve">
     <value>Швидкість (відгук)</value>
   </data>

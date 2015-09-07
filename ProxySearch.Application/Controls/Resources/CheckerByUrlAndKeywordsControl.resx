@@ -120,6 +120,9 @@
   <data name="Keywords" xml:space="preserve">
     <value>Keywords</value>
   </data>
+  <data name="MaxAsyncChecks" xml:space="preserve">
+    <value>Max async checks</value>
+  </data>
   <data name="Url" xml:space="preserve">
     <value>Url</value>
   </data>

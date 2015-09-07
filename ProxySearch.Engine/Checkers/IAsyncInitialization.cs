@@ -2,6 +2,7 @@
 using ProxySearch.Engine.DownloaderContainers;
 using ProxySearch.Engine.Error;
 using ProxySearch.Engine.GeoIP;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
@@ -13,6 +14,7 @@ namespace ProxySearch.Engine.Checkers
                              IHttpDownloaderContainer httpDownloaderContainer,
                              IErrorFeedback errorFeedback,
                              IProxySearchFeedback proxySearchFeedback,
-                             IGeoIP geoIP);
+                             IGeoIP geoIP,
+                             IRatingManager ratingManager);
     }
 }

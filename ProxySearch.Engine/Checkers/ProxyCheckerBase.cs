@@ -12,6 +12,7 @@ using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
 using ProxySearch.Engine.ProxyDetailsProvider;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Engine.Checkers
@@ -67,6 +68,12 @@ namespace ProxySearch.Engine.Checkers
             set;
         }
 
+        protected IRatingManager RatingManager
+        {
+            get;
+            set;
+        }
+
         private ObservableList<Proxy> ProxyQueue
         {
             get;
@@ -97,7 +104,8 @@ namespace ProxySearch.Engine.Checkers
                                             IHttpDownloaderContainer httpDownloaderContainer,
                                             IErrorFeedback errorFeedback,
                                             IProxySearchFeedback proxySearchFeedback,
-                                            IGeoIP geoIP)
+                                            IGeoIP geoIP,
+                                            IRatingManager ratingManager)
         {
             CancellationTokenSource = cancellationTokenSource;
             TaskManager = taskManager;
@@ -105,11 +113,12 @@ namespace ProxySearch.Engine.Checkers
             ErrorFeedback = errorFeedback;
             ProxySearchFeedback = proxySearchFeedback;
             GeoIP = geoIP;
+            RatingManager = ratingManager;
 
             IAsyncInitialization asyncInitialization = DetailsProvider as IAsyncInitialization;
 
             if (asyncInitialization != null)
-                asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback, proxySearchFeedback, geoIP);
+                asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, errorFeedback, proxySearchFeedback, geoIP, ratingManager);
 
             TaskManager.Tasks.CollectionChanged += (sender, e) =>
             {
@@ -238,6 +247,8 @@ namespace ProxySearch.Engine.Checkers
 
                         if (bandwidth != null)
                             HttpDownloaderContainer.BandwidthManager.UpdateBandwidthData(proxyInfo, bandwidth);
+
+                        proxyInfo.RatingData = await RatingManager.GetRatingData(proxyInfo);
 
                         ProxySearchFeedback.OnAliveProxy(proxyInfo);
                     }

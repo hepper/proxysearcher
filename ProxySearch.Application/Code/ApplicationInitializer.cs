@@ -4,15 +4,16 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using ProxySearch.Common;
 using ProxySearch.Console.Code.GoogleAnalytics;
 using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.ProxyClients;
+using ProxySearch.Console.Code.Ratings;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Console.Code.Version;
 using ProxySearch.Console.Controls;
 using ProxySearch.Console.Properties;
 using ProxySearch.Engine;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Code
@@ -45,6 +46,7 @@ namespace ProxySearch.Console.Code
             Context.Get<IGA>().TrackPageViewAsync(typeof(SearchControl).Name);
 
             Context.Set<ITaskManager>(new TaskManager());
+            Context.Set<IRatingManager>(new RatingManager());
         }
 
         public void Deinitialize()

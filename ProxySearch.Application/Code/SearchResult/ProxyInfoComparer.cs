@@ -71,6 +71,8 @@ namespace ProxySearch.Console.Code.SearchResult
                     return source.Details.Details.ToString();
                 case "BandwidthData":
                     return source.BandwidthData;
+                case "RatingData":
+                    return source.RatingData;
             }
 
             throw new NotSupportedException(string.Format(Properties.Resources.SortTypeIsNotSupported, path));

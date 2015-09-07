@@ -138,6 +138,9 @@
   <data name="Port" xml:space="preserve">
     <value>Port</value>
   </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
   <data name="SpeedResponce" xml:space="preserve">
     <value>Speed (response)</value>
   </data>

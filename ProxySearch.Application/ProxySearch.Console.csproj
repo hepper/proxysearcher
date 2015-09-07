@@ -94,6 +94,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Code\Converters\ListToEmptyPanelVisibilityConverter.cs" />
+    <Compile Include="Code\Converters\RatingTooltipConverter.cs" />
+    <Compile Include="Code\Converters\RatingValueConverter.cs" />
     <Compile Include="Code\Detectable\ProxyCheckers\SimpleProxyCheckerDetectableBase.cs" />
     <Compile Include="Code\ProxyClients\Opera\HttpOperaClient.cs">
       <SubType>Code</SubType>
@@ -107,6 +109,7 @@
     <Compile Include="Code\ProxyClients\Opera\SocksOperaClient.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\Ratings\RatingManager.cs" />
     <Compile Include="Code\Settings\MainWindowState.cs" />
     <Compile Include="Controls\ActiveProxyClientControl.xaml.cs">
       <DependentUpon>ActiveProxyClientControl.xaml</DependentUpon>
@@ -362,6 +365,12 @@
       <DependentUpon>ProxyClientsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Code\UI\ResizeDirection.cs" />
+    <Compile Include="Controls\RatingControl.xaml.cs">
+      <DependentUpon>RatingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RatingDataControl.xaml.cs">
+      <DependentUpon>RatingDataControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ResizeControl.xaml.cs">
       <DependentUpon>ResizeControl.xaml</DependentUpon>
     </Compile>
@@ -399,6 +408,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckerByUrlAndKeywordsControl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Resources\CheckerByIpAndPortControl.Designer.cs">
+      <DependentUpon>CheckerByIpAndPortControl.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Controls\Resources\DownloadNewVersion.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -623,6 +637,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\RatingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\RatingDataControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ResizeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -817,6 +839,7 @@
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CheckerByUrlAndKeywordsControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.ru.resx" />
     <EmbeddedResource Include="Controls\Resources\AboutControl.uk.resx">
@@ -829,6 +852,14 @@
     <EmbeddedResource Include="Controls\Resources\BackControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\BandwidthControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\CheckerByUrlAndKeywordsControl.uk.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerByIpAndPortControl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CheckerByIpAndPortControl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Resources\CheckerByIpAndPortControl.de.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerByIpAndPortControl.ru.resx" />
+    <EmbeddedResource Include="Controls\Resources\CheckerByIpAndPortControl.uk.resx" />
     <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.de.resx" />
     <EmbeddedResource Include="Controls\Resources\DownloadNewVersion.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

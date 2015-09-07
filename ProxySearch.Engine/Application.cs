@@ -13,6 +13,7 @@ using ProxySearch.Engine.GeoIP;
 using ProxySearch.Engine.Parser;
 using ProxySearch.Engine.Properties;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.SearchEngines;
 using ProxySearch.Engine.Socks;
 using ProxySearch.Engine.Tasks;
@@ -27,6 +28,7 @@ namespace ProxySearch.Engine
         IGeoIP geoIP;
         IProxyProvider proxyProvider;
         ITaskManager taskManager;
+        IRatingManager ratingManager;
 
         internal static ISocksProxyTypeHashtable SocksProxyHashTable
         {
@@ -51,6 +53,7 @@ namespace ProxySearch.Engine
                            IProxyChecker checker,
                            IHttpDownloaderContainer httpDownloaderContainer,
                            IGeoIP geoIP = null,
+                           IRatingManager ratingManager = null,
                            IProxyProvider proxyProvider = null,
                            ITaskManager taskManager = null)
         {
@@ -61,6 +64,7 @@ namespace ProxySearch.Engine
             this.proxyProvider = proxyProvider ?? new ProxyProvider();
             this.geoIP = geoIP ?? new TurnOffGeoIP();
             this.taskManager = taskManager ?? new TaskManager();
+            this.ratingManager = ratingManager ?? new DisabledRatingManager();
         }
 
         public void OnAliveProxy(ProxyInfo proxyInfo)
@@ -94,7 +98,7 @@ namespace ProxySearch.Engine
                 IAsyncInitialization asyncInitialization = @object as IAsyncInitialization;
 
                 if (asyncInitialization != null)
-                    asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, this, this, geoIP);
+                    asyncInitialization.InitializeAsync(cancellationTokenSource, taskManager, httpDownloaderContainer, this, this, geoIP, ratingManager);
             }
 
             IEnumerable<ISearchEngine> searchEngines = searchEngine as IEnumerable<ISearchEngine>;

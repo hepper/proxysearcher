@@ -376,4 +376,13 @@
   <data name="AndMoreFormat" xml:space="preserve">
     <value>... и еще на {0} больше</value>
   </data>
+  <data name="CannotRateThisProxy" xml:space="preserve">
+    <value>Невозможно сохранить голос</value>
+  </data>
+  <data name="RatingVotesFormat" xml:space="preserve">
+    <value>Рейтинг {0:0.##} ({1} голос(а,ов))</value>
+  </data>
+  <data name="UpdatingRating" xml:space="preserve">
+    <value>Рейтинг обновляется</value>
+  </data>
 </root>

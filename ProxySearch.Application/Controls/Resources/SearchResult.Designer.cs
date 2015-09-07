@@ -124,6 +124,15 @@ namespace ProxySearch.Console.Controls.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rating.
+        /// </summary>
+        public static string Rating {
+            get {
+                return ResourceManager.GetString("Rating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Speed (response).
         /// </summary>
         public static string SpeedResponce {

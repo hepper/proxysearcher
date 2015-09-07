@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Text;
 using ProxySearch.Engine.Bandwidth;
+using ProxySearch.Engine.Ratings;
 
 namespace ProxySearch.Engine.Proxies
 {
@@ -42,6 +43,12 @@ namespace ProxySearch.Engine.Proxies
             set;
         }
 
+        public RatingData RatingData
+        {
+            get;
+            set;
+        }
+
         public ProxyInfo Proxy
         {
             get
@@ -52,9 +59,14 @@ namespace ProxySearch.Engine.Proxies
 
         public void NotifyProxyChanged()
         {
+            NotifyPropertyChanged("Proxy");
+        }
+
+        private void NotifyPropertyChanged(string name)
+        {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs("Proxy"));
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
 

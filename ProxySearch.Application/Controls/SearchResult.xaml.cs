@@ -83,14 +83,14 @@ namespace ProxySearch.Console.Controls
 
         protected override void OnInitialized(EventArgs e)
         {
-            for (int i = 0; i < DataGridControl.Columns.Count; i++)
+            for (int i = 0; i < DataGridControl.Columns.Count && i < ResultGridColumnWidth.Count; i++)
             {
                 DataGridControl.Columns[i].Width = new DataGridLength(ResultGridColumnWidth[i], DataGridLengthUnitType.Star);
             }
 
             EventHandler widthPropertyChangedHandler = (sender, x) =>
             {
-                for (int i = 0; i < DataGridControl.Columns.Count; i++)
+                for (int i = 0; i < DataGridControl.Columns.Count && i < ResultGridColumnWidth.Count; i++)
                 {
                     ResultGridColumnWidth[i] = DataGridControl.Columns[i].Width.Value;
                 }

@@ -120,6 +120,9 @@
   <data name="Accuracy" xml:space="preserve">
     <value>Точность</value>
   </data>
+  <data name="MaxAsyncChecks" xml:space="preserve">
+    <value>Кол. проверок</value>
+  </data>
   <data name="Url" xml:space="preserve">
     <value>Адрес</value>
   </data>

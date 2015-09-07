@@ -151,6 +151,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot save your vote.
+        /// </summary>
+        internal static string CannotRateThisProxy {
+            get {
+                return ResourceManager.GetString("CannotRateThisProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot set sock proxy for Firefox when socks version is not defined.
         /// </summary>
         internal static string CannotSetProxyForFirefoxWhenSocksVersionIsNotDefined {
@@ -354,6 +363,15 @@ namespace ProxySearch.Console.Properties {
         internal static string FoundProxiesFormat {
             get {
                 return ResourceManager.GetString("FoundProxiesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/Rating.php?action=Get&amp;proxyIp={0}&amp;proxyPort={1}.
+        /// </summary>
+        internal static string GetProxyRatingUrlFormat {
+            get {
+                return ResourceManager.GetString("GetProxyRatingUrlFormat", resourceCulture);
             }
         }
         
@@ -729,6 +747,15 @@ namespace ProxySearch.Console.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rating {0:0.##} ({1} vote(s)).
+        /// </summary>
+        internal static string RatingVotesFormat {
+            get {
+                return ResourceManager.GetString("RatingVotesFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reading configuration of selected search.
         /// </summary>
         internal static string ReadingConfigurationOfSelectedSearch {
@@ -1023,6 +1050,24 @@ namespace ProxySearch.Console.Properties {
         internal static string UpdateIsReadyToInstall {
             get {
                 return ResourceManager.GetString("UpdateIsReadyToInstall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://proxysearcher.sourceforge.net/Rating.php?action=Update&amp;proxyIp={0}&amp;proxyPort={1}&amp;rating={2}.
+        /// </summary>
+        internal static string UpdateProxyRatingUrlFormat {
+            get {
+                return ResourceManager.GetString("UpdateProxyRatingUrlFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updating rating.
+        /// </summary>
+        internal static string UpdatingRating {
+            get {
+                return ResourceManager.GetString("UpdatingRating", resourceCulture);
             }
         }
         
