@@ -8,7 +8,7 @@ namespace ProxySearch.Console.Code.Version
         {
             get
             {
-                return 40;
+                return 41;
             }
         }
 
