@@ -5,12 +5,12 @@ namespace ProxySearch.Engine.Ratings
 {
     public class DisabledRatingManager : IRatingManager
     {
-        public Task<RatingData> GetRatingData(Proxy proxy)
+        public Task<RatingData> GetRatingDataAsync(Proxy proxy)
         {
             return Task.FromResult<RatingData>(new RatingData());
         }
 
-        public Task<RatingData> UpdateRatingData(Proxy proxy, int? ratingValue)
+        public Task<RatingData> UpdateRatingDataAsync(Proxy proxy, int? ratingValue)
         {
             return Task.FromResult<RatingData>(new RatingData(RatingState.Disabled, null));
         }

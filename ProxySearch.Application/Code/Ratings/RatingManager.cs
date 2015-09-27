@@ -10,7 +10,7 @@ namespace ProxySearch.Console.Code.Ratings
 {
     public class RatingManager : IRatingManager
     {
-        public async Task<RatingData> GetRatingData(Proxy proxy)
+        public async Task<RatingData> GetRatingDataAsync(Proxy proxy)
         {
             string content = await HttpDownloader.GetContentOrNull(string.Format(Resources.GetProxyRatingUrlFormat, proxy.Address, proxy.Port), null);
 
@@ -20,7 +20,7 @@ namespace ProxySearch.Console.Code.Ratings
             return new RatingData(RatingState.Ready, GetRatingOrDefault(content));
         }
 
-        public async Task<RatingData> UpdateRatingData(Proxy proxy, int? ratingValue)
+        public async Task<RatingData> UpdateRatingDataAsync(Proxy proxy, int? ratingValue)
         {
             string content = await HttpDownloader.GetContentOrNull(string.Format(Resources.UpdateProxyRatingUrlFormat, proxy.Address, proxy.Port, ratingValue ?? 0), null);
 

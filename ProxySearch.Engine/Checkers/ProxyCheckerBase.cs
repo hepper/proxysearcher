@@ -248,7 +248,7 @@ namespace ProxySearch.Engine.Checkers
                         if (bandwidth != null)
                             HttpDownloaderContainer.BandwidthManager.UpdateBandwidthData(proxyInfo, bandwidth);
 
-                        proxyInfo.RatingData = await RatingManager.GetRatingData(proxyInfo);
+                        proxyInfo.RatingData = await RatingManager.GetRatingDataAsync(proxyInfo);
 
                         ProxySearchFeedback.OnAliveProxy(proxyInfo);
                     }

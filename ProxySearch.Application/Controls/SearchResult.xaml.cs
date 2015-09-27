@@ -13,6 +13,7 @@ using ProxySearch.Console.Code.Interfaces;
 using ProxySearch.Console.Code.SearchResult;
 using ProxySearch.Console.Code.Settings;
 using ProxySearch.Engine.Proxies;
+using ProxySearch.Engine.Ratings;
 using ProxySearch.Engine.Tasks;
 
 namespace ProxySearch.Console.Controls
@@ -402,6 +403,8 @@ namespace ProxySearch.Console.Controls
 
             Data.Remove(proxy);
             FilteredData.Remove(proxy);
+
+            Context.Get<IRatingManager>().UpdateRatingDataAsync(proxy, 1);
 
             UpdateStatusString();
         }

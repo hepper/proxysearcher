@@ -5,7 +5,7 @@ namespace ProxySearch.Engine.Ratings
 {
     public interface IRatingManager
     {
-        Task<RatingData> GetRatingData(Proxy proxy);
-        Task<RatingData> UpdateRatingData(Proxy proxy, int? ratingValue);
+        Task<RatingData> GetRatingDataAsync(Proxy proxy);
+        Task<RatingData> UpdateRatingDataAsync(Proxy proxy, int? ratingValue);
     }
 }

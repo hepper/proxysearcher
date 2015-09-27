@@ -40,7 +40,7 @@ namespace ProxySearch.Console.Controls
 
             try
             {
-                ProxyInfo.RatingData = await Context.Get<IRatingManager>().UpdateRatingData(ProxyInfo, e.NewValue != 0 ? e.NewValue : default(int?));
+                ProxyInfo.RatingData = await Context.Get<IRatingManager>().UpdateRatingDataAsync(ProxyInfo, e.NewValue != 0 ? e.NewValue : default(int?));
                 ratingControl.RatingValue = (int)new RatingValueConverter().Convert(ProxyInfo.RatingData, null, null, null);
             }
             finally
