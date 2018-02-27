@@ -8,3 +8,5 @@ Features
 Easely finding working proxy servers of http and socks types
 Using proxy in most popular browsers in one click
 Flexible settings for searcing
+
+https://sourceforge.net/projects/proxysearcher/
